@@ -2,7 +2,7 @@ class Show
   include DataMapper::Resource
   
   property :id, Serial
-  property :date_player, Date
+  property :date_played, Date
   property :show_notes, Text
   property :audio_available, Boolean
   property :date_created, DateTime
