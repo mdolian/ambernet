@@ -1,16 +1,23 @@
 %h2 Search Shows
 
 %form{:action => "/shows/search_results", :method => "post"}
-  = select :name => "venue_id", :collection => Venue.all, :label => "Venue"
-  %p
-    %select{:name => "year"}
-      %option{:value => "All"} All
-      %option{:value => "2001"} 2001
-      %option{:value => "2002"} 2002
-      %option{:value => "2003"} 2003
-      %option{:value => "2004"} 2004
-      %option{:value => "2005"} 2005
-      %option{:value => "2006"} 2006
-      %option{:value => "2007"} 2007
-      %option{:value => "2008"} 2008
-    = submit "Search" 
+  #search_field
+  %h5 Song:
+  = text_field :name => "song_name"
+  #search_field
+  %h5 Venue:
+  = select :name => "venue_id", :collection => Venue.all
+  #search_field
+  %h5 Year:
+  %select{:name => "year"}
+    %option{:value => "All"} All
+    %option{:value => "2001"} 2001
+    %option{:value => "2002"} 2002
+    %option{:value => "2003"} 2003
+    %option{:value => "2004"} 2004
+    %option{:value => "2005"} 2005
+    %option{:value => "2006"} 2006
+    %option{:value => "2007"} 2007
+    %option{:value => "2008"} 2008
+  #search_field
+  = submit "Search" 
