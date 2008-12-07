@@ -14,4 +14,11 @@ class Show
   has n, :recordings
   belongs_to :venue
   
+  def first
+    id
+  end
+  
+  def last
+    date_played
+  end
 end

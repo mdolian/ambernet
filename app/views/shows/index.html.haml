@@ -1,9 +1,10 @@
 %h2 Search Shows
 
 %form{:action => "/shows/search_results", :method => "post"}
-  = text_field :name => "venue_name", :label => "Venue"
+  = select :name => "venue_id", :collection => Venue.all, :label => "Venue"
   %p
     %select{:name => "year"}
+      %option{:value => "All"} All
       %option{:value => "2001"} 2001
       %option{:value => "2002"} 2002
       %option{:value => "2003"} 2003

@@ -13,8 +13,12 @@ class Venue
   
   has n, :shows  
   
-  def collect
-    Venue.all
+  def first
+    id
+  end
+  
+  def last
+    venue_name
   end
   
 end

@@ -6,14 +6,15 @@ class Shows < Application
     render
   end
   
-  def search
-    @venues - Venue.all
-  end
-  
   def search_results
-    options = {:date_played.gte => params['year'], :date_played.lt => (params['year'].to_i+1).to_s}
-    if !params["venue_name"].empty?
-      options = {:date_played.gte => params['year'], :date_played.lt => (params['year'].to_i+1).to_s, 'venue.venue_name' => params["venue_name"]}
+    options = {}
+    venue_id = params["venue_id"]
+    year = params["year"]
+    unless venue_id == 'All'
+      options = options.merge({'venue.id' => params["venue_id"]})
+    end
+    unless year == 'All'
+      options = options.merge({:date_played.gte => params['year'], :date_played.lt => (params['year'].to_i+1).to_s})
     end
     @shows = Show.all(:conditions => options)
     render
