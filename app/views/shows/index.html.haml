@@ -6,18 +6,15 @@
   = text_field :name => "song_name"
   #search_field
   %h5 Venue:
-  = select :name => "venue_id", :collection => Venue.all
+  = select :name => "venue_id", :collection => get_venues
   #search_field
   %h5 Year:
-  %select{:name => "year"}
-    %option{:value => "All"} All
-    %option{:value => "2001"} 2001
-    %option{:value => "2002"} 2002
-    %option{:value => "2003"} 2003
-    %option{:value => "2004"} 2004
-    %option{:value => "2005"} 2005
-    %option{:value => "2006"} 2006
-    %option{:value => "2007"} 2007
-    %option{:value => "2008"} 2008
+  = select:name => "year", :collection => get_years
+  #search_field
+  %h5 City:
+  = text_field :name => "venue_city"
+  #search_field
+  %h5 State
+  = text_field :name => "venue_state"
   #search_field
   = submit "Search" 

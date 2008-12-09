@@ -3,13 +3,13 @@ class Venue
   
   property :id, Serial
   property :venue_name, String
-  property :venue_image, String, :lazy => true
-  property :venue_citye, String, :lazy => true
-  property :venue_state, String, :lazy => true
-  property :date_created, DateTime, :lazy => true
-  property :date_updated, DateTime, :lazy => true
-  property :updated_by, Integer, :lazy => true
-  property :is_active, Boolean, :lazy => true
+  property :venue_image, String
+  property :venue_city, String
+  property :venue_state, String
+  property :date_created, DateTime
+  property :date_updated, DateTime
+  property :updated_by, Integer
+  property :is_active, Boolean
   
   has n, :shows  
   

@@ -1,6 +1,15 @@
 %h1 Show Search Results
-
-%ul#shows
-- @shows.each do |show|
-  %li= show.date_played
-  %li= show.venue.venue_name
+%table{:width => "85%", :align => "center"}
+  %tr
+    %th{:width => "10%"} Show Date
+    %th{:width => "20%"} Venue Name
+    %th{:width => "10%"} City
+    %th{:width => "10%"} State
+    %th{:width => "50%"} Setlist
+  - @shows.each do |show|
+    %tr
+      %td= show.date_played
+      %td= show.venue.venue_name
+      %td= show.venue.venue_city
+      %td= show.venue.venue_state
+      %td= show.setlist_as_text

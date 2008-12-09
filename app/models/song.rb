@@ -17,4 +17,12 @@ class Song
   
   has n, :setlists
 
+  def first
+    id
+  end
+  
+  def last
+    song_name
+  end
+  
 end
