@@ -39,7 +39,7 @@ class Shows < Application
   end
   
   def setlist
-    @show = Show.get(params["id"])
+    @shows = Show.get(params["id"])
     render
   end
 end

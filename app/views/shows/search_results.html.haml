@@ -13,6 +13,4 @@
       %td= show.venue.venue_city
       %td= show.venue.venue_state
       %td 
-        #setlist{:style => "display:none;"}
-          = show.setlist_as_text
-        %a{:href => "#setlist", :rel => "facebox"} Setlist
+        %a{:href => "/shows/setlist/#{show.id}", :rel => "facebox"} Setlist
