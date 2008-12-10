@@ -38,4 +38,8 @@ class Shows < Application
     render
   end
   
+  def setlist
+    @show = Show.get(params["id"])
+    render
+  end
 end
