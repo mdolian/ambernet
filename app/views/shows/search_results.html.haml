@@ -1,16 +1,18 @@
 %h1 Show Search Results
-%table{:width => "85%", :align => "center"}
-  %tr
-    %th{:width => "10%", :align => "left"} Show Date
-    %th{:width => "20%", :align => "left"} Venue Name
-    %th{:width => "10%", :align => "left"} City
-    %th{:width => "10%", :align => "left"} State
-    %th{:width => "50%", :align => "left"} Setlist
-  - @shows.each do |show|
+%table{:width => "85%", :align => "center", :id => "showTable", :class => "tablesorter"}
+  %thead
     %tr
-      %td= show.date_played
-      %td= show.venue.venue_name
-      %td= show.venue.venue_city
-      %td= show.venue.venue_state
-      %td 
-        %a{:href => "/shows/setlist/#{show.id}", :rel => "facebox"} Setlist
+      %th{:width => "10%", :align => "left"} Show Date
+      %th{:width => "20%", :align => "left"} Venue Name
+      %th{:width => "10%", :align => "left"} City
+      %th{:width => "10%", :align => "left"} State
+      %th{:width => "50%", :align => "left"} Setlist
+    %tbody  
+      - @shows.each do |show|
+        %tr
+          %td= show.date_played
+          %td= show.venue.venue_name
+          %td= show.venue.venue_city
+          %td= show.venue.venue_state
+          %td 
+            %a{:href => "/shows/setlist/#{show.id}", :rel => "facebox"} Setlist

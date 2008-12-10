@@ -1,5 +1,6 @@
 $(function() {
   jQuery(document).ready(function($) {
     $('a[rel*=facebox]').facebox() 
+    $("#showTable").tablesorter();
   });
 });
