@@ -1,11 +1,11 @@
 %h1 Show Search Results
 %table{:width => "85%", :align => "center"}
   %tr
-    %th{:width => "10%"} Show Date
-    %th{:width => "20%"} Venue Name
-    %th{:width => "10%"} City
-    %th{:width => "10%"} State
-    %th{:width => "50%"} Setlist
+    %th{:width => "10%", :align => "left"} Show Date
+    %th{:width => "20%", :align => "left"} Venue Name
+    %th{:width => "10%", :align => "left"} City
+    %th{:width => "10%", :align => "left"} State
+    %th{:width => "50%", :align => "left"} Setlist
   - @shows.each do |show|
     %tr
       %td= show.date_played
