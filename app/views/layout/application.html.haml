@@ -5,10 +5,10 @@
     = css_include_tag 'facebox'
     = css_include_tag 'tablesorter'
     = js_include_tag  :facebox
-    = js_include_tag 'jquery.tablesorter.min'
+    = js_include_tag 'jquery.tablesorter'
+    = css_include_tag 'master'
     %title
       AmberNET Online
-    %link{:rel => "stylesheet", :href => "/stylesheets/master.css", :lang => "en-us"}
   %body
   = message[:notice]
   = catch_content :for_layout

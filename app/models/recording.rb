@@ -10,4 +10,8 @@ class Recording
   has n, :users, :through => :wish_lists
   belongs_to :show
 
+  def get_recordings_for_show(show_id)
+    @recordings = Recording.all(:show_id => show_id)
+  end
+
 end
