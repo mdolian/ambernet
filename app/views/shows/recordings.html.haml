@@ -1,0 +1,14 @@
+%h1 Recordings
+%table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+  %thead
+    %tr
+      %th{:width => "20%", :align => "left"} Label
+      %th{:width => "20%", :align => "left"} Taper
+      %th{:width => "20%", :align => "left"} Source
+    %tbody  
+      - @recordings.each do |recording|
+        %tr
+          %td
+            %a{:href => "/recordings/show/#{recording.show_id}"}= recording.label
+          %td= recording.taper
+          %td= recording.source

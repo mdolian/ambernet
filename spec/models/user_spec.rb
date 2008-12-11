@@ -1,6 +1,6 @@
 require File.join( File.dirname(__FILE__), '..', "spec_helper" )
 
-describe Source do
+describe User do
 
   it "should have specs"
 

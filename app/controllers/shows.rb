@@ -1,6 +1,8 @@
 require 'show'
 
 class Shows < Application
+        
+ # before :ensure_authenticated
 
   def index
     render
@@ -29,17 +31,24 @@ class Shows < Application
       options = options.merge({'venue.venue_state' => venue_state})
     end
     if options.empty? 
-      @shows = Show.all
-    else
-      puts "full"
+      @shows = Show.all 
+    else 
       @shows = Show.all(:conditions => options)
     end
-    #@shows = Show.all(:links => {:setlists}, Show.setlists.song.song_name)
     render
   end
   
   def setlist
-    @shows = Show.get(params["id"])
+    @show = Show.get(params["id"])
+    render
+  end
+  
+  def recordings
+    begin
+      @recordings = Recording.all(:conditions => {:show_id => params["id"]})
+    rescue
+      @message = {:notice => "No recordings exist"}
+    end
     render
   end
 end

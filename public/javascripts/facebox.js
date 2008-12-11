@@ -102,7 +102,7 @@
                 </div> \
                 <div class="footer"> \
                   <a href="#" class="close"> \
-                    <img src="/image/closelabel.gif" title="close" class="close_image" /> \
+                    <img src="/images/closelabel.gif" title="close" class="close_image" /> \
                   </a> \
                 </div> \
               </td> \

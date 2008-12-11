@@ -6,7 +6,7 @@ class HaveList
   property :rating, String
   property :comments, String
   
-  belongs_to :user
-  belongs_to :source
+#  belongs_to :user
+#  belongs_to :source
 
 end

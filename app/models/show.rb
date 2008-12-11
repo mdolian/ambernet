@@ -31,6 +31,10 @@ class Show
     append
   end
   
+  def get_recordings
+    @recordings = Recording.all(:show_id => id)
+  end 
+  
   def setlist_as_text
     setlists = Setlist.all(:show_id => id)
     set_one = "Set 1: "
