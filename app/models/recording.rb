@@ -8,6 +8,7 @@ class Recording
   property :taper, String
   property :transfered_by, String
   property :notes, String
+  property :type, String
     
   belongs_to :show  
   has n, :recording_tracks

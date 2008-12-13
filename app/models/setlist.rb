@@ -16,4 +16,12 @@ class Setlist
   belongs_to :song
   has n, :recording_tracks, :through => Resource
   
+  def last
+    song.song_name
+  end
+  
+  def first
+    id
+  end
+  
 end

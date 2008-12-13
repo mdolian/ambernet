@@ -9,6 +9,6 @@
       - @recordings.each do |recording|
         %tr
           %td
-            %a{:href => "/recordings/show/#{recording.show_id}"}= recording.label
+            %a{:href => "/recordings/show/#{recording.id}"}= recording.label
           %td= recording.taper
           %td= recording.source

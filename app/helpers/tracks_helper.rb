@@ -1,5 +1,5 @@
 module Merb
-  module SecretsHelper
+  module TracksHelper
 
   end
 end # Merb

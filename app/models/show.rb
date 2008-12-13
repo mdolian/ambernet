@@ -22,6 +22,10 @@ class Show
     date_played
   end
   
+  def label
+    date_played.to_s << " - " << venue.venue_name << " " << venue.venue_city << ", " << venue.venue_state
+  end
+  
   def append_segue_or_comma(setlist)
     if setlist.is_segue?
       append = " > "
@@ -61,5 +65,8 @@ class Show
     encore = encore == "E: " ? "" : encore.chop.chop << "<br>"  
     set_one << set_two << set_three << encore
   end
-
+  
+  def setlists
+    Setlist.all(:show_id => id, :order => [:set_id.asc, :song_order.asc])
+  end
 end

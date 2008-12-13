@@ -1,11 +1,20 @@
 require 'show'
 
 class Shows < Application
-        
  # before :ensure_authenticated
 
   def index
     render
+  end
+  
+  def list
+    #shows = Show.all(:conditions => {:date_played.like => params["q"]})
+    #show_list = []
+    #shows.each do |show|
+    #  show_list.push show.label
+    #end
+    #show_list
+    ["12/12/2008","12/9/2008","12/13/2009"]
   end
   
   def search_results

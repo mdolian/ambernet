@@ -1,0 +1,28 @@
+%h2 Add a Recording (admin only)
+%form{:action => "/recordings/create", :method => "post"}
+  #search_field
+  %h5 Show:
+  = text_field :name => "date_played", :id => "showSearch"
+  #search_field
+  %h5 Label:
+  = text_field :name => "label"
+  #search_field
+  %h5 Recording Type:
+  = select :name => "type", :collection => get_types
+  #search_field
+  %h5 Source:
+  = text_field :name => "source"
+  #search_field
+  %h5 Lineage:
+  = text_field :name => "lineage"
+  #search_field
+  %h5 Taper:
+  = text_field :name => "taper"
+  #search_field
+  %h5 Transferred By:
+  = text_field :name => "transferred_by"
+  #search_field
+  %h5 Notes:
+  = text_field :name => "notes"
+  #search_field
+  = submit "Search"

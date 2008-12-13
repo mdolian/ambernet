@@ -1,0 +1,24 @@
+%h1 Recording Details
+%table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+  %tr
+    %td= @recording.id
+    %td= @recording.label
+    %td= @recording.taper
+    %td= @recording.transfered_by
+  %tr
+    %td{:colspan => "4"}= @recording.source
+  %tr
+    %td{:colspan => "4"}= @recording.lineage
+  %tr
+    %td{:colspan => "4"}= @recording.notes
+
+%table{:width => "40%", :align => "center", :id => "recordingTrackTable"}
+  %tr
+    %th Track
+    %th Song(s)
+  - @recording_tracks.each do |recording_track|
+    %tr
+      %td= recording_track.track
+      %td 
+        - recording_track.setlists.each do |setlist|
+          = setlist.song.song_name

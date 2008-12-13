@@ -16,5 +16,7 @@
   #search_field
   %h5 State
   = text_field :name => "venue_state"
+  %h5 By Source Available
+  = select :name => "type", :collection => get_types
   #search_field
   = submit "Search" 
