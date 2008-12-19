@@ -2,16 +2,19 @@
   %head
     = js_include_tag "jquery-1.2.6"
     = js_include_tag 'application'
-    = css_include_tag 'facebox'
-    = css_include_tag 'tablesorter'
     = js_include_tag  :facebox
     = js_include_tag 'jquery.tablesorter'
     = js_include_tag 'jquery.tablesorter.pager'
     = js_include_tag 'jquery.ui.autocomplete'
     = css_include_tag 'master'
     = css_include_tag "jquery.ui.autocomplete"
+    = css_include_tag 'facebox'
+    = css_include_tag 'tablesorter'
     %title
       AmberNET Online
   %body
-  = message[:notice]
-  = catch_content :for_layout
+    %table
+      %tr{:height => "10%"} Application Header
+      %tr{:height => "*"}
+        = message[:notice]
+        = catch_content :for_layout

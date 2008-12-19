@@ -1,0 +1,59 @@
+%h2 Search Recordings
+
+%form{:action => "/recordings/search_results", :method => "post"}
+%table{:width => "40%", :align => "center"}
+  %tr
+    %td= select :name => "search_filter", :class => "search_filters", :collection => get_search_filters
+    %td
+      %a{:href => "#", :class => "filter"} Add Search Filter
+    %td 
+      test
+  %tr{:class => "search_label"}
+    %td Label:
+    %td= text_field :name => "label"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_label').hide()"} Remove
+  %tr{:class => "search_source"}
+    %td Source:
+    %td= text_field :name => "source"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_source').hide()"} Remove
+  %tr{:class => "search_lineage"}
+    %td Lineage:
+    %td= text_field :name => "lineage"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_lineage').hide()"} Remove
+  %tr{:class => "search_taper"}
+    %td Taper:
+    %td= text_field :name => "taper"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_taper').hide()"} Remove
+  %tr{:class => "search_venue_name"}
+    %td Venue Search:
+    %td= text_field :name => "venue_name"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_venue_name').hide()"} Remove
+  %tr{:class => "search_year"}
+    %td Year:
+    %td= select:name => "year", :collection => get_years
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_year').hide()"} Remove
+  %tr{:class => "search_venue_city"}
+    %td City:
+    %td= text_field :name => "venue_city"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_venue_city').hide()"} Remove
+  %tr{:class => "search_venue_state"}
+    %td State
+    %td= text_field :name => "venue_state"
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_venue_state').hide()"} Remove
+  %tr{:class => "search_type"}
+    %td By Source Available
+    %td= select :name => "type", :collection => get_types
+    %td 
+      %a{:href => "#", :class => "remove", :onclick => "jQuery('.search_type').hide()"} Remove
+  %tr
+    %td{:class => "search_field"} blank
+    %td= submit "Search"
+    %td blank
