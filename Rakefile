@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'rake/rdoctask'
+require File.dirname(__FILE__) + "/config/rubundler"
+r = Rubundler.new
+r.setup_env
 
-require 'merb-core'
 require 'merb-core/tasks/merb'
 
 include FileUtils

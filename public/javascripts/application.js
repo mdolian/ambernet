@@ -5,10 +5,15 @@ $(function() {
     $("#showTable").tablesorter();
     $("a[class*='filter']").click(function() {
 	    test = $("select[class*='search_filter']").val();
-	    $("tr[class*='" + test +"']").toggle();
+	    $("select[class*='search_filter'] option:selected").remove();
+	    $("." + test).toggle();
 	  });
-    $("a[class*='remove']").click(function(name) {
-	    $(name).toggle();
+    $(".search_label").hide(function() {
+	    $("select[class*='search_filter'] option:selected").add("test");
+	  });	
+    $(".remove").click(function() {
+	    alert("test");
+	    $(".source_label").hide();
 	  });	
     $("table") 
       .tablesorter({widthFixed: true, widgets: ['zebra']}) 

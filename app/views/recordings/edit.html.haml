@@ -1,0 +1,16 @@
+%h1 Edit Recording
+%table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+  %tr
+    %td= text_field :name => "recording_id", :value => @recording.id
+    %td= text_field :name => "recording_label", :value => @recording.label
+    %td= text_field :name => "recording_taper", :value => @recording.taper
+    %td= text_field :name => "recording_transfered_by", :value => @recording.transfered_by
+  %tr
+    %td{:colspan => "4"}= text_field :name => "recording_source", :name => @recording.source
+  %tr
+    %td{:colspan => "4"}= text_field :name => "recording_lineage", :name => @recording.lineage
+  %tr
+    %td{:colspan => "4"}= text_field :name => "recording_notes", :name => @recording.notes
+  %tr
+    %td{:colspan => "4"}
+      %a{:href => "/tracks/edit/#{@recording.id}"} Edit Recording Tracks

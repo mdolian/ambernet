@@ -117,3 +117,12 @@ a:hover {
 #main-container ul {
   margin-left: 3.0em;
 }
+input {
+	padding:.15em 0;
+	border:1px solid #283d5c;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	font-size:1.23em;
+	width:12.5em;
+	margin:0 0 .62em
+}

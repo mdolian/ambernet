@@ -1,10 +1,6 @@
-require "rubygems"
-
-# Add the local gems dir if found within the app root; any dependencies loaded
-# hereafter will try to load from the local gems before loading system gems.
-if (local_gem_dir = File.join(File.dirname(__FILE__), '..', 'gems')) && $BUNDLE.nil?
-  $BUNDLE = true; Gem.clear_paths; Gem.path.unshift(local_gem_dir)
-end
+require File.dirname(__FILE__) + "/../config/rubundler"
+r = Rubundler.new
+r.setup_env
 
 require "merb-core"
 require "spec" # Satisfies Autotest and anyone else not using the Rake tasks

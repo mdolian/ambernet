@@ -2,6 +2,25 @@ require 'recording'
 
 class Recordings < Application
 
+  def admin
+    render
+  end
+  
+  def delete
+    Recording.delete(params["id"])
+    render
+  end
+  
+  def edit
+    Recording.get(params["id"])
+    render
+  end
+  
+  def choose
+    @recordings = Recording.all
+    @action = params["id"]
+  end
+
   def index
     render
   end

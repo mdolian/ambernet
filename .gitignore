@@ -1,5 +1,4 @@
-gems/specifications/*
-gems/gems/*
+gems/*
 .DS_Store
 log/*
 tmp/*

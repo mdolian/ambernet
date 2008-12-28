@@ -1,7 +1,5 @@
 class Tracks < Application
 
-  # ...and remember, everything returned from an action
-  # goes to the client...
   def edit
     recording = Recording.get(params["id"])
     @setlists = Setlist.all(:show_id => recording.show_id)
