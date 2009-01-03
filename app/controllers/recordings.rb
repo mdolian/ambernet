@@ -16,7 +16,7 @@ class Recordings < Application
     render
   end
   
-  def choose
+  def choose_rec
     @recordings = Recording.all
     @action = params["id"]
   end

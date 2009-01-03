@@ -17,9 +17,9 @@ Merb::BootLoader.before_app_loads do
 end
  
 Merb::BootLoader.after_app_loads do
-  Merb::Plugins.config[:"merb-auth"][:login_param] = :login
-  Merb::Plugins.config[:"merb-auth"][:login_param] = :login  
-  Merb::Slices::config[:merb_auth_slice_password][:layout] = :application
-  Merb::Plugins.config[:"merb-auth"][:password_param] = :crypted_password
+ # Merb::Plugins.config[:"merb-auth"][:login_param] = :login
+#  Merb::Plugins.config[:"merb-auth"][:login_param] = :login  
+#  Merb::Slices::config[:merb_auth_slice_password][:layout] = :application
+#  Merb::Plugins.config[:"merb-auth"][:password_param] = :crypted_password
 
 end

@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + "/../config/rubundler"
-r = Rubundler.new
-r.setup_env
-
+require "rubygems"
 require "merb-core"
 require "spec" # Satisfies Autotest and anyone else not using the Rake tasks
 
