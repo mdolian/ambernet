@@ -12,11 +12,26 @@ module Merb
     end
     
     def get_years
-      ["All", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001"]
+      [["All", "All"], 
+       ["2008", "2008"], 
+       ["2007","2007"], 
+       ["2006", "2006"], 
+       ["2005", "2005"], 
+       ["2004", "2004"], 
+       ["2003", "2003"], 
+       ["2002", "2002"]]
     end
     
     def get_search_filters
-      ["search_source", "search_lineage", "search_taper", "search_venue_name", "search_year", "search_label", "search_venue_city", "search_venue_state", "search_type"]
+      [["search_source", "Source"], 
+       ["search_lineage", "Lineage"], 
+       ["search_taper", "Taper"], 
+       ["search_venue_name", "Venue Search"], 
+       ["search_year", "Year"], 
+       ["search_label", "Label"], 
+       ["search_venue_city", "City"], 
+       ["search_venue_state", "State"], 
+       ["search_type", "Recording Type"]]
     end   
   end
 end

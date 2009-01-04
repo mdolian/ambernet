@@ -12,13 +12,14 @@ class Recordings < Application
   end
   
   def edit
-    Recording.get(params["id"])
+    @recording = Recording.get(params["id"])
     render
   end
   
   def choose_rec
     @recordings = Recording.all
     @action = params["id"]
+    render
   end
 
   def index
@@ -51,7 +52,7 @@ class Recordings < Application
         :type => params["type"]
       )
       @recording.save
-      render :index
+      render :admin
     end
   end
   

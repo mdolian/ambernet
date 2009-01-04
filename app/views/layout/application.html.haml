@@ -6,6 +6,7 @@
     = js_include_tag 'jquery.tablesorter'
     = js_include_tag 'jquery.tablesorter.pager'
     = js_include_tag 'jquery.ui.autocomplete'
+    = js_include_tag 'jquery.selectboxes'
     = css_include_tag 'master'
     = css_include_tag "jquery.ui.autocomplete"
     = css_include_tag 'facebox'
@@ -13,8 +14,17 @@
     %title
       AmberNET Online
   %body
-    %table
-      %tr{:height => "10%"} Application Header
-      %tr{:height => "*"}
-        = message[:notice]
-        = catch_content :for_layout
+    %table{:width => "85%", :align => "center", :height => "100%"}
+      %tr{:height => "10%"} 
+        %td{:align => "center"} Application Header Image
+      %tr{:height => "10%"}
+        %td{:align => "center", :valign => "top"} 
+          %a{:href => "/recordings"} Search Recordings 
+          | 
+          %a{:href => "/shows"} Search Shows 
+          | 
+          %a{:href => "/beta"} Beta Information
+      %tr{:height => "85%", :valign => "top"}
+        %td{:align => "center"}
+          = message[:notice]
+          = catch_content :for_layout

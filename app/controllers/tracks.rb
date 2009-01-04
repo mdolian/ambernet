@@ -3,6 +3,7 @@ class Tracks < Application
   def edit
     recording = Recording.get(params["id"])
     @setlists = Setlist.all(:show_id => recording.show_id)
+    @tracks = RecordingTrack.all(:recording_id => params["id"])
     render
   end
   
@@ -23,6 +24,6 @@ class Tracks < Application
       )
       track_setlist.save
     end
-    render "saved"
+    render :edit
   end
 end
