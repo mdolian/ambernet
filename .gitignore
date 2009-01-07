@@ -19,3 +19,4 @@ src/*
 .svn/*
 ._*
 config/deploy.rb
+config/database.yml
