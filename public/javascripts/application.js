@@ -3,46 +3,59 @@ $(function() {
 	  $("tr[id*='search_']").hide();	
     $('a[rel*=facebox]').facebox(); 
     $("#showTable").tablesorter();
-    $("a[class*='filter']").click(function() {
-	    test = $("select[id*='search_filter']").val();
-	    $("select[id*='search_filter'] option:selected").remove();
-	    $("#" + test).toggle();
+	  $(".search_label").click(function() {
+		  $("#search_label").toggle();
 	  });
     $("#remove_label").click(function() {
 	    $("#search_label").hide();
-	    $("select[id*='search_filter']").addOption("search_label", "Label");
+	  });
+	  $(".search_taper").click(function() {
+		  $("#search_taper").toggle();
 	  });
     $("#remove_taper").click(function() {
 	    $("#search_taper").hide();
-	    $("select[id*='search_filter']").addOption("search_taper", "Taper");
-	  });		
+	  });
+	  $(".search_source").click(function() {
+      $("#search_source").toggle();
+    });			
     $("#remove_source").click(function() {
 	    $("#search_source").hide();
-	    $("select[id*='search_filter']").addOption("search_source", "Source");
 	  });
+	  $(".search_venue_name").click(function() {
+		  $("#search_venue_name").toggle();
+	  });	
     $("#remove_venue_name").click(function() {
 	    $("#search_venue_name").hide();
-	    $("select[id*='search_filter']").addOption("search_venue_name", "Venue Search");
 	  });
+	  $(".search_year").click(function() {
+		  $("#search_year").toggle();
+	  });	
     $("#remove_year").click(function() {
 	    $("#search_year").hide();
-	    $("select[id*='search_filter']").addOption("search_year", "Year");
 	  });
+	  $(".search_venue_city").click(function() {
+		  $("#search_venue_city").toggle();
+	  });	
     $("#remove_venue_city").click(function() {
 	    $("#search_venue_city").hide();
-	    $("select[id*='search_filter']").addOption("search_venue_city", "City");
 	  });
+	  $(".search_venue_state").click(function() {
+		  $("#search_venue_state").toggle();
+	  });	
     $("#remove_venue_state").click(function() {
 	    $("#search_venue_state").hide();
-	    $("select[id*='search_filter']").addOption("search_venue_state", "State");
 	  });
+	  $(".search_lineage").click(function() {
+		  $("#search_lineage").toggle();
+	  });	
     $("#remove_lineage").click(function() {
 	    $("#search_lineage").hide();
-	    $("select[id*='search_filter']").addOption("search_lineage", "Lineage");
 	  });
+	  $(".search_type").click(function() {
+		  $("#search_type").toggle();
+	  });	
     $("#remove_type").click(function() {
 	    $("#search_type").hide();
-	    $("select[id*='search_filter']").addOption("search_type", "Recording Type");
 	  });						
     $("table") 
       .tablesorter({widthFixed: true, widgets: ['zebra']}) 

@@ -3,58 +3,76 @@
 %form{:action => "/recordings/search_results", :method => "post"}
   %table{:width => "50%", :align => "center"}
     %tr
-      %td{:colspan => "3", :align => "center"}= select :name => "search_filter", :id => "search_filter", :size => "9", :collection => get_search_filters
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_source"} Source
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_lineage"} Lineage
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_taper"} Taper
     %tr
-      %td{:colspan => "3", :align => "center"}
-        %a{:href => "#", :class => "filter"} Add Search Filter
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_name"} Venue
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_year"} Year
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_city"} City
+    %tr
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_state"} State
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_label"} Label			    
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_type"} Type
     %tr{:height => "20"}
       %td{:colspan => "3"}
     %tr{:id => "search_label"}
       %td Label:
-      %td= text_field :name => "label"
+      %td{:align => "center"}= text_field :name => "label"
       %td 
         %a{:href => "#", :id => "remove_label"} Remove
     %tr{:id => "search_source"}
       %td Source:
-      %td= text_field :name => "source"
+      %td{:align => "center"}= text_field :name => "source"
       %td 
         %a{:href => "#", :id => "remove_source"} Remove
     %tr{:id => "search_lineage"}
       %td Lineage:
-      %td= text_field :name => "lineage"
+      %td{:align => "center"}= text_field :name => "lineage"
       %td 
         %a{:href => "#", :id => "remove_lineage"} Remove
     %tr{:id => "search_taper"}
       %td Taper:
-      %td= text_field :name => "taper"
+      %td{:align => "center"}= text_field :name => "taper"
       %td 
         %a{:href => "#", :id => "remove_taper"} Remove
     %tr{:id => "search_venue_name"}
-      %td Venue Search:
-      %td= text_field :name => "venue_name"
+      %td Venue:
+      %td{:align => "center"}= text_field :name => "venue_name"
       %td 
         %a{:href => "#", :id => "remove_venue_name"} Remove
     %tr{:id => "search_year"}
       %td Year:
-      %td= select:name => "year", :collection => get_years
+      %td{:align => "center"}= select:name => "year", :collection => get_years
       %td 
         %a{:href => "#", :id => "remove_year"} Remove
     %tr{:id => "search_venue_city"}
       %td City:
-      %td= text_field :name => "venue_city"
+      %td{:align => "center"}= text_field :name => "venue_city"
       %td 
         %a{:href => "#", :id => "remove_venue_city"} Remove
     %tr{:id => "search_venue_state"}
       %td State
-      %td= text_field :name => "venue_state"
+      %td{:align => "center"}= text_field :name => "venue_state"
       %td 
         %a{:href => "#", :id => "remove_venue_state"} Remove
     %tr{:id => "search_type"}
-      %td By Source Available
-      %td= select :name => "type", :collection => get_types
+      %td Type
+      %td{:align => "center"}= select :name => "type", :collection => get_types
       %td 
         %a{:href => "#", :id => "remove_type"} Remove
     %tr{:height => "20"}
       %td{:colspan => "3"}
     %tr
-      %td{:colspan => "3", :align => "center"}= submit "Search"
+      %td
+      %td{:align => "center"}= submit "Search"
+      %td
