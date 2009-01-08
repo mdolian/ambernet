@@ -123,6 +123,14 @@ input {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	font-size:1.00em;
-	width:10em;
+#	width:10em;
+	margin:0 0 .62em
+}
+textarea {
+	padding:.10em 0;
+	border:1px solid #283d5c;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	font-size:1.00em;
 	margin:0 0 .62em
 }

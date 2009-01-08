@@ -1,16 +1,38 @@
 %h1 Edit Recording
-%table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
-  %tr
-    %td= text_field :name => "recording_id", :value => @recording.id
-    %td= text_field :name => "recording_label", :value => @recording.label
-    %td= text_field :name => "recording_taper", :value => @recording.taper
-    %td= text_field :name => "recording_transfered_by", :value => @recording.transfered_by
-  %tr
-    %td{:colspan => "4"}= text_field :name => "recording_source", :name => @recording.source
-  %tr
-    %td{:colspan => "4"}= text_field :name => "recording_lineage", :name => @recording.lineage
-  %tr
-    %td{:colspan => "4"}= text_field :name => "recording_notes", :name => @recording.notes
-  %tr
-    %td{:colspan => "4"}
-      %a{:href => "/tracks/edit/#{@recording.id}"} Edit Recording Tracks
+%form{:action => "/recordings/edit/#{@recording.id}", :method => "post"}
+  %table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+    %tr
+      %td 
+        ID
+        %input{:type => "hidden", :name => "id", :value => "#{@recording.id}"}
+      %td= @recording.id
+    %tr
+      %td Type
+      %td= select :name => "type", :collection => get_types, :selected => @recording.type
+    %tr
+      %td Label 
+      %td= text_field :name => "label", :value => @recording.label, :size => "50"
+    %tr
+      %td Taper
+      %td= text_field :name => "taper", :value => @recording.taper
+    %tr
+      %td Transfered By
+      %td= text_field :name => "transfered_by", :value => @recording.transfered_by
+    %tr
+      %td Source
+      %td
+        %textarea{:name => "source", :rows => "5", :cols => "50"}= @recording.source    
+    %tr
+      %td Lineage
+      %td
+        %textarea{:name => "lineage", :rows => "5", :cols => "50"}= @recording.lineage
+    %tr
+      %td Notes
+      %td
+        %textarea{:name => "notes", :rows => "5", :cols => "50"}= @recording.notes
+    %tr
+      %td{:colspan => "2"}
+        %a{:href => "/tracks/edit/#{@recording.id}"} Edit Recording Tracks
+    %tr 
+      %td{:colspan => "2"}
+        %input{:type => "submit", :value => "Update", :name => "submit"}

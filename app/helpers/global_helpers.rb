@@ -1,7 +1,7 @@
 module Merb
   module GlobalHelpers
     def get_types
-      ["sbd", "aud", "matrix", "fm", "other"]
+      ["all", "sbd", "aud", "matrix", "fm", "other"]
     end
     def get_venues
       ["All"] + Venue.all(:order => [:venue_name.asc])

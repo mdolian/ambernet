@@ -47,7 +47,7 @@
         %a{:href => "#", :id => "remove_taper"} Remove
     %tr{:id => "search_venue_name"}
       %td Venue:
-      %td{:align => "center"}= text_field :name => "venue_name"
+      %td{:align => "center"}= text_field :name => "venue_name", :id => "venue_name"
       %td 
         %a{:href => "#", :id => "remove_venue_name"} Remove
     %tr{:id => "search_year"}
@@ -74,5 +74,6 @@
       %td{:colspan => "3"}
     %tr
       %td
-      %td{:align => "center"}= submit "Search"
+      %td{:align => "center"}
+        %input{:type => "submit", :value => "Search"}
       %td

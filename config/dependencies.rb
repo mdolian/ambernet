@@ -22,10 +22,10 @@ dependency "merb-param-protection", merb_version
 dependency 'nokogiri', '>=1.0.6'
 dependency 'webrat', '=0.3.2'
 dependency "thin"
-#dependency 'rspec', '=1.1.11'
 dependency 'rake'
 dependency 'rcov'
 dependency 'hoe'
+dependency 'haml'
 dependency "extlib", "=0.9.9"
 dependency "data_objects", "=0.9.9"
 dependency "do_mysql", "=0.9.9"

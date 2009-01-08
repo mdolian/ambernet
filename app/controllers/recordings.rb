@@ -1,5 +1,3 @@
-require 'recording'
-
 class Recordings < Application
 
   def admin
@@ -12,7 +10,19 @@ class Recordings < Application
   end
   
   def edit
-    @recording = Recording.get(params["id"])
+    if params["submit"] == 'Update'
+      @recording = Recording.get(params["id"])
+      @recording.update_attributes( :label => params["label"],
+                                    :source => params["source"],
+                                    :lineage => params["lineage"],
+                                    :taper => params["taper"],
+                                    :transfered_by => params["transfered_by"],
+                                    :notes => params["notes"],
+                                    :type => params["type"] )
+      render
+    else  
+       @recording = Recording.get(params["id"])
+    end
     render
   end
   
@@ -68,7 +78,7 @@ class Recordings < Application
     venue_city = params["venue_city"] 
     venue_state = params["venue_state"]
     options = {}
-    unless type == ''
+    unless type == 'all'
       options = options.merge({:type => type})
     end
     unless label == ''

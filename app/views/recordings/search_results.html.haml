@@ -3,10 +3,11 @@
   %thead
     %tr
       %th{:width => "10%", :align => "left"} Show Date
+      %th{:width => "10%", :align => "left"} Type
       %th{:width => "10%", :align => "left"} Label
       %th{:width => "10%", :align => "left"} Source
       %th{:width => "10%", :align => "left"} Lineage
-      %th{:width => "20%", :align => "left"} Venue Name
+      %th{:width => "10%", :align => "left"} Venue Name
       %th{:width => "10%", :align => "left"} City
       %th{:width => "10%", :align => "left"} State
       %th{:width => "10%", :align => "left"} Notes
@@ -15,6 +16,7 @@
       - @recordings.each do |recording|
         %tr
           %td= recording.show.date_played
+          %td= recording.type
           %td= recording.label
           %td= recording.source
           %td= recording.lineage
