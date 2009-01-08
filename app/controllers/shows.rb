@@ -58,6 +58,6 @@ class Shows < Application
     rescue
       @message = {:notice => "No recordings exist"}
     end
-    render
+    render :layout => false
   end
 end
