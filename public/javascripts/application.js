@@ -56,12 +56,19 @@ $(function() {
 	  });	
     $("#remove_type").click(function() {
 	    $("#search_type").hide();
-	  });						
+	  });		
+	  $(".search_song").click(function() {
+		  $("#search_song").toggle();
+	  });	
+    $("#remove_song").click(function() {
+	    $("#search_song").hide();
+	  });					
     $("table") 
       .tablesorter({widthFixed: true, widgets: ['zebra']}) 
       .tablesorterPager({container: $("#pager")
     });
-		$("#venue_name").autocomplete("/venues/list");		
-		
+		$("#venue_name").james("/venues/list");
+		$("#venue_city").james("/venues/city_list");
+		$("#show_search").james("/shows/list");		
   });		
 });

@@ -1,6 +1,5 @@
 %h2 Search Recordings
-
-%form{:action => "/recordings/search_results", :method => "post"}
+%form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off"}
   %table{:width => "50%", :align => "center"}
     %tr
       %td{:align => "center"}
@@ -57,7 +56,7 @@
         %a{:href => "#", :id => "remove_year"} Remove
     %tr{:id => "search_venue_city"}
       %td City:
-      %td{:align => "center"}= text_field :name => "venue_city"
+      %td{:align => "center"}= text_field :name => "venue_city", :id => "venue_city"
       %td 
         %a{:href => "#", :id => "remove_venue_city"} Remove
     %tr{:id => "search_venue_state"}

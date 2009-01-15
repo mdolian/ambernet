@@ -1,22 +1,49 @@
 %h2 Search Shows
-
-%form{:action => "/shows/search_results", :method => "post"}
-  #search_field
-  %h5 Song:
-  = text_field :name => "song_name"
-  #search_field
-  %h5 Venue:
-  = select :name => "venue_id", :collection => get_venues
-  #search_field
-  %h5 Year:
-  = select:name => "year", :collection => get_years
-  #search_field
-  %h5 City:
-  = text_field :name => "venue_city"
-  #search_field
-  %h5 State
-  = text_field :name => "venue_state"
-  %h5 By Source Available
-  = select :name => "type", :collection => get_types
-  #search_field
-  = submit "Search" 
+%form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
+  %table{:width => "50%", :align => "center"}
+    %tr
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_song"} Song
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_name"} Venue
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_year"} Year
+    %tr
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_state"} State
+      %td{:align => "center"}
+        %a{:href => "#", :class => "search_venue_city"} City
+    %tr{:height => "20"}
+      %td{:colspan => "3"}
+    %tr{:id => "search_song"}
+      %td Label:
+      %td{:align => "center"}= text_field :name => "song_name"
+      %td 
+        %a{:href => "#", :id => "remove_song"} Remove
+    %tr{:id => "search_venue_name"}
+      %td Source:
+      %td{:align => "center"}= text_field :name => "venue_name", :id => "venue_name"
+      %td 
+        %a{:href => "#", :id => "remove_venue_name"} Remove
+    %tr{:id => "search_year"}
+      %td Year:
+      %td{:align => "center"}= select:name => "year", :collection => get_years
+      %td 
+        %a{:href => "#", :id => "remove_year"} Remove
+    %tr{:id => "search_venue_city"}
+      %td City:
+      %td{:align => "center"}= text_field :name => "venue_city"
+      %td 
+        %a{:href => "#", :id => "remove_venue_city"} Remove
+    %tr{:id => "search_venue_state"}
+      %td State
+      %td{:align => "center"}= text_field :name => "venue_state"
+      %td 
+        %a{:href => "#", :id => "remove_venue_state"} Remove
+    %tr{:height => "20"}
+      %td{:colspan => "3"}
+    %tr
+      %td
+      %td{:align => "center"}
+        %input{:type => "submit", :value => "Search"}
+      %td
