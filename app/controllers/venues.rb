@@ -1,4 +1,5 @@
 class Venues < Application
+  before :ensure_authenticated
   provides :json
  
   def index

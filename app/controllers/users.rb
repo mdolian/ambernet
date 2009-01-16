@@ -1,4 +1,5 @@
 class Users < Application
+  before :ensure_authenticated
   # provides :xml, :yaml, :js
 
   def index

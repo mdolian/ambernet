@@ -14,6 +14,7 @@ end
  
 Merb::BootLoader.before_app_loads do
   require 'merb-haml'
+ # require 'merb-auth-more'
 end
  
 Merb::BootLoader.after_app_loads do
@@ -21,5 +22,5 @@ Merb::BootLoader.after_app_loads do
 #  Merb::Plugins.config[:"merb-auth"][:login_param] = :login  
 #  Merb::Slices::config[:merb_auth_slice_password][:layout] = :application
 #  Merb::Plugins.config[:"merb-auth"][:password_param] = :crypted_password
-
+  require 'merb-auth-more'
 end
