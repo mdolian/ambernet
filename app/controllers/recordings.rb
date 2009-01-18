@@ -49,23 +49,19 @@ class Recordings < Application
   end
   
   def create
-    shows = Show.all(:date_played.eql => Date.strptime(params["date_played"], "%m/%d/%Y"))
-    if shows.empty?
-      render "SHOW NOT FOUND"
-    else
-      @recording = Recording.new(
-        :show_id => shows.first.id,
-        :label => params["label"],
-        :source => params["source"],
-        :lineage => params["lineage"],
-        :taper => params["taper"],
-        :transfered_by => params["transferred_by"],
-        :notes => params["notes"],
-        :type => params["type"]
-      )
-      @recording.save
-      render :admin
-    end
+    show = Show.get(params["show_id"])
+    @recording = Recording.new(
+      :show_id => params["show_id"],
+      :label => params["label"],
+      :source => params["source"],
+      :lineage => params["lineage"],
+      :taper => params["taper"],
+      :transfered_by => params["transferred_by"],
+      :notes => params["notes"],
+      :type => params["type"]
+    )
+    @recording.save
+    render :admin
   end
   
   def search_results

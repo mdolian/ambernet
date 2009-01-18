@@ -1,7 +1,7 @@
 body {
-  font-family: Arial, Verdana, sans-serif;
-  font-size: 12px;
-  background-color: #fff;
+	  font-family: Arial, Verdana, sans-serif;
+	  font-size: 12px;
+	  background-color: #fff;
 }
 * {
   margin: 0px;
@@ -87,7 +87,6 @@ p {
 }
 a {
   color: #4d9b12;
-  background-color: #fff;
   text-decoration: none;
 }
 a:hover {

@@ -69,6 +69,34 @@ $(function() {
     });
 		$("#venue_name").james("/venues/list");
 		$("#venue_city").james("/venues/city_list");
-		$("#show_search").james("/shows/list");		
+    $.fn.select_show = function(show_id){
+	    $.facebox.close();
+	    $("#show_id").val(show_id);
+		}
+		$("#show_link").click(this.select_show);
+		$('#show_date_played').DatePicker({
+			format:'Y-m-d',
+			date: $('#show_date_played').val(),
+			current: $('#show_date_played').val(),
+			starts: 1,
+			position: 'r',
+			onBeforeShow: function(){
+				$('#show_date_played').DatePickerSetDate($('#show_date_played').val(), true);
+			},
+			onChange: function(formated, dates){
+				$('#show_date_played').val(formated);
+				$.getJSON("/shows/list", {q: formated}, function(json){
+					html = ""
+					$.each(json, function(i, item) {
+					  html += "<a href='#' id='show_link' onclick='$(this).select_show(" + item.id + ")'>"
+					  html += item.label
+					  html += "</a>"
+					});
+					$.facebox(html);
+				});
+			}
+		});		
+		
+		
   });		
 });

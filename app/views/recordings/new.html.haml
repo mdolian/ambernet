@@ -2,7 +2,8 @@
 %form{:action => "/recordings/create", :method => "post"}
   #search_field
   %h5 Show:
-  = text_field :name => "date_played", :id => "show_search"
+  = text_field :name => "date_played", :id => "show_date_played"
+  %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
   #search_field
   %h5 Label:
   = text_field :name => "label"

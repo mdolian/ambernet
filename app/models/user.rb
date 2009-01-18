@@ -28,6 +28,7 @@ class User
   property :time_updated, DateTime
   property :is_private, Boolean
   property :is_active, Boolean
+  property :type, String
   
 #  has n, :have_lists
 #  has n, :sources, :through => :have_lists

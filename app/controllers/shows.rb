@@ -1,4 +1,5 @@
 require 'show'
+require 'date'
 
 class Shows < Application
   before :ensure_authenticated
@@ -8,11 +9,15 @@ class Shows < Application
   end
   
   def list
-    q = params["input_content"] << "%"
-    @shows = Show.all(:conditions => {:date_played.like => q})
-    list = Array.new
+    q = params["q"]
+    search = Date.strptime(q)
+    @shows = Show.all(:conditions => {:date_played.eql => search})
+    list = []
+    show_test = {}  
     @shows.each do |show|
-      list << show.label
+      show_test["label"] = show.label
+      show_test["id"] = show.id
+      list << show_test
     end
     list.uniq!
     list.sort!
