@@ -27,14 +27,10 @@ class Shows < Application
   
   def search_results
     options = {}
-    venue_id = params["venue_id"]
     year = params["year"]
     song_name = params["song_name"]
     venue_city = params["venue_city"]
     venue_state = params["venue_state"]
-    unless venue_id == 'All'
-      options = options.merge({'venue.id' => venue_id})
-    end
     unless song_name == ''
       options = options.merge({Show.setlists.song.song_name.like => "%" << song_name << "%"})
     end
