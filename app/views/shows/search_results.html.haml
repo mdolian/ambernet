@@ -1,5 +1,5 @@
 %h1 Show Search Results
-%table{:width => "85%", :align => "center", :id => "showTable", :class => "tablesorter"}
+%table{:width => "85%", :align => "center", :class => "tablesorter"}
   %thead
     %tr
       %th{:width => "10%", :align => "left"} Show Date
@@ -17,6 +17,7 @@
           %td= show.venue.venue_state
           %td 
             %a{:href => "/shows/setlist/#{show.id}", :rel => "facebox"} Setlist
+            %a{:href => "#" , :id => "setlist_json", :onclick => "$(this).get_setlist(#{show.id})"} Test
           %td
             %a{:href => "/shows/recordings/#{show.id}", :rel => "facebox"} Recordings
 %div{:id => "pager", :class => "pager"}
@@ -30,3 +31,4 @@
       %option{:value => "10"} 10
       %option{:value => "20"} 20
       %option{:value => "30"} 30
+%div{:id => "dialog"}

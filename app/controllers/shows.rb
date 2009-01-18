@@ -53,7 +53,7 @@ class Shows < Application
   
   def setlist
     @show = Show.get(params["id"])
-    render
+    render :layout => false
   end
   
   def recordings
