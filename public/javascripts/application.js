@@ -1,7 +1,6 @@
 $(function() {
   jQuery(document).ready(function($) {
 	  $("tr[id*='search_']").hide();	
-    $('a[rel*=facebox]').facebox(); 
     $("#showTable").tablesorter();
 	  $(".search_label").click(function() {
 		  $("#search_label").toggle();
@@ -70,27 +69,51 @@ $(function() {
 		$("#venue_name").james("/venues/list");
 		$("#venue_city").james("/venues/city_list");
     $.fn.select_show = function(show_id){
-	    $.facebox.close();
+	    $("#dialog").dialog("close");
 	    $("#show_id").val(show_id);
 		}
-		$.fn.get_setlist = function(show_id){
-			$("#dialog").dialog();
-			$("#dialog").load("/shows/setlist/" + show_id);								
+		$.fn.setlist = function(show_id){
+			$.getJSON("/shows/setlist/" + show_id, function(json){
+				set1 = "Set 1:";
+				set2 = "Set 2:";
+				set3 = "Set 3: ";
+				encore = "Encore: ";
+				$.each(json, function(i, item) {
+					if(item.set_id == "1") {
+					  set1 += item.song_name + item.segue;
+					}
+					if(item.set_id == "2") {
+						set2 += item.song_name + item.segue;
+					}
+					if(item.set_id == "3") {
+					  set3 += item.song_name + item.segue;
+					}
+					if(item.set_id == "9") {
+						encore += item.song_name + item.segue;
+					}
+					
+				});
+			  $("#dialog").html(set1 + "<br>" + set2 + "<br" + set3 + "<br>" + encore);
+			  $("#dialog").dialog();
+			});							
 		}
-		$("#show_link").click(this.select_show);
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
-			changeYear: true,			
+			changeYear: true,	
+			showOn: 'button', 
+			buttonImage: '../images/calendar.gif', 
+			buttonImageOnly: true,		
 			onSelect: function(){
-				$.getJSON("/shows/list", {q: $('#show_date_played').val()}, function(json){
+				$.getJSON("/shows/list", {date_played: $('#show_date_played').val()}, function(json){
 					html = "";
 					$.each(json, function(i, item) {
-					  html += "<a href='#' id='show_link' onclick='$.select_show(" + item.id + ")'>";
+					  html += "<a href='#' id='show_link' onclick='$(this).select_show(" + item.id + ")'>";
 					  html += item.label;
 					  html += "</a>";
 					});
-					$.facebox(html);
+					$("#dialog").dialog();
+					$("#dialog").html(html);
 				});			
 			}
 		});		

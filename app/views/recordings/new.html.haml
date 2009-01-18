@@ -1,29 +1,40 @@
-%h2 Add a Recording (admin only)
+%h2 Add Recording (admin only)
 %form{:action => "/recordings/create", :method => "post"}
-  #search_field
-  %h5 Show:
-  = text_field :name => "date_played", :id => "show_date_played"
-  %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
-  #search_field
-  %h5 Label:
-  = text_field :name => "label"
-  #search_field
-  %h5 Recording Type:
-  = select :name => "type", :collection => get_types
-  #search_field
-  %h5 Source:
-  = text_field :name => "source"
-  #search_field
-  %h5 Lineage:
-  = text_field :name => "lineage"
-  #search_field
-  %h5 Taper:
-  = text_field :name => "taper"
-  #search_field
-  %h5 Transferred By:
-  = text_field :name => "transferred_by"
-  #search_field
-  %h5 Notes:
-  = text_field :name => "notes"
-  #search_field
-  = submit "Search"
+  %table
+    %tr
+      %td
+        %h5 Show:
+        %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
+      %td= text_field :name => "date_played", :id => "show_date_played"
+    %tr
+      %td       
+        %h5 Label:
+      %td= text_field :name => "label"
+    %tr
+      %td
+        %h5 Type:
+      %td= select :name => "type", :collection => get_types
+    %tr
+      %td
+        %h5 Source:
+      %td= text_field :name => "source"
+    %tr
+      %td
+        %h5 Lineage:
+      %td= text_field :name => "lineage"
+    %tr
+      %td
+        %h5 Taper:
+      %td= text_field :name => "taper"
+    %tr
+      %td
+        %h5 Transferred by:
+      %td= text_field :name => "transferred_by"
+    %tr
+      %td
+        %h5 Notes:
+      %td
+        %textarea{:name => "notes", :rows => "5", :cols => "50"}
+    %tr
+      %td{:colspan => "2"}= submit "Add"
+%div{:id => "dialog"}

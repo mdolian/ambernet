@@ -16,8 +16,7 @@
           %td= show.venue.venue_city
           %td= show.venue.venue_state
           %td 
-            %a{:href => "/shows/setlist/#{show.id}", :rel => "facebox"} Setlist
-            %a{:href => "#" , :id => "setlist_json", :onclick => "$(this).get_setlist(#{show.id})"} Test
+            %a{:href => "#" , :id => "setlist", :onclick => "$('#dialog').setlist(#{show.id})"} Setlist
           %td
             %a{:href => "/shows/recordings/#{show.id}", :rel => "facebox"} Recordings
 %div{:id => "pager", :class => "pager"}

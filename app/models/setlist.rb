@@ -19,7 +19,11 @@ class Setlist
   def last
     song.song_name
   end
-  
+
+  def song_suffix
+    if is_segue? then " > " else ", " end
+  end
+    
   def first
     id
   end

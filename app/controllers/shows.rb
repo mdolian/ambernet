@@ -9,21 +9,25 @@ class Shows < Application
   end
   
   def list
-    q = params["q"]
-    search = Date.strptime(q)
-    @shows = Show.all(:conditions => {:date_played.eql => search})
-    list = []
-    show_test = {}  
-    @shows.each do |show|
-      show_test["label"] = show.label
-      show_test["id"] = show.id
-      list << show_test
+    list = []    
+    shows = Show.all(:date_played.eql => Date.strptime(params["date_played"]))
+    shows.each do |show|
+      list << {"label" => show.label, "id" => show.id}
     end
-    list.uniq!
-    list.sort!
     content_type = :json
     render list.to_json, :layout => false    
   end
+
+  def setlist
+    full_setlist = []
+    setlists = Setlist.all(:show_id => params["id"], :order => [:set_id.asc, :song_order.asc])   
+    setlists.each do |setlist|
+      song = Song.get(setlist.song_id)
+      full_setlist << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix}
+    end 
+    content_type = :json
+    render full_setlist.to_json, :layout => false
+  end  
   
   def search_results
     options = {}
@@ -50,12 +54,7 @@ class Shows < Application
     end
     render
   end
-  
-  def setlist
-    @show = Show.get(params["id"])
-    render :layout => false
-  end
-  
+      
   def recordings
     begin
       @recordings = Recording.all(:conditions => {:show_id => params["id"]})
