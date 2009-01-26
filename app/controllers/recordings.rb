@@ -65,52 +65,41 @@ class Recordings < Application
   end
   
   def search_results
-    type = params["type"]
-    label = params["label"]
-    source = params["source"]
-    lineage = params["lineage"]
-    taper = params["taper"]
-    year = params["year"]
-    taper = params["taper"]
-    venue_name = params["venue_name"]
-    venue_city = params["venue_city"] 
-    venue_state = params["venue_state"]
     options = {}
-    unless type == 'all'
-      options = options.merge({:type => type})
+    unless params["type"] == 'all'
+      options = options.merge({:type => params["type"]})
     end
-    unless label == ''
-      options = options.merge({:label.like => "%" << label << "%"})
+    unless params["label"] == ''
+      options = options.merge({:label.like => "%" << params["label"] << "%"})
     end
-    unless source == ''
-      options = options.merge({:source.like => "%" << source << "%"})
+    unless params["source"] == ''
+      options = options.merge({:source.like => "%" << params["source"] << "%"})
     end
-    unless lineage == ''
-      options = options.merge({:lineage.like => "%" << lineage << "%"})
+    unless params["lineage"] == ''
+      options = options.merge({:lineage.like => "%" << params["lineage"] << "%"})
     end
-    unless taper == ''
-      options = options.merge({:taper.like => "%" << taper << "%"})
+    unless params["taper"] == ''
+      options = options.merge({:taper.like => "%" << params["taper"] << "%"})
     end
-    unless year == 'All'
-      options = options.merge({Recording.show.date_played.gte => year, Recording.show.date_played.lt => (year.to_i+1).to_s}) 
+    unless params["year"] == 'All'
+      options = options.merge({Recording.show.date_played.gte => params["year"], Recording.show.date_played.lt => (params["year"].to_i+1).to_s}) 
     end
-    unless venue_name == ''
-      options = options.merge({Recording.show.venue.venue_name.like => "%" << venue_name << "%"})
+    unless params["venue_name"] == ''
+      options = options.merge({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})
     end
-    unless venue_city == ''
-      options = options.merge({Recording.show.venue.venue_city.like => "%" << venue_city << "%"})
+    unless params["venue_city"] == ''
+      options = options.merge({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})
     end
-    unless venue_state ==''
-      options = options.merge({Recording.show.venue.venue_state.like => "%" << venue_state << "%"})
+    unless params["venue_state"] ==''
+      options = options.merge({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})
     end
-    if options.empty?
-      puts "test2"
-      @recordings = Recording.all
+    if options.empty? 
+      message[:error] = "Please select at least one search filter"
+      redirect "/recordings", :message => message
     else
-      puts "test"
       @recordings = Recording.all(:conditions => options)
+      render
     end
-    render
   end
   
 end

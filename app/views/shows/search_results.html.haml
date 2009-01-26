@@ -16,18 +16,8 @@
           %td= show.venue.venue_city
           %td= show.venue.venue_state
           %td 
-            %a{:href => "#" , :id => "setlist", :onclick => "$('#dialog').setlist(#{show.id})"} Setlist
+            %a{:href => "#", :onclick => "$('#dialog_setlist_#{show.id}').setlist(#{show.id})"} Setlist
+            %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
           %td
-            %a{:href => "/shows/recordings/#{show.id}", :rel => "facebox"} Recordings
-%div{:id => "pager", :class => "pager"}
-  %form
-    %img{:src => "/images/first.png", :class => "first"}
-    %img{:src => "/images/prev.png", :class => "prev"}
-    %input{:type => "text", :class => "pagedisplay"}
-    %img{:src => "/images/next.png", :class => "next"}    
-    %img{:src => "/images/last.png", :class => "last"}
-    %select{:class => "pagesize"}
-      %option{:value => "10"} 10
-      %option{:value => "20"} 20
-      %option{:value => "30"} 30
-%div{:id => "dialog"}
+            %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
+            %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}

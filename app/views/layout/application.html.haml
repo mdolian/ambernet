@@ -5,11 +5,14 @@
     = js_include_tag 'jquery.tablesorter.pager'
     = js_include_tag 'jquery.ui'
     = js_include_tag 'jquery.james'
+    = js_include_tag 'jquery.jcarousel'
     = js_include_tag 'application'
     = css_include_tag 'master'
     = css_include_tag 'tablesorter'
     = css_include_tag 'james'
     = css_include_tag 'ui.all'
+    = css_include_tag 'jquery.jcarousel'
+    = css_include_tag 'skin'
     %title
       AmberNET Online
   %body
@@ -25,5 +28,15 @@
           %a{:href => "/beta"} Beta Information
       %tr{:height => "85%", :valign => "top"}
         %td{:align => "center"}
-          = message[:notice]
+          %div{:class => "ui-widget"}
+            - if !message[:notice].nil?
+              %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+                  = message[:notice]
+            - if !message[:error].nil?
+              %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+                  = message[:error]
           = catch_content :for_layout
