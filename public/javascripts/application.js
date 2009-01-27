@@ -76,20 +76,8 @@ $(function() {
 });
 
 function mycarousel_initCallback(carousel) {
-    jQuery('.jcarousel-control a#1').bind('click', function() {
-        carousel.scroll(jQuery.jcarousel.intval(1));
-        return false;
-    });
-    jQuery('.jcarousel-control a#2').bind('click', function() {
-        carousel.scroll(jQuery.jcarousel.intval(2));
-        return false;
-    });
-    jQuery('.jcarousel-control a#3').bind('click', function() {
-        carousel.scroll(jQuery.jcarousel.intval(3));
-        return false;
-    });
-    jQuery('.jcarousel-control a#4').bind('click', function() {
-        carousel.scroll(jQuery.jcarousel.intval(4));
+    jQuery('.jcarousel-control a').bind('click', function() {
+        carousel.scroll(jQuery.jcarousel.intval(jQuery(this).attr("id")));
         return false;
     });
 }
