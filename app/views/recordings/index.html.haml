@@ -57,6 +57,7 @@
             %td
               Date range
             %td
-              not finished
+              %div= text_field :name => "start_date", :id => "start_date"
+              %div= text_field :name => "end_date", :id => "end_date" 
   %input{:type => "submit", :value => "Search"} 
   %input{:type => "reset", :value => "Clear"}

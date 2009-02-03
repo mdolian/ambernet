@@ -71,7 +71,23 @@ $(function() {
 					$("#dialog").html(html);
 				});			
 			}
-		});				
+		});	
+		$('#start_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,	
+			showOn: 'button', 
+			buttonImage: '../images/calendar.gif', 
+			buttonImageOnly: true,		
+		});	
+		$('#end_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,	
+			showOn: 'button', 
+			buttonImage: '../images/calendar.gif', 
+			buttonImageOnly: true,		
+		});						
   });		
 });
 

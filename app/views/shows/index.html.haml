@@ -1,49 +1,37 @@
 %h2 Search Shows
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
-  %table{:width => "50%", :align => "center"}
-    %tr
-      %td{:align => "center"}
-        %a{:href => "#", :class => "search_song"} Song
-      %td{:align => "center"}
-        %a{:href => "#", :class => "search_venue_name"} Venue
-      %td{:align => "center"}
-        %a{:href => "#", :class => "search_year"} Year
-    %tr
-      %td{:align => "center"}
-        %a{:href => "#", :class => "search_venue_state"} State
-      %td{:align => "center"}
-        %a{:href => "#", :class => "search_venue_city"} City
-    %tr{:height => "20"}
-      %td{:colspan => "3"}
-    %tr{:id => "search_song"}
-      %td Label:
-      %td{:align => "center"}= text_field :name => "song_name"
-      %td 
-        %a{:href => "#", :id => "remove_song"} Remove
-    %tr{:id => "search_venue_name"}
-      %td Source:
-      %td{:align => "center"}= text_field :name => "venue_name", :id => "venue_name"
-      %td 
-        %a{:href => "#", :id => "remove_venue_name"} Remove
-    %tr{:id => "search_year"}
-      %td Year:
-      %td{:align => "center"}= select:name => "year", :collection => get_years
-      %td 
-        %a{:href => "#", :id => "remove_year"} Remove
-    %tr{:id => "search_venue_city"}
-      %td City:
-      %td{:align => "center"}= text_field :name => "venue_city"
-      %td 
-        %a{:href => "#", :id => "remove_venue_city"} Remove
-    %tr{:id => "search_venue_state"}
-      %td State
-      %td{:align => "center"}= text_field :name => "venue_state"
-      %td 
-        %a{:href => "#", :id => "remove_venue_state"} Remove
-    %tr{:height => "20"}
-      %td{:colspan => "3"}
-    %tr
-      %td
-      %td{:align => "center"}
-        %input{:type => "submit", :value => "Search"}
-      %td
+  %div{:class => "jcarousel-control"}
+    %a{:href => "#", :id => "1"}General
+    |
+    %a{:href => "#", :id => "2"}Location
+    | 
+    %a{:href => "#", :id => "4"}Date
+    %ul{:id => "mycarousel", :class => "jcarousel-skin-tango"}
+      %li
+        %table
+          %tr
+            %td
+              Song
+            %td{:align => "center"}= text_field :name => "song_name"
+      %li
+        %table
+          %tr
+            %td
+              Venue
+            %td{:align => "center"}= text_field :name => "venue_name", :id => "venue_name"
+          %tr 
+            %td
+              City
+            %td{:align => "center"}= text_field :name => "venue_city"
+          %tr
+            %td
+              State
+            %td{:align => "center"}= text_field :name => "venue_state"
+      %li
+        %table 
+          %tr
+            %td
+              Year
+            %td{:align => "center"}= select:name => "year", :collection => get_years
+  %input{:type => "submit", :value => "Search"}
+  %input{:type => "reset", :value => "Clear"}
