@@ -9,18 +9,7 @@
     padding: 20px 40px;
 }
 
-.jcarousel-skin-ambernet .jcarousel-container-vertical {
-    width: 345px;
-    height: 245px;
-    padding: 40px 20px;
-}
-
 .jcarousel-skin-ambernet .jcarousel-clip-horizontal {
-    width:  345px;
-    height: 245px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-clip-vertical {
     width:  345px;
     height: 245px;
 }
@@ -32,10 +21,6 @@
 
 .jcarousel-skin-ambernet .jcarousel-item-horizontal {
     margin-right: 10px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-item-vertical {
-    margin-bottom: 10px;
 }
 
 .jcarousel-skin-ambernet .jcarousel-item-placeholder {
@@ -94,57 +79,4 @@
 .jcarousel-skin-ambernet .jcarousel-prev-disabled-horizontal:active {
     cursor: default;
     background-position: -96px 0;
-}
-
-/**
- *  Vertical Buttons
- */
-.jcarousel-skin-ambernet .jcarousel-next-vertical {
-    position: absolute;
-    bottom: 5px;
-    left: 43px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    background: transparent url(/images/next-vertical.png) no-repeat 0 0;
-}
-
-.jcarousel-skin-ambernet .jcarousel-next-vertical:hover {
-    background-position: 0 -32px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-next-vertical:active {
-    background-position: 0 -64px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-next-disabled-vertical,
-.jcarousel-skin-ambernet .jcarousel-next-disabled-vertical:hover,
-.jcarousel-skin-ambernet .jcarousel-next-disabled-vertical:active {
-    cursor: default;
-    background-position: 0 -96px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-prev-vertical {
-    position: absolute;
-    top: 5px;
-    left: 43px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    background: transparent url(/images/prev-vertical.png) no-repeat 0 0;
-}
-
-.jcarousel-skin-ambernet .jcarousel-prev-vertical:hover {
-    background-position: 0 -32px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-prev-vertical:active {
-    background-position: 0 -64px;
-}
-
-.jcarousel-skin-ambernet .jcarousel-prev-disabled-vertical,
-.jcarousel-skin-ambernet .jcarousel-prev-disabled-vertical:hover,
-.jcarousel-skin-ambernet .jcarousel-prev-disabled-vertical:active {
-    cursor: default;
-    background-position: 0 -96px;
 }
