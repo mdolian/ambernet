@@ -5,25 +5,20 @@
       %th{:width => "10%", :align => "left"} Show Date
       %th{:width => "10%", :align => "left"} Type
       %th{:width => "10%", :align => "left"} Label
-      %th{:width => "10%", :align => "left"} Source
-      %th{:width => "10%", :align => "left"} Lineage
       %th{:width => "10%", :align => "left"} Venue Name
       %th{:width => "10%", :align => "left"} City
       %th{:width => "10%", :align => "left"} State
-      %th{:width => "10%", :align => "left"} Notes
       %th{:width => "10%", :align => "left"} Setlist
     %tbody  
       - @recordings.each do |recording|
         %tr
           %td= recording.show.date_played
           %td= recording.type
-          %td= recording.label
-          %td= recording.source
-          %td= recording.lineage
+          %td
+            %a{:href => "/recordings/show/#{recording.id}"}
+              =recording.label
           %td= recording.show.venue.venue_name
           %td= recording.show.venue.venue_city
           %td= recording.show.venue.venue_state
-          %td
-            %a{:href => "/recordings/notes/#{recording.id}", :rel => "facebox"} Notes
           %td 
             %a{:href => "/shows/setlist/#{recording.show.id}", :rel => "facebox"} Setlist
