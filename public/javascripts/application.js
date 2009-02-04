@@ -75,18 +75,12 @@ $(function() {
 		$('#start_date').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
-			changeYear: true,	
-			showOn: 'button', 
-			buttonImage: '../images/calendar.gif', 
-			buttonImageOnly: true,		
+			changeYear: true	
 		});	
 		$('#end_date').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
-			changeYear: true,	
-			showOn: 'button', 
-			buttonImage: '../images/calendar.gif', 
-			buttonImageOnly: true,		
+			changeYear: true
 		});						
   });		
 });

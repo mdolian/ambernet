@@ -8,30 +8,28 @@
     %a{:href => "#", :id => "4"}Date
     %ul{:id => "mycarousel", :class => "jcarousel-skin-tango"}
       %li
-        %table
-          %tr
-            %td
-              Song
-            %td{:align => "center"}= text_field :name => "song_name"
+        %div &nbsp
+        %div
+          %label Song
+          = text_field :name => "song_name"
       %li
-        %table
-          %tr
-            %td
-              Venue
-            %td{:align => "center"}= text_field :name => "venue_name", :id => "venue_name"
-          %tr 
-            %td
-              City
-            %td{:align => "center"}= text_field :name => "venue_city"
-          %tr
-            %td
-              State
-            %td{:align => "center"}= text_field :name => "venue_state"
+        %div &nbsp
+        %div
+          %label Venue
+          = text_field :name => "venue_name", :id => "venue_name"
+        %div &nbsp
+        %div
+          %label City
+          = text_field :name => "venue_city"
+        %div &nbsp
+        %div
+          %label State
+          = text_field :name => "venue_state"
       %li
-        %table 
-          %tr
-            %td
-              Year
-            %td{:align => "center"}= select:name => "year", :collection => get_years
+        %div &nbsp
+        %div
+          %label Year
+          = select:name => "year", :collection => get_years
+  %div &nbsp;
   %input{:type => "submit", :value => "Search"}
   %input{:type => "reset", :value => "Clear"}

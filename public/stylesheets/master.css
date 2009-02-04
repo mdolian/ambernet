@@ -47,3 +47,57 @@ a:hover {
   background-color: #fff;
   text-decoration: underline;
 }
+form * {margin:0;padding:0;} /* Standard margin and padding reset, normally done on the body */
+
+legend {
+	color:#000; /* IE styles legends with blue text by default */
+	*margin-left:-7px; /* A hack that only ie reads to position the legend in the same place cross browser */
+}
+fieldset {
+	border:1px solid #dedede; /* Default fieldset borders vary cross browser, so make them the same */
+}
+fieldset div {
+	overflow:hidden; /* Contain the floating elements */
+	display:inline-block; /* Give layout in ie to contain float */
+}
+fieldset div {display:block;} /* Reset element back to block leaving layout in ie */
+label {
+	float:left; /* Take out of flow so the input starts at the same height */
+	width:5em; /* Set a width so the inputs line up */
+}
+
+.radio {
+	position:relative; /* Position so children are relative to this container */
+	border:0; /* Remove the border */
+}
+.radio span {
+	position:absolute; /* Take the content of the legend out of flow */
+	top:0;left:0; /* and position it to the top left of the fieldset */
+	width:5em; /* Same width as labels */
+}
+.radio ul {
+	margin-left:5em; /* Since the legend is out of flow. set margin, so inputs are inline */
+	list-style:none; /* Dont want bullets */
+}
+.radio li {
+	position:relative; /* Fix a bug in IE zoom functionality */
+	display:inline; /* Display the inputs in a line */
+	white-space:nowrap; /* We dont want a label to wrap between the input and label */
+}
+.radio label, .radio input {
+	width:auto; /* Reset the width on the label from the 5em, set earlier */
+	float:none; /* Reset the float from left on the label, set earlier */
+	vertical-align:middle; /* Align the radio buttons with the inputs */
+}
+input {
+	padding:0.15em;
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 0.95em arial, sans-serif;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+input:hover, input:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+} 

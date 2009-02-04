@@ -5,29 +5,29 @@
 }
 
 .jcarousel-skin-tango .jcarousel-container-horizontal {
-    width: 245px;
+    width: 345px;
     padding: 20px 40px;
 }
 
 .jcarousel-skin-tango .jcarousel-container-vertical {
-    width: 245px;
+    width: 345px;
     height: 245px;
     padding: 40px 20px;
 }
 
 .jcarousel-skin-tango .jcarousel-clip-horizontal {
-    width:  245px;
+    width:  345px;
     height: 245px;
 }
 
 .jcarousel-skin-tango .jcarousel-clip-vertical {
-    width:  245px;
+    width:  345px;
     height: 245px;
 }
 
 .jcarousel-skin-tango .jcarousel-item {
-    width: 175px;
-    height: 175px;
+    width: 275px;
+    height: 275px;
 }
 
 .jcarousel-skin-tango .jcarousel-item-horizontal {

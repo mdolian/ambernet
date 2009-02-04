@@ -10,54 +10,52 @@
     %a{:href => "#", :id => "4"}Date
     %ul{:id => "mycarousel", :class => "jcarousel-skin-tango"}
       %li
-        %table
-          %tr
-            %td
-              Label
-            %td{:align => "center"}= text_field :name => "label"
+        %div &nbsp
+        %div
+          %label Label
+          = text_field :name => "label", :size => "20"
       %li
-        %table
-          %tr
-            %td 
-              Venue
-            %td= text_field :name => "venue_name", :id => "venue_name"
-          %tr
-            %td
-              City
-            %td= text_field :name => "venue_city", :id => "venue_city"
-          %tr
-            %td
-              State
-            %td= text_field :name => "venue_state"
+        %div &nbsp
+        %div
+          %label Venue
+          = text_field :name => "venue_name", :id => "venue_name", :size => "20"
+        %div &nbsp
+        %div 
+          %label City 
+          = text_field :name => "venue_city", :id => "venue_city", :size => "20"
+        %p
+        %div &nbsp
+        %div
+          %label State
+          = text_field :name => "venue_state", :size => "20"
       %li
-        %table
-          %tr
-            %td
-              Source
-            %td= text_field :name => "source"
-          %tr
-            %td
-              Lineage
-            %td= text_field :name => "lineage"
-          %tr
-            %td
-              Taper
-            %td= text_field :name => "taper"
-          %tr
-            %td
-              Type
-            %td= select :name => "type", :collection => get_types
+        %div &nbsp
+        %div
+          %label Source
+          = text_field :name => "source", :size => "20"
+        %div &nbsp 
+        %div
+          %label Lineage
+          = text_field :name => "lineage", :size => "20"
+        %div &nbsp        
+        %div
+          %label Taper
+          = text_field :name => "taper", :size => "20"
+        %div &nbsp
+        %div
+          %label Type
+          = select :name => "type", :collection => get_types
       %li
-        %table
-          %tr
-            %td
-              Year
-            %td= select:name => "year", :collection => get_years              
-          %tr
-            %td
-              Date range
-            %td
-              %div= text_field :name => "start_date", :id => "start_date"
-              %div= text_field :name => "end_date", :id => "end_date" 
+        %div &nbsp
+        %div
+          %label Year
+          = select:name => "year", :collection => get_years 
+        %div &nbsp       
+        %div
+          %label Range
+          %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+          to
+          %input{:type => "text", :name => "start_date", :id => "end_date", :size => "7"}
+  %div &nbsp;
   %input{:type => "submit", :value => "Search"} 
   %input{:type => "reset", :value => "Clear"}
