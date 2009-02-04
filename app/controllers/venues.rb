@@ -1,5 +1,5 @@
 class Venues < Application
-  before :ensure_authenticated
+  #before :ensure_authenticated
  
   def index
     render

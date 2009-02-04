@@ -1,6 +1,6 @@
 class Recordings < Application
 
-  before :ensure_authenticated
+  #before :ensure_authenticated
 
   def admin
     render

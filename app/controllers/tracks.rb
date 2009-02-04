@@ -1,5 +1,5 @@
 class Tracks < Application
-  before :ensure_authenticated
+  #before :ensure_authenticated
 
   def edit
     recording = Recording.get(params["id"])

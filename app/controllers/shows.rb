@@ -3,7 +3,7 @@ require 'date'
 require 'dm-serializer'
 
 class Shows < Application
-  before :ensure_authenticated
+  #before :ensure_authenticated
 
   def index
     render
