@@ -1,39 +1,40 @@
 %h2 Search Shows
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
-  %div{:id => "carousel-control"}
-    %a{:href => "#"}General
-    |
-    %a{:href => "#"}Location
-    | 
-    %a{:href => "#"}Date
-    %div{:id => "carousel"}
-      %div
-        %div &nbsp
-        %div
-          %label Song
-          = text_field :name => "song_name"
-      %div
-        %div &nbsp
-        %div
-          %label Venue
-          = text_field :name => "venue_name", :id => "venue_name"
-        %div &nbsp
-        %div
-          %label City
-          = text_field :name => "venue_city"
-        %div &nbsp
-        %div
-          %label State
-          = text_field :name => "venue_state"
-      %div
-        %div &nbsp
-        %div
-          %label Year
-          = select:name => "year", :collection => get_years
-  %div &nbsp;
-  %div{:class => "scroll"}
-    %a{:href => "#", :id => "prev"} Prev
-    %a{:href => "#", :id => "next"} Next  
+  %div{:class => "main-screen"}
+    %div{:id => "carousel-control"}
+      %a{:href => "#"}General
+      |
+      %a{:href => "#"}Location
+      | 
+      %a{:href => "#"}Date
+      %div{:class => "nav"}
+        %a{:id => "prev", :href => "#"}    
+      %div{:id => "carousel"}
+        %div{:class => "carousel_item"}
+          %div &nbsp
+          %div
+            %label Song
+            = text_field :name => "song_name"
+        %div{:class => "carousel_item"}
+          %div &nbsp
+          %div
+            %label Venue
+            = text_field :name => "venue_name", :id => "venue_name"
+          %div &nbsp
+          %div
+            %label City
+            = text_field :name => "venue_city"
+          %div &nbsp
+          %div
+            %label State
+            = text_field :name => "venue_state"
+        %div{:class => "carousel_item"}
+          %div &nbsp
+          %div
+            %label Year
+            = select:name => "year", :collection => get_years
+      %div{:class => "nav"}
+        %a{:id => "next", :href => "#"}
   %div &nbsp;
   %input{:type => "submit", :value => "Search"}
   %input{:type => "reset", :value => "Clear"}

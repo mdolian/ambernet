@@ -3,7 +3,7 @@ $(function() {
 		$("#venue_name").autocomplete("/venues/list");
 		$("#venue_city").autocomplete("/venues/city_list");	
     $("#carousel").cycle({
-	    fx:     'fade', 
+	    fx:     'scrollHorz', 
 	    speed:  'fast',
 	    prev:   '#prev',
 	    next:   '#next',

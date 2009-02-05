@@ -102,3 +102,31 @@ input:hover, input:focus {
 	background:#f6f6f6;
 } 
 #carousel-control li { width: 50px; float: top; margin: 8px; list-style: none }
+.carousel_item {
+    padding: 36px 20px 0 20px;
+    height:  200px;  
+    width:   400px; 
+    line-height: 14px;
+    text-align: left;
+}
+#carousel{
+	overflow: hidden;
+	padding: 0px 0;
+	margin: 0 0 10px 0;
+	width: 432px;
+	height: 245px;
+	position: relative;
+}
+#prev {
+float: left;
+width: 16px;
+height: 245px;
+background: url(/images/prev.png) no-repeat scroll middle center;
+}
+#next  {
+float: right;
+margin: -245px 0 0 0;
+width: 16px;
+height: 245;
+background: url(/images/next.png) no-repeat scroll middle center;
+}
