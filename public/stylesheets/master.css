@@ -101,3 +101,4 @@ input:hover, input:focus {
 	border-color:#c5c5c5;
 	background:#f6f6f6;
 } 
+#carousel-control li { width: 50px; float: top; margin: 8px; list-style: none }

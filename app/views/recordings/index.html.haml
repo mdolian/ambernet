@@ -1,23 +1,20 @@
 %h2 Search Recordings
 %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off"}
-  %div{:class => "jcarousel-control"}
-    %a{:href => "#", :id => "1"}General
+  %div{:id => "carousel-control"}
+    %a{:href => "#"}General
     |
-    %a{:href => "#", :id => "2"}Location
+    %a{:href => "#"}Location
     | 
-    %a{:href => "#", :id => "3"}Source 
+    %a{:href => "#"}Source 
     | 
-    %a{:href => "#", :id => "4"}Date
-  %ul{:id => "mycarousel", :class => "jcarousel-skin-ambernet"}
-    %li
-      %div
-        test
-    %li{:align => "center"}
+    %a{:href => "#"}Date
+  %div{:id => "carousel"}
+    %div{:align => "center"}
       %div &nbsp
       %div{:align => "center"}
         %label Label
         %input{:type => "text", :name => "label", :size => "20"}
-    %li{:align => "center"}
+    %div{:align => "center"}
       %div &nbsp
       %div{:align => "center"}
         %label Venue
@@ -31,7 +28,7 @@
       %div{:align => "center"}
         %label State
         = text_field :name => "venue_state", :size => "20"
-    %li
+    %div
       %div &nbsp
       %div{:align => "center"}
         %label Source
@@ -48,7 +45,7 @@
       %div
         %label Type
         = select :name => "type", :collection => get_types
-    %li
+    %div
       %div &nbsp
       %div
         %label Year
@@ -59,6 +56,10 @@
         %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
         to
         %input{:type => "text", :name => "start_date", :id => "end_date", :size => "7"}
+  %div &nbsp;
+  %div{:class => "scroll"}
+    %a{:href => "#", :id => "prev"} Prev
+    %a{:href => "#", :id => "next"} Next      
   %div &nbsp;
   %input{:type => "submit", :value => "Search"} 
   %input{:type => "reset", :value => "Clear"}

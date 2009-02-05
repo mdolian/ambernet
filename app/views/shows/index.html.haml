@@ -1,18 +1,18 @@
 %h2 Search Shows
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
-  %div{:class => "jcarousel-control"}
-    %a{:href => "#", :id => "1"}General
+  %div{:id => "carousel-control"}
+    %a{:href => "#"}General
     |
-    %a{:href => "#", :id => "2"}Location
+    %a{:href => "#"}Location
     | 
-    %a{:href => "#", :id => "4"}Date
-    %ul{:id => "mycarousel", :class => "jcarousel-skin-ambernet"}
-      %li
+    %a{:href => "#"}Date
+    %div{:id => "carousel"}
+      %div
         %div &nbsp
         %div
           %label Song
           = text_field :name => "song_name"
-      %li
+      %div
         %div &nbsp
         %div
           %label Venue
@@ -25,11 +25,15 @@
         %div
           %label State
           = text_field :name => "venue_state"
-      %li
+      %div
         %div &nbsp
         %div
           %label Year
           = select:name => "year", :collection => get_years
+  %div &nbsp;
+  %div{:class => "scroll"}
+    %a{:href => "#", :id => "prev"} Prev
+    %a{:href => "#", :id => "next"} Next  
   %div &nbsp;
   %input{:type => "submit", :value => "Search"}
   %input{:type => "reset", :value => "Clear"}

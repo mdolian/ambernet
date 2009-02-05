@@ -2,10 +2,17 @@ $(function() {
   jQuery(document).ready(function($) {	
 		$("#venue_name").autocomplete("/venues/list");
 		$("#venue_city").autocomplete("/venues/city_list");	
-    $("#mycarousel").jcarousel({
-	    scroll: 1,
-	    visible: 1,
-      initCallback: mycarousel_initCallback	
+    $("#carousel").cycle({
+	    fx:     'fade', 
+	    speed:  'fast',
+	    prev:   '#prev',
+	    next:   '#next',
+	    after:   onAfter,
+	    pager:  '#carousel-control',
+	    timeout: 0,
+      pagerAnchorBuilder: function(idx, slide) {
+          return '#carousel-control a:eq(' + (idx) + ')';
+      }
  		});
     $("table") 
       .tablesorter({widthFixed: true, widgets: ['zebra']});
@@ -85,9 +92,8 @@ $(function() {
   });		
 });
 
-function mycarousel_initCallback(carousel) {
-    jQuery('.jcarousel-control a').bind('click', function() {
-        carousel.scroll(jQuery.jcarousel.intval(jQuery(this).attr("id")));
-        return false;
-    });
+function onAfter(curr, next, opts) {
+    var index = opts.currSlide;
+    jQuery('#prev')[index == 0 ? 'hide' : 'show']();
+    jQuery('#next')[index == opts.slideCount - 1 ? 'hide' : 'show']();
 }
