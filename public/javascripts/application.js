@@ -8,6 +8,7 @@ $(function() {
 	    after:   onAfter,
 	    pager:  '#carousel-control',
 	    timeout: 0,
+	    containerResize: false,
       pagerAnchorBuilder: function(idx, slide) {
           return '#carousel-control a:eq(' + (idx) + ')';
       }
