@@ -14,27 +14,35 @@
     %title
       AmberNET Online
   %body
-    %table{:width => "85%", :align => "center", :height => "100%"}
-      %tr{:height => "10%"} 
-        %td{:align => "center"} Application Header Image
-      %tr{:height => "10%"}
-        %td{:align => "center", :valign => "top"} 
-          %a{:href => "/recordings"} Search Recordings 
-          | 
-          %a{:href => "/shows"} Search Shows 
-          | 
-          %a{:href => "/beta"} Beta Information
-      %tr{:height => "85%", :valign => "top"}
-        %td{:align => "center"}
-          %div{:class => "ui-widget"}
-            - if !message[:notice].nil?
-              %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                %p
-                  %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
-                  = message[:notice]
-            - if !message[:error].nil?
-              %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                %p
-                  %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
-                  = message[:error]
+    %div{:id => "framecontentLeft"}
+      %div{:class => "innertube"}
+        This is the left column
+    %div{:id => "framecontentRight"}
+      %div{:class => "innertube"}
+        This is the right column
+    %div{:id => "framecontentTop", :align => "center"}
+      %div{:class => "innertube"}
+        Application Header Image Here
+        %br
+        %a{:href => "/recordings"} Search Recordings 
+        | 
+        %a{:href => "/shows"} Search Shows 
+        | 
+        %a{:href => "/beta"} Beta Information
+    %div{:id => "framecontentBottom"}
+      %div{:class => "innertube", :align => "center"}
+        Bottom Menu Here
+    %div{:id => "maincontent", :align => "center"}
+      %div{:class => "innertube"}
+        %div{:class => "ui-widget"}
+          - if !message[:notice].nil?
+            %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+              %p
+                %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+                = message[:notice]
+          - if !message[:error].nil?
+            %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+              %p
+                %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+                = message[:error]
           = catch_content :for_layout
