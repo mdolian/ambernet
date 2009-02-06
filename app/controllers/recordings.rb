@@ -94,7 +94,7 @@ class Recordings < Application
     error_message = "Please select at least on search filter" if options.empty?    
     
     if error_message == ''
-      @recordings = Recording.all(:conditions => options)
+      @recordings = Recording.all(:conditions => options).paginate(:page => params[:page])
       render      
     else 
       message[:error] = error_message

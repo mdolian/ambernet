@@ -1,6 +1,6 @@
-merb_gems_version = "1.0.8"
-dm_gems_version   = "0.9.9"
-do_gems_version   = "0.9.10.1"
+merb_gems_version = "1.0.8.1"
+dm_gems_version   = "0.9.10"
+do_gems_version   = "0.9.11"
 
 dependency "merb-action-args", merb_gems_version
 dependency "merb-assets", merb_gems_version  
@@ -34,4 +34,5 @@ dependency 'rake'
 dependency 'rcov'
 dependency 'hoe'
 dependency 'haml'
-dependency "extlib"
+dependency 'extlib'
+#dependency 'genki-dm-pagination'
