@@ -153,7 +153,8 @@ input:hover, input:focus {
 	float: left;
 	width: 16px;
 	height: 245px;
-	background: url(/images/prev.png) no-repeat scroll middle center;
+	background: #000;
+/*	background: url(/images/prev.png) no-repeat scroll middle center;*/
 }
 
 #next  {
@@ -161,7 +162,8 @@ input:hover, input:focus {
 	margin: -245px 0 0 0;
 	width: 16px;
 	height: 245;
-	background: url(/images/next.png) no-repeat scroll middle center;
+	background: #000;
+/*	background: url(/images/next.png) no-repeat scroll middle center;*/
 }
 
 /* The following CSS creates the 5 frames: left, top, bottom and right.  
@@ -191,10 +193,10 @@ body{
 }
 
 #framecontentRight{
-left: auto;
-right: 0; 
-width: 150px; /*Width of right frame div*/
-overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+	left: auto;
+	right: 0; 
+	width: 150px; /*Width of right frame div*/
+	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
 #framecontentTop, #framecontentBottom{
