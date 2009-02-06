@@ -2,7 +2,7 @@ $(function() {
   jQuery(document).ready(function($) {	
 		$("#venue_name").autocomplete("/venues/list");
 		$("#venue_city").autocomplete("/venues/city_list");	
-    $("#carousel").cycle({
+    $("#carousel_block").cycle({
 	    fx:     'scrollHorz', 
 	    speed:  'fast',
 	    prev:   '#prev',
