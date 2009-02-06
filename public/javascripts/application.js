@@ -6,7 +6,7 @@ $(function() {
 	    fx:     'scrollHorz', 
 	    speed:  'fast',
 	    after:   onAfter,
-	    #pager:  '#carousel-control',
+	    pager:  '#carousel-control',
 	    timeout: 0,
       pagerAnchorBuilder: function(idx, slide) {
           return '#carousel-control a:eq(' + (idx) + ')';
