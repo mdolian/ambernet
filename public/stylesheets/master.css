@@ -126,20 +126,19 @@ input:hover, input:focus {
 	list-style: none;
 }
 
+#carousel {
+    height:  245px;  
+    width:   432px;  
+    padding: 0px;  
+    margin:  0px;  
+}
+
 .carousel_item {
 	padding: 36px 20px 0 20px;
 	height:  200px;  
 	width:   400px; 
 	line-height: 14px;
 	text-align: left;
-}
-
-#carousel{
-	overflow: hidden;
-	padding: 0px 0;
-	margin: 0 0 10px 0;
-	height: 245px;
-	position: relative;
 }
 
 #prev {
