@@ -5,10 +5,8 @@ $(function() {
     $("#carousel_block").cycle({
 	    fx:     'scrollHorz', 
 	    speed:  'fast',
-	    prev:   '#prev',
-	    next:   '#next',
 	    after:   onAfter,
-	    pager:  '#carousel-control',
+	    #pager:  '#carousel-control',
 	    timeout: 0,
       pagerAnchorBuilder: function(idx, slide) {
           return '#carousel-control a:eq(' + (idx) + ')';
