@@ -8,7 +8,7 @@ $(function() {
 	    prev:   '#prev',
 	    next:   '#next',
 	    after:   onAfter,
-	    #pager:  '#carousel-control',
+	    pager:  '#carousel-control',
 	    timeout: 0,
 		  containerResize: false,
       pagerAnchorBuilder: function(idx, slide) {
