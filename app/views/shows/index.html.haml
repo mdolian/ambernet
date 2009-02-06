@@ -2,11 +2,12 @@
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
   %div{:class => "main-screen"}
     %div{:id => "carousel-control"}
-      %a{:href => "#"}General
-      |
-      %a{:href => "#"}Location
-      | 
-      %a{:href => "#"}Date
+      %p
+        %a{:href => "#"}General
+        |
+        %a{:href => "#"}Location
+        | 
+        %a{:href => "#"}Date
       %div{:class => "nav"}
         %a{:id => "prev", :href => "#"}    
       %div{:id => "carousel"}
@@ -35,6 +36,5 @@
             = select:name => "year", :collection => get_years
       %div{:class => "nav"}
         %a{:id => "next", :href => "#"}
-  %div &nbsp;
   %input{:type => "submit", :value => "Search"}
   %input{:type => "reset", :value => "Clear"}

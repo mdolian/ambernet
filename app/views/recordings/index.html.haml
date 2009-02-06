@@ -2,13 +2,14 @@
 %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off"}
   %div{:class => "main-screen"}
     %div{:id => "carousel-control"}
-      %a{:href => "#"}General
-      |
-      %a{:href => "#"}Location
-      | 
-      %a{:href => "#"}Source 
-      | 
-      %a{:href => "#"}Date
+      %p
+        %a{:href => "#"}General
+        |
+        %a{:href => "#"}Location
+        | 
+        %a{:href => "#"}Source 
+        | 
+        %a{:href => "#"}Date
     %div{:class => "nav"}
       %a{:id => "prev", :href => "#"}
     %div{:id => "carousel"}
@@ -60,6 +61,5 @@
           %input{:type => "text", :name => "start_date", :id => "end_date", :size => "7"}
     %div{:class => "nav"}
       %a{:id => "next", :href => "#"} 
-  %div &nbsp;
   %input{:type => "submit", :value => "Search"} 
   %input{:type => "reset", :value => "Clear"}

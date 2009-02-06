@@ -1,3 +1,4 @@
+/* Site CSS */
 .spacer {
   width: 100%;
   height: 15px;
@@ -34,6 +35,7 @@ h3 {
 }
 p {
   color: #000;
+  font-size: 13px;
   background-color: #fff;
   line-height: 20px;
   padding: 5px;
@@ -47,7 +49,12 @@ a:hover {
   background-color: #fff;
   text-decoration: underline;
 }
-form * {margin:0;padding:0;} /* Standard margin and padding reset, normally done on the body */
+
+/* The following CSS sets up for forms */
+form * {
+	margin:0;
+	padding:0;
+} /* Standard margin and padding reset, normally done on the body */
 
 legend {
 	color:#000; /* IE styles legends with blue text by default */
@@ -60,7 +67,10 @@ fieldset div {
 	overflow:hidden; /* Contain the floating elements */
 	display:inline-block; /* Give layout in ie to contain float */
 }
-fieldset div {display:block;} /* Reset element back to block leaving layout in ie */
+fieldset div {
+	display:block;
+} /* Reset element back to block leaving layout in ie */
+
 label {
 	float:left; /* Take out of flow so the input starts at the same height */
 	width:5em; /* Set a width so the inputs line up */
@@ -70,25 +80,30 @@ label {
 	position:relative; /* Position so children are relative to this container */
 	border:0; /* Remove the border */
 }
+
 .radio span {
 	position:absolute; /* Take the content of the legend out of flow */
 	top:0;left:0; /* and position it to the top left of the fieldset */
 	width:5em; /* Same width as labels */
 }
+
 .radio ul {
 	margin-left:5em; /* Since the legend is out of flow. set margin, so inputs are inline */
 	list-style:none; /* Dont want bullets */
 }
+
 .radio li {
 	position:relative; /* Fix a bug in IE zoom functionality */
 	display:inline; /* Display the inputs in a line */
 	white-space:nowrap; /* We dont want a label to wrap between the input and label */
 }
+
 .radio label, .radio input {
 	width:auto; /* Reset the width on the label from the 5em, set earlier */
 	float:none; /* Reset the float from left on the label, set earlier */
 	vertical-align:middle; /* Align the radio buttons with the inputs */
 }
+
 input {
 	padding:0.15em;
 	border:1px solid #ddd;
@@ -97,18 +112,28 @@ input {
 	-moz-border-radius:0.4em;
 	-khtml-border-radius:0.4em;
 }
+
 input:hover, input:focus {
 	border-color:#c5c5c5;
 	background:#f6f6f6;
 } 
-#carousel-control li { width: 50px; float: top; margin: 8px; list-style: none }
-.carousel_item {
-    padding: 36px 20px 0 20px;
-    height:  200px;  
-    width:   400px; 
-    line-height: 14px;
-    text-align: left;
+
+/* The following CSS is for the carousel (search filters) */
+#carousel-control li { 
+	width: 50px; 
+	float: top; 
+	margin: 8px; 
+	list-style: none;
 }
+
+.carousel_item {
+	padding: 36px 20px 0 20px;
+	height:  200px;  
+	width:   400px; 
+	line-height: 14px;
+	text-align: left;
+}
+
 #carousel{
 	overflow: hidden;
 	padding: 0px 0;
@@ -117,36 +142,46 @@ input:hover, input:focus {
 	height: 245px;
 	position: relative;
 }
+
 #prev {
-float: left;
-width: 16px;
-height: 245px;
-background: url(/images/prev.png) no-repeat scroll middle center;
-}
-#next  {
-float: right;
-margin: -245px 0 0 0;
-width: 16px;
-height: 245;
-background: url(/images/next.png) no-repeat scroll middle center;
+	float: left;
+	width: 16px;
+	height: 245px;
+	background: url(/images/prev.png) no-repeat scroll middle center;
 }
 
+#next  {
+	float: right;
+	margin: -245px 0 0 0;
+	width: 16px;
+	height: 245;
+	background: url(/images/next.png) no-repeat scroll middle center;
+}
+
+/* The following CSS creates the 5 frames: left, top, bottom and right.  
+   The frames 
+   framecontentLeft:       a column that runs 100% of the height of the page
+   framecontentRight:      a column that runs 100% of the height of the page
+   #framecontentTop:       a row that runs the length of the page minus the width of left + right
+   #framecontentTopBottom: a row that runs the length of the page minus the width of left + right 
+   #maincontent            the main content */
+
 body{
-margin: 0;
-padding: 0;
-border: 0;
-overflow: hidden;
-height: 100%; 
-max-height: 100%; 
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	height: 100%; 
+	max-height: 100%; 
 }
 
 #framecontentLeft, #framecontentRight{
-position: absolute; 
-top: 0; 
-left: 0; 
-width: 200px; /*Width of left frame div*/
-height: 100%;
-overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 200px; /*Width of left frame div*/
+	height: 100%;
+	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
 #framecontentRight{
@@ -157,43 +192,43 @@ overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
 #framecontentTop, #framecontentBottom{
-position: absolute;
-top: 0; 
-left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-right: 150px; /*Set right value to WidthOfRightFrameDiv*/
-width: auto;
-height: 120px; /*Height of top frame div*/
-overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+	position: absolute;
+	top: 0; 
+	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
+	right: 150px; /*Set right value to WidthOfRightFrameDiv*/
+	width: auto;
+	height: 100px; /*Height of top frame div*/
+	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
 #framecontentBottom{
-top: auto;
-height: 100px; /*Height of bottom frame div*/
-bottom: 0;
+	top: auto;
+	height: 80px; /*Height of bottom frame div*/
+	bottom: 0;
 }
 
 #maincontent{
-position: fixed; 
-top: 120px; /*Set top value to HeightOfTopFrameDiv*/
-bottom: 100px; /*Set bottom value to HeightOfBottomFrameDiv*/
-left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-right: 150px; /*Set right value to WidthOfRightFrameDiv*/
-overflow: auto; 
+	position: fixed; 
+	top: 100px; /*Set top value to HeightOfTopFrameDiv*/
+	bottom: 120px; /*Set bottom value to HeightOfBottomFrameDiv*/
+	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
+	right: 150px; /*Set right value to WidthOfRightFrameDiv*/
+	overflow: auto; 
 }
 
 .innertube{
-margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
+	margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
 }
 
 * html body{ /*IE6 hack*/
-padding: 120px 150px 100px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
+	padding: 120px 150px 100px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
 }
 
 * html #maincontent{ /*IE6 hack*/
-height: 100%; 
-width: 100%; 
+	height: 100%; 
+	width: 100%; 
 }
 
 * html #framecontentTop, * html #framecontentBottom{ /*IE6 hack*/
-width: 100%;
+	width: 100%;
 }
