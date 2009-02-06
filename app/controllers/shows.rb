@@ -1,4 +1,3 @@
-require 'show'
 require 'date'
 require 'dm-serializer'
 
@@ -34,20 +33,32 @@ class Shows < Application
     
   def search_results
     options = {}
-
+    error_message = ""
+    
     options = options.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
     options = options.merge({:date_played.gte => params["year"], 
                              :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
     options = options.merge({Show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
     options = options.merge({Show.venue.venue_state => "%" << params["venue_state"] << "%"})          if params["venue_state"] != ''
-                  
-    if options.empty? 
-      message[:error] = "Please select at least one search filter"
-      redirect "/shows", :message => message
-    else 
-      @shows = Show.all(:conditions => options)
-      render
+
+    unless (params["end_date"] == '' && params["start_date"] == '')
+      puts "BLAH"
+      end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       
+      start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
+      error_message = "Start date later than end date" if (end_date < start_date)   
+      options = options.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
     end
+ 
+    error_message = "Please select at least on search filter" if options.empty? 
+    
+    if error_message == ''
+      @shows = Show.all(:conditions => options)
+      render      
+    else 
+      message[:error] = error_message
+      redirect "/shows", :message => message
+    end
+
   end   
  
 end

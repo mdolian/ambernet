@@ -34,6 +34,12 @@
           %div
             %label Year
             = select:name => "year", :collection => get_years
+            %div &nbsp       
+          %div
+            %label Range
+            %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+            to
+            %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}            
       %div{:class => "nav"}
         %a{:id => "next", :href => "#"}
   %input{:type => "submit", :value => "Search"}
