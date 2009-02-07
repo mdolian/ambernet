@@ -1,6 +1,8 @@
 class Recording
   include DataMapper::Resource
   
+  is_paginated
+  
   property :id, Serial
   property :label, String
   property :source, String

@@ -1,6 +1,8 @@
 class Tracks < Application
   #before :ensure_authenticated
 
+  params_accessible :post => [:id, :recording_id, :track, :setlist]
+
   def edit
     recording = Recording.get(params["id"])
     @setlists = Setlist.all(:show_id => recording.show_id)

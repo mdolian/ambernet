@@ -1,6 +1,8 @@
 class Venues < Application
   #before :ensure_authenticated
  
+  params_accessible :post => [:q]
+ 
   def index
     render
   end
@@ -15,7 +17,7 @@ class Venues < Application
   end
   
   def city_list
-    venues = Venue.all(:conditions => {:venue_city.like => params["input_content"] << "%"})
+    venues = Venue.all(:conditions => {:venue_city.like => params["q"] << "%"})
     list = ""
     venues.each do |venue|
       list << venue.venue_city << "\n"

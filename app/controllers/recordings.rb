@@ -3,7 +3,7 @@ require 'date'
 class Recordings < Application
 
   #before :ensure_authenticated
-  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page
+  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state]
   
   def admin
@@ -93,15 +93,10 @@ class Recordings < Application
                                Recording.show.date_played.lte => params["end_date"]})      
     end
     
-    error_message = "Please select at least on search filter" if options.empty?    
-    
-    if error_message == ''
-      @recordings = Recording.all(:conditions => options).paginate(:page => params[:page])
-      render      
-    else 
-      message[:error] = error_message
-      redirect "/recordings", :message => message
-    end    
+    error_message = "Please select at least on search filter"                            if options.empty?    
+    @recordings = Recording.all(:conditions => options).paginate(:page => params[:page]) if error_message == ''
+    message[:error] = error_message                                                      if error_message != ''
+    render
 
   end
   
