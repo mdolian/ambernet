@@ -3,7 +3,9 @@ require 'date'
 class Recordings < Application
 
   #before :ensure_authenticated
-
+  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page
+                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state]
+  
   def admin
     render
   end
