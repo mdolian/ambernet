@@ -3,7 +3,7 @@ require 'date'
 class Recordings < Application
 
   #before :ensure_authenticated
-  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page,
+  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state]
   
   def admin
@@ -69,19 +69,20 @@ class Recordings < Application
   end
   
   def search_results
-    options = {}
+    conditions = {}
     error_message = ""
             
-    options = options.merge({:type => params["type"]})                                                      if params["type"] != 'all'
-    options = options.merge({:label.like => "%" << params["label"] << "%"})                                 if params["label"] != ''
-    options = options.merge({:source.like => "%" << params["source"] << "%"})                               if params["source"] != ''
-    options = options.merge({:lineage.like => "%" << params["lineage"] << "%"})                             if params["lineage"] != ''
-    options = options.merge({:taper.like => "%" << params["taper"] << "%"})                                 if params["taper"] != ''
-    options = options.merge({Recording.show.date_played.gte => params["year"], 
-                             Recording.show.date_played.lt => (params["year"].to_i+1).to_s})                if params["year"] != 'All'
-    options = options.merge({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})   if params["venue_name"] != ''
-    options = options.merge({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})   if params["venue_city"] != ''
-    options = options.merge({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"}) if params["venue_state"] != ''
+    conditions = conditions.merge({:type => params["type"]})                                                          if params["type"] != 'all'
+    conditions = conditions.merge({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
+    conditions = conditions.merge({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
+    conditions = conditions.merge({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
+    conditions = conditions.merge({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
+    conditions = conditions.merge({Recording.show.date_played.gte => params["year"], 
+                                   Recording.show.date_played.lt => (params["year"].to_i+1).to_s})                    if params["year"] != 'All'
+    conditions = conditions.merge({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
+    conditions = conditions.merge({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
+    conditions = conditions.merge({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
+    #conditions = conditions.merge({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
 
 
     unless (params["end_date"] == '' && params["start_date"] == '')
@@ -89,13 +90,16 @@ class Recordings < Application
       start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
       error_message = "Start date later than end date" if (end_date < start_date)   
          
-      options = options.merge({Recording.show.date_played.gte => params["start_date"], 
-                               Recording.show.date_played.lte => params["end_date"]})      
+      conditions = conditions.merge({Recording.show.date_played.gte => params["start_date"], 
+                                     Recording.show.date_played.lte => params["end_date"]})      
     end
     
-    error_message = "Please select at least on search filter"                            if options.empty?    
-    @recordings = Recording.all(:conditions => options).paginate(:page => params[:page]) if error_message == ''
-    message[:error] = error_message                                                      if error_message != ''
+    error_message = "Please select at least on search filter" if conditions.empty?  
+    @page_count, @recordings = Recording.paginated(
+      :page => @current_page,
+      :per_page => 100,
+      :conditions => conditions)                              if error_message == ''      
+    message[:error] = error_message                           if error_message != ''
     render
 
   end

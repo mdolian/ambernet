@@ -22,10 +22,3 @@
           %td
             %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
             %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}
-%input{:type => "hidden", :name => "year", :value => "#{params['year']}"}
-%input{:type => "hidden", :name => "start_date", :value => "#{params['start_date']}"}
-%input{:type => "hidden", :name => "end_date", :value => "#{params['end_date']}"}
-%input{:type => "hidden", :name => "song_name", :value => "#{params['song_name']}"}
-%input{:type => "hidden", :name => "venue_name", :value => "#{params['venue_name']}"}
-%input{:type => "hidden", :name => "venue_city", :value => "#{params['venue_city']}"}
-%input{:type => "hidden", :name => "venue_state", :value => "#{params['venue_state']}"}
