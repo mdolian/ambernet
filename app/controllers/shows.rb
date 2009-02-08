@@ -39,7 +39,7 @@ class Shows < Application
     conditions = {}
     error_message = ""
   
-    if params["song_name"] != nil
+    if params["methode"] == "post"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
                                      :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
@@ -52,14 +52,18 @@ class Shows < Application
         error_message = "Start date later than end date" if (end_date < start_date)   
         conditions = conditions.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
       end
-    end
+    else
+      conditions = session[:conditions]
+    end 
  
     error_message = "Please select at least on search filter" if conditions.empty? 
+    
     @page_count, @shows = Show.paginated(
       :page => @current_page,
       :per_page => 100,
       :conditions => conditions,
       :order => [:date_played.asc])                           if error_message == ''
+    session[:conditions] = conditions                         if error_message == ''
     message[:error] = error_message                           if error_message != ''
     render
 
