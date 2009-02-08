@@ -5,7 +5,7 @@ class Shows < Application
   #before :ensure_authenticated
   
   params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, 
-                              :venue_name, :venue_city, :venue_state, :song_name]
+                              :venue_name, :venue_city, :venue_state, :song_name, :method]
 
   def index
     render
