@@ -1,4 +1,4 @@
-merb_gems_version = "1.0.8.1"
+merb_gems_version = "1.0.9"
 dm_gems_version   = "0.9.10"
 do_gems_version   = "0.9.11"
 
