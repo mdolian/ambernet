@@ -40,7 +40,7 @@ class Shows < Application
     conditions = {}
     error_message = ""
   
-    if params["method"] == "post"
+ #   if params["method"] == "post"
       puts "populating from form"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
@@ -54,10 +54,10 @@ class Shows < Application
         error_message = "Start date later than end date" if (end_date < start_date)   
         conditions = conditions.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
       end
-    else
-      puts "reading from sessoin"
-      conditions = session[:conditions]
-    end 
+#    else
+#      puts "reading from sessoin"
+#      conditions = session[:conditions]
+#    end 
     puts "wtf2"
     error_message = "Please select at least on search filter" if conditions.empty? 
     
