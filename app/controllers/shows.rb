@@ -39,7 +39,7 @@ class Shows < Application
     conditions = {}
     error_message = ""
   
-    if params["methode"] == "post"
+    if params["method"] == "post"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
                                      :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
