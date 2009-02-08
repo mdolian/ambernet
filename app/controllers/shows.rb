@@ -35,6 +35,7 @@ class Shows < Application
   end
     
   def search_results
+    puts "wtf"
     @current_page = (params[:page] || 1).to_i
     conditions = {}
     error_message = ""
@@ -57,7 +58,7 @@ class Shows < Application
       puts "reading from sessoin"
       conditions = session[:conditions]
     end 
- 
+    puts "wtf2"
     error_message = "Please select at least on search filter" if conditions.empty? 
     
     @page_count, @shows = Show.paginated(
