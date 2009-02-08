@@ -4,7 +4,7 @@ class Recordings < Application
 
   #before :ensure_authenticated
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name,
-                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :method]
+                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit]
   
   def admin
     render
@@ -72,8 +72,8 @@ class Recordings < Application
     @current_page = (params[:page] || 1).to_i
     conditions = {}
     error_message = ""
-            
-    if params["method"] == "post"
+
+    if params["submit"] != nil
       conditions = conditions.merge({:type => params["type"]})                                                          if params["type"] != 'all'
       conditions = conditions.merge({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
       conditions = conditions.merge({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''

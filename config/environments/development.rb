@@ -1,3 +1,4 @@
+require 'merb-cache'
 Merb.logger.info("Loaded DEVELOPMENT Environment...")
 Merb::Config.use { |c|
   c[:exception_details] = true
@@ -12,4 +13,11 @@ Merb::Config.use { |c|
   c[:log_file]   = nil
   # Or redirect logging into a file:
   # c[:log_file]  = Merb.root / "log" / "development.log"
+  
 }
+
+#Merb::Plugins.config[:merb_cache] = {
+#  :store => "memcache",
+#  :host => "127.0.0.1:11211",
+#  :namespace => "ambernet"
+#}

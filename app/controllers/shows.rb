@@ -4,7 +4,7 @@ require 'dm-serializer'
 class Shows < Application
   #before :ensure_authenticated
   
-  params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, 
+  params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
                               :venue_name, :venue_city, :venue_state, :song_name, :method]
 
   def index
@@ -35,13 +35,12 @@ class Shows < Application
   end
     
   def search_results
-    puts "wtf"
     @current_page = (params[:page] || 1).to_i
     conditions = {}
     error_message = ""
-  
- #   if params["method"] == "post"
-      puts "populating from form"
+    
+    if params["submit"] != nil
+      puts "test"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
                                      :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
@@ -54,11 +53,10 @@ class Shows < Application
         error_message = "Start date later than end date" if (end_date < start_date)   
         conditions = conditions.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
       end
-#    else
-#      puts "reading from sessoin"
-#      conditions = session[:conditions]
-#    end 
-    puts "wtf2"
+    else
+      puts "test2"
+      conditions = session[:conditions]
+    end 
     error_message = "Please select at least on search filter" if conditions.empty? 
     
     @page_count, @shows = Show.paginated(
@@ -67,7 +65,6 @@ class Shows < Application
       :conditions => conditions,
       :order => [:date_played.asc])                           if error_message == ''
     session[:conditions] = conditions                         if error_message == ''
-    puts "#{session[:conditions]}"
     message[:error] = error_message                           if error_message != ''
     render
 
