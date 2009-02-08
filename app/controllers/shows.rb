@@ -40,6 +40,7 @@ class Shows < Application
     error_message = ""
   
     if params["method"] == "post"
+      puts "populating from form"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
                                      :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
@@ -53,6 +54,7 @@ class Shows < Application
         conditions = conditions.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
       end
     else
+      puts "reading from sessoin"
       conditions = session[:conditions]
     end 
  
@@ -64,6 +66,7 @@ class Shows < Application
       :conditions => conditions,
       :order => [:date_played.asc])                           if error_message == ''
     session[:conditions] = conditions                         if error_message == ''
+    puts "#{session[:conditions]}"
     message[:error] = error_message                           if error_message != ''
     render
 
