@@ -2,45 +2,44 @@
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
   %div{:id => "carousel"}
     %div{:id => "carousel-control"}
-      %p
-        %a{:href => "#"}General
-        |
-        %a{:href => "#"}Location
-        | 
-        %a{:href => "#"}Date
-      %div{:class => "nav"}
-        %a{:id => "prev", :href => "#"}    
-      %div{:id => "carousel_block"}
-        %div{:class => "carousel_item"}
-          %div &nbsp
-          %div
-            %label Song
-            = text_field :name => "song_name"
-        %div{:class => "carousel_item"}
-          %div &nbsp
-          %div
-            %label Venue
-            = text_field :name => "venue_name", :id => "venue_name"
-          %div &nbsp
-          %div
-            %label City
-            = text_field :name => "venue_city"
-          %div &nbsp
-          %div
-            %label State
-            = text_field :name => "venue_state"
-        %div{:class => "carousel_item"}
-          %div &nbsp
-          %div
-            %label Year
-            = select:name => "year", :collection => get_years
-            %div &nbsp       
-          %div
-            %label Range
-            %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
-            to
-            %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}            
-      %div{:class => "nav"}
-        %a{:id => "next", :href => "#"}
+      %a{:href => "#"}General
+      |
+      %a{:href => "#"}Location
+      | 
+      %a{:href => "#"}Date
+    %div{:class => "nav"}
+      %a{:id => "prev", :href => "#"}    
+    %div{:id => "carousel_block"}
+      %div{:class => "carousel_item"}
+        %div &nbsp
+        %div
+          %label Song
+          = text_field :name => "song_name"
+      %div{:class => "carousel_item"}
+        %div &nbsp
+        %div
+          %label Venue
+          = text_field :name => "venue_name", :id => "venue_name"
+        %div &nbsp
+        %div
+          %label City
+          = text_field :name => "venue_city"
+        %div &nbsp
+        %div
+          %label State
+          = text_field :name => "venue_state"
+      %div{:class => "carousel_item"}
+        %div &nbsp
+        %div
+          %label Year
+          = select:name => "year", :collection => get_years
+          %div &nbsp       
+        %div
+          %label Range
+          %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+          to
+          %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}            
+    %div{:class => "nav"}
+      %a{:id => "next", :href => "#"}
   %input{:type => "submit", :value => "Search", :name => "submit"}
   %input{:type => "reset", :value => "Clear"}

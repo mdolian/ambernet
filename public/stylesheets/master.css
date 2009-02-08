@@ -193,7 +193,7 @@ body{
 #framecontentRight{
 	left: auto;
 	right: 0; 
-	width: 150px; /*Width of right frame div*/
+	width: 200px; /*Width of right frame div*/
 	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
@@ -201,7 +201,7 @@ body{
 	position: absolute;
 	top: 0; 
 	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-	right: 150px; /*Set right value to WidthOfRightFrameDiv*/
+	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
 	width: auto;
 	height: 100px; /*Height of top frame div*/
 	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
@@ -216,9 +216,9 @@ body{
 #maincontent{
 	position: fixed; 
 	top: 100px; /*Set top value to HeightOfTopFrameDiv*/
-	bottom: 120px; /*Set bottom value to HeightOfBottomFrameDiv*/
+	bottom: 80px; /*Set bottom value to HeightOfBottomFrameDiv*/
 	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-	right: 150px; /*Set right value to WidthOfRightFrameDiv*/
+	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
 	overflow: auto; 
 }
 
@@ -227,7 +227,7 @@ body{
 }
 
 * html body{ /*IE6 hack*/
-	padding: 120px 150px 100px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
+	padding: 100px 200px 8px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
 }
 
 * html #maincontent{ /*IE6 hack*/
