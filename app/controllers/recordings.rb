@@ -53,7 +53,6 @@ class Recordings < Application
   end
   
   def create
-    show = Show.get(params["show_id"])
     @recording = Recording.new(
       :show_id => params["show_id"],
       :label => params["label"],

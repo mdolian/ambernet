@@ -1,15 +1,11 @@
 %html
   %head
-    = js_include_tag 'jquery-1.3'
-    = js_include_tag 'jquery.tablesorter'
-    = js_include_tag 'jquery.autocomplete'    
-    = js_include_tag 'jquery.ui'
-    = js_include_tag 'jquery.cycle'
-    = js_include_tag 'application'
-    = css_include_tag 'master'
-    = css_include_tag 'ui.all'    
-    = css_include_tag 'jquery.tablesorter'
-    = css_include_tag 'jquery.autocomplete'
+    = js_include_tag 'jquery-1.3', 'jquery.tablesorter', 'jquery.autocomplete', 'jquery.ui', 'jquery.cycle', 'jquery.niceSelect'
+    = js_include_tag :application, :bundle => :base
+    = css_include_tag 'jquery.tablesorter', 'jquery.autocomplete', 'ui.all'
+    = css_include_tag :master, :bundle => :base
+    = include_required_js 
+    = include_required_css 
     %title
       AmberNET Online
   %body

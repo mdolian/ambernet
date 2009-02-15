@@ -40,7 +40,6 @@ class Shows < Application
     error_message = ""
     
     if params["submit"] != nil
-      puts "test"
       conditions = conditions.merge({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
       conditions = conditions.merge({:date_played.gte => params["year"], 
                                      :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
@@ -54,7 +53,6 @@ class Shows < Application
         conditions = conditions.merge({:date_played.gte => start_date, :date_played.lte => end_date})      
       end
     else
-      puts "test2"
       conditions = session[:conditions]
     end 
     error_message = "Please select at least on search filter" if conditions.empty? 

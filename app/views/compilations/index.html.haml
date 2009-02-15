@@ -1,0 +1,11 @@
+%h1{:align => "center"} Compilation List
+%table{:align => "center"}
+  %tbody  
+    - @compilations.each do |compilation|
+      %tr
+        %td= compilation.label
+        %td
+          %a{:href => "/compilations/show/#{compilation.id}"} View
+        %td 
+          %a{:href => "#", :onclick => "$('#dialog_notes_#{compilation.id}').notes(#{compilation.id})"} Notes
+          %div{:id => "dialog_notes_#{compilation.id}", :title => "Notes for #{compilation.label}"}    

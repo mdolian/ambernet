@@ -108,7 +108,16 @@ input {
 	padding:0.15em;
 	border:1px solid #ddd;
 	background:#fafafa;
-	font:bold 0.95em arial, sans-serif;
+	font: 0.95em arial, sans-serif;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+
+select {
+	padding:0.15em;
+	border:1px solid #ddd;
+	background:#fafafa;
+	font: 0.95em arial, sans-serif;
 	-moz-border-radius:0.4em;
 	-khtml-border-radius:0.4em;
 }
@@ -222,6 +231,16 @@ body{
 	overflow: auto; 
 }
 
+#fixedmaincontent{
+  position: fixed;
+  top: auto;
+	bottom: 80;
+	left: 200;
+	right: 200;
+	z-index: 50;
+	overflow: auto;
+}
+
 .innertube{
 	margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
 }
@@ -238,3 +257,4 @@ body{
 * html #framecontentTop, * html #framecontentBottom{ /*IE6 hack*/
 	width: 100%;
 }
+
