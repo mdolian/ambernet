@@ -37,5 +37,14 @@
       %td
         %textarea{:name => "notes", :rows => "5", :cols => "50"}
     %tr
+      %td
+        %h5 Disc Count
+      %td
+        = select :name => "type", :collection => get_discs, :id => "discs"
+    %tr
+      %td 
+      %td
+        %div{:id => "tracks"}
+    %tr
       %td{:colspan => "2"}= submit "Add"
 %div{:id => "dialog"}

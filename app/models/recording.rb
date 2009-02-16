@@ -11,9 +11,11 @@ class Recording
   property :transfered_by, String
   property :notes, String
   property :type, String
+  property :shnid, String
     
   belongs_to :show  
   has n, :recording_tracks
+  has n, :recording_discs
 #  has n, :users, :through => Resource
 
 end

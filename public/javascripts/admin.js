@@ -15,14 +15,20 @@ $(function() {
 					  html += item.label;
 					  html += "</a>";
 					});
-					$("#dialog").dialog();
 					$("#dialog").html(html);
+					$("#dialog").dialog();
 				});			
 			}
 		});	
     $.fn.select_show = function(show_id){
 	    $("#dialog").dialog("close");
 	    $("#show_id").val(show_id);
-		}								
+		}
+		$("#discs").change(function() {
+			$("#tracks").html("<br>");
+			for (var i=1; i<=$("#discs").selectedValues(); i++) {
+				$("#tracks").append("<h5>Disc " + i + " Track Count:&nbsp;&nbsp;&nbsp;<input size='2' type='text' name='tracksDisc" + i + "'/></h5>");
+			}
+		});						
   });		
 });

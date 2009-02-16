@@ -19,6 +19,9 @@
       %td Transfered By
       %td= text_field :name => "transfered_by", :value => @recording.transfered_by
     %tr
+      %td SHN ID
+      %td= text_field :name => "shnid", :value => @recording.shnid     
+    %tr
       %td Source
       %td
         %textarea{:name => "source", :rows => "5", :cols => "50"}= @recording.source    
