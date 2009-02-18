@@ -1,3 +1,4 @@
+= js_include_tag :search
 %h2 Search Recordings
 %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off"}
   %div{:id => "carousel"}
@@ -13,7 +14,6 @@
       %a{:id => "prev", :href => "#"}      
     %div{:id => "carousel_block"}
       %div{:class => "carousel_item"}
-        %div &nbsp
         %div
           %label Label
           %input{:type => "text", :name => "label", :size => "20"} 
@@ -47,7 +47,11 @@
         %div
           %label Taper
           = text_field :name => "taper", :size => "20"
-        %div &nbsp
+        %div &nbsp             
+        %div
+          %label Etree ID
+          = text_field :name => "shnid", :size => "8"
+        %div &nbsp        
         %div
           %label Type
           = select :name => "type", :collection => get_types

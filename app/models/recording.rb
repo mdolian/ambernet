@@ -15,9 +15,11 @@ class Recording
   
   # totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
   property :tracking_info, String
+  property :shnid, String
     
   belongs_to :show  
   has n, :recording_tracks
+  has n, :recording_discs
 #  has n, :users, :through => Resource
 
 end

@@ -1,3 +1,4 @@
+= js_include_tag :search
 %h2 Search Shows
 %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
   %div{:id => "carousel"}
@@ -11,7 +12,6 @@
       %a{:id => "prev", :href => "#"}    
     %div{:id => "carousel_block"}
       %div{:class => "carousel_item"}
-        %div &nbsp
         %div
           %label Song
           = text_field :name => "song_name"

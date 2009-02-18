@@ -108,7 +108,16 @@ input {
 	padding:0.15em;
 	border:1px solid #ddd;
 	background:#fafafa;
-	font:bold 0.95em arial, sans-serif;
+	font: 0.95em arial, sans-serif;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+
+select {
+	padding:0.15em;
+	border:1px solid #ddd;
+	background:#fafafa;
+	font: 0.95em arial, sans-serif;
 	-moz-border-radius:0.4em;
 	-khtml-border-radius:0.4em;
 }
@@ -130,12 +139,12 @@ input:hover, input:focus {
 	overflow: hidden;
 	padding: 0px 0;
 	margin: 0 0 10px 0;
-	height: 245px;
+	height: 270px;
 	position: relative;
 }
 
 #carousel_block {
-    height:  245px;  
+    height:  270px;  
     width:   432px;  
     padding: 0px;  
     margin:  0px;  
@@ -143,7 +152,7 @@ input:hover, input:focus {
 
 .carousel_item {
 	padding: 36px 20px 0 20px;
-	height:  200px;  
+	height:  225px;  
 	width:   400px; 
 	line-height: 14px;
 	text-align: left;
@@ -152,15 +161,15 @@ input:hover, input:focus {
 #prev {
 	float: left;
 	width: 16px;
-	height: 245px;
+	height: 270px;
 	background: url(/images/prev.png) no-repeat scroll top center;
 }
 
 #next  {
 	float: right;
-	margin: -245px 0 0 0;
+	margin: -270px 0 0 0;
 	width: 16px;
-	height: 245;
+	height: 270;
 	background: url(/images/next.png) no-repeat scroll top center;
 }
 
@@ -222,6 +231,16 @@ body{
 	overflow: auto; 
 }
 
+#fixedmaincontent{
+  position: fixed;
+  top: auto;
+	bottom: 80;
+	left: 200;
+	right: 200;
+	z-index: 50;
+	overflow: auto;
+}
+
 .innertube{
 	margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
 }
@@ -238,3 +257,4 @@ body{
 * html #framecontentTop, * html #framecontentBottom{ /*IE6 hack*/
 	width: 100%;
 }
+

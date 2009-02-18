@@ -4,7 +4,7 @@ class Recordings < Application
 
   #before :ensure_authenticated
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name,
-                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit]
+                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
   
   def admin
     render
@@ -24,7 +24,8 @@ class Recordings < Application
                                     :taper => params["taper"],
                                     :transfered_by => params["transfered_by"],
                                     :notes => params["notes"],
-                                    :type => params["type"] )
+                                    :type => params["type"],
+                                    :shnid => params["shnid"])
       render
     else  
        @recording = Recording.get(params["id"])
@@ -53,7 +54,6 @@ class Recordings < Application
   end
   
   def create
-    show = Show.get(params["show_id"])
     @recording = Recording.new(
       :show_id => params["show_id"],
       :label => params["label"],
@@ -62,7 +62,8 @@ class Recordings < Application
       :taper => params["taper"],
       :transfered_by => params["transferred_by"],
       :notes => params["notes"],
-      :type => params["type"]
+      :type => params["type"],
+      :shnid => params["shnid"]
     )
     @recording.save
     render :admin
@@ -75,6 +76,7 @@ class Recordings < Application
 
     if params["submit"] != nil
       conditions = conditions.merge({:type => params["type"]})                                                          if params["type"] != 'all'
+      conditions = conditions.merge({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
       conditions = conditions.merge({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
       conditions = conditions.merge({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
       conditions = conditions.merge({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''

@@ -1,4 +1,6 @@
+= js_include_tag :search_results
 %h1{:align => "center"} Recording Search Results
+= paginate @current_page, @page_count, :outer_window => 5
 %table{:align => "center", :id => "recordingTable", :class => "tablesorter"}
   %thead
     %tr
@@ -22,3 +24,4 @@
           %td= recording.show.venue.venue_state
           %td 
             %a{:href => "/shows/setlist/#{recording.show.id}", :rel => "facebox"} Setlist
+= paginate @current_page, @page_count, :outer_window => 5            
