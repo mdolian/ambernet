@@ -1,4 +1,4 @@
-class RecordingDiscs
+class RecordingDisc
   include DataMapper::Resource
   
   property :id, Serial
