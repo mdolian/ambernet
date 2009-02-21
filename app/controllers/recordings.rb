@@ -66,6 +66,14 @@ class Recordings < Application
       :shnid => params["shnid"]
     )
     @recording.save
+    for i in (1..params["discs"].to_i)
+      @recording_disc = RecordingDisc.new(
+        :recording_id => @recording.id,
+        :disc => i,
+        :tracks => params["tracksDisc" << i.to_s]
+      )
+      @recording_disc.save
+    end  
     render :admin
   end
   
