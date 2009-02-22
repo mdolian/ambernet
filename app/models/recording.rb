@@ -37,7 +37,7 @@ class Recording
         end
       end
     end
-    pls << total_tracks << "\n\n" << track_pls
+    pls << total_tracks.to_s << "\n\n" << track_pls
   end
 
 end
