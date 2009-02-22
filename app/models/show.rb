@@ -24,6 +24,10 @@ class Show
     date_played
   end
   
+  def year_as_label
+    date_played.to_s
+  end
+  
   def label
     date_played.to_s << " - " << venue.venue_name << " " << venue.venue_city << ", " << venue.venue_state
   end

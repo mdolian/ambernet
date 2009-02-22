@@ -38,6 +38,10 @@
         %textarea{:name => "notes", :rows => "5", :cols => "50"}
     %tr
       %td
+        %h5 Directory:
+      %td= text_field :name => "directory"        
+    %tr
+      %td
         %h5 Disc Count
       %td
         = select :name => "discs", :collection => get_discs, :id => "discs"

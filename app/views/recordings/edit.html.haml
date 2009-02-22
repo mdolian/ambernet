@@ -34,6 +34,18 @@
       %td
         %textarea{:name => "notes", :rows => "5", :cols => "50"}= @recording.notes
     %tr
+      %td Directory
+      %td= text_field :name => "directory", :value => @recording.directory
+    %tr
+      %td
+        %h5 Disc Count
+      %td
+        = select :name => "discs", :collection => get_discs, :id => "discs"
+    %tr
+      %td 
+      %td
+        %div{:id => "tracks"}      
+    %tr
       %td{:colspan => "2"}
         %a{:href => "/tracks/edit/#{@recording.id}"} Edit Recording Tracks
     %tr 

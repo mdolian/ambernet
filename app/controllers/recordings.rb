@@ -15,6 +15,11 @@ class Recordings < Application
     render
   end
   
+  def stream
+    provides :pls
+    render Recording.get(params["id"]).to_pls, :layout => false 
+  end
+    
   def edit
     if params["submit"] == 'Update'
       @recording = Recording.get(params["id"])
@@ -25,8 +30,16 @@ class Recordings < Application
                                     :transfered_by => params["transfered_by"],
                                     :notes => params["notes"],
                                     :type => params["type"],
-                                    :shnid => params["shnid"])
-      render
+                                    :shnid => params["shnid"])                            
+      # need to delete from recording_discs here, where recording_id = params["id"]
+      for i in (1..params["discs"].to_i)
+        @recording_disc = RecordingDisc.new(
+          :recording_id => @recording.id,
+          :disc => i,
+          :tracks => params["tracksDisc" << i.to_s]
+        )
+        @recording_disc.save
+      end                                    
     else  
        @recording = Recording.get(params["id"])
     end
@@ -63,7 +76,8 @@ class Recordings < Application
       :transfered_by => params["transferred_by"],
       :notes => params["notes"],
       :type => params["type"],
-      :shnid => params["shnid"]
+      :shnid => params["shnid"],
+      :directory => params["directory"]
     )
     @recording.save
     for i in (1..params["discs"].to_i)
@@ -83,25 +97,25 @@ class Recordings < Application
     error_message = ""
 
     if params["submit"] != nil
-      conditions = conditions.merge({:type => params["type"]})                                                          if params["type"] != 'all'
-      conditions = conditions.merge({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
-      conditions = conditions.merge({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
-      conditions = conditions.merge({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
-      conditions = conditions.merge({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
-      conditions = conditions.merge({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
-      conditions = conditions.merge({Recording.show.date_played.gte => params["year"], 
+      conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
+      conditions.merge!({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
+      conditions.merge!({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
+      conditions.merge!({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
+      conditions.merge!({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
+      conditions.merge!({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
+      conditions.merge!({Recording.show.date_played.gte => params["year"], 
                                      Recording.show.date_played.lt => (params["year"].to_i+1).to_s})                    if params["year"] != 'All'
-      conditions = conditions.merge({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
-      conditions = conditions.merge({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
-      conditions = conditions.merge({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
-      #conditions = conditions.merge({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
+      conditions.merge!({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
+      conditions.merge!({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
+      conditions.merge!({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
+      #conditions.merge!({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
 
       unless (params["end_date"] == '' && params["start_date"] == '')
         end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       
         start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
         error_message = "Start date later than end date" if (end_date < start_date)   
          
-        conditions = conditions.merge({Recording.show.date_played.gte => params["start_date"], 
+        conditions.merge!({Recording.show.date_played.gte => params["start_date"], 
                                        Recording.show.date_played.lte => params["end_date"]})      
       end
     else
