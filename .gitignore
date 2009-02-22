@@ -1,3 +1,4 @@
+*.sql
 gems/*
 .DS_Store
 log/*
