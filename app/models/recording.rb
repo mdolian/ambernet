@@ -14,7 +14,7 @@ class Recording
   property :directory, String
   
   # totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
-  property :tracking_info, String
+  #property :tracking_info, String
   property :shnid, String
   property :directory, String
     
