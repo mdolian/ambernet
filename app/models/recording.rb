@@ -27,12 +27,14 @@ class Recording
     pls = "[playlist]\nNumberOfEntries="
     track_pls = ""
     total_tracks = 0 
-    for disc_count in (1..recording_discs.count)
-      total_tracks += recording_discs[disc_count-1].tracks.to_i
-      for track_count in (1..recording_discs[disc_count-1].tracks)
-        track_pls << "File1=/ambernet/#{directory}/pg#{show.year_as_label}-d0#{disc_count}-t#{track_count}.mp3\n"
-        track_pls << "Title1=TBD\n"
-        track_pls << "Length1=-1\n\n"
+    if recording_discs.count > 0
+      for disc_count in (1..recording_discs.count)
+        total_tracks += recording_discs[disc_count-1].tracks.to_i
+        for track_count in (1..recording_discs[disc_count-1].tracks)
+          track_pls << "File1=/ambernet/#{directory}/pg#{show.year_as_label}-d0#{disc_count}-t#{track_count}.mp3\n"
+          track_pls << "Title1=TBD\n"
+          track_pls << "Length1=-1\n\n"
+        end
       end
     end
     pls << total_tracks << "\n\n" << track_pls

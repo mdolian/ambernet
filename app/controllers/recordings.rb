@@ -19,6 +19,16 @@ class Recordings < Application
     provides :pls
     render Recording.get(params["id"]).to_pls, :layout => false 
   end
+  
+  def stream_by_date
+    provides :pls
+    date_played = Date.parse(params["date_played"])
+    total_pls = ""
+    Recording.all('show.date_played' => date_played.to_s).each do |recording|
+      total_pls << recording.to_pls << "\n\n"
+    end
+    render total_pls.to_pls, :layout => false
+  end
     
   def edit
     if params["submit"] == 'Update'

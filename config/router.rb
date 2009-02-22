@@ -32,7 +32,7 @@ Merb::Router.prepare do
   #resources :users
   
   match('/s/:id.pls').to(:controller => 'recordings', :action => 'stream')
-  match('/s/:year:month:day.pls').to(:controller => 'recordings', :action => 'stream_by_date')
+  match('/a/:date_played.pls').to(:controller => 'recordings', :action => 'stream_by_date')
   match('/').to(:controller => 'recordings', :action =>'index')
   default_routes
 end
