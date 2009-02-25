@@ -29,9 +29,18 @@ class Recordings < Application
     end
     render total_pls.to_pls, :layout => false
   end
+  
+  def download
+    @recording = Recording.get(params["id"])
+  end
     
   def edit
     if params["submit"] == 'Update'
+      tracking_info = params["discs"] << "["
+      for i in (1..params["discs"].to_i) 
+        tracking_info << params["tracksDisc" << i.to_s] << ","
+      end
+      tracking_info.chop! << "]"    
       @recording = Recording.get(params["id"])
       @recording.update_attributes( :label => params["label"],
                                     :source => params["source"],
@@ -40,16 +49,8 @@ class Recordings < Application
                                     :transfered_by => params["transfered_by"],
                                     :notes => params["notes"],
                                     :type => params["type"],
-                                    :shnid => params["shnid"])                            
-      # need to delete from recording_discs here, where recording_id = params["id"]
-      for i in (1..params["discs"].to_i)
-        @recording_disc = RecordingDisc.new(
-          :recording_id => @recording.id,
-          :disc => i,
-          :tracks => params["tracksDisc" << i.to_s]
-        )
-        @recording_disc.save
-      end                                    
+                                    :shnid => params["shnid"],
+                                    :tracking_info => tracking_info)                                                           
     else  
        @recording = Recording.get(params["id"])
     end
@@ -77,6 +78,11 @@ class Recordings < Application
   end
   
   def create
+    tracking_info = params["discs"] << "["
+    for i in (1..params["discs"].to_i)
+      tracking_info << params["tracksDisc" << i.to_s] << ","
+    end
+    tracking_info.chop! << "]"    
     @recording = Recording.new(
       :show_id => params["show_id"],
       :label => params["label"],
@@ -87,17 +93,10 @@ class Recordings < Application
       :notes => params["notes"],
       :type => params["type"],
       :shnid => params["shnid"],
-      :directory => params["directory"]
+      :directory => params["directory"],
+      :tracking_info => tracking_info
     )
     @recording.save
-    for i in (1..params["discs"].to_i)
-      @recording_disc = RecordingDisc.new(
-        :recording_id => @recording.id,
-        :disc => i,
-        :tracks => params["tracksDisc" << i.to_s]
-      )
-      @recording_disc.save
-    end  
     render :admin
   end
   
