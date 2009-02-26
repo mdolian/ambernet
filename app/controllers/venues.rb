@@ -1,7 +1,26 @@
 class Venues < Application
-  #before :ensure_authenticated
+  
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
  
-  params_accessible :post => [:q]
+  params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
+ 
+  def admin
+    render
+  end
+  
+  def new
+    render
+  end
+  
+  def create
+    @venue = Venue.new(
+      :venue_name => params["venue_name"],
+      :venue_city => params["venue_city"],
+      :venue_state => params["venue_state"]
+    )
+    @venue.save
+    render :admin
+  end
  
   def index
     render

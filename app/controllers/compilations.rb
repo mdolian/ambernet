@@ -1,5 +1,7 @@
 class Compilations < Application
 
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+
   def index
     @compilations = Compilation.all
     render

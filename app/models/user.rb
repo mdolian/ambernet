@@ -1,6 +1,6 @@
 class User
   include DataMapper::Resource
-#  include Merb::Authentication::Mixins::SaltedUser
+  #include Merb::Authentication::Mixins::SaltedUser
 
   property :id, Serial
   property :email, String, :format=>:email_address

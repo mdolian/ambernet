@@ -2,36 +2,22 @@ require 'date'
 
 class Recordings < Application
 
-  #before :ensure_authenticated
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
   
   def admin
+    @current_page = (params[:page] || 1).to_i
+    @page_count, @recordings = Recording.paginated(
+      :page => @current_page,
+      :per_page => 100)    
     render
   end
   
   def delete
     Recording.delete(params["id"])
     render
-  end
-  
-  def stream
-    provides :pls
-    render Recording.get(params["id"]).to_pls, :layout => false 
-  end
-  
-  def stream_by_date
-    provides :pls
-    date_played = Date.parse(params["date_played"])
-    total_pls = ""
-    Recording.all('show.date_played' => date_played.to_s).each do |recording|
-      total_pls << recording.to_pls << "\n\n"
-    end
-    render total_pls.to_pls, :layout => false
-  end
-  
-  def download
-    @recording = Recording.get(params["id"])
   end
     
   def edit
@@ -57,26 +43,10 @@ class Recordings < Application
     render
   end
   
-  def choose_rec
-    @recordings = Recording.all
-    @action = params["id"]
-    render
-  end
-
-  def index
-    render
-  end
-  
-  def show
-    @recording = Recording.get(params["id"])
-    @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
-    render
-  end
-  
   def new
     render
   end
-  
+
   def create
     tracking_info = params["discs"] << "["
     for i in (1..params["discs"].to_i)
@@ -98,6 +68,41 @@ class Recordings < Application
     )
     @recording.save
     render :admin
+  end  
+    
+  def choose_rec
+    @recordings = Recording.all
+    @action = params["id"]
+    render
+  end
+
+  def index
+    render
+  end
+ 
+  def stream
+    provides :pls
+    render Recording.get(params["id"]).to_pls, :layout => false 
+  end
+  
+  def stream_by_date
+    provides :pls
+    date_played = Date.parse(params["date_played"])
+    total_pls = ""
+    Recording.all('show.date_played' => date_played.to_s).each do |recording|
+      total_pls << recording.to_pls << "\n\n"
+    end
+    render total_pls.to_pls, :layout => false
+  end
+  
+  def download
+    @recording = Recording.get(params["id"])
+  end 
+  
+  def show
+    @recording = Recording.get(params["id"])
+    @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
+    render
   end
   
   def search_results

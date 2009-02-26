@@ -1,5 +1,6 @@
 class Tracks < Application
-  #before :ensure_authenticated
+
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
 
   params_accessible :post => [:id, :recording_id, :track, :setlist]
 

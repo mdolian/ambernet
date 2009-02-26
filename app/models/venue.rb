@@ -9,7 +9,7 @@ class Venue
   property :date_created, DateTime
   property :date_updated, DateTime
   property :updated_by, Integer
-  property :is_active, Boolean
+  property :is_active, Boolean, :default => 'Y'
   
   has n, :shows  
   

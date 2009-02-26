@@ -1,4 +1,4 @@
-merb_gems_version = "1.0.9"
+merb_gems_version = "1.1"
 dm_gems_version   = "0.9.10"
 do_gems_version   = "0.9.11"
 
@@ -8,12 +8,12 @@ dependency "merb-param-protection", merb_gems_version
 dependency "merb_datamapper", merb_gems_version
 dependency "merb-haml", merb_gems_version
 dependency "merb-gen", merb_gems_version
-dependency "merb-cache", merb_gems_version   
+dependency "merb-cache", merb_gems_version
+dependency "merb-auth-core", merb_gems_version
+dependency "merb-auth-more", merb_gems_version
+dependency "merb-auth-slice-password", merb_gems_version   
 #dependency "merb-mailer", merb_gems_version  
 #dependency "merb-slices", merb_gems_version  
-#dependency "merb-auth-core", merb_gems_version
-#dependency "merb-auth-more", merb_gems_version
-#dependency "merb-auth-slice-password", merb_gems_version
 #dependency "merb-exceptions", merb_gems_version
 
 dependency "data_objects", do_gems_version
