@@ -8,7 +8,7 @@ class Setlists < Application
   def scrape
     doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{params["id"]}"))
     setlist = (doc/"#linear_#{params["id"]}").inner_html
-    render setlist
+    render setlist, :layout => false
   end
   
 end
