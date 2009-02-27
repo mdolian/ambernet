@@ -28,8 +28,8 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
   # Adds the required routes for merb-auth using the password slice
-  add_slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
-  resources :users
+  slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
+  #resources :users
   
   match('/s/:id.pls').to(:controller => 'recordings', :action => 'stream')
   match('/a/:date_played.pls').to(:controller => 'recordings', :action => 'stream_by_date')
