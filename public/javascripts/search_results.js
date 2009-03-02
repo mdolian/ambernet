@@ -1,5 +1,7 @@
 $(function() {
   jQuery(document).ready(function($) {
+	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false });
+	  $("div[id*='dialog_rec']").dialog({ autoOpen: false });	
 		$("table") 
 		  .tablesorter({widthFixed: true, widgets: ['zebra']});		
 		$.fn.setlist = function(show_id){
@@ -25,7 +27,7 @@ $(function() {
 				});
 				html = "<font size'1'>" + set1 + "<br>" + set2 + "<br" + set3 + "<br>" + encore + "</font>";
 			  $(that).html(html);
-			  $(that).dialog();
+			  $(that).dialog("open");
 			});								
 		}
 		$.fn.recordings = function(show_id){
@@ -38,7 +40,7 @@ $(function() {
 					html += "<td>" + item.source + "</td>";	
 				});
 			  $(that).html(html);
-			  $(that).dialog();
+			  $(that).dialog("open");
 			});							
 		}
   });		
