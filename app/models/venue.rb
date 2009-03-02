@@ -6,10 +6,7 @@ class Venue
   property :venue_image, String
   property :venue_city, String
   property :venue_state, String
-  property :date_created, DateTime
-  property :date_updated, DateTime
-  property :updated_by, Integer
-  property :is_active, Boolean, :default => 'Y'
+  property :venue_country, String
   
   has n, :shows  
   
@@ -19,6 +16,6 @@ class Venue
   
   def last
     venue_name
-  end
+  end  
   
 end

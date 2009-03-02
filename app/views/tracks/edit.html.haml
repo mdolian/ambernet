@@ -16,6 +16,6 @@
   #addTracks
   %h5 Songs on Track
   = select :name => "setlist", :collection => @setlists, :size=>"10", :multiple => true
-  %input{:type => "hidden", :name => "recording_id", :value => "#{@recording.id}"}
+  %input{:type => "hidden", :name => "recording_id", :value => "#{@recording.recording_id}"}
   #addTracks
   = submit "Add Tracks" 

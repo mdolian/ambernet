@@ -6,11 +6,6 @@ class Show
   property :id, Serial
   property :date_played, Date
   property :show_notes, Text
-  property :audio_available, Boolean
-  property :date_created, DateTime
-  property :date_updated, DateTime
-  property :updated_by, String
-  property :is_active, Boolean
   
   has n, :setlists
   has n, :recordings

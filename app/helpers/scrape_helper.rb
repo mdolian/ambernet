@@ -1,5 +1,5 @@
 module Merb
-  module SetlistsHelper
+  module ScrapeHelper
 
   end
 end # Merb
