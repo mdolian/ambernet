@@ -31,13 +31,8 @@ class Show
     Setlist.all(:show_id => id, :order => [:set_id.asc, :song_order.asc])
   end
   
-  def setlist_as_json
-    setlist_json = []
-    setlists.each do |setlist|
-      song = Song.get(setlist.song_id)
-      setlist_json << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix}
-    end    
-    setlist_json
+  def total_sets
+    Show.max(Show.setlists.set_id, :show_id => id)
   end
   
 end

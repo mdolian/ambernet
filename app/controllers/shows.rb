@@ -22,7 +22,13 @@ class Shows < Application
   end
 
   def setlist
-    render Show.get(params["id"]).setlist_as_json.to_json, :layout => false
+    setlist_json = []
+    total_sets = Show.get(params["id"]).setlists[0].total_sets
+    Show.get(params["id"]).setlists.each do |setlist|
+      song = Song.get(setlist.song_id)
+      setlist_json << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix, "total_sets" => total_sets}
+    end     
+    render setlist_json.to_json, :layout => false
   end  
 
   def recordings

@@ -16,11 +16,15 @@ class Setlist
   end
 
   def song_suffix
-    if is_segue? then " > " else ", " end
+    is_segue? ? " > " : song_order == Setlist.max(:song_order, :show_id => show_id, :set_id => set_id) ? "" : ", "
   end
     
   def first
     id
+  end
+  
+  def total_sets
+    Setlist.max(:set_id, :set_id.not => "9", :show_id => show_id)
   end
       
 end

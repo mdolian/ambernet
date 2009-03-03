@@ -6,26 +6,25 @@ $(function() {
 		  .tablesorter({widthFixed: true, widgets: ['zebra']});		
 		$.fn.setlist = function(show_id){
 			that = this
+			var set = new Array();
 			$.getJSON("/shows/setlist/" + show_id, function(json){
-				set1 = "<b>Set 1:</b> ";
-				set2 = "<b>Set 2:</b> ";
-				set3 = "<b>Set 3:</b> ";
-				encore = "<b>Encore:</b> ";				
+				set[1] = "<b>Set 1:</b> "
+				set[2] = "<b>Set 2:</b> "
+				set[3] = "<b>Set 3:</b> "
+				set[4] = "<b>Set 4:</b> "
+				set[5] = "<b>Set 5:</b> "												
+				set[9] = "<b>Encore:</b> "
+				total_sets = 0		
 				$.each(json, function(i, item) {
-					if(item.set_id == "1") {
-					  set1 += item.song_name + item.segue;
-					}
-					if(item.set_id == "2") {
-						set2 += item.song_name + item.segue;
-					}
-					if(item.set_id == "3") {
-					  set3 += item.song_name + item.segue;
-					}
-					if(item.set_id == "9") {
-						encore += item.song_name + item.segue;
-					}
+					total_sets = item.total_sets
+					set[item.set_id] += item.song_name + item.segue;
 				});
-				html = "<font size'1'>" + set1 + "<br>" + set2 + "<br" + set3 + "<br>" + encore + "</font>";
+				html = "<font size'1'>"
+				for(i=1; i<=total_sets; i++) {
+					html += set[i] + "<br/>"
+				}
+				html += set[9]
+				html += "</font>";
 			  $(that).html(html);
 			  $(that).dialog("open");
 			});								
