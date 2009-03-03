@@ -2,8 +2,8 @@ class Setlist
   include DataMapper::Resource
   
   property :id, Serial
-  property :set_id, String
-  property :song_order, String
+  property :set_id, Integer
+  property :song_order, Integer
   property :song_comments, Text
   property :is_segue, Boolean
   
