@@ -23,7 +23,9 @@ $(function() {
 				for(i=1; i<=total_sets; i++) {
 					html += set[i] + "<br/>"
 				}
-				html += set[9]
+				if(set[9] != "<b>Encore:</b> ") {
+				  html += set[9]
+				}
 				html += "</font>";
 			  $(that).html(html);
 			  $(that).dialog("open");
