@@ -19,14 +19,14 @@ $(function() {
 					total_sets = item.total_sets
 					set[item.set_id] += item.song_name + item.segue;
 				});
-				html = "<font size'1'>"
+				html = "<p>"
 				for(i=1; i<=total_sets; i++) {
 					html += set[i] + "<br/>"
 				}
 				if(set[9] != "<b>Encore:</b> ") {
 				  html += set[9]
 				}
-				html += "</font>";
+				html += "</p>";
 			  $(that).html(html);
 			  $(that).dialog("open");
 			});								
@@ -34,12 +34,15 @@ $(function() {
 		$.fn.recordings = function(show_id){
 			that = this; 
 			$.getJSON("/shows/recordings/" + show_id, function(json){
-				html = "<table><tr><th>Label</th><th>Taper</th><th>Source</th></tr>";
-				$.each(json, function(i, item) {
-					html += "<td><a href='/recordings/show/" + item.id + "'>" + item.label + "</td>";
-					html += "<td>" + item.taper + "</td>";
-					html += "<td>" + item.source + "</td>";	
-				});
+				if (json.length == 0 ) {
+					html = "<p>No recordings exist for this show.</p>"
+				} else {
+					html = "<p><b>Label : Taper : Source</b></p>";
+					$.each(json, function(i, item) {
+						html += "<p><a href='/recordings/show/" + item.id + "'>" + item.label + " : ";
+						html += item.taper + ": " + " : " + item.source + "</p>";	
+					});
+				}
 			  $(that).html(html);
 			  $(that).dialog("open");
 			});							
