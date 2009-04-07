@@ -5,6 +5,7 @@ do_gems_version   = "0.9.11"
 dependency "merb-core", merb_gems_version 
 dependency "merb-action-args", merb_gems_version
 dependency "merb-assets", merb_gems_version  
+dependency "merb-haml", merb_gems_version
 dependency("merb-cache", merb_gems_version) do
   Merb::Cache.setup do
     register(Merb::Cache::FileStore) unless Merb.cache
