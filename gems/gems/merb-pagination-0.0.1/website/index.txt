@@ -1,0 +1,106 @@
+h1. merb-pagination
+
+h2. What
+
+A pagination helper for merb. Useful with dm-is-paginated
+
+h2. Installing
+
+<pre syntax="ruby">sudo gem install merb-pagination</pre>
+
+h2. The basics
+
+Given a page count and the current page, we generate a set of pagination 
+links.
+ 
+We use an inner and outer window into a list of links. For a set of 20 pages with the current page being 10:
+
+outer_window: @1 2 ... 19 20@
+inner_window: @5 6 7 8 9 10 11 12 13 14@
+
+This is totally adjustable, or can be turned off by giving the :inner_window setting a value of nil.
+
+h2. Demonstration of usage
+
+*Options*
+@:class => css_class@
+
+ The CSS class to be given to the paginator div.
+ Defaults to @'paginated'@
+
+@:prev_label => text_for_previous_link@
+
+ Defaults to @'&laquo; Previous '@
+
+@:next_labe => text_for_next_link@
+ 
+ Defaults to @' Next &raquo;'@
+
+@:left_cut_label => text_for_cut@
+
+ Used when the page numbers need to be cut off to prevent the set of pagination links from 
+ being too long.
+ Defaults to @'&larr;'@
+
+@:right_cut_label => text_for_cut@
+
+ Same as :left_cut_label but for the right side of numbers.
+ Defaults to @'&rarr;'@
+
+@:outer_window => number_of_pages@
+
+ Sets the number of pages to include in the outer 'window'
+ Defaults to @2@
+
+@:inner_window => number_of_pages@
+
+ Sets the number of pags to include in the inner 'window'
+ Defaults to @10@
+
+@:default_css => use_paginator_provided_css@
+
+ Use the default CSS provided by the paginator. If you want to do your own custom styling of 
+ the paginator from scratch, set this to false.
+ Defaults to @true@
+
+@:page_param => name_of_page_paramiter@
+
+ Sets the name of the paramiter the paginator uses to return what
+ page is being requested.
+ Defaults to @'page'@
+
+@:url => url_for_links@
+
+ Provides the base url to use in the page navigation links.
+ Defaults to @''@
+
+Example:
+<pre><%%%= paginate(@current_page, @page_count, :inner_window => 5) %%></pre>
+
+h2. Forum
+
+"http://groups.google.com/group/merb-pagination":http://groups.google.com/group/merb-pagination
+
+h2. How to submit patches
+
+Read the "8 steps for fixing other people's code":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/ and for section "8b: Submit patch to Google Groups":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups, use the Google Group above.
+
+You can fetch the source from gitorious:
+
+<pre>git clone git://gitorious.org/merb_pagination/mainline.git</pre>
+
+h3. Build and test instructions
+
+<pre>cd merb-pagination
+rake test
+rake install_gem</pre>
+
+
+h2. License
+
+This code is free to use under the terms of the "MIT license":http://merb-pagination.rubyforge.org/rdoc/files/License_txt.html. 
+
+h2. Contact
+
+Comments are welcome, and can be sent via the "forum":http://groups.google.com/group/merb_pagination
+

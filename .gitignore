@@ -1,5 +1,4 @@
 *.mp3
-gems/*
 .DS_Store
 log/*
 tmp/*

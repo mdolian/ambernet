@@ -1,0 +1,6 @@
+
+For more information on dm-is-paginated, see:
+ http://dm-is-paginated.rubyforge.org/
+
+
+

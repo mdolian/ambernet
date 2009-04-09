@@ -1,0 +1,46 @@
+Sanitize History
+================================================================================
+
+Version 1.0.6 (2009-02-23)
+  * Removed htmlentities gem dependency.
+  * Existing well-formed character entity references in the input string are now
+    preserved rather than being decoded and re-encoded.
+  * The ' character is now encoded as &#39; instead of &apos; to prevent
+    problems in IE6.
+  * You can now specify the symbol :all in place of an element name in the
+    attributes config hash to allow certain attributes on all elements. [Thanks
+    to Mutwin Kraus]
+
+Version 1.0.5 (2009-02-05)
+  * Fixed a bug introduced in version 1.0.3 that prevented non-whitelisted
+    protocols from being cleaned when relative URLs were allowed. [Reported by
+    Dev Purkayastha]
+  * Fixed "undefined method `parent='" exceptions caused by parser changes in
+    edge Hpricot.
+
+Version 1.0.4 (2009-01-16)
+  * Fixed a bug that made it possible to sneak a non-whitelisted element through
+    by repeating it several times in a row. All versions of Sanitize prior to
+    1.0.4 are vulnerable. [Reported by Cristobal]
+
+Version 1.0.3 (2009-01-15)
+  * Fixed a bug whereby incomplete Unicode or hex entities could be used to
+    prevent non-whitelisted protocols from being cleaned. Since IE6 and Opera
+    still decode the incomplete entities, users of those browsers may be
+    vulnerable to malicious script injection on websites using versions of
+    Sanitize prior to 1.0.3.
+
+Version 1.0.2 (2009-01-04)
+  * Fixed a bug that caused an exception to be thrown when parsing a valueless
+    attribute that's expected to contain a URL.
+
+Version 1.0.1 (2009-01-01)
+  * You can now specify :relative in a protocol config array to allow attributes
+    containing relative URLs with no protocol. The Basic and Relaxed configs
+    have been updated to allow relative URLs.
+  * Added a workaround for an Hpricot bug that causes HTML entities for
+    non-ASCII characters to be replaced by question marks, and all other
+    entities to be destructively decoded.
+
+Version 1.0.0 (2008-12-25)
+  * First release.

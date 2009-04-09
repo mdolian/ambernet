@@ -1,0 +1,49 @@
+h1. dm-is-paginated
+
+h2. What
+
+dm-is-paginated is a simple pagination plugin for DataMapper.
+
+h2. Installing
+
+<pre>sudo gem install dm-is-paginated</pre>
+
+h2. Demonstration of usage
+
+You can specify the page with :page => number. 
+You can also specify the items per page with :per_page => number.
+
+Example:
+<pre syntax="ruby">@page_count, @pages = Post.paginated :page => @current_page</pre>
+
+h2. Forum
+
+"http://groups.google.com/group/dm-is-paginated":http://groups.google.com/group/dm-is-paginated
+
+h2. How to report a bug or make a feature request
+
+Visit our ticket "tracker":http://rubyforge.org/tracker/?group_id=6843
+
+h2. How to submit patches
+
+Read the "8 steps for fixing other people's code":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/ and for section "8b: Submit patch to Google Groups":http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups, use the Google Group above.
+
+You can fetch the source from gitorious: 
+
+<pre>git clone git://gitorious.org/dm-is-paginated/mainline.git dm-is-paginated</pre>
+
+h3. Build and test instructions
+
+<pre>cd dm-is-paginated
+rake test
+rake install_gem</pre>
+
+
+h2. License
+
+This code is free to use under the terms of the "MIT license":http://dm-is-paginated.rubyforge.org/rdoc/files/License_txt.html. 
+
+h2. Contact
+
+Comments are welcome, and can be sent via the "forum":http://groups.google.com/group/dm-is-paginated.
+
