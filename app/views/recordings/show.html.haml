@@ -3,22 +3,43 @@
   %tr
     %td= @recording.id
     %td= @recording.label
-    %td= @recording.taper
-    %td= @recording.transfered_by
   %tr
-    %td{:colspan => "4"}= @recording.source
+    %td
+      Taper
+      = @recording.taper
   %tr
-    %td{:colspan => "4"}= @recording.lineage
+    %td
+      Transferred By
+      = @recording.transfered_by
   %tr
-    %td{:colspan => "4"}= @recording.notes
+    %td{:colspan => "4"}
+      Source:
+      = @recording.source
+  %tr
+    %td{:colspan => "4"}
+      Lineage:
+      = @recording.lineage
+  %tr
+    %td{:colspan => "4"}
+      Notes
+      = @recording.notes
+
+Stream Show:  Use the following URL in any iPhone application:
+%br
+= "http://ambernet.com/recordings/stream/#{@recording.id}"
 
 %table{:width => "40%", :align => "center", :id => "recordingTrackTable"}
   %tr
     %th Track
-    %th Song(s)
-  - @recording_tracks.each do |recording_track|
-    %tr
-      %td= recording_track.track
-      %td 
-        - recording_track.setlists.each do |setlist|
-          = setlist.song.song_name
+    %th FLAC
+    %th MP3
+  - for i in 1..@recording.discs.to_i do
+    - for j in "01"..@recording.tracks(i) do
+      - trackName = @recording.label + "d0" + i.to_s + "t" + j.to_s
+      %tr
+        %td 
+          = trackName
+        %td
+          %a{:href => "/ambernet/#{trackName}.flac"}.flac
+        %td
+          %a{:href => "/ambernet/#{trackName}.mp3"}.mp3

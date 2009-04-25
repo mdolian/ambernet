@@ -28,19 +28,20 @@ class Recording
   end
 
   # Returns the total number of tracks for a given disc number
-  def track(disc_num)
-    tracks.split(',')[disc_num-1]
+  def tracks(disc_num)
+    tracks = tracking_info[2..-1].chop!.split(',')[disc_num-1].to_i
+    puts tracks.to_s
+    if tracks.to_i < 9
+      "0" + tracks.to_s
+    else
+      tracks
+    end
   end
   
-  # Returns a string containing all tracks for each disc delimited by a comma
-  def tracks
-    tracking_info[2..-1].chop!
-  end
-    
   # Returns total number of tracks in recording  
   def total_tracks
     total = 0
-    tracks.each(',') { |track| total += track.to_i }
+    tracking_info[2..-1].chop!.each(',') { |track| total += track.to_i }
     total.to_s
   end
   
@@ -49,7 +50,7 @@ class Recording
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
     disc_count = 0
     for disc_count in (1..discs.to_i)
-      for track_count in (1..track(disc_count).to_i)
+      for track_count in (1..tracks(disc_count).to_i)
         pls << "File#{total_tracks}=/ambernet/#{directory}/pg#{show.year_as_label}-d0#{disc_count}-t#{track_count}.mp3\n"
         pls << "Title#{total_tracks}=TBD\n"
         pls << "Length#{total_tracks}=-1\n\n"
