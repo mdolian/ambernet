@@ -49,11 +49,13 @@ class Recording
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
     disc_count = 0
+    total_count = 0
     for disc_count in (1..discs.to_i)
       for track_count in "01"..tracks(disc_count) do      
-        pls << "File#{total_tracks}=/ambernet/#{label}/pgroove#{show.date_as_label}-d0#{disc_count}-t#{track_count}.mp3\n"
-        pls << "Title#{total_tracks}=TBD\n"
-        pls << "Length#{total_tracks}=-1\n\n"
+        total_count = total_count + 1
+        pls << "File#{total_count}=http://ambernet.kicks-ass.net/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+        pls << "Title#{total_count}=TBD\n"
+        pls << "Length#{total_count}=-1\n\n"
       end
     end
     pls
