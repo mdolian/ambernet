@@ -19,7 +19,7 @@ class Show
     date_played
   end
   
-  def year_as_label
+  def date_as_label
     date_played.to_s
   end
   
