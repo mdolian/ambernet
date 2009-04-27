@@ -1,6 +1,10 @@
 $(function() {
   jQuery(document).ready(function($) {	
-    $('#delete').confirm({eventType:'mouseover'});	
+    $('#delete').confirm({
+	  	eventType:'mouseover',
+	    timeout:3000,
+		  dialogShow:'fadeIn',
+		  dialogSpeed:'slow'});	
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

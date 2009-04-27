@@ -43,10 +43,13 @@ jQuery.fn.confirm = function(options) {
     var timer;
     var saveHandlers = function() {
       var events = jQuery.data(target, 'events');
-      if (!events) {
-        // There are no handlers to save.
-        return;
-      }
+			if (!events && target.href) // No handlers but we have href
+			{
+			$target.bind('click',function(){document.location = target.href});
+			events = jQuery.data(target, 'events');
+			}
+			else if (!events)// There are no handlers to save.
+			return;
       target._handlers = new Array();
       for (var i in events[type]) {
         target._handlers.push(events[type][i]);
