@@ -9,7 +9,7 @@ class Recording
   property :lineage, String
   property :taper, String
   property :transfered_by, String
-  property :notes, String
+  property :notes, Text
   property :type, String
   
   # totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
