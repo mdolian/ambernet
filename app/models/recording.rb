@@ -11,7 +11,6 @@ class Recording
   property :transfered_by, String
   property :notes, String
   property :type, String
-  property :directory, String
   
   # totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
   property :tracking_info, String

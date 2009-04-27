@@ -1,8 +1,10 @@
 module Merb
   module GlobalHelpers
+    
     def get_types
       ["all", "sbd", "aud", "matrix", "fm", "other"]
     end
+    
     def get_venues
       ["All"] + Venue.all(:order => [:venue_name.asc])
     end
@@ -13,13 +15,15 @@ module Merb
     
     def get_years
       [["All", "All"], 
+       ["2009", "2009"],
        ["2008", "2008"], 
-       ["2007","2007"], 
+       ["2007", "2007"], 
        ["2006", "2006"], 
        ["2005", "2005"], 
        ["2004", "2004"], 
        ["2003", "2003"], 
-       ["2002", "2002"]]
+       ["2002", "2002"],
+       ["2001", "2001"]]
     end
     
     def get_search_filters

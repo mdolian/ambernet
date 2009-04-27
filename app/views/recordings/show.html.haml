@@ -35,11 +35,11 @@ Stream Show:  Use the following URL in any iPhone application:
     %th MP3
   - for i in 1..@recording.discs.to_i do
     - for j in "01"..@recording.tracks(i) do
-      - trackName = @recording.label + "d0" + i.to_s + "t" + j.to_s
+      - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
       %tr
         %td 
           = trackName
         %td
-          %a{:href => "/ambernet/#{trackName}.flac"}.flac
+          %a{:href => "/ambernet/#{@recording.label}/#{trackName}.flac"}.flac
         %td
-          %a{:href => "/ambernet/#{trackName}.mp3"}.mp3
+          %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}.mp3
