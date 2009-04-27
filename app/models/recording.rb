@@ -5,8 +5,8 @@ class Recording
   
   property :id, Serial
   property :label, String
-  property :source, String
-  property :lineage, String
+  property :source, Text
+  property :lineage, Text
   property :taper, String
   property :transfered_by, String
   property :notes, Text
