@@ -1,3 +1,4 @@
+= js_include_tag :admin
 %h1 Admin Recordings
 = paginate @current_page, @page_count, :outer_window => 5
 %table{:align => "center"}
@@ -18,7 +19,7 @@
       - @recordings.each do |recording|
         %tr
           %td
-            %a{:href => "/recordings/delete/#{recording.id}"} Delete
+            %a{:href => "/recordings/delete/#{recording.id}", :id => "delete"} Delete
           %td
             Edit
           %td= recording.show.date_played

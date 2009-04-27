@@ -1,5 +1,6 @@
 $(function() {
   jQuery(document).ready(function($) {	
+    $('#delete').confirm({eventType:'mouseover'});	
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
