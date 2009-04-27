@@ -16,8 +16,12 @@ class Recordings < Application
   end
   
   def delete
-    Recording.delete(params["id"])
-    render
+    Recording.get(params["id"]).destroy
+    @current_page = (params[:page] || 1).to_i
+    @page_count, @recordings = Recording.paginated(
+      :page => @current_page,
+      :per_page => 100)    
+    render :admin
   end
     
   def edit
@@ -67,6 +71,10 @@ class Recordings < Application
       :tracking_info => tracking_info
     )
     @recording.save
+    @current_page = (params[:page] || 1).to_i
+    @page_count, @recordings = Recording.paginated(
+      :page => @current_page,
+      :per_page => 100)    
     render :admin
   end  
     
