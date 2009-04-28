@@ -4,7 +4,7 @@ class Recordings < Application
 
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   
-  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name,
+  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
   
   def admin
@@ -39,6 +39,7 @@ class Recordings < Application
                                     :transfered_by => params["transfered_by"],
                                     :notes => params["notes"],
                                     :type => params["type"],
+                                    :filetype => params["filetype"],
                                     :shnid => params["shnid"],
                                     :tracking_info => tracking_info)                                                           
     else  
@@ -66,6 +67,7 @@ class Recordings < Application
       :transfered_by => params["transfered_by"] == "" ? "unknown" : params["transfered_by"],
       :notes => params["notes"],
       :type => params["type"],
+      :filetype => params["filetype"],
       :tracking_info => tracking_info
     )
     @recording.save
