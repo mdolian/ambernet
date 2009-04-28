@@ -2,7 +2,8 @@ merb_gems_version = "1.0.11"
 dm_gems_version   = "0.9.10"
 do_gems_version   = "0.9.11"
 
-dependency "merb-core", merb_gems_version 
+dependency "merb-haml", merb_gems_version
+dependency "merb-gen", merb_gems_version
 dependency "merb-action-args", merb_gems_version
 dependency "merb-assets", merb_gems_version  
 dependency "merb-haml", merb_gems_version
