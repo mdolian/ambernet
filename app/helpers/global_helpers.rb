@@ -5,7 +5,7 @@ module Merb
       ["all", "sbd", "aud", "matrix", "fm", "other"]
     end
     
-    def get_types
+    def get_filetypes
       ["flac16", "shnf"]
     end    
     
