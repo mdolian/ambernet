@@ -4,7 +4,7 @@ class Recordings < Application
 
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   
-  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype
+  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
   
   def admin
