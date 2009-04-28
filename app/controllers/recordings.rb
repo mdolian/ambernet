@@ -60,14 +60,12 @@ class Recordings < Application
     @recording = Recording.new(
       :show_id => params["show_id"],
       :label => params["label"],
-      :source => params["source"],
-      :lineage => params["lineage"],
-      :taper => params["taper"],
-      :transfered_by => params["transferred_by"],
+      :source => params["source"] == "" ? "unknown" : params["source"],
+      :lineage => params["lineage"] == "" ? "unknown" : params["lineage"],
+      :taper => params["taper"] == "" ? "unknown" : params["taper"],
+      :transfered_by => params["transfered_by"] == "" ? "unknown" : params["transfered_by"],
       :notes => params["notes"],
       :type => params["type"],
-      :shnid => params["shnid"],
-      :directory => params["directory"],
       :tracking_info => tracking_info
     )
     @recording.save
