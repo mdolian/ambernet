@@ -144,14 +144,14 @@ class Recordings < Application
       conditions = session[:conditions]
     end
     
-    error_message = "Please select at least on search filter" if conditions.empty?  
+    error_message = "Please select at least one search filter" if conditions.empty?  
     
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100,
-      :conditions => conditions)                              if error_message == ''    
-    session[:conditions] = conditions                         if error_message == ''  
-    message[:error] = error_message                           if error_message != ''
+      :conditions => conditions)                               if error_message == ''    
+    session[:conditions] = conditions                          if error_message == ''  
+    message[:error] = error_message                            if error_message != ''
     render
 
   end
