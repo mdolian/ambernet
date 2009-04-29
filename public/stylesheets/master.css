@@ -6,27 +6,27 @@
 hr {
   border: 0px;
   color: #ccc;
-  background-color: #cdcdcd;
+  background-color: #58649e;
   height: 1px;
   width: 100%;
   text-align: left;
 }
 h1 {
   font-size: 28px;
-  color: #c55;
-  background-color: #fff;
+  color: #331111;
+  background-color: #58649e;
   font-family: Arial, Verdana, sans-serif;
   font-weight: 300;
 }
 h2 {
   font-size: 15px;
-  color: #999;
+  color: #331111;
   font-family: Arial, Verdana, sans-serif;
   font-weight: 300;
-  background-color: #fff;
+  background-color: #58649e;
 }
 h3 {
-  color: #4d9b12;
+  color: #331111;
   font-size: 15px;
   text-align: left;
   font-weight: 300;
@@ -34,19 +34,19 @@ h3 {
   margin-top: 5px;
 }
 p {
-  color: #000;
+  color: #331111;
   font-size: 13px;
-  background-color: #fff;
+  background-color: #58649e;
   line-height: 20px;
   padding: 5px;
 }
 a {
-  color: #4d9b12;
+  color: #331111;
   text-decoration: none;
 }
 a:hover {
-  color: #4d9b12;
-  background-color: #fff;
+  color: #331111;
+  background-color: #58649e;
   text-decoration: underline;
 }
 
@@ -188,6 +188,7 @@ body{
 	overflow: hidden;
 	height: 100%; 
 	max-height: 100%; 
+	background: #58649e;
 }
 
 #framecontentLeft, #framecontentRight{
@@ -212,7 +213,7 @@ body{
 	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
 	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
 	width: auto;
-	height: 100px; /*Height of top frame div*/
+	height: 175px; /*Height of top frame div*/
 	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
 }
 
@@ -224,7 +225,7 @@ body{
 
 #maincontent{
 	position: fixed; 
-	top: 100px; /*Set top value to HeightOfTopFrameDiv*/
+	top: 175px; /*Set top value to HeightOfTopFrameDiv*/
 	bottom: 80px; /*Set bottom value to HeightOfBottomFrameDiv*/
 	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
 	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
@@ -246,7 +247,7 @@ body{
 }
 
 * html body{ /*IE6 hack*/
-	padding: 100px 200px 8px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
+	padding: 175px 200px 8px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
 }
 
 * html #maincontent{ /*IE6 hack*/
