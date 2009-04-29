@@ -6,7 +6,7 @@ module Merb
     end
     
     def get_filetypes
-      ["flac16", "shnf"]
+      ["flac16", "shnf", "flac24"]
     end    
     
     def get_venues
