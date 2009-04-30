@@ -21,6 +21,15 @@ class Recording
   has n, :recording_tracks
 #  has n, :users, :through => Resource
 
+  def lossless_extension
+    case filetype
+      when "flac16": "flac"
+      when "flac24": "flac"
+      when "shnf":   "shn"
+      else           "ERROR"
+    end
+  end
+
   # Returns the total number of discs
   def discs
     tracking_info[0].chr
