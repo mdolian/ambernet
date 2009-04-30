@@ -1,8 +1,0 @@
-%h1 Choose Recording
-%table
-  - @recordings.each do |recording|
-    %tr
-      %td
-        %a{:href => "/recordings/#{@action}/#{recording.id}"} Select
-      %td= recording.show.date_played
-      %td= recording.label

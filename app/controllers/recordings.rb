@@ -77,12 +77,6 @@ class Recordings < Application
       :per_page => 100)    
     render :admin
   end  
-    
-  def choose_rec
-    @recordings = Recording.all
-    @action = params["id"]
-    render
-  end
 
   def index
     render
@@ -126,7 +120,7 @@ class Recordings < Application
       conditions.merge!({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
       conditions.merge!({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
       conditions.merge!({Recording.show.date_played.gte => params["year"], 
-                                     Recording.show.date_played.lt => (params["year"].to_i+1).to_s})                    if params["year"] != 'All'
+                                     Recording.show.date_played.lt => (params["year"].to_i+1).to_s})        if params["year"] != 'All'
       conditions.merge!({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
       conditions.merge!({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
       conditions.merge!({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''

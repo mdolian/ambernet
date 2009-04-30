@@ -36,12 +36,14 @@ class Venues < Application
   end
   
   def city_list
-    venues = Venue.all(:conditions => {:venue_city.like => params["q"] << "%"})
+    venues = repository(:default).adapter.query("SELECT DISTINCT venue_city FROM venues WHERE (`venue_city` LIKE '%" << params["q"] << "%')")
+    
+    #Venue.all(:conditions => {:venue_city.like => params["q"] << "%"})
     list = ""
     venues.each do |venue|
-      list << venue.venue_city << "\n"
+      list << venue << "\n"
     end
-    render list, :logout => false
+    render list, :layout => false
   end
   
 end

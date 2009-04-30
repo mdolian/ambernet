@@ -41,11 +41,12 @@ class Shows < Application
     error_message = ""
     
     if params["submit"] != nil
-      conditions.merge!({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
+      conditions.merge!({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"})     if params["song_name"] != ''
       conditions.merge!({:date_played.gte => params["year"], 
-                         :date_played.lt => (params["year"].to_i+1).to_s})                        if params["year"] != 'All'
-      conditions.merge!({Show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
-      conditions.merge!({Show.venue.venue_state => "%" << params["venue_state"] << "%"})          if params["venue_state"] != ''
+                         :date_played.lt => (params["year"].to_i+1).to_s})                            if params["year"] != 'All'
+      conditions.merge!({Show.venue.venue_city.like => "%" << params["venue_city"] << "%"})           if params["venue_city"] != ''
+      conditions.merge!({Show.venue.venue_state => "%" << params["venue_state"] << "%"})              if params["venue_state"] != ''
+      conditions.merge!({Show.venue.venue_name.like => "%" << params["venue_name"] << "%"}) if params["venue_name"] != ''
 
       unless (params["end_date"] == '' && params["start_date"] == '')
         end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       

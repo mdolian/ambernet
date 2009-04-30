@@ -1,28 +1,26 @@
 %h1 Recording Details
-%table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+%table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
   %tr
+    %td Show ID
     %td= @recording.id
+  %tr  
+    %td Show Label
     %td= @recording.label
   %tr
-    %td
-      Taper
-      = @recording.taper
+    %td Taper
+    %td= @recording.taper
   %tr
-    %td
-      Transferred By
-      = @recording.transfered_by
+    %td Transferred By
+    %td= @recording.transfered_by
   %tr
-    %td{:colspan => "4"}
-      Source:
-      = @recording.source
+    %td Source:
+    %td= @recording.source
   %tr
-    %td{:colspan => "4"}
-      Lineage:
-      = @recording.lineage
+    %td Lineage:
+    %td= @recording.lineage
   %tr
-    %td{:colspan => "4"}
-      Notes
-      = @recording.notes
+    %td Notes
+    %td= @recording.notes
 
 Stream Show:  Use the following URL in any iPhone application:
 %br
