@@ -8,4 +8,7 @@ class Beta < Application
     render
   end
   
+  def bug
+    render
+  end
 end
