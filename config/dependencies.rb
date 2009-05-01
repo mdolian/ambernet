@@ -1,5 +1,5 @@
 merb_gems_version = "1.0.11"
-dm_gems_version   = "0.9.10"
+dm_gems_version   = "0.9.11"
 do_gems_version   = "0.9.11"
 
 dependency "merb-haml", merb_gems_version
@@ -20,6 +20,8 @@ dependency "merb-auth-more", merb_gems_version
 dependency "merb-auth-slice-password", merb_gems_version
 dependency "merb-param-protection", merb_gems_version
 dependency "merb-exceptions", merb_gems_version
+dependency "merb_datamapper", merb_gems_version
+dependency "merb-haml", merb_gems_version
 
 dependency "data_objects", do_gems_version
 dependency "do_mysql", do_gems_version
@@ -31,8 +33,7 @@ dependency "dm-types", dm_gems_version
 dependency "dm-validations", dm_gems_version  
 dependency "dm-serializer", dm_gems_version   
 
-dependency "merb_datamapper", merb_gems_version
-
+#dependency "rubyzip"
 dependency "nokogiri"
 dependency "webrat"
 dependency "thin"

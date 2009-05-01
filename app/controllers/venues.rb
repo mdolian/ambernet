@@ -1,6 +1,6 @@
 class Venues < Application
   
-  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
  
   params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
  

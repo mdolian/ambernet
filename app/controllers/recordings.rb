@@ -1,8 +1,10 @@
 require 'date'
+require 'zip/zip'
+require 'zip/zipfilesystem'
 
 class Recordings < Application
 
-  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
@@ -148,6 +150,25 @@ class Recordings < Application
     message[:error] = error_message                            if error_message != ''
     render
 
+  end
+  
+  def zip
+    @recording = Recording.get(params["id"])    
+    t = Tempfile.new("/tmp/tempzip-#{request.remote_ip}")
+    # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      @recording.track_list.each do |file|
+        # Create a new entry with some arbitrary name
+        zos.put_next_entry("some-funny-name.jpg")
+        # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
+        zos.print IO.read(file.path)
+      end
+    end
+    # End of the block  automatically closes the file.
+    # Send it using the right mime type, with a download window and some nice file name.
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "some-brilliant-file-name.zip"
+    # The temp file will be deleted some time...
+    t.close    
   end
   
 end

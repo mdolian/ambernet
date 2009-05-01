@@ -1,5 +1,6 @@
 class Users < Application
-  before :ensure_authenticated
+  
+  #before :ensure_authenticated
   # provides :xml, :yaml, :js
 
   def index
@@ -13,11 +14,11 @@ class Users < Application
     display @user
   end
 
-  def new
-    only_provides :html
-    @user = User.new
-    display @user
-  end
+#  def new
+#    only_provides :html
+#    @user = User.new
+#    display @user
+#  end
 
   def edit(id)
     only_provides :html
@@ -26,15 +27,25 @@ class Users < Application
     display @user
   end
 
-  def create(user)
-    @user = User.new(user)
-    if @user.save
-      redirect resource(@user), :message => {:notice => "User was successfully created"}
-    else
-      message[:error] = "User failed to be created"
-      render :new
-    end
+  def new
+    render
   end
+  
+  def create
+    @user = User.new(:login => params["login"], :password => params["password"])
+    @user.save!
+    render "DONE!"
+  end
+
+#  def create(user)
+#    @user = User.new(user)
+#    if @user.save
+#      redirect resource(@user), :message => {:notice => "User was successfully created"}
+#    else
+#      message[:error] = "User failed to be created"
+#      render :new
+#    end
+#  end
 
   def update(id, user)
     @user = User.get(id)
