@@ -161,7 +161,8 @@ class Recordings < Application
         # Create a new entry with some arbitrary name
         zos.put_next_entry("some-funny-name.jpg")
         # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-        zos.print IO.read(File.basename("/PG_Archive/ambernet/#{@recording.label}/#{track}"))
+        puts "FILE: /media/PG_Archive/ambernet/#{@recording.label}/#{track}"
+        zos.print IO.read(File.basename("/media/PG_Archive/ambernet/#{@recording.label}/#{track}"))
       end
     end
     # End of the block  automatically closes the file.
