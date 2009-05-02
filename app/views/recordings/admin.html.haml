@@ -1,14 +1,14 @@
 = js_include_tag :admin
-%h1 Admin Recordings
+%h2 Admin Recordings
 = paginate @current_page, @page_count, :outer_window => 5
-%table{:align => "center"}
+%table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
-      %th{:width => "10%", :align => "left"}
-      %th{:width => "10%", :align => "left"}
-      %th{:width => "10%", :align => "left"} Show Date
-      %th{:width => "10%", :align => "left"} Label
-      %th{:width => "10%", :align => "left"} Venue Name
+      %th{:width => "10%", :align => "left"} Delete 
+      %th{:width => "10%", :align => "left"} Edit
+      %th{:width => "15%", :align => "left"} Show Date
+      %th{:width => "30%", :align => "left"} Label
+      %th{:width => "20%", :align => "left"} Venue Name
     %tbody  
       %tr
         %td{:colspan => "8"}

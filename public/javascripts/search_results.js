@@ -1,7 +1,7 @@
 $(function() {
   jQuery(document).ready(function($) {
-	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false });
-	  $("div[id*='dialog_rec']").dialog({ autoOpen: false });	
+	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400 });
+	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400 });	
 		$("table") 
 		  .tablesorter({widthFixed: true, widgets: ['zebra']});		
 		$.fn.setlist = function(show_id){

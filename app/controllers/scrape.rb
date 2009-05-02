@@ -1,7 +1,7 @@
 require 'open-uri'
 class Scrape < Application
 
-  #before :ensure_authenticated
+  before :ensure_authenticated
 
   def perpetual_archives
     case params["id"]
