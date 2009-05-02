@@ -1,6 +1,6 @@
 require 'date'
-#require 'zip/zip'
-#require 'zip/zipfilesystem'
+require 'zip/zip'
+require 'zip/zipfilesystem'
 
 class Recordings < Application
 
@@ -154,14 +154,14 @@ class Recordings < Application
   
   def zip
     @recording = Recording.get(params["id"])    
-    t = Tempfile.new("/tmp/tempzip-#{request.remote_ip}")
+    t = Tempfile.new("tempzip-#{request.remote_ip}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
-      @recording.track_list.each do |file|
+      @recording.track_list.each do |track|
         # Create a new entry with some arbitrary name
         zos.put_next_entry("some-funny-name.jpg")
         # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-        zos.print IO.read(file.path)
+        zos.print IO.read(File.basename("/PG_Archive/ambernet/#{@recording.label}/#{track}"))
       end
     end
     # End of the block  automatically closes the file.

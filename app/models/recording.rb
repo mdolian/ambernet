@@ -70,7 +70,7 @@ class Recording
   end
   
   def track_list
-    trackName = new Array
+    trackName = Array.new
     for i in 1..discs.to_i do
       for j in "01"..tracks(i) do
         trackName << "pgroove" + show.date_as_label + "d" + i.to_s + "t" + j.to_s
