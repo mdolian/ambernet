@@ -168,19 +168,17 @@ class Recordings < Application
     Zip::ZipOutputStream.open(t.path) do |zos|
       for i in 1..@recording.discs.to_i do
         for j in "01"..@recording.tracks(i) do
-          filename = ""
-          # Create a new entry with some arbitrary name
-          zos.put_next_entry("some-funny-name.jpg")
-          # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-          filename = "/ambernet/#{@recording.label}/pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
-          puts "BLAH: #{filename}"
+          trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
+          filename = "/ambernet/#{@recording.label}/pgroove" + trackname
+          zos.put_next_entry("trackname")
+          Merb.logger.debug "File added to zip: #{filename}"
           zos.print IO.read(File.basename(filename))
         end
       end
     end
     # End of the block  automatically closes the file.
     # Send it using the right mime type, with a download window and some nice file name.
-    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "some-brilliant-file-name.zip"
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{@recording.download_extension(params["type"]}.zip"
     # The temp file will be deleted some time...
     t.close    
   end
