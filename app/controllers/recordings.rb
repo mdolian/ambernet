@@ -168,7 +168,8 @@ class Recordings < Application
     Zip::ZipOutputStream.open(t.path) do |zos|
       for i in 1..@recording.discs.to_i do
         for j in "01"..@recording.tracks(i) do
-          trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
+          type = @recording.download_extension(params["type"])
+          trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + type
           filename = "/ambernet/#{@recording.label}/pgroove" + trackname
           zos.put_next_entry("trackname")
           Merb.logger.debug "File added to zip: #{filename}"
@@ -178,7 +179,7 @@ class Recordings < Application
     end
     # End of the block  automatically closes the file.
     # Send it using the right mime type, with a download window and some nice file name.
-    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{@recording.download_extension(params["type"]}.zip"
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{type}.zip"
     # The temp file will be deleted some time...
     t.close    
   end
