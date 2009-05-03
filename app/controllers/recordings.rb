@@ -172,7 +172,7 @@ class Recordings < Application
           # Create a new entry with some arbitrary name
           zos.put_next_entry("some-funny-name.jpg")
           # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-          filename = "/media/PG_Archive/ambernet/#{@recording.label}/pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
+          filename = "/ambernet/#{@recording.label}/pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
           puts "BLAH: #{filename}"
           zos.print IO.read(File.basename(filename))
         end
