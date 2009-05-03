@@ -162,13 +162,13 @@ class Recordings < Application
   
   def zip
     puts "test"
-    @recording = Recording.get(params["id"])    
+    @recording = Recording.get(params["id"])   
+    type = @recording.download_extension(params["type"]) 
     t = Tempfile.new("tempzip-#{request.remote_ip}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
       for i in 1..@recording.discs.to_i do
         for j in "01"..@recording.tracks(i) do
-          type = @recording.download_extension(params["type"])
           trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + type
           filename = "/ambernet/#{@recording.label}/pgroove" + trackname
           file = File.open(filename)
