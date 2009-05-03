@@ -29,6 +29,14 @@ class Recording
       else           "ERROR"
     end
   end
+  
+  def download_extension(type)
+    case type
+      when "lossless": lossless_extension
+      when "mp3": "mp3"
+      else "ERROR"
+    end
+  end
 
   # Returns the total number of discs
   def discs
@@ -74,6 +82,7 @@ class Recording
     for i in 1..discs.to_i do
       for j in "01"..tracks(i) do
         trackName << "pgroove" + show.date_as_label + "d" + i.to_s + "t" + j.to_s
+        puts "pgroove" + show.date_as_label + "d" + i.to_s + "t" + j.to_s
       end
     end
   end

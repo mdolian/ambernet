@@ -161,16 +161,21 @@ class Recordings < Application
   end
   
   def zip
+    puts "test"
     @recording = Recording.get(params["id"])    
     t = Tempfile.new("tempzip-#{request.remote_ip}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
-      @recording.track_list.each do |track|
-        # Create a new entry with some arbitrary name
-        zos.put_next_entry("some-funny-name.jpg")
-        # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-        puts "FILE: /media/PG_Archive/ambernet/#{@recording.label}/#{track}"
-        zos.print IO.read(File.basename("/media/PG_Archive/ambernet/#{@recording.label}/#{track}"))
+      for i in 1..@recording.discs.to_i do
+        for j in "01"..@recording.tracks(i) do
+          filename = ""
+          # Create a new entry with some arbitrary name
+          zos.put_next_entry("some-funny-name.jpg")
+          # Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
+          filename << "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + @recording.download_extension(params["type"])
+          puts "BLAH: #{filename}"
+          zos.print IO.read(File.basename("/media/PG_Archive/ambernet/#{@recording.label}/#{filename}"))
+        end
       end
     end
     # End of the block  automatically closes the file.
