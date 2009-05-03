@@ -1,67 +1,72 @@
-= js_include_tag :search
-%div{:id => "carousel"}
-  %div{:id => "carousel-control"}
-    %a{:href => "#"}Recording Details
-    |
-    %a{:href => "#"}Download Options
-    | 
-    %a{:href => "#"}Streaming Options
-  %div{:class => "nav"}
-    %a{:id => "prev", :href => "#"}      
-  %div{:id => "carousel_block"}
-    %div{:class => "carousel_item"}
-      %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
-        %tr
-          %td Show ID
-          %td= @recording.id
-        %tr  
-          %td Show Label
-          %td= @recording.label
-        %tr
-          %td Taper
-          %td= @recording.taper
-        %tr
-          %td Transferred By
-          %td= @recording.transfered_by
-        %tr
-          %td Source:
-          %td= @recording.source
-        %tr
-          %td Lineage:
-          %td= @recording.lineage
-        %tr
-          %td Notes
-          %td= @recording.notes
-    %div{:class => "carousel_item"}
-      %table{:width => "40%", :align => "center", :id => "recordingTrackTable", :class => "tablesorter"}
-        %tr
-          %th Track
-          %th Lossless
-          %th MP3 (V0)
-        - for i in 1..@recording.discs.to_i do
-          - for j in "01"..@recording.tracks(i) do
-            - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
-            %tr
-              %td 
-                = trackName
-              %td
-                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
-              %td
-                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
-    %div{:class => "carousel_item"}          
-      %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
-        %tr
-          %th Device
-          %th Link
-        %tr
-          %td iPhone
-          %td
-            Type the following URL into the Radio application:
-            %br
-            ="http://ambernet.com/recordings/stream/#{@recording.id}"
-        %tr
-          %td Computer
-          %td
-            %a{:href => "/recordings/stream/#{@recording.id}.pls"} Click here to stream via pls
-  %div{:class => "nav"}
-    %a{:id => "next", :href => "#"}            
+= js_include_tag :recording
+%div{:id => "tabs"}
+  %ul
+    %li
+      %a{:href => "#tabs-1"} Recording Details
+    %li 
+      %a{:href => "#tabs-2"} Download Options
+    %li 
+      %a{:href => "#tabs-3"} Streaming Options    
+  %div{:id => "tabs-1"}
+    %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+      %tr
+        %td{:width => "20%"} 
+          %b Show ID
+        %td{:width => "80%"}= @recording.id
+      %tr  
+        %td 
+          %b Show Label
+        %td= @recording.label
+      %tr
+        %td 
+          %b Taper
+        %td= @recording.taper
+      %tr
+        %td 
+          %b Transferred By
+        %td= @recording.transfered_by
+      %tr
+        %td 
+          %b Source:
+        %td= @recording.source
+      %tr
+        %td 
+          %b Lineage:
+        %td= @recording.lineage
+      %tr
+        %td 
+          %b Notes
+        %td= @recording.notes
+  %div{:id => "tabs-2"}
+    %table{:id => "recordingTrackTable", :class => "tablesorter"}
+      %tr
+        %th{:width => "80%"} Track
+        %th{:width => "10%"} Lossless
+        %th{:width => "10%"} MP3 (V0)
+      - for i in 1..@recording.discs.to_i do
+        - for j in "01"..@recording.tracks(i) do
+          - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
+          %tr
+            %td 
+              = trackName
+            %td
+              %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
+            %td
+              %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
+  %div{:id => "tabs-3"}          
+    %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
+      %tr
+        %th Device
+        %th Link
+      %tr
+        %td 
+          %b iPhone
+        %td
+          Type the following URL into the Radio application:
+          %br
+          ="http://ambernet.com/recordings/stream/#{@recording.id}"
+      %tr
+        %td 
+          %b Computer
+        %td
+          %a{:href => "/recordings/stream/#{@recording.id}.pls"} Click here to stream via pls        

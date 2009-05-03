@@ -99,16 +99,18 @@ class Recordings < Application
     render total_pls.to_pls, :layout => false
   end
   
-  def download
-    @recording = Recording.get(params["id"])
-  end 
-  
   def show
     @recording = Recording.get(params["id"])
-    @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
+    # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
     render
   end
   
+  def download
+    @recording = Recording.get(params["id"])
+    # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
+    render :layout => false
+  end
+    
   def search_results
     @current_page = (params[:page] || 1).to_i
     conditions = {}
