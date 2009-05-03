@@ -171,9 +171,10 @@ class Recordings < Application
           type = @recording.download_extension(params["type"])
           trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + type
           filename = "/ambernet/#{@recording.label}/pgroove" + trackname
-          zos.put_next_entry("filename")
+          file = File.open(filename)
+          zos.put_next_entry(trackname)
           Merb.logger.debug "File added to zip: #{filename}"
-          zos.print IO.read(File.basename(filename))
+          zos.print IO.read(file.path)
         end
       end
     end
