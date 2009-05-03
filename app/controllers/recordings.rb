@@ -43,11 +43,16 @@ class Recordings < Application
                                     :type => params["type"],
                                     :filetype => params["filetype"],
                                     :shnid => params["shnid"],
-                                    :tracking_info => tracking_info)                                                           
+                                    :tracking_info => tracking_info)  
+      @current_page = (params[:page] || 1).to_i
+      @page_count, @recordings = Recording.paginated(
+        :page => @current_page,
+        :per_page => 100)                                                                                             
+      render :admin
     else  
        @recording = Recording.get(params["id"])
+       render
     end
-    render
   end
   
   def new
@@ -70,6 +75,7 @@ class Recordings < Application
       :notes => params["notes"],
       :type => params["type"],
       :filetype => params["filetype"],
+      :shnid => params["shnid"],
       :tracking_info => tracking_info
     )
     @recording.save

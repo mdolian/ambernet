@@ -3,10 +3,10 @@
 %form{:action => "/recordings/create", :method => "post", :autocomplete => "off"}
   %table
     %tr
-      %td
+      %td{:width => "25%"}
         %h5 Show:
         %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
-      %td= text_field :name => "date_played", :id => "show_date_played"
+      %td{:width => "75%"}= text_field :name => "date_played", :id => "show_date_played"
     %tr
       %td       
         %h5 Label:
