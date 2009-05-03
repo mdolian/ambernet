@@ -43,6 +43,13 @@
         %th{:width => "80%"} Track
         %th{:width => "10%"} Lossless
         %th{:width => "10%"} MP3 (V0)
+      %tr
+        %td 
+          %b Entire Show
+        %td 
+          %a{:href => "/recordings/zip/#{@recording.id}/lossless"} zip
+        %td
+          %a{:href => "/recordings/zip/#{@recording.id}/mp3"} zip
       - for i in 1..@recording.discs.to_i do
         - for j in "01"..@recording.tracks(i) do
           - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
