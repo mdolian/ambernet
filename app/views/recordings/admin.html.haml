@@ -18,7 +18,7 @@
           %td
             %a{:href => "/recordings/delete/#{recording.id}", :id => "delete"} Delete
           %td
-            Edit
+            %a{:href => "/recordings/edit/#{recording.id}"} Edit
           %td= recording.show.date_played
           %td= recording.label
           %td= recording.show.venue.venue_name

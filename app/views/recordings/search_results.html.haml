@@ -4,13 +4,13 @@
 %table{:align => "center", :id => "recordingTable", :class => "tablesorter"}
   %thead
     %tr
-      %th{:width => "10%", :align => "left"} Show Date
-      %th{:width => "10%", :align => "left"} Type
-      %th{:width => "10%", :align => "left"} Label
-      %th{:width => "10%", :align => "left"} Venue Name
-      %th{:width => "10%", :align => "left"} City
-      %th{:width => "10%", :align => "left"} State
-      %th{:width => "10%", :align => "left"} Setlist
+      %th{:width => "8%", :align => "left"} Show Date
+      %th{:width => "5%", :align => "left"} Type
+      %th{:width => "20%", :align => "left"} Label
+      %th{:width => "20%", :align => "left"} Venue Name
+      %th{:width => "20%", :align => "left"} City
+      %th{:width => "5%", :align => "left"} State
+      %th{:width => "18%", :align => "left"} Setlist
     %tbody  
       - @recordings.each do |recording|
         %tr

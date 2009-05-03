@@ -1,50 +1,43 @@
+= js_include_tag :search
 %h2 Edit Recording
-%form{:action => "/recordings/edit/#{@recording.id}", :method => "post"}
-  %table{:width => "85%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
-    %tr
-      %td 
-        ID
-        %input{:type => "hidden", :name => "id", :value => "#{@recording.id}"}
-      %td= @recording.id
-    %tr
-      %td Type
-      %td= select :name => "type", :collection => get_types, :selected => @recording.type
-    %tr
-      %td Label 
-      %td= text_field :name => "label", :value => @recording.label, :size => "50"
-    %tr
-      %td Taper
-      %td= text_field :name => "taper", :value => @recording.taper
-    %tr
-      %td Transfered By
-      %td= text_field :name => "transfered_by", :value => @recording.transfered_by
-    %tr
-      %td SHN ID
-      %td= text_field :name => "shnid", :value => @recording.shnid     
-    %tr
-      %td Source
-      %td
-        %textarea{:name => "source", :rows => "5", :cols => "50"}= @recording.source    
-    %tr
-      %td Lineage
-      %td
-        %textarea{:name => "lineage", :rows => "5", :cols => "50"}= @recording.lineage
-    %tr
-      %td Notes
-      %td
-        %textarea{:name => "notes", :rows => "5", :cols => "50"}= @recording.notes
-    %tr
-      %td
-        %h5 Disc Count
-      %td
-        = select :name => "discs", :collection => get_discs, :id => "discs"
-    %tr
-      %td 
-      %td
-        %div{:id => "tracks"}      
-    %tr
-      %td{:colspan => "2"}
-        %a{:href => "/tracks/edit/#{@recording.id}"} Edit Recording Tracks
-    %tr 
-      %td{:colspan => "2"}
-        %input{:type => "submit", :value => "Update", :name => "submit"}
+%div{:width => "400"}
+  %form{:action => "/recordings/edit/#{@recording.id}", :method => "post"}
+    %table{:width => 100, :align => "center", :id => "recordingTable", :class => "tablesorter"}
+      %tr
+        %td 
+          ID
+          %input{:type => "hidden", :name => "id", :value => "#{@recording.id}"}
+        %td= @recording.id
+      %tr
+        %td Type
+        %td= select :name => "type", :collection => get_types, :selected => @recording.type
+      %tr
+        %td Label 
+        %td= text_field :name => "label", :value => @recording.label, :size => "50"
+      %tr
+        %td Taper
+        %td= text_field :name => "taper", :value => @recording.taper, :size => "50"
+      %tr
+        %td Transfered By
+        %td= text_field :name => "transfered_by", :value => @recording.transfered_by
+      %tr
+        %td SHN ID
+        %td= text_field :name => "shnid", :value => @recording.shnid, :size => "50"  
+      %tr
+        %td Source
+        %td= text_field :name => "source", :value => @recording.source, :size => "50"    
+      %tr
+        %td Lineage
+        %td= text_field :name => "lineage", :value => @recording.lineage, :size => "50"
+      %tr
+        %td Notes
+        %td
+          %textarea{:name => "notes", :rows => "5", :cols => "50"}= @recording.notes
+      %tr
+        %td
+          %h5 Disc Count
+        %td
+          = select :name => "discs", :collection => get_discs, :id => "discs"
+      %tr 
+        %td{:colspan => "2"}
+          %input{:type => "submit", :value => "Update", :name => "submit"}
