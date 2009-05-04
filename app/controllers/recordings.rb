@@ -107,19 +107,14 @@ class Recordings < Application
     end
     content_type = :m3u if params["format"] == "m3u"
     content_type = :pls if params["format"] == "pls"
-    render stream, :layout => false
+    #render stream, :layout => false
+    send_data stream, :type => 'application/#{params["format"]}', :disposition => 'attachment', :filename => '#{@recording.label}.#{params["format"]}'
   end
   
   def show
     @recording = Recording.get(params["id"])
     # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
     render
-  end
-  
-  def download
-    @recording = Recording.get(params["id"])
-    # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
-    render :layout => false
   end
     
   def search_results
