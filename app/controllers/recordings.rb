@@ -8,6 +8,8 @@ class Recordings < Application
   
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
+
+  provides :pls
   
   def admin
     @current_page = (params[:page] || 1).to_i
@@ -91,18 +93,19 @@ class Recordings < Application
   end
  
   def stream
-    provides :pls
-    render Recording.get(params["id"]).to_pls, :layout => false 
-  end
-  
-  def stream_by_date
-    provides :pls
-    date_played = Date.parse(params["date_played"])
-    total_pls = ""
-    Recording.all('show.date_played' => date_played.to_s).each do |recording|
-      total_pls << recording.to_pls << "\n\n"
+    if params["id"].length > 4 
+      total_pls = ""
+      if Recording.count(Recording.show.date_played => params["id"]) > 0
+        Recording.all(Recording.show.date_played => params["id"]).each do |recording|
+          total_pls << recording.to_pls << "\n\n"
+        end
+        render total_pls, :layout => false
+      else
+        render "Sorry, no show exists for that date"
+      end
+    else
+      render Recording.get(params["id"]).to_pls, :layout => false 
     end
-    render total_pls.to_pls, :layout => false
   end
   
   def show
@@ -120,7 +123,7 @@ class Recordings < Application
   def search_results
     @current_page = (params[:page] || 1).to_i
     conditions = {}
-    error_message = ""
+    error_message, notice_message = ""
 
     if params["submit"] != nil
       conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
@@ -153,9 +156,11 @@ class Recordings < Application
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100,
-      :conditions => conditions)                               if error_message == ''    
+      :conditions => conditions)                               if error_message == ''  
+    notice_message = "No recordings were found"                if @recordings.count == 0  
     session[:conditions] = conditions                          if error_message == ''  
     message[:error] = error_message                            if error_message != ''
+    message[:notice] = notice_message                          if notice_message != ''
     render
 
   end

@@ -69,7 +69,7 @@ class Recording
     for disc_count in (1..discs.to_i)
       for track_count in "01"..tracks(disc_count) do      
         total_count = total_count + 1
-        pls << "File#{total_count}=http://ambernet.kicks-ass.net/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+        pls << "File#{total_count}=http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
         pls << "Title#{total_count}=TBD\n"
         pls << "Length#{total_count}=-1\n\n"
       end
