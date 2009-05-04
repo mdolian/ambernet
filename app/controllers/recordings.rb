@@ -105,10 +105,11 @@ class Recordings < Application
     else
       stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
     end
-    content_type = :m3u if params["format"] == "m3u"
-    content_type = :pls if params["format"] == "pls"
+    content_type = "application/m3u" if params["format"] == "m3u"
+    content_type = "application/pls" if params["format"] == "pls"
+    filename = "#{@recording.label}.#{params['format']}"
     #render stream, :layout => false
-    send_data stream, :type => 'application/#{params["format"]}', :disposition => 'attachment', :filename => '#{@recording.label}.#{params["format"]}'
+    send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
   end
   
   def show
