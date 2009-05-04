@@ -105,6 +105,8 @@ class Recordings < Application
     else
       stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
     end
+    content_type = :m3u if params["format"] == "m3u"
+    content_type = :pls if params["format"] == "pls"
     render stream, :layout => false
   end
   
