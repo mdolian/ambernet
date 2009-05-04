@@ -93,21 +93,23 @@ class Recordings < Application
  
   def stream
     only_provides :pls, :m3u
+    format, id = params["format"], params["id"]
     if params["id"].length > 4 
       stream = ""
-      if Recording.count(Recording.show.date_played => params["id"]) > 0
-        Recording.all(Recording.show.date_played => params["id"]).each do |recording|
-          stream << params["format"] == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
+      if Recording.count(Recording.show.date_played => id) > 0
+        Recording.all(Recording.show.date_played => id).each do |recording|
+          stream << format == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
         end
       else
         render "Sorry, no show exists for that date"
       end
     else
       stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
+      label = Recording.get(params["id"]).label
     end
     content_type = "application/m3u" if params["format"] == "m3u"
     content_type = "application/pls" if params["format"] == "pls"
-    filename = "#{@recording.label}.#{params['format']}"
+    filename = "#{label}.#{format}"
     #render stream, :layout => false
     send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
   end
