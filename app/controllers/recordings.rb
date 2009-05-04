@@ -161,7 +161,6 @@ class Recordings < Application
   end
   
   def zip
-    puts "test"
     @recording = Recording.get(params["id"])   
     type = @recording.download_extension(params["type"]) 
     t = Tempfile.new("tempzip-#{request.remote_ip}")
@@ -185,4 +184,17 @@ class Recordings < Application
     t.close    
   end
   
+  def zip2
+    provides :zip
+    @recording = Recording.get(params["id"])   
+    type = @recording.download_extension(params["type"])    
+    dir = "/ambernet/#{@recording.label}/"
+    Zippy.create 'blah.zip' do |zip|
+      Dir['#{dir}/*.#{type}'].each do |filename|
+        zip[filename] = File.open(filename)
+      end
+    end
+    render zip.data    
+  end
+
 end
