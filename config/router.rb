@@ -35,7 +35,7 @@ Merb::Router.prepare do
   match('/a/:date_played.pls').to(:controller => 'recordings', :action => 'stream_by_date')
   match('/admin').to(:controller => 'recordings', :action => 'admin')
   match("/recordings/zip/:id/:type").to(:controller => "recordings", :action => "zip").name(:zip)
-  match("/recordings/zip2/:id/:type").to(:controller => "recordings", :action => "zip2").name(:zip2)
+  match("/recordings/zip2/:id/:type").to(:controller => "recordings", :action => "zip2").name(:zip)
   match('/').to(:controller => 'recordings', :action =>'index')
   default_routes
 end

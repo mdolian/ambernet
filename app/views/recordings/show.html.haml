@@ -47,9 +47,9 @@
         %td 
           %b Entire Show
         %td 
-          %a{:href => "/recordings/zip/#{@recording.id}/lossless"} zip
+          %a{:href => "#"} zip
         %td
-          %a{:href => "/recordings/zip/#{@recording.id}/mp3"} zip
+          %a{:href => "#"} zip
       - for i in 1..@recording.discs.to_i do
         - for j in "01"..@recording.tracks(i) do
           - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s

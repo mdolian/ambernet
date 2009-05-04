@@ -161,16 +161,17 @@ class Recordings < Application
   end
   
   def zip
+    only_provides :zip
     @recording = Recording.get(params["id"])   
     type = @recording.download_extension(params["type"]) 
-    t = Tempfile.new("tempzip-#{request.remote_ip}")
+    t = Tempfile.new("tempzip-#{@recording.label}")
+    Merb.logger.debug("Temp File: #{t.path}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
       for i in 1..@recording.discs.to_i do
         for j in "01"..@recording.tracks(i) do
           trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + type
-          filename = "/ambernet/#{@recording.label}/pgroove" + trackname
-          file = File.open(filename)
+          file = File.open("/ambernet/#{@recording.label}/pgroove" + trackname)
           zos.put_next_entry(trackname)
           Merb.logger.debug "File added to zip: #{filename}"
           zos.print IO.read(file.path)

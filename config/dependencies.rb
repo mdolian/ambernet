@@ -34,7 +34,7 @@ dependency "dm-validations", dm_gems_version
 dependency "dm-serializer", dm_gems_version   
 
 dependency "rubyzip", :require_as => "zip/zip"
-dependency "toretore-zippy", :require_as => "zippy", :source => "http://gems.github.com"
+#dependency "toretore-zippy", :require_as => "zippy", :source => "http://gems.github.com"
 dependency "nokogiri"
 dependency "webrat"
 dependency "thin"
