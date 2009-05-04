@@ -193,8 +193,8 @@ class Recordings < Application
       Dir['#{dir}/*.#{type}'].each do |filename|
         zip[filename] = File.open(filename)
       end
-    end
-    render zip.data    
+      render zip.data 
+    end   
   end
 
 end
