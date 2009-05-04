@@ -9,8 +9,7 @@ class Recordings < Application
   params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
 
-  provides :pls
-  
+
   def admin
     @current_page = (params[:page] || 1).to_i
     @page_count, @recordings = Recording.paginated(
@@ -93,6 +92,7 @@ class Recordings < Application
   end
  
   def stream
+    only_provides :pls, :m3u
     if params["id"].length > 4 
       stream = ""
       if Recording.count(Recording.show.date_played => params["id"]) > 0
