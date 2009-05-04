@@ -77,6 +77,20 @@ class Recording
     pls
   end
   
+  def to_m3u
+    m3u = "#EXTM3\n"
+    disc_count = 0
+    total_count = 0
+    for disc_count in (1..discs.to_i)
+      for track_count in "01"..tracks(disc_count) do      
+        total_count = total_count + 1
+        m3u << "#EXTINF:-1,TBD\n"
+        m3u << "http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+      end
+    end
+    m3u   
+  end
+  
   def track_list
     trackName = Array.new
     for i in 1..discs.to_i do

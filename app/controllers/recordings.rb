@@ -94,18 +94,18 @@ class Recordings < Application
  
   def stream
     if params["id"].length > 4 
-      total_pls = ""
+      stream = ""
       if Recording.count(Recording.show.date_played => params["id"]) > 0
         Recording.all(Recording.show.date_played => params["id"]).each do |recording|
-          total_pls << recording.to_pls << "\n\n"
+          stream << params["format"] == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
         end
-        render total_pls, :layout => false
       else
         render "Sorry, no show exists for that date"
       end
     else
-      render Recording.get(params["id"]).to_pls, :layout => false 
+      stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
     end
+    render stream, :layout => false
   end
   
   def show

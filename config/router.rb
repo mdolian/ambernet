@@ -31,8 +31,7 @@ Merb::Router.prepare do
   slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
   resources :users
   
-  match('/s/:id').to(:controller => 'recordings', :action => 'stream')
-  match('/s2/:date_played').to(:controller => 'recordings', :action => 'stream_by_date')
+  match('/s/:id.:format').to(:controller => 'recordings', :action => 'stream')
   match('/admin').to(:controller => 'recordings', :action => 'admin')
   match("/recordings/zip/:id/:type").to(:controller => "recordings", :action => "zip").name(:zip)
   match("/recordings/zip2/:id/:type").to(:controller => "recordings", :action => "zip2").name(:zip)
