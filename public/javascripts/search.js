@@ -1,5 +1,6 @@
 $(function() {
   jQuery(document).ready(function($) {	
+		$("#search_tabs").tabs();
 		$("#venue_name").autocomplete("/venues/list");
 		$("#venue_city").autocomplete("/venues/city_list");	
     $("#carousel_block").cycle({

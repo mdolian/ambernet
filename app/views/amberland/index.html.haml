@@ -1,8 +1,8 @@
 %script{:language => "javascript"}
-  $(function() { jQuery(document).ready(function($) { $("#tabs").tabs(); });});
+  $(function() { jQuery(document).ready(function($) { $("#index_tabs").tabs(); });});
 %script{:language => "javascript"}
   $(function() { jQuery(document).ready(function($) { $("#apps").accordion({autoHeight: false}); });}); 
-%div{:id => "tabs"}
+%div{:id => "index_tabs"}
   %ul
     %li
       %a{:href => "#tabs-1"} Welcome!

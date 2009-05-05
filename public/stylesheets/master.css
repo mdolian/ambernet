@@ -120,54 +120,13 @@ input:hover, input:focus {
 	border-color:#c5c5c5;
 	background:#f6f6f6;
 } 
-#tabs {
+
+#search_tabs {
+	width: 500px;
+}
+
+#index_tabs {
 	width: 600px;
-}
-/* The following CSS is for the carousel (search filters) */
-#carousel-control li { 
-	width: 50px; 
-	float: top; 
-	margin: 8px; 
-	list-style: none;
-}
-
-#carousel{
-	overflow: hidden;
-	padding: 0px 0;
-	margin: 0 0 10px 0;
-	height: 270px;
-	width: 532px;
-	position: relative;
-}
-
-#carousel_block {
-    height:  270px;  
-    width:   432px;  
-    padding: 0px;  
-    margin:  0px;  
-}
-
-.carousel_item {
-	padding: 36px 20px 0 20px;
-	height:  225px;  
-	width:   400px; 
-	line-height: 14px;
-	text-align: left;
-}
-
-#prev {
-	float: left;
-	width: 16px;
-	height: 270px;
-	background: url(/images/prev.png) no-repeat scroll top center;
-}
-
-#next  {
-	float: right;
-	margin: -270px 0 0 0;
-	width: 16px;
-	height: 270;
-	background: url(/images/next.png) no-repeat scroll top center;
 }
 
 body{
