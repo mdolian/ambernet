@@ -9,25 +9,16 @@
     %title
       AmberNET Online
   %body{:topmargin => "0", :leftmargin => "0", :marginwidth => "0", :marginheight => "0", :hspace => "0", :vspace => "0"}
-    %div{:id => "framecontentLeft"}
-      %div{:class => "innertube"}
-    %div{:id => "framecontentRight"}
-      %div{:class => "innertube"}
-    %div{:id => "framecontentTop", :align => "center", :valign => "top"}
-      %div{:class => "innertube"}
-        %img{:src => "/images/header.jpg"}
-        %p
-          %a{:href => "/recordings"} Search Recordings 
-          | 
-          %a{:href => "/shows"} Search Shows 
-          | 
-          %a{:href => "/beta/index"} Beta Information
-          |
-          %a{:href => "/admin"} Admin
-    %div{:id => "framecontentBottom"}
-      %div{:class => "innertube", :align => "center"}
-    %div{:id => "maincontent", :align => "center"}
-      %div{:class => "innertube"}
+    %div{:align => "center"}
+      %img{:src => "/images/header.jpg"}
+      %p
+        %a{:href => "/recordings"} Search Recordings 
+        | 
+        %a{:href => "/shows"} Search Shows 
+        | 
+        %a{:href => "/beta/index"} Beta Information
+        |
+        %a{:href => "/admin"} Admin
         %div{:class => "ui-widget"}
           - if !message[:notice].nil?
             %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}

@@ -136,6 +136,7 @@ input:hover, input:focus {
 	padding: 0px 0;
 	margin: 0 0 10px 0;
 	height: 270px;
+	width: 532px;
 	position: relative;
 }
 
@@ -169,90 +170,12 @@ input:hover, input:focus {
 	background: url(/images/next.png) no-repeat scroll top center;
 }
 
-/* The following CSS creates the 5 frames: left, top, bottom and right.  
-   The frames 
-   framecontentLeft:       a column that runs 100% of the height of the page
-   framecontentRight:      a column that runs 100% of the height of the page
-   #framecontentTop:       a row that runs the length of the page minus the width of left + right
-   #framecontentTopBottom: a row that runs the length of the page minus the width of left + right 
-   #maincontent            the main content */
-
 body{
 	margin: 0;
 	padding: 0;
 	border: 0;
-	overflow: hidden;
 	height: 100%; 
 	max-height: 100%; 
-	font-size: 14;
+	font-size: 13;
 	background: #58649e;
 }
-
-#framecontentLeft, #framecontentRight{
-	position: absolute; 
-	top: 0; 
-	left: 0; 
-	width: 200px; /*Width of left frame div*/
-	height: 100%;
-	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-}
-
-#framecontentRight{
-	left: auto;
-	right: 0; 
-	width: 200px; /*Width of right frame div*/
-	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-}
-
-#framecontentTop, #framecontentBottom{
-	position: absolute;
-	top: 0; 
-	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
-	width: auto;
-	height: 175px; /*Height of top frame div*/
-	overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-}
-
-#framecontentBottom{
-	top: auto;
-	height: 80px; /*Height of bottom frame div*/
-	bottom: 0;
-}
-
-#maincontent{
-	position: fixed; 
-	top: 175px; /*Set top value to HeightOfTopFrameDiv*/
-	bottom: 80px; /*Set bottom value to HeightOfBottomFrameDiv*/
-	left: 200px; /*Set left value to WidthOfLeftFrameDiv*/
-	right: 200px; /*Set right value to WidthOfRightFrameDiv*/
-	overflow: auto; 
-}
-
-#fixedmaincontent{
-  position: fixed;
-  top: auto;
-	bottom: 80;
-	left: 200;
-	right: 200;
-	z-index: 50;
-	overflow: auto;
-}
-
-.innertube{
-	margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
-}
-
-* html body{ /*IE6 hack*/
-	padding: 175px 200px 8px 200px; /*Set value to (HeightOfTopFrameDiv WidthOfRightFrameDiv HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
-}
-
-* html #maincontent{ /*IE6 hack*/
-	height: 100%; 
-	width: 100%; 
-}
-
-* html #framecontentTop, * html #framecontentBottom{ /*IE6 hack*/
-	width: 100%;
-}
-
