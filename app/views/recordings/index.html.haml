@@ -1,72 +1,86 @@
 = js_include_tag :search
 %h2 Search Recordings
 %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off"}
-  %div{:id => "carousel"}
-    %div{:id => "carousel-control"}
-      %a{:href => "#"}General
-      |
-      %a{:href => "#"}Location
-      | 
-      %a{:href => "#"}Source 
-      | 
-      %a{:href => "#"}Date
-    %div{:class => "nav"}
-      %a{:id => "prev", :href => "#"}      
-    %div{:id => "carousel_block"}
-      %div{:class => "carousel_item"}
-        %div
-          %label Label
-          %input{:type => "text", :name => "label", :size => "25"} 
-        %div &nbsp
-        %div
-          %label Song
-          = text_field :name => "song_name", :size => "25"       
-      %div{:class => "carousel_item"}
-        %div &nbsp
-        %div
-          %label Venue
-          = text_field :name => "venue_name", :id => "venue_name", :size => "25"
-        %div &nbsp
-        %div
-          %label City 
-          = text_field :name => "venue_city", :id => "venue_city", :size => "25"
-        %div &nbsp
-        %div
-          %label State
-          = text_field :name => "venue_state", :size => "5"
-      %div{:class => "carousel_item"}
-        %div &nbsp
-        %div
-          %label Source
-          = text_field :name => "source", :size => "25"
-        %div &nbsp 
-        %div
-          %label Lineage
-          = text_field :name => "lineage", :size => "25"
-        %div &nbsp        
-        %div
-          %label Taper
-          = text_field :name => "taper", :size => "25"
-        %div &nbsp             
-        %div
-          %label Etree ID
-          = text_field :name => "shnid", :size => "5"
-        %div &nbsp        
-        %div
-          %label Type
-          = select :name => "type", :collection => get_types
-      %div{:class => "carousel_item"}
-        %div &nbsp
-        %div
-          %label Year
-          = select:name => "year", :collection => get_years 
-        %div &nbsp       
-        %div
-          %label Range
-          %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
-          to
-          %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}
-    %div{:class => "nav"}
-      %a{:id => "next", :href => "#"} 
-  %input{:type => "submit", :value => "Search", :name => "submit"} 
-  %input{:type => "reset", :value => "Clear"}
+  %div{:id => "search_tabs"}
+    %ul
+      %li
+        %a{:href => "#tabs-1"} General
+      %li 
+        %a{:href => "#tabs-2"} Location   
+      %li 
+        %a{:href => "#tabs-3"} Source
+      %li 
+        %a{:href => "#tabs-4"} Date   
+    %div{:id => "tabs-1", :align => "left"}
+      %div
+        %label Label
+        %input{:type => "text", :name => "label", :size => "25"} 
+      %div &nbsp
+      %div
+        %label Song
+        = text_field :name => "song_name", :size => "25"
+      %br
+      %br
+      %input{:type => "submit", :value => "Search", :name => "submit"} 
+
+      %input{:type => "reset", :value => "Clear"}        
+    %div{:id => "tabs-2", :align => "left"}
+      %div &nbsp
+      %div
+        %label Venue
+        = text_field :name => "venue_name", :id => "venue_name", :size => "25"
+      %div &nbsp
+      %div
+        %label City 
+        = text_field :name => "venue_city", :id => "venue_city", :size => "25"
+      %div &nbsp
+      %div
+        %label State
+        = text_field :name => "venue_state", :size => "5"
+      %br
+      %br
+      %input{:type => "submit", :value => "Search", :name => "submit"} 
+
+      %input{:type => "reset", :value => "Clear"}        
+    %div{:id => "tabs-3", :align => "left"}
+      %div &nbsp
+      %div
+        %label Source
+        = text_field :name => "source", :size => "25"
+      %div &nbsp 
+      %div
+        %label Lineage
+        = text_field :name => "lineage", :size => "25"
+      %div &nbsp        
+      %div
+        %label Taper
+        = text_field :name => "taper", :size => "25"
+      %div &nbsp             
+      %div
+        %label Etree ID
+        = text_field :name => "shnid", :size => "5"
+      %div &nbsp        
+      %div
+        %label Type
+        = select :name => "type", :collection => get_types
+      %br
+      %br
+      %input{:type => "submit", :value => "Search", :name => "submit"} 
+
+      %input{:type => "reset", :value => "Clear"}        
+    %div{:id => "tabs-4", :align => "left"}
+      %div &nbsp
+      %div
+        %label Year
+        = select:name => "year", :collection => get_years 
+      %div &nbsp       
+      %div
+        %label Range
+        %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+        to
+        %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}
+      %br
+      %br
+      %input{:type => "submit", :value => "Search", :name => "submit"} 
+
+      %input{:type => "reset", :value => "Clear"}
