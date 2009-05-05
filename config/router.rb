@@ -35,6 +35,6 @@ Merb::Router.prepare do
   match('/admin').to(:controller => 'recordings', :action => 'admin')
   match("/recordings/zip/:id/:type").to(:controller => "recordings", :action => "zip").name(:zip)
   match("/recordings/zip2/:id/:type").to(:controller => "recordings", :action => "zip2").name(:zip)
-  match('/').to(:controller => 'recordings', :action =>'index')
+  match('/').to(:controller => 'amberland', :action =>'index')
   default_routes
 end

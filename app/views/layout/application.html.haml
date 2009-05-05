@@ -12,13 +12,16 @@
     %div{:align => "center"}
       %img{:src => "/images/header.jpg"}
       %p
-        %a{:href => "/recordings"} Search Recordings 
-        | 
-        %a{:href => "/shows"} Search Shows 
-        | 
-        %a{:href => "/beta/index"} Beta Information
-        |
-        %a{:href => "/admin"} Admin
+        %h2
+          %a{:href => "/"} Home 
+          |
+          %a{:href => "/recordings"} Search Recordings 
+          | 
+          %a{:href => "/shows"} Search Shows 
+          | 
+          %a{:href => "/beta/index"} Beta Information
+          |
+          %a{:href => "/admin"} Admin
         %div{:class => "ui-widget"}
           - if !message[:notice].nil?
             %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
