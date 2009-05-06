@@ -31,7 +31,7 @@ $(function() {
 			  $(that).dialog("open");
 			});								
 		}
-		$.fn.recordings = function(show_id){
+		$.fn.recordings = function(show_id, source){
 			that = this; 
 			$.getJSON("/shows/recordings/" + show_id, function(json){
 				if (json.length == 0 ) {
@@ -39,7 +39,7 @@ $(function() {
 				} else {
 					html = "<p><b>Label : Taper : Source</b></p>";
 					$.each(json, function(i, item) {
-						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details'>" + item.label + " : ";
+						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows'>" + item.label + " : ";
 						html += item.taper + ": " + " : " + item.source + "</p>";	
 					});
 				}

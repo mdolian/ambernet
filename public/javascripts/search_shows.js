@@ -11,13 +11,12 @@ $(function() {
 	    $('#search_accordion_shows').load(this.href);
 	    return false;
 	  });
-	  $('#recording_details').livequery('click', function() {
+	  $('#recording_details_shows').livequery('click', function() {
 	    $('#search_accordion_shows').load(this.href);
 	    return false;
 	  });						
 	});		
 	function clearSearchButtons(responseText, statusText)  { 
-		  alert("blah");
 	    $('#search_buttons').empty();
 	}	
 });		
