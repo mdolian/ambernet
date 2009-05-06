@@ -1,92 +1,93 @@
 = js_include_tag :recording
-%div{:id => "recording_detail_accordion"}
-  %h3
-    %a{:href => "#"} Recording Details
-  %div   
-    %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
-      %tr
-        %td{:width => "20%"} 
-          %b Show ID
-        %td{:width => "80%"}= @recording.id
-      %tr  
-        %td 
-          %b Show Label
-        %td= @recording.label
-      %tr
-        %td 
-          %b Taper
-        %td= @recording.taper
-      %tr
-        %td 
-          %b Transferred By
-        %td= @recording.transfered_by
-      %tr
-        %td 
-          %b Source:
-        %td= @recording.source
-      %tr
-        %td 
-          %b Lineage:
-        %td= @recording.lineage
-      %tr
-        %td 
-          %b Notes
-        %td= @recording.notes
-  %h3
-    %a{:href => "#"} Download Options
-  %div
-    %table{:class => "tablesorter"}
-      %tr
-        %th{:width => "80%"} Track
-        %th{:width => "10%"} Lossless
-        %th{:width => "10%"} MP3 (V0)
-      %tr
-        %td 
-          %b Entire Show
-        %td 
-          %a{:href => "#"} zip
-        %td
-          %a{:href => "#"} zip
-      - for i in 1..@recording.discs.to_i do
-        - for j in "01"..@recording.tracks(i) do
-          - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
-          %tr
-            %td 
-              = trackName
-            %td
-              %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
-            %td
-              %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
-  %h3
-    %a{:href => "#"} Streaming Options
-  %div       
-    %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
-      %tr
-        %th Device
-        %th Link
-      %tr
-        %td 
-          %b iPhone via pls
-        %td
-          Type the following URL into any iPhone application that supports pls files:
-          %br
-          %br
-          %b="http://ambernet.hopto.org/s/#{@recording.id}.pls"
-      %tr
-        %td 
-          %b iPhone via m3u
-        %td
-          Type the following URL into any iPhone application that supports m3u files:
-          %br
-          %br
-          %b="http://ambernet.hopto.org/s/#{@recording.id}.m3u"
-      %tr
-        %td 
-          %b Computer via pls
-        %td
-          %a{:href => "/recordings/stream/#{@recording.id}.pls"} Click here to stream via pls     
-      %tr
-        %td 
-          %b Computer via m3u
-        %td
-          %a{:href => "/recordings/stream/#{@recording.id}.m3u"} Click here to stream via m3u             
+%div{:id => "main"}
+  %div{:id => "recording_detail_accordion"}
+    %h3
+      %a{:href => "#"} Recording Details
+    %div   
+      %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+        %tr
+          %td{:width => "20%"} 
+            %b Show ID
+          %td{:width => "80%"}= @recording.id
+        %tr  
+          %td 
+            %b Show Label
+          %td= @recording.label
+        %tr
+          %td 
+            %b Taper
+          %td= @recording.taper
+        %tr
+          %td 
+            %b Transferred By
+          %td= @recording.transfered_by
+        %tr
+          %td 
+            %b Source:
+          %td= @recording.source
+        %tr
+          %td 
+            %b Lineage:
+          %td= @recording.lineage
+        %tr
+          %td 
+            %b Notes
+          %td= @recording.notes
+    %h3
+      %a{:href => "#"} Download Options
+    %div
+      %table{:class => "tablesorter"}
+        %tr
+          %th{:width => "80%"} Track
+          %th{:width => "10%"} Lossless
+          %th{:width => "10%"} MP3 (V0)
+        %tr
+          %td 
+            %b Entire Show
+          %td 
+            %a{:href => "#"} zip
+          %td
+            %a{:href => "#"} zip
+        - for i in 1..@recording.discs.to_i do
+          - for j in "01"..@recording.tracks(i) do
+            - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
+            %tr
+              %td 
+                = trackName
+              %td
+                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
+              %td
+                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
+    %h3
+      %a{:href => "#"} Streaming Options
+    %div       
+      %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
+        %tr
+          %th Device
+          %th Link
+        %tr
+          %td 
+            %b iPhone via pls
+          %td
+            Type the following URL into any iPhone application that supports pls files:
+            %br
+            %br
+            %b="http://ambernet.hopto.org/s/#{@recording.id}.pls"
+        %tr
+          %td 
+            %b iPhone via m3u
+          %td
+            Type the following URL into any iPhone application that supports m3u files:
+            %br
+            %br
+            %b="http://ambernet.hopto.org/s/#{@recording.id}.m3u"
+        %tr
+          %td 
+            %b Computer via pls
+          %td
+            %a{:href => "/recordings/stream/#{@recording.id}.pls"} Click here to stream via pls     
+        %tr
+          %td 
+            %b Computer via m3u
+          %td
+            %a{:href => "/recordings/stream/#{@recording.id}.m3u"} Click here to stream via m3u             

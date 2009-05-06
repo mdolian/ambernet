@@ -1,15 +1,16 @@
-%script{:language => "javascript"}
-  $(function() { jQuery(document).ready(function($) { $("#beta_accordion").accordion({autoHeight: false, collapsible: true}); });});
-%div{:id => "beta_accordion"}
-  %h3
-    %a{:href => "#"} Beta Details
-  %div  
-    AmberNET is still in a beta period.  Recordings are being entered into the database but we would like bug feedback.  Feel free to browse and search the recordings that will be available.  All of the setlist data is pulled from  Perpetual Archives
-  %h3 
-    %a{:href => "#"} Contact Us
-  %div
-    %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=r_xzcu3qEY6NnAg0lCYeNqQ", :width => "500", :height => "562", :frameborder => "0", :marginheight => "0", :marginwidth => "0"} Loading...
-  %h3 
-    %a{:href => "#"} Bug Report
-  %div
-    %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=rT7eLSSevVcHOkeVX9-hYFw", :width => "500", :height => "610", :frameborder => "0", :marginheight => "0",  :marginwidth => "0"} Loading...  
+%div{:id => "main_beta"}
+  %script{:language => "javascript"}
+    $(function() { jQuery(document).ready(function($) { $("#beta_accordion").accordion({autoHeight: false, collapsible: true}); });});
+  %div{:id => "beta_accordion"}
+    %h3
+      %a{:href => "#"} Beta Details
+    %div  
+      AmberNET is still in a beta period.  Recordings are being entered into the database but we would like bug feedback.  Feel free to browse and search the recordings that will be available.  All of the setlist data is pulled from  Perpetual Archives
+    %h3 
+      %a{:href => "#"} Contact Us
+    %div
+      %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=r_xzcu3qEY6NnAg0lCYeNqQ", :width => "500", :height => "562", :frameborder => "0", :marginheight => "0", :marginwidth => "0"} Loading...
+    %h3 
+      %a{:href => "#"} Bug Report
+    %div
+      %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=rT7eLSSevVcHOkeVX9-hYFw", :width => "500", :height => "610", :frameborder => "0", :marginheight => "0",  :marginwidth => "0"} Loading...  
