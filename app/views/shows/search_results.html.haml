@@ -23,6 +23,5 @@
               %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
             %td
               %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
-              %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}
-  %div{:id => "search_buttons"}             
+              %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}        
   = paginate @current_page, @page_count, :outer_window => 5, :url => "/shows/search_results"

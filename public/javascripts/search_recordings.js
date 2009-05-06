@@ -17,6 +17,6 @@ $(function() {
 	  });				
 	});	
 	function clearSearchButtons(responseText, statusText)  { 
-	    $('#search_buttons').empty();
+	    $('#search_buttons_recordings').empty();
 	}	
 });

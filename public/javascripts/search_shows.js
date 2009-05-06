@@ -13,12 +13,12 @@ $(function() {
 	  });
 	  $('#recording_details_shows').livequery('click', function() {
 	    $('#search_accordion_shows').load(this.href);
-			$("div[id*='dialog_rec']").close();
-			$("div[id*='dialog_setlist']").close();
+			$("div[id*='dialog_rec']").dialog('close');
+			$("div[id*='dialog_setlist']").dialog('close');
 	    return false;
 	  });						
 	});		
 	function clearSearchButtons(responseText, statusText)  { 
-	    $('#search_buttons').empty();
+	    $('#search_buttons_shows').empty();
 	}	
 });		
