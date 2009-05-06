@@ -129,6 +129,11 @@ input:hover, input:focus {
 	width: 75%;
 }
 
+#index_accordion, #beta_accordion {
+	text-align: left;
+	width: 100%;
+}
+
 body{
 	margin: 0;
 	padding: 0;

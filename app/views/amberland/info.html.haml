@@ -1,30 +1,49 @@
-%script{:language => "javascript"}
-  $(function() { jQuery(document).ready(function($) { $("#index_accordion").accordion({autoHeight: false, collapsible: true}); });});
+= js_include_tag :accordion
 %div{:id => "main"}
   %div{:id => "index_accordion"}
     %h3
       %a{:href => "#"} Welcome!
     %div
-      %p Welcome to AmberNET!  There are number of ways to download recordings as well as streaming options for devices like iPhones.  You can visit the tabs above for more information on each option.  
-      %p Please note that the AmberNET database contains a list of shows and recordings.  There might be more than one recording available for some shows while other shows may have no recordings.
+      %p 
+        Welcome to AmberNET!  There are number of ways to download recordings as well as 
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 2 ))"} streaming options 
+        for devices like iPhones.  You can visit the tabs above for more information on each option.  
+      %p 
+        Please note that the AmberNET database contains a list of 
+        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
+        and 
+        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings.  
+        There might be more than one recording available for some shows while other shows may have no recordings.
       %p 
         All setlist data is pulled directly from  
         %a{:href => "http://perpetualarchives.mongoosecommunication.com"} Perpetual Archives. 
-        We would like to thank them for tracking and making this data accessible.
+        We would like to thank Rick Hadley and Bridger Deville for tracking and making this data accessible.
     %h3
       %a{:href => "#"} Web
     %div      
-      %p Using a web browser is the easiest way to access AmberNET.  The first step is to search for recordings in the database.  We have made it possible to search by date range, venue name, city, state, source, taper and more!  
-      %p Once you find a show that interests you, click on the label in the search results page to view the recording details.  
+      %p 
+        Using a web browser is the easiest way to access AmberNET.  The first step is to search for 
+        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings 
+        or 
+        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
+        in the database.  We have made it possible to search by date range, venue name, city, state, source, taper and more!  
+      %p Once you find a recording that interests you, click on the label in the search results page to view the recording details.  
       %p In the download tab you will have the option to download the entire show zipped up or individual tracks.  Most shows are available in shn or flac and mp3 (V0).  
     %h3
       %a{:href => "#"} Stream
     %div  
-      %p All shows on AmberNET can be streamed using pls or m3u playlist files.  If you wish to stream shows using a laptop make sure you have an application associated with whichever file type you choose.  
       %p 
-        Streaming on an iPhone or iPod Touch requires that you have an application do do so.  Before Amberland, you should go ahead check out the Apps tab above and select an application for streaming.
+        All shows on AmberNET can be streamed using pls or m3u playlist files.  If you wish to stream shows using a laptop make sure you have an 
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} application
+        associated with whichever file type you choose.  
+      %p 
+        Streaming on an iPhone or iPod Touch requires that you have an application 
+        do do so.  Before Amberland, you should go ahead check out the 
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps tab 
+        above and select an application for streaming.
       %p 
         If you prefer to skip the web interface, you can queue up every recording for a particular date by hitting the following URL in your favorite streaming application:
+        %br
         %br  
         http://ambernet.net/s/YYYY-MM-DD.pls
         %br
@@ -33,13 +52,26 @@
       %a{:href => "#"} iTunes
     %div  
       %p Just like prior years, we will be running an iTunes server.  Load up iTunes and connect to AmberNET to sync up some recordings to your iPod.
-      %p For faster access, grab OurTunes from the Application tab above.
+      %p 
+        For faster access, grab 
+        %a{:href => "/downloads/OT44.jar"} OurTunes
+        from the 
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps tab 
+        above.
       %p The name of the server will be 'AmberNET'  
     %h3
       %a{:href => "#"} FTP
     %div
-      %p For more advanced users, we setup an FTP server.  Just fire up your favorite FTP software and queue up as many recordings as you want.  
-      %p If you don't have FTP software installed just visit the Apps tab above to grab some freeware.  
+      %p 
+        For more advanced users, we se tup an FTP server.  Just fire up your favorite
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} FTP application
+        and queue up as many 
+        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings
+        as you want.  
+      %p 
+        If you don't have FTP software installed just visit the 
+        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps tab
+        above to grab some freeware.  
       %p Just login as anonymous with your email address as the password to ftp://ambernet.net:21
     %h3
       %a{:href => "#"} Apps

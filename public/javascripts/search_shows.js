@@ -1,5 +1,17 @@
 $(function() {
   jQuery(document).ready(function($) {
+		$("#venue_name").autocomplete("/venues/list");
+		$("#venue_city").autocomplete("/venues/city_list");	
+		$('#start_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true	
+		});	
+		$('#end_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true
+		});	
 		$('#search_form_shows').ajaxForm({
 		   beforeSubmit: displayLoadingImage,			
 			 success: clearSearchButtons,
@@ -12,7 +24,6 @@ $(function() {
 	  $('div.paginated a').livequery('click', function() {
       displayLoadingImage();   
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_shows').html(msg);
@@ -25,7 +36,6 @@ $(function() {
 			$("div[id*='dialog_setlist']").dialog('close');	
 			displayLoadingImage();	
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_shows').html(msg);
