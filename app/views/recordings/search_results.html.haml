@@ -25,5 +25,6 @@
             %td= recording.show.venue.venue_state
             %td 
               %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
-              %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}          
-  = paginate @current_page, @page_count, :outer_window => 5            
+              %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}  
+  %div{:id => "search_buttons"}                       
+  = paginate @current_page, @page_count, :outer_window => 5, :url => "/recordings/search_results"            

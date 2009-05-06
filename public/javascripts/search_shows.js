@@ -17,6 +17,7 @@ $(function() {
 	  });						
 	});		
 	function clearSearchButtons(responseText, statusText)  { 
+		  alert("blah");
 	    $('#search_buttons').empty();
 	}	
 });		
