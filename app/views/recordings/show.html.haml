@@ -1,13 +1,8 @@
 = js_include_tag :recording
-%div{:id => "tabs"}
-  %ul
-    %li
-      %a{:href => "#tabs-1"} Recording Details
-    %li 
-      %a{:href => "#tabs-2"} Download Options
-    %li 
-      %a{:href => "#tabs-3"} Streaming Options    
-  %div{:id => "tabs-1"}
+%div{:id => "recording_detail_accordion"}
+  %h3
+    %a{:href => "#"} Recording Details
+  %div   
     %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
       %tr
         %td{:width => "20%"} 
@@ -37,8 +32,10 @@
         %td 
           %b Notes
         %td= @recording.notes
-  %div{:id => "tabs-2"}
-    %table{:id => "recordingTrackTable", :class => "tablesorter"}
+  %h3
+    %a{:href => "#"} Download Options
+  %div
+    %table{:class => "tablesorter"}
       %tr
         %th{:width => "80%"} Track
         %th{:width => "10%"} Lossless
@@ -60,7 +57,9 @@
               %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
             %td
               %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
-  %div{:id => "tabs-3"}          
+  %h3
+    %a{:href => "#"} Streaming Options
+  %div       
     %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
       %tr
         %th Device

@@ -1,5 +1,8 @@
 $(function() {
   jQuery(document).ready(function($) {
-    $("#tabs").tabs();
+    $("#recording_detail_accordion").accordion({
+			autoHeight: false, 
+			collapsible: true
+		});
   });
 });

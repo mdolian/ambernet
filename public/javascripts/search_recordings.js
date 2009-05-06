@@ -10,7 +10,11 @@ $(function() {
 	  $('div.paginated a').livequery('click', function() {
 	    $('#search_accordion_recordings').load(this.href);
 	    return false;
-	  });			
+	  });
+	  $('#recording_details').livequery('click', function() {
+	    $('#search_accordion_recordings').load(this.href);
+	    return false;
+	  });				
 	});	
 	function clearSearchButtons(responseText, statusText)  { 
 	    $('#search_buttons').empty();
