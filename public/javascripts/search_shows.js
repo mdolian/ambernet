@@ -13,6 +13,8 @@ $(function() {
 	  });
 	  $('#recording_details_shows').livequery('click', function() {
 	    $('#search_accordion_shows').load(this.href);
+			$("div[id*='dialog_rec']").dialog.close();
+			$("div[id*='dialog_setlist']").dialog.close();
 	    return false;
 	  });						
 	});		
