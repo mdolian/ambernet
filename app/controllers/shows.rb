@@ -8,8 +8,9 @@ class Shows < Application
   params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
                               :venue_name, :venue_city, :venue_state, :song_name, :method]
 
+
   def index
-    render
+    render :layout => false
   end
   
   def list
@@ -62,12 +63,12 @@ class Shows < Application
     
     @page_count, @shows = Show.paginated(
       :page => @current_page,
-      :per_page => 100,
+      :per_page => 50,
       :conditions => conditions,
       :order => [:date_played.asc])             if error_message == ''
     session[:conditions] = conditions           if error_message == ''
     message[:error] = error_message             if error_message != ''
-    render
+    render :layout => false
 
   end   
  

@@ -47,5 +47,5 @@ $(function() {
 			  $(that).dialog("open");
 			});							
 		}
-  });		
+  });	
 });		

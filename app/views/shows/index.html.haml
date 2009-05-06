@@ -1,55 +1,58 @@
+= js_include_tag :search_shows
 = js_include_tag :search
-%h2 Search Shows
-%form{:action => "/shows/search_results", :method => "post", :autocomplete => "off"}
-  %div{:id => "search_tabs"}
-    %ul
-      %li
-        %a{:href => "#tabs-1"} General
-      %li 
-        %a{:href => "#tabs-2"} Location   
-      %li 
-        %a{:href => "#tabs-3"} Date 
-    %div{:id => "tabs-1", :align => "left"}
-      %div
-        %div &nbsp      
-        %label Song
-        = text_field :name => "song_name", :size => "25"
-      %br
-      %br
-      %input{:type => "submit", :value => "Search", :name => "submit"} 
-
-      %input{:type => "reset", :value => "Clear"}        
-    %div{:id => "tabs-2", :align => "left"}
-      %div &nbsp
-      %div
-        %label Venue
-        = text_field :name => "venue_name", :id => "venue_name", :size => "25"
-      %div &nbsp
-      %div
-        %label City
-        = text_field :name => "venue_city", :size => "25"
-      %div &nbsp
-      %div
-        %label State
-        = text_field :name => "venue_state", :size => "5"
-      %br
-      %br
-      %input{:type => "submit", :value => "Search", :name => "submit"} 
-
-      %input{:type => "reset", :value => "Clear"}        
-    %div{:id => "tabs-3", :align => "left"}
-      %div &nbsp
-      %div
-        %label Year
-        = select:name => "year", :collection => get_years
-        %div &nbsp       
-      %div
-        %label Range
-        %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
-        to
-        %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}            
-      %br
-      %br
-      %input{:type => "submit", :value => "Search", :name => "submit"} 
-
-      %input{:type => "reset", :value => "Clear"}
+%form{:action => "/shows/search_results", :method => "post", :autocomplete => "off", :id => "search_form_shows"}
+  %div{:id => "search_accordion_shows"}
+    %h3
+      %a{:href => "#"} General
+    %div
+      %table{:border => "0"}
+        %tr
+          %td        
+            %label Song
+          %td
+            = text_field :name => "song_name", :size => "25"
+    %h3
+      %a{:href => "#"} Location
+    %div
+      %table{:border => "0"}
+        %tr
+          %td
+            %label Venue
+          %td
+            = text_field :name => "venue_name", :id => "venue_name", :size => "25"
+        %tr
+          %td
+            %label City
+          %td
+            = text_field :name => "venue_city", :size => "25"
+        %tr
+          %td
+            %label State
+          %td
+            = text_field :name => "venue_state", :size => "5"
+    %h3
+      %a{:href => "#"} Date
+    %div
+      %table{:border => "0"}
+        %tr
+          %td
+            %label Year
+          %td
+            = select:name => "year", :collection => get_years
+        %tr
+          %td
+            %label Range
+          %td
+            %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+            to
+            %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}            
+  %div{:id => "search_buttons"} 
+    %table{:width => "50%", :colspacing => "4"}    
+      %tr
+        %td{:colspan => "2"}  
+          &nbsp      
+      %tr
+        %td{:align => "right"}
+          %input{:type => "submit", :value => "Search", :name => "submit"} 
+        %td{:align => "left"}
+          %input{:type => "reset", :value => "Clear"}

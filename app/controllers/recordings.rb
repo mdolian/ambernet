@@ -10,6 +10,7 @@ class Recordings < Application
                               :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
 
 
+  # Admin does not use tab ajax browsing so the layout is required
   def admin
     @current_page = (params[:page] || 1).to_i
     @page_count, @recordings = Recording.paginated(
@@ -87,8 +88,10 @@ class Recordings < Application
     render :admin
   end  
 
+  # The user views require  :layout => false because they are called by the JQuery UI Tabs by Ajax
+
   def index
-    render
+    render :layout => false
   end
  
   def stream
@@ -101,7 +104,7 @@ class Recordings < Application
           stream << format == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
         end
       else
-        render "Sorry, no show exists for that date"
+        render "Sorry, no show exists for that date", :layout => false
       end
     else
       stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
@@ -117,7 +120,7 @@ class Recordings < Application
   def show
     @recording = Recording.get(params["id"])
     # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
-    render
+    render :layout => false
   end
     
   def search_results
@@ -155,14 +158,13 @@ class Recordings < Application
     
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
-      :per_page => 100,
+      :per_page => 50,
       :conditions => conditions)                               if error_message == ''  
     #notice_message = "No recordings were found"                if @recordings.count == 0  
     session[:conditions] = conditions                          if error_message == ''  
     message[:error] = error_message                            if error_message != ''
     message[:notice] = notice_message                          if notice_message != ''
-    render
-
+    render :layout => false
   end
   
   def zip
@@ -188,19 +190,6 @@ class Recordings < Application
     send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{type}.zip"
     # The temp file will be deleted some time...
     t.close    
-  end
-  
-  def zip2
-    provides :zip
-    @recording = Recording.get(params["id"])   
-    type = @recording.download_extension(params["type"])    
-    dir = "/ambernet/#{@recording.label}/"
-    Zippy.create 'blah.zip' do |zip|
-      Dir['#{dir}/*.#{type}'].each do |filename|
-        zip[filename] = File.open(filename)
-      end
-      render zip.data 
-    end   
   end
 
 end

@@ -126,7 +126,7 @@ input:hover, input:focus {
 }
 
 #index_tabs {
-	width: 600px;
+	width: 75%;
 }
 
 body{
@@ -136,5 +136,5 @@ body{
 	height: 100%; 
 	max-height: 100%; 
 	font-size: 13;
-	background: #58649e;
+	background: #cae3ff;
 }

@@ -1,14 +1,14 @@
 class Beta < Application
 
   def index
-    render
+    render :layout => false
   end
   
   def contact
-    render
+    render :layout => false
   end
   
   def bug
-    render
+    render :layout => false
   end
 end
