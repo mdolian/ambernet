@@ -33,7 +33,8 @@ class Shows < Application
   end  
 
   def recordings
-    render Recording.all(:conditions => {:show_id => params["id"]}).to_json, :layout => false
+    @recordings = Recording.all(:conditions => {:show_id => params["id"]})
+    render :layout => false
   end
     
   def search_results

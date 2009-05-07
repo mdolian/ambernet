@@ -9,6 +9,5 @@ $(function() {
 			}			
 		});
 		$("table").tablesorter({widthFixed: true, widgets: ['zebra']});	
-		$("a[id='image_anchor']").fancybox();
   });		
 });

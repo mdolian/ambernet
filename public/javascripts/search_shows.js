@@ -20,7 +20,7 @@ $(function() {
 		$('#paginate_form_shows').ajaxForm({
 		   beforeSubmit: displayLoadingImage,			
 		 	 target: '#search_accordion_shows'
-		});
+		});		
 	  $('div.paginated a').livequery('click', function() {
       displayLoadingImage();   
 		  $.ajax({
@@ -29,18 +29,6 @@ $(function() {
 				  $('#search_accordion_shows').html(msg);
 			  }	
 		  })
-	    return false;
-	  });
-	  $("div[id*='recording_details_shows']").livequery('click', function() {
-			$("div[id*='dialog_rec']").dialog('close');
-			$("div[id*='dialog_setlist']").dialog('close');	
-			displayLoadingImage();	
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#search_accordion_shows').html(msg);
-			  }	
-		  })	   
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {

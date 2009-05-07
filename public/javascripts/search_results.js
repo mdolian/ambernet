@@ -1,7 +1,29 @@
 $(function() {
   jQuery(document).ready(function($) {
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
-	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });	
+	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });
+	  $("a[id*='recording_details_shows']").livequery('click', function() {
+			$("div[id*='dialog_rec']").dialog('close');
+			$("div[id*='dialog_setlist']").dialog('close');	
+			displayLoadingImage();	
+		  $.ajax({
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#search_accordion_shows').html(msg);
+			  }	
+		  })	   
+	    return false;
+	  });
+	  $("a[id*='recording_details_rec']").livequery('click', function() {
+			displayLoadingImage();
+		  $.ajax({
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#search_accordion_recordings').html(msg);
+			  }	
+		  })		
+	    return false;
+	  });		
 		$.fn.setlist = function(show_id){
 			that = this
 			var set = new Array();
@@ -29,20 +51,24 @@ $(function() {
 			  $(that).dialog("open");
 			});								
 		}
-		$.fn.recordings = function(show_id, source){
+		$.fn.recordings = function(show_id){
 			that = this; 
-			$.getJSON("/shows/recordings/" + show_id, function(json){
-				if (json.length == 0 ) {
-					html = "<p>No recordings exist for this show.</p>"
-				} else {
-					html = "<p><b>Label : Taper : Source</b></p>";
-					$.each(json, function(i, item) {
-						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows_" + show_id + "'>" + item.label + "</p>";	
-					});
-				}
-			  $(that).html(html);
-			  $(that).dialog("open");
-			});							
+		  $.ajax({
+			  url:  "/shows/recordings/" + show_id,
+			  success: function(msg) {
+				  $(that).html(msg);
+				  $(that).dialog("open");
+			  }	
+		  })						
 		}
+		$.fn.details = function(show_id){
+		  $("div[id*='dialog_rec']").dialog('close');			
+		  $.ajax({
+			  url:  "/recordings/show/" + show_id,
+			  success: function(msg) {
+				  $('#search_accordion_shows').html(msg);
+			  }	
+		  })						
+		}		
   });	
 });		
