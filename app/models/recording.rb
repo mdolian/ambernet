@@ -47,7 +47,7 @@ class Recording
   def tracks(disc_num)
     tracks = tracking_info[2..-1].chop!.split(',')[disc_num-1].to_i
     puts tracks.to_s
-    if tracks.to_i < 9
+    if tracks.to_i < 10
       "0" + tracks.to_s
     else
       tracks
