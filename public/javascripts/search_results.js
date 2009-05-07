@@ -37,7 +37,7 @@ $(function() {
 				} else {
 					html = "<p><b>Label : Taper : Source</b></p>";
 					$.each(json, function(i, item) {
-						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows'>" + item.label + "</p>";	
+						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows_" + show_id + "'>" + item.label + "</p>";	
 					});
 				}
 			  $(that).html(html);

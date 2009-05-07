@@ -21,7 +21,7 @@
             %td= recording.show.date_played
             %td= recording.type
             %td
-              %a{:href => "/recordings/show/#{recording.id}", :id => "recording_details"}
+              %a{:href => "/recordings/show/#{recording.id}", :id => "recording_details#{recording.id}"}
                 =recording.label
             %td= recording.show.venue.venue_name
             %td= recording.show.venue.venue_city

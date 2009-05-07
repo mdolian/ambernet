@@ -31,7 +31,7 @@ $(function() {
 		  })
 	    return false;
 	  });
-	  $('#recording_details_shows').livequery('click', function() {
+	  $("div[id*='recording_details_shows']").livequery('click', function() {
 			$("div[id*='dialog_rec']").dialog('close');
 			$("div[id*='dialog_setlist']").dialog('close');	
 			displayLoadingImage();	
@@ -46,7 +46,6 @@ $(function() {
 	  $('#back').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_shows').html(msg);
