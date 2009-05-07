@@ -31,7 +31,7 @@ $(function() {
 		  })
 	    return false;
 	  });
-	  $("div[id*='#recording_details']").livequery('click', function() {
+	  $("div[id*='#recording_details_rec']").livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
 			  url:  this.href,
