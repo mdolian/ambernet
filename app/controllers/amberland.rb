@@ -1,7 +1,7 @@
 class Amberland < Application
 
   def index
-    render :layout => "user"
+    render 
   end
   
   def info

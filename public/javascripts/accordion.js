@@ -4,6 +4,5 @@ $(function() {
 			autoHeight: false, 
 			collapsible: true
 		});
-		("a[id='image_anchor']").fancybox();
   });				
 });		

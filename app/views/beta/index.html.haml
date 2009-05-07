@@ -1,7 +1,5 @@
-= js_include_tag :accordion
-%div{:id => "main_beta"}
-  %script{:language => "javascript"}
-    $(function() { jQuery(document).ready(function($) { $("#beta_accordion").accordion({autoHeight: false, collapsible: true}); });});
+%div{:id => "main_beta"}  
+  = js_include_tag :accordion
   %div{:id => "beta_accordion"}
     %h3
       %a{:href => "#"} Beta Details

@@ -1,6 +1,6 @@
-= js_include_tag :search_recordings
-= js_include_tag :accordion
 %div{:id => "main_recordings"}
+  = js_include_tag :search_recordings
+  = js_include_tag :accordion
   %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off", :id => "search_form_recordings"}
     %div{:id => "search_accordion_recordings"}
       %h3
