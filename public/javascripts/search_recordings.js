@@ -24,7 +24,6 @@ $(function() {
 	  $('div.paginated a').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_recordings').html(msg);
@@ -35,7 +34,6 @@ $(function() {
 	  $('#recording_details').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_recordings').html(msg);
@@ -46,7 +44,6 @@ $(function() {
 	  $('#back').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
-			  type: "POST",
 			  url:  this.href,
 			  success: function(msg) {
 				  $('#search_accordion_recordings').html(msg);
