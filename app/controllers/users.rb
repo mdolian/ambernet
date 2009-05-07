@@ -5,13 +5,13 @@ class Users < Application
 
   def index
     @users = User.all
-    display @users, :layout => "admin"
+    display @users
   end
 
   def show(id)
     @user = User.get(id)
     raise NotFound unless @user
-    display @user, :layout => "admin"
+    display @user
   end
 
 #  def new
@@ -24,17 +24,17 @@ class Users < Application
     only_provides :html
     @user = User.get(id)
     raise NotFound unless @user
-    display @user, :layout => "admin"
+    display @user
   end
 
   def new
-    render :layout => "admin"
+    render
   end
   
   def create
     @user = User.new(:login => params["login"], :password => params["password"])
     @user.save!
-    render "DONE!",  :layout => "admin"
+    render "DONE!"
   end
 
 #  def create(user)
@@ -53,7 +53,7 @@ class Users < Application
     if @user.update_attributes(user)
        redirect resource(@user)
     else
-      display @user, :edit,  :layout => "admin"
+      display @user, :edit
     end
   end
 

@@ -5,11 +5,11 @@ class Venues < Application
   params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
  
   def admin
-    render :layout => "admin"
+    render 
   end
   
   def new
-    render :layout => "admin"
+    render 
   end
   
   def create
@@ -19,7 +19,7 @@ class Venues < Application
       :venue_state => params["venue_state"]
     )
     @venue.save
-    render :admin, :layout => "admin"
+    render :admin
   end
  
   def index

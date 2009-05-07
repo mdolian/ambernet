@@ -34,13 +34,5 @@
               %p
                 %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
                 = message[:error]      
-        %div{:id => "index_tabs"}
-          %ul
-            %li
-              %a{:href => "/amberland/info"} Home
-            %li 
-              %a{:href => "/recordings"} Search Recordings     
-            %li 
-              %a{:href => "/shows"} Search Shows
-            %li 
-              %a{:href => "/beta"} Beta Information             
+        %div
+          =catch_content :for_layout

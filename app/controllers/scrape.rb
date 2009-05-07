@@ -32,7 +32,7 @@ class Scrape < Application
       parse_and_insert_setlist(show_id, doc)
       message[:notice] = "That setlist has been ripped bitch!" 
     end
-    render :layout => "admin"
+    render 
   end
   
   def parse_and_insert_show(show_id, doc)
