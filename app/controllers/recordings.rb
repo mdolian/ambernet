@@ -161,7 +161,9 @@ class Recordings < Application
       :per_page => 50,
       :conditions => conditions)                               if error_message == ''  
     #notice_message = "No recordings were found"                if @recordings.count == 0  
-    session[:conditions] = conditions                          if error_message == ''  
+    session[:conditions] = conditions                          if error_message == ''
+    session[:searchBranch] = "recordings"                      if error_message == ''  
+    session[:current_page] = @current_page                     if error_message == ''    
     message[:error] = error_message                            if error_message != ''
     message[:notice] = notice_message                          if notice_message != ''
     render :layout => false

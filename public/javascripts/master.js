@@ -8,5 +8,6 @@ $(function() {
 				},
 			}			
 		});
+		$("table").tablesorter({widthFixed: true, widgets: ['zebra']});	
   });		
 });

@@ -2,8 +2,6 @@ $(function() {
   jQuery(document).ready(function($) {
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
 	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });	
-		$("table") 
-		  .tablesorter({widthFixed: true, widgets: ['zebra']});		
 		$.fn.setlist = function(show_id){
 			that = this
 			var set = new Array();
@@ -39,8 +37,7 @@ $(function() {
 				} else {
 					html = "<p><b>Label : Taper : Source</b></p>";
 					$.each(json, function(i, item) {
-						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows'>" + item.label + " : ";
-						html += item.taper + ": " + " : " + item.source + "</p>";	
+						html += "<p><a href='/recordings/show/" + item.id + "' id='recording_details_shows'>" + item.label + "</p>";	
 					});
 				}
 			  $(that).html(html);

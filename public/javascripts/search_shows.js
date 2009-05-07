@@ -42,6 +42,17 @@ $(function() {
 			  }	
 		  })	   
 	    return false;
+	  });	
+	  $('#back').livequery('click', function() {
+			displayLoadingImage();
+		  $.ajax({
+			  type: "POST",
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#search_accordion_shows').html(msg);
+			  }	
+		  })		
+	    return false;
 	  });						
 	});		
 	function clearSearchButtons(responseText, statusText)  { 

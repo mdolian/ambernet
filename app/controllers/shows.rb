@@ -39,7 +39,7 @@ class Shows < Application
   def search_results
     @current_page = (params[:page] || 1).to_i
     conditions = {}
-    error_message = ""
+    error_message, notice_message = "",""
     
     if params["submit"] != nil
       conditions.merge!({Show.setlists.song.song_name.like => "%" << params["song_name"] << "%"})     if params["song_name"] != ''
@@ -67,7 +67,10 @@ class Shows < Application
       :conditions => conditions,
       :order => [:date_played.asc])             if error_message == ''
     session[:conditions] = conditions           if error_message == ''
+    session[:searchBranch] = "shows"            if error_message == '' 
+    session[:current_page] = @current_page      if error_message == ''             
     message[:error] = error_message             if error_message != ''
+    message[:notice] = notice_message           if notice_message != ''    
     render :layout => false
 
   end   

@@ -16,7 +16,7 @@ $(function() {
 		   beforeSubmit: displayLoadingImage,
 			 success: clearSearchButtons,
 		 	 target: '#search_accordion_recordings'
-		});
+		});	
 		$('#paginate_form_recordings').ajaxForm({
 		   beforeSubmit: displayLoadingImage,			
 		 	 target: '#search_accordion_recordings'
@@ -33,6 +33,17 @@ $(function() {
 	    return false;
 	  });
 	  $('#recording_details').livequery('click', function() {
+			displayLoadingImage();
+		  $.ajax({
+			  type: "POST",
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#search_accordion_recordings').html(msg);
+			  }	
+		  })		
+	    return false;
+	  });	
+	  $('#back').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
 			  type: "POST",

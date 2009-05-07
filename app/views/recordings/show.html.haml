@@ -1,11 +1,14 @@
 = js_include_tag :recording
 = js_include_tag :accordion
+%a{:href => "/#{session['searchBranch']}/search_results?page=#{session['current_page']}", :id => "back"} Back to Search Results
+%br
+%br
 %div{:id => "main"}
   %div{:id => "recording_detail_accordion"}
     %h3
       %a{:href => "#"} Recording Details
     %div   
-      %table{:width => "65%", :align => "center", :id => "recordingTable", :class => "tablesorter"}
+      %table{:width => "65%", :align => "center", :class => "tablesorter"}
         %tr
           %td{:width => "20%"} 
             %b Show ID
