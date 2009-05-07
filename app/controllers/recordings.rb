@@ -16,7 +16,7 @@ class Recordings < Application
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100)    
-    render
+    render :layout => "admin"
   end
   
   def delete
@@ -25,7 +25,7 @@ class Recordings < Application
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100)    
-    render :admin
+    render :admin, :layout => "admin"
   end
     
   def edit
@@ -50,15 +50,15 @@ class Recordings < Application
       @page_count, @recordings = Recording.paginated(
         :page => @current_page,
         :per_page => 100)                                                                                             
-      render :admin
+      render :admin, :layout => "admin"
     else  
        @recording = Recording.get(params["id"])
-       render
+       render :layout => "admin"
     end
   end
   
   def new
-    render
+    render :layout => "admin"
   end
 
   def create
@@ -85,7 +85,7 @@ class Recordings < Application
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100)    
-    render :admin
+    render :admin, :layout => "admin"
   end  
 
   # The user views require  :layout => false because they are called by the JQuery UI Tabs by Ajax

@@ -1,7 +1,7 @@
 class Amberland < Application
 
   def index
-    render
+    render :layout => false
   end
   
   def info

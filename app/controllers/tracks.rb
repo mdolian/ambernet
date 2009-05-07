@@ -8,11 +8,11 @@ class Tracks < Application
     recording = Recording.get(params["id"])
     @setlists = Setlist.all(:show_id => recording.show_id)
     @tracks = RecordingTrack.all(:recording_id => params["id"])
-    render
+    render,  :layout => "admin"
   end
   
   def update
-    render "NOT DONE YET"
+    render "NOT DONE YET", :layout => "admin"
   end
   
   def add
@@ -28,6 +28,6 @@ class Tracks < Application
       )
       track_setlist.save
     end
-    render :edit
+    render :edit, :layout => "admin"
   end
 end
