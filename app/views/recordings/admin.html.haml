@@ -1,6 +1,6 @@
 = js_include_tag :admin
 %h2 Admin Recordings
-= paginate @current_page, @page_count, :outer_window => 5
+%a{:href => "/recordings/admin"} Back
 %table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
@@ -11,8 +11,12 @@
       %th{:width => "20%", :align => "left"} Venue Name
     %tbody  
       %tr
-        %td{:colspan => "8"}
-          %a{:href => "/recordings/new"} Add Recording
+        %td
+          %a{:href => "/recordings/new"} Add
+        %td
+        %td
+        %td
+        %td
       - @recordings.each do |recording|
         %tr
           %td
@@ -22,4 +26,3 @@
           %td= recording.show.date_played
           %td= recording.label
           %td= recording.show.venue.venue_name
-= paginate @current_page, @page_count, :outer_window => 5

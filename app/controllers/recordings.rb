@@ -12,20 +12,20 @@ class Recordings < Application
 
   # Admin does not use tab ajax browsing so the layout is required
   def admin
-    @current_page = (params[:page] || 1).to_i
-    @page_count, @recordings = Recording.paginated(
-      :page => @current_page,
-      :per_page => 100)    
-    render 
+    if params["year"] != nil
+      conditions = {:label.not => nil}
+      conditions.merge!({Recording.show.date_played.gte => params["year"], 
+                         Recording.show.date_played.lt => (params["year"].to_i+1).to_s})   if params["year"] != "All"
+      @recordings = Recording.all(:conditions => conditions)    
+        render :admin
+    else
+      render :year_list
+    end
   end
   
   def delete
     Recording.get(params["id"]).destroy
-    @current_page = (params[:page] || 1).to_i
-    @page_count, @recordings = Recording.paginated(
-      :page => @current_page,
-      :per_page => 100)    
-    render :admin
+    redirect "/recordings/admin"
   end
     
   def edit
@@ -45,12 +45,8 @@ class Recordings < Application
                                     :type => params["type"],
                                     :filetype => params["filetype"],
                                     :shnid => params["shnid"],
-                                    :tracking_info => tracking_info)  
-      @current_page = (params[:page] || 1).to_i
-      @page_count, @recordings = Recording.paginated(
-        :page => @current_page,
-        :per_page => 100)                                                                                             
-      render :admin
+                                    :tracking_info => tracking_info)                                                                                             
+      redirect "/recordings/admin"
     else  
        @recording = Recording.get(params["id"])
        render 
@@ -85,7 +81,7 @@ class Recordings < Application
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100)    
-    render :admin
+    redirect "/recordings/admin"
   end  
 
   # The user views require  :layout => false because they are called by the JQuery UI Tabs by Ajax

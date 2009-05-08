@@ -1,0 +1,24 @@
+= js_include_tag :admin
+%form{:action => "/recordings/admin", :method => "post", :id => "years_form"}
+  %table{:border => "0", :width => "50%"}   
+    %tr
+      %td &nbsp;
+    %tr
+      %td{:align => "center"}
+        %h2{:align => "center"} Browse Recordings        
+    %tr
+      %td &nbsp;    
+    %tr
+      %td{:align => "center"}
+        = select :name => "year", :collection => get_years, :id => "year"
+    %tr
+      %td &nbsp;        
+    %tr
+      %td{:align => "center"}
+        %input{:type => "submit", :value => "Search", :name => "submit"} 
+        %input{:type => "reset", :value => "Clear"}
+    %tr
+      %td &nbsp;
+    %tr
+      %td{:align => "center"}
+        %a{:href => "/recordings/new"} Add Recording        

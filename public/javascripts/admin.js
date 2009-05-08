@@ -34,6 +34,9 @@ $(function() {
 			for (var i=1; i<=$("#discs").selectedValues(); i++) {
 				$("#tracks").append("<h5>Disc " + i + " Track Count:&nbsp;&nbsp;&nbsp;<input size='2' type='text' name='tracksDisc" + i + "'/></h5>");
 			}
-		});						
+		});
+		$("#year").change(function() {
+			$("#years_form").submit();
+		});			
   });		
 });
