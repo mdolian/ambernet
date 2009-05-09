@@ -13,7 +13,7 @@ Merb::Config.use do |c|
 end
   
 Merb::BootLoader.before_app_loads do
-
+  require 'merb_hoptoad_notifier'
 end
  
 Merb::BootLoader.after_app_loads do

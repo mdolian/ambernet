@@ -12,6 +12,13 @@ class Exceptions < Merb::Controller
   
   def unauthenticated
     render :format => :html
-  end  
+  end 
+  
+  if %w( staging production ).include?(Merb.env)
+    def standard_error
+      HoptoadNotifier.notify_hoptoad(request, session)
+      render
+    end
+  end   
 
 end
