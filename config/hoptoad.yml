@@ -1,7 +1,7 @@
-development: &defaults
+:development: &defaults
   :api_key: 8f35f072dd38fab1566cc09cb8e48304
-production:
+:production:
   <<: * defaults    
 
-rake:
+:rake:
   <<: *defaults
