@@ -66,7 +66,7 @@ class Recording
     disc_count = 0
     total_count = 0
     tracks do |track|
-      pls << "File#{total_count}=http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+      pls << "File#{total_count}=http://ambernetonline.net/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
       pls << "Title#{total_count}=TBD\n"
       pls << "Length#{total_count}=-1\n\n"
     end
@@ -79,7 +79,7 @@ class Recording
     total_count = 0
     tracks do |track|
       m3u << "#EXTINF:-1,TBD\n"
-      m3u << "http://ambernet.hopto.org/ambernet/#{label}/#{track}.mp3\n"
+      m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
     end
   end
   
@@ -97,5 +97,6 @@ class Recording
   def files(options = {})
     tracks do |track|
       yield File.open("/ambernet/#{label}/#{track}.#{type}.#{download_extension(options['type'])}") 
-   end
+    end
+  end
 end
