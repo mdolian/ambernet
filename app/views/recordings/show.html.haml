@@ -52,16 +52,14 @@
             %a{:href => "#"} zip
           %td
             %a{:href => "#"} zip
-        - for i in 1..@recording.discs.to_i do
-          - for j in "01"..@recording.tracks(i) do
-            - trackName = "pgroove" + @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s
-            %tr
-              %td 
-                = trackName
-              %td
-                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.#{@recording.lossless_extension}"}=@recording.lossless_extension
-              %td
-                %a{:href => "/ambernet/#{@recording.label}/#{trackName}.mp3"}mp3
+        - @recording.tracks do |track|
+          %tr
+            %td 
+              = track
+            %td
+              %a{:href => "/ambernet/#{@recording.label}/#{track}.#{@recording.lossless_extension}"}=@recording.lossless_extension
+            %td
+              %a{:href => "/ambernet/#{@recording.label}/#{track}.mp3"}mp3
     %h3
       %a{:href => "#"} Streaming Options
     %div       

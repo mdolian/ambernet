@@ -109,7 +109,6 @@ class Recordings < Application
     content_type = "application/m3u" if params["format"] == "m3u"
     content_type = "application/pls" if params["format"] == "pls"
     filename = "#{label}.#{format}"
-    #render stream, :layout => false
     send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
   end
   
@@ -173,14 +172,11 @@ class Recordings < Application
     Merb.logger.debug("Temp File: #{t.path}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
-      for i in 1..@recording.discs.to_i do
-        for j in "01"..@recording.tracks(i) do
-          trackname = @recording.show.date_as_label + "d" + i.to_s + "t" + j.to_s + "." + type
-          file = File.open("/ambernet/#{@recording.label}/pgroove" + trackname)
-          zos.put_next_entry(trackname)
-          Merb.logger.debug "File added to zip: #{filename}"
-          zos.print IO.read(file.path)
-        end
+      @recording.tracks do |track|
+        zos.put_next_entry(track)
+        tempfile = File.open("/ambernet/#{@recording.label}/pgroove#{track}")
+        zos.print IO.read(File.open("/ambernet/#{@recording.label}/pgroove#{track}").path)
+        Merb.logger.debug "File added to zip: #{tempfile.path}"    
       end
     end
     # End of the block  automatically closes the file.

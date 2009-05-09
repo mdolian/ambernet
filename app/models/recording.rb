@@ -39,14 +39,13 @@ class Recording
   end
 
   # Returns the total number of discs
-  def discs
+  def total_discs
     tracking_info[0].chr
   end
 
   # Returns the total number of tracks for a given disc number
-  def tracks(disc_num)
+  def tracks_for_disc(disc_num)
     tracks = tracking_info[2..-1].chop!.split(',')[disc_num-1].to_i
-    puts tracks.to_s
     if tracks.to_i < 10
       "0" + tracks.to_s
     else
@@ -66,39 +65,33 @@ class Recording
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
     disc_count = 0
     total_count = 0
-    for disc_count in (1..discs.to_i)
-      for track_count in "01"..tracks(disc_count) do      
-        total_count = total_count + 1
-        pls << "File#{total_count}=http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
-        pls << "Title#{total_count}=TBD\n"
-        pls << "Length#{total_count}=-1\n\n"
-      end
+    tracks do |track|
+      pls << "File#{total_count}=http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+      pls << "Title#{total_count}=TBD\n"
+      pls << "Length#{total_count}=-1\n\n"
     end
-    pls
   end
-  
+
+  # Returns a string containing a m3u file  
   def to_m3u
     m3u = "#EXTM3\n"
     disc_count = 0
     total_count = 0
-    for disc_count in (1..discs.to_i)
-      for track_count in "01"..tracks(disc_count) do      
-        total_count = total_count + 1
-        m3u << "#EXTINF:-1,TBD\n"
-        m3u << "http://ambernet.hopto.org/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
-      end
+    tracks do |track|
+      m3u << "#EXTINF:-1,TBD\n"
+      m3u << "http://ambernet.hopto.org/ambernet/#{label}/#{track}.mp3\n"
     end
-    m3u   
   end
   
-  def track_list
-    trackName = Array.new
-    for i in 1..discs.to_i do
-      for j in "01"..tracks(i) do
-        trackName << "pgroove" + show.date_as_label + "d" + i.to_s + "t" + j.to_s
-        puts "pgroove" + show.date_as_label + "d" + i.to_s + "t" + j.to_s
+  def tracks
+    disc_count = 0
+    total_count = 0
+    for disc_count in (1..total_discs.to_i)
+      for track_count in "01"..tracks_for_disc(disc_count) do     
+        total_count = total_count + 1
+        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}"
       end
     end
   end
-
+   
 end
