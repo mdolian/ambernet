@@ -167,21 +167,14 @@ class Recordings < Application
   def zip
     only_provides :zip
     @recording = Recording.get(params["id"])   
-    type = @recording.download_extension(params["type"]) 
-    t = Tempfile.new("tempzip-#{@recording.label}")
-    Merb.logger.debug("Temp File: #{t.path}")
-    # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
-    Zip::ZipOutputStream.open(t.path) do |zos|
-      @recording.files do |file|
+    Zip::ZipOutputStream.open(Tempfile.new("tempzip-#{@recording.label}").path) do |zos|
+      @recording.files(params["type"]) do |file|
         zos.put_next_entry(file.path)
         zos.print IO.read(file.path)
         Merb.logger.debug "File added to zip: #{file.path}"    
       end
     end
-    # End of the block  automatically closes the file.
-    # Send it using the right mime type, with a download window and some nice file name.
     send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{type}.zip"
-    # The temp file will be deleted some time...
     t.close    
   end
 
