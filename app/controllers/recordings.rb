@@ -166,7 +166,7 @@ class Recordings < Application
   
   def zip
     only_provides :zip
-    @recording = Recording.get(params["id"])   
+    @recording = Recording.get(params["id"])
     Zip::ZipOutputStream.open(Tempfile.new("tempzip-#{@recording.label}").path) do |zos|
       @recording.files(params["type"]) do |file|
         zos.put_next_entry(file.path)
