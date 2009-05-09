@@ -33,9 +33,8 @@ dependency "dm-types", dm_gems_version
 dependency "dm-validations", dm_gems_version  
 dependency "dm-serializer", dm_gems_version   
 
-dependency "atmos-merb_hoptoad_notifier", :require_as => "merb_hoptoad_notifier"
+dependency "aanand-merb_hoptoad_notifier", :require_as => "merb_hoptoad_notifier"
 dependency "rubyzip", :require_as => "zip/zip"
-#dependency "toretore-zippy", :require_as => "zippy", :source => "http://gems.github.com"
 dependency "nokogiri"
 dependency "webrat"
 dependency "thin"
