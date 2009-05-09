@@ -174,8 +174,8 @@ class Recordings < Application
     Zip::ZipOutputStream.open(t.path) do |zos|
       @recording.tracks do |track|
         zos.put_next_entry(track)
-        tempfile = File.open("/ambernet/#{@recording.label}/pgroove#{track}")
-        zos.print IO.read(File.open("/ambernet/#{@recording.label}/pgroove#{track}").path)
+        tempfile = File.open("/ambernet/#{@recording.label}/pgroove#{track}.#{type}")
+        zos.print IO.read(File.open("/ambernet/#{@recording.label}/pgroove#{track}.#{type}").path)
         Merb.logger.debug "File added to zip: #{tempfile.path}"    
       end
     end
