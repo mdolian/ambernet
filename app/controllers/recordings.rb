@@ -172,11 +172,10 @@ class Recordings < Application
     Merb.logger.debug("Temp File: #{t.path}")
     # Give the path of the temp file to the zip outputstream, it won't try to open it as an archive.
     Zip::ZipOutputStream.open(t.path) do |zos|
-      @recording.tracks do |track|
-        zos.put_next_entry(track)
-        tempfile = File.open("/ambernet/#{@recording.label}/#{track}.#{type}")
-        zos.print IO.read(File.open("/ambernet/#{@recording.label}/#{track}.#{type}").path)
-        Merb.logger.debug "File added to zip: #{tempfile.path}"    
+      @recording.files do |file|
+        zos.put_next_entry(file.path)
+        zos.print IO.read(file.path)
+        Merb.logger.debug "File added to zip: #{file.path}"    
       end
     end
     # End of the block  automatically closes the file.

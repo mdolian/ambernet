@@ -94,4 +94,8 @@ class Recording
     end
   end
    
+  def files(options = {})
+    tracks do |track|
+      yield File.open("/ambernet/#{label}/#{track}.#{type}.#{download_extension(options['type'])}") 
+   end
 end
