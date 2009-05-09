@@ -169,7 +169,7 @@ class Recordings < Application
     @recording = Recording.get(params["id"])
     Zip::ZipOutputStream.open(Tempfile.new("tempzip-#{@recording.label}").path) do |zos|
       @recording.files(params["type"]) do |file|
-        zos.put_next_entry(file.basename)
+        zos.put_next_entry(File.basename(file.path))
         zos.print IO.read(file.path)
         Merb.logger.debug "File added to zip: #{file.path}"    
       end
