@@ -1,5 +1,5 @@
 :development: &defaults
-  :api_key: 75b43365c8e4e6e6f978e7d234e4b997649310c9
+  :api_key: 8f35f072dd38fab1566cc09cb8e48304
 :production:
   <<: * defaults    
 
