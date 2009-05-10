@@ -176,7 +176,7 @@ class Recordings < Application
       end
     end
     Merb.logger.debug "Temp Zip Path: #{t.path}"
-    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{params['type']}.zip"
+    nginx_send_file "/zips/" + File.basename(t.path), :type => 'application/zip', :disposition => 'attachment', :filename => "#{@recording.label}.#{params['type']}.zip"
     t.close    
   end
 
