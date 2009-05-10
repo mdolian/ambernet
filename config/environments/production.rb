@@ -8,3 +8,4 @@ Merb::Config.use { |c|
   # or redirect logger using IO handle
   # c[:log_stream] = STDOUT
 }
+ENV['RACK_ENV'] = 'true'

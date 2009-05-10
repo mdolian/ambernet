@@ -8,6 +8,6 @@ end
 # comment this out if you are running merb behind a load balancer
 # that serves static files
 use Merb::Rack::Static, Merb.dir_for(:public)
-run Merb::Rack::HoptoadExceptions.new
+
 # this is our main merb application
 run Merb::Rack::Application.new

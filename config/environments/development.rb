@@ -16,6 +16,7 @@ Merb::Config.use { |c|
   
 }
 
+ENV['RACK_ENV'] = 'true'
 #Merb::Plugins.config[:merb_cache] = {
 #  :store => "memcache",
 #  :host => "127.0.0.1:11211",
