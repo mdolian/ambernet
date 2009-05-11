@@ -33,7 +33,7 @@ dependency "dm-types", dm_gems_version
 dependency "dm-validations", dm_gems_version  
 dependency "dm-serializer", dm_gems_version   
 
-dependency "atmos-rack_hoptoad", :require_as => "rack_hoptoad"
+dependency "rack_hoptoad"
 dependency "rubyzip", :require_as => "zip/zip"
 dependency "nokogiri"
 dependency "webrat"
