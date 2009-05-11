@@ -9,3 +9,4 @@ Merb::Config.use { |c|
   # c[:log_stream] = STDOUT
 }
 ENV['RACK_ENV'] = 'true'
+ENV['RACK_DEBUG'] = 'true'
