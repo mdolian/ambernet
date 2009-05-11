@@ -33,6 +33,7 @@ dependency "dm-types", dm_gems_version
 dependency "dm-validations", dm_gems_version  
 dependency "dm-serializer", dm_gems_version   
 
+dependency "rack", "1.0.0"
 dependency "rack_hoptoad"
 dependency "rubyzip", :require_as => "zip/zip"
 dependency "nokogiri"
