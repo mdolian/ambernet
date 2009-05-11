@@ -8,6 +8,7 @@ require 'rack_hoptoad'
 
 # Action Args
 ENV["INLINEDIR"] = File.join(File.dirname(__FILE__), "tmp")
+ENV["RACK_DEBUG"] = true
 
 Merb::Config.setup(:merb_root   => ".",
                    :environment => ENV["RACK_ENV"])

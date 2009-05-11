@@ -167,7 +167,7 @@ class Recordings < Application
   def zip
     only_provides :zip
     @recording = Recording.get(params["id"])
-    t = File.open("public/zips/#{@recording.label}.#{params['type']}.zip", "w")
+    t = File.open("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip", "w")
     Zip::ZipOutputStream.open(t.path) do |zos|
       @recording.files(params["type"]) do |file|
         zos.put_next_entry(File.basename(file.path))
@@ -176,7 +176,7 @@ class Recordings < Application
       end
     end
     Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
-    send_file "public/zips/" + File.basename(t.path), :type => 'application/zip', :disposition => 'attachment', :filename => File.basename(t.path)
+    nginx_send_file t.path
     t.close    
   end
 
