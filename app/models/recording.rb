@@ -96,7 +96,7 @@ class Recording
    
   def files(type)
     tracks do |track|
-      yield File.open("/ambernet/#{label}/#{track}.#{download_extension(type)}") 
+      yield File.open("/media/PG_Archive/ambernet/#{label}/#{track}.#{download_extension(type)}") 
     end
   end
 end
