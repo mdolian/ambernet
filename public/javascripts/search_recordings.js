@@ -44,10 +44,7 @@ $(function() {
 	  $('#zip').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#main_recordings').html(msg);
-			  }	
+			  url:  this.href
 		  })		
 	    return false;
 	  });	
