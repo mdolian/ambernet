@@ -50,10 +50,10 @@
         %tr
           %td 
             %b Entire Show
-          %td 
-            %a{:href => "/recordings/zip/#{@recording.id}/lossless", :id => "zip"} zip
           %td
-            %a{:href => "/recordings/zip/#{@recording.id}/mp3", :id => "zip"} zip
+            = zip_link 'mp3'
+          %td
+            = zip_link 'lossless'
         - @recording.tracks do |track|
           %tr
             %td 
