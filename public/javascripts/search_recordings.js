@@ -43,7 +43,7 @@ $(function() {
 	  });	
 	  $('#zip').livequery('click', function() {
 			var t = setInterval(function() {
-		     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
+		     $('#zip').fadeOut("fast").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("fast");
 		  }, 10000);
 		  $.ajax({
 			  url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
