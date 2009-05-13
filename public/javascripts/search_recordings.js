@@ -41,7 +41,7 @@ $(function() {
 		  })		
 	    return false;
 	  });	
-	  $('#back #zip').livequery('click', function() {
+	  $('#zip').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
 			  url:  this.href,
