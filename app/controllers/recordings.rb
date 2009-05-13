@@ -186,5 +186,17 @@ class Recordings < Application
     headers['Content-Type'] = "application/zip"
     nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
+  
+  def zip_link
+    if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip")
+      "<a href='/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip'>zip</a>"
+    else
+      if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip.lock")
+        "Generating..."
+      else
+        "<a href='/recordings/zip/#{@recording.id}/#{params['filetype']}'>Generate</a>"
+      end
+    end
+  end    
 
 end

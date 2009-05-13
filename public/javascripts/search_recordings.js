@@ -42,10 +42,12 @@ $(function() {
 	    return false;
 	  });	
 	  $('#zip').livequery('click', function() {
-			displayLoadingImage();
+			var t = setInterval(function() {
+		     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
+		  }, 10000);
 		  $.ajax({
-			  url:  this.href
-		  })		
+			  url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
+	  	});
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {
@@ -57,7 +59,7 @@ $(function() {
 			  }	
 		  })		
 	    return false;
-	  });				
+	  });			
 	});	
 	function clearSearchButtons()  { 
 	  $('#search_buttons_recordings').empty();
@@ -65,4 +67,12 @@ $(function() {
 	function displayLoadingImage() {
 		$('#main_recordings').html('<p><br><br><br><br><br><img src="/images/loading_bar.gif" width="220" height="19" /><br><br><br><br><br></p>');
 	}	
+	function loading(id) {
+		var t = setInterval(function() {
+	     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + id + '/mp3').fadeIn("slow");
+	  }, 10000);
+	  $.ajax({
+		  url: '/recordings/zip/' + id + '/mp3'
+  	})
+	}
 });

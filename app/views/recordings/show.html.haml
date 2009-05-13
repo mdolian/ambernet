@@ -12,7 +12,7 @@
         %tr
           %td{:width => "20%"} 
             %b Show ID
-          %td{:width => "80%"}= @recording.id
+          %td{:width => "80%", :id => "recording_id"}= @recording.id
         %tr  
           %td 
             %b Show Label
@@ -41,7 +41,7 @@
       %a{:href => "#"} Download Options
     %div
       %h5
-        %b It may take a few minutes to generate the zip file if you are the first to request this recording.  If the download box pops up instantly, someone else graciously donated their time.    
+        %b It may take a few minutes to generate the zip file if you are the first to request a zip of this recording.    
       %table{:class => "tablesorter"}
         %tr
           %th{:width => "80%"} Track
@@ -51,9 +51,9 @@
           %td 
             %b Entire Show
           %td
-            = zip_link 'mp3'
+            %div{:id => "zip"}
+              =first_zip_link 'mp3'
           %td
-            = zip_link 'lossless'
         - @recording.tracks do |track|
           %tr
             %td 
