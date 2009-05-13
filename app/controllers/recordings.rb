@@ -176,6 +176,9 @@ class Recordings < Application
       end
     end
     Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
+
+    headers['Content-Disposition'] = "attachment; filename = #{File.basename(t.path)}"  
+    headers['Content-Type'] = "application/zip"
     nginx_send_file t.path
     t.close    
   end
