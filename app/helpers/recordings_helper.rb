@@ -20,7 +20,7 @@ module Merb
         if File.exist?("public/ambernet/zips/#{@recording.label}.#{filetype}.zip.lock")
           "Generating..."
         else
-          "<a href='#' onclik='javascript:loading(#{@recording.id});')>Generate</a>"
+          "<a href='#')>Generate</a>"
         end
       end
     end

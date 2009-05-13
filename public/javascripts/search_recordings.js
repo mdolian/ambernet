@@ -67,12 +67,4 @@ $(function() {
 	function displayLoadingImage() {
 		$('#main_recordings').html('<p><br><br><br><br><br><img src="/images/loading_bar.gif" width="220" height="19" /><br><br><br><br><br></p>');
 	}	
-	function loading(id) {
-		var t = setInterval(function() {
-	     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + id + '/mp3').fadeIn("slow");
-	  }, 10000);
-	  $.ajax({
-		  url: '/recordings/zip/' + id + '/mp3'
-  	})
-	}
 });
