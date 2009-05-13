@@ -167,19 +167,21 @@ class Recordings < Application
   def zip
     only_provides :zip
     @recording = Recording.get(params["id"])
-    t = File.open("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip", "w")
-    Zip::ZipOutputStream.open(t.path) do |zos|
-      @recording.files(params["type"]) do |file|
-        zos.put_next_entry(File.basename(file.path))
-        zos.print IO.read(file.path)
-        Merb.logger.debug "File added to zip: #{file.path}"    
+    if !File.exist?("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip")
+      t = File.open("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip", "w")
+      Zip::ZipOutputStream.open(t.path) do |zos|
+        @recording.files(params["type"]) do |file|
+          zos.put_next_entry(File.basename(file.path))
+          zos.print IO.read(file.path)
+          Merb.logger.debug "File added to zip: #{file.path}"    
+        end
       end
+      Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
     end
-    Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
-
-    headers['Content-Disposition'] = "attachment; filename = #{File.basename(t.path)}"  
+    
+    headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
-    nginx_send_file t.path
+    nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip"
     t.close    
   end
 
