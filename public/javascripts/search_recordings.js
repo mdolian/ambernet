@@ -41,6 +41,16 @@ $(function() {
 		  })		
 	    return false;
 	  });	
+	  $('#back #zip').livequery('click', function() {
+			displayLoadingImage();
+		  $.ajax({
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#main_recordings').html(msg);
+			  }	
+		  })		
+	    return false;
+	  });	
 	  $('#back').livequery('click', function() {
 			displayLoadingImage();
 		  $.ajax({
