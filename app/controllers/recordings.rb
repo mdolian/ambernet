@@ -188,6 +188,7 @@ class Recordings < Application
   end
   
   def zip_link
+    show
     if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip")
       "<a href='/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip'>zip</a>"
     else
