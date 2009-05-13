@@ -14,8 +14,7 @@ module Merb
     end
     
     def zip_link(filetype)
-      extension = filetype == "lossless" ? @recording.lossless_extension : 'mp3'
-      if File.exist?("public/ambernet/zips/#{@recording.label}.#{extension}.zip")
+      if File.exist?("public/ambernet/zips/#{@recording.label}.#{filetype}.zip")
         "<a href='/ambernet/zips/#{@recording.label}.#{extension}.zip'>zip</a>"
       else
         if File.exist?("public/ambernet/zips/#{@recording.label}.#{extension}.zip.lock")
