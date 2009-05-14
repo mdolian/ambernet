@@ -42,18 +42,17 @@ $(function() {
 	    return false;
 	  });	
 	  $('#zip_link').livequery('click', function() {
+		  $('#zip').empty();
 			var t = setInterval(function() {
 		     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		  }, 10000);
-		  if() {
-			  $.ajax({
-				  url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
-				  success: funtion(msg) {
-					  $('#zip').html(msg);
-					  clearTimeout();
-				  }
-		  	});
-      }
+		  $.ajax({
+			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
+			  success: function(msg) {
+				  $('#zip').html(msg);
+					clearTimeout();
+			  }	
+		  })		
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {
