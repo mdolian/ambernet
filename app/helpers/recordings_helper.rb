@@ -13,7 +13,7 @@ module Merb
        ["9", "9"]]
     end
     
-    def zip_link(filetype)
+    def zip_link_helper(filetype)
       if File.exist?("public/ambernet/zips/#{@recording.label}.#{filetype}.zip")
         "<a href='/ambernet/zips/#{@recording.label}.#{filetype}.zip'>zip</a>"
       else
