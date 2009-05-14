@@ -44,29 +44,29 @@ $(function() {
 	  $('#zip_link_mp3').livequery('click', function() {
 		  $('#zip_mp3').empty();
 		  $('#zip_mp3').load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3');
-			var t = setInterval(function() {
+			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		  }, 10000);
 		  $.ajax({
 			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 			  success: function(msg) {
 				  $('#zip_mp3').html(msg);
-					clearTimeout();
+					clearInterval(m);
 			  }	
 		  })		
 	    return false;
 	  });	
 	  $('#zip_link_lossless').livequery('click', function() {
 		  $('#zip_lossless').empty();
-		  $('#zip_lossless').load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless');
-			var t = setInterval(function() {
+		  $('#zip_lossless').html("Generating...");
+			var l = setInterval(function() {
 		     $('#zip_lossless').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless').fadeIn("slow");
 		  }, 10000);
 		  $.ajax({
 			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/lossless',
 			  success: function(msg) {
 				  $('#zip_lossless').html(msg);
-					clearTimeout();
+					clearInterval(l);
 			  }	
 		  })		
 	    return false;

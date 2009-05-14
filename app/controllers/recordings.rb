@@ -185,7 +185,6 @@ class Recordings < Application
     headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
     "<a href='/ambernet/zips/#{@recording.label}.#{params['type']}.zip'>zip</a>"
-    #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
   
   def zip_link
