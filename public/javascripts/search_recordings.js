@@ -43,7 +43,7 @@ $(function() {
 	  });	
 	  $('#zip_link_mp3').livequery('click', function() {
 		  $('#zip_mp3').empty();
-		  $('#zip_mp3').load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3');
+		  $('#zip_mp3').html("Generating...");
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		  }, 10000);
@@ -61,7 +61,7 @@ $(function() {
 		  $('#zip_lossless').html("Generating...");
 			var l = setInterval(function() {
 		     $('#zip_lossless').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless').fadeIn("slow");
-		  }, 10000);
+		  }, 60000);
 		  $.ajax({
 			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/lossless',
 			  success: function(msg) {
