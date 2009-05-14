@@ -41,7 +41,7 @@ $(function() {
 		  })		
 	    return false;
 	  });	
-	  $('#zip').livequery('click', function() {
+	  $('#zip_link').livequery('click', function() {
 			var t = setInterval(function() {
 		     $('#zip').fadeOut("fast").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("fast");
 		  }, 10000);

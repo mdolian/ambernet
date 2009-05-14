@@ -195,7 +195,7 @@ class Recordings < Application
       if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip.lock")
         "Generating..."
       else
-        "<a href='/recordings/zip/#{@recording.id}/#{params['filetype']}'>Generate</a>"
+        "<a href='/recordings/zip/#{@recording.id}/#{params['filetype']}' id='zip_link'>Generate</a>"
       end
     end
   end    
