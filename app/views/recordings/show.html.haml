@@ -51,9 +51,11 @@
           %td 
             %b Entire Show
           %td
-            %div{:id => "zip"}
-              =zip_link_helper 'mp3'
+            %div{:id => "zip_lossless"}
+              =zip_link_helper 'lossless'            
           %td
+            %div{:id => "zip_mp3"}
+              =zip_link_helper 'mp3'      
         - @recording.tracks do |track|
           %tr
             %td 

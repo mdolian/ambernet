@@ -49,7 +49,7 @@ class Recording
     if tracks.to_i < 10
       "0" + tracks.to_s
     else
-      tracks
+      tracks.to_s
     end
   end
   
