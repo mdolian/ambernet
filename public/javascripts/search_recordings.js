@@ -46,7 +46,7 @@ $(function() {
 		  $('#zip_mp3').html("Generating...");
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
-		  }, 10000);
+		  }, 30000);
 		  $.ajax({
 			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 			  success: function(msg) {
