@@ -168,24 +168,20 @@ class Recordings < Application
     only_provides :zip
     @recording = Recording.get(params["id"])
     if !File.exist?("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip")
-      run_later do
-        t = File.open("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip.lock", "w")
-        Zip::ZipOutputStream.open(t.path) do |zos|
-          @recording.files(params["type"]) do |file|
-            zos.put_next_entry(File.basename(file.path))
-            zos.print IO.read(file.path)
-            Merb.logger.debug "File added to zip: #{file.path}"    
-          end
+      t = File.open("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip.lock", "w")
+      Zip::ZipOutputStream.open(t.path) do |zos|
+        @recording.files(params["type"]) do |file|
+          zos.put_next_entry(File.basename(file.path))
+          zos.print IO.read(file.path)
+          Merb.logger.debug "File added to zip: #{file.path}"    
         end
-        Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
-        t.close   
-        File.rename("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip.lock",
-                    "public/ambernet/zips/#{@recording.label}.#{params['type']}.zip")
       end
+      Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
+      t.close   
+      File.rename("public/ambernet/zips/#{@recording.label}.#{params['type']}.zip.lock",
+                  "public/ambernet/zips/#{@recording.label}.#{params['type']}.zip")
     end
-    
-    headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
-    headers['Content-Type'] = "application/zip"
+
     "<a href='/ambernet/zips/#{@recording.label}.#{params['type']}.zip'>zip</a>"
   end
   
