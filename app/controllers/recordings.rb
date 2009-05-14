@@ -184,20 +184,13 @@ class Recordings < Application
     
     headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
-    nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
+    "<a href='/ambernet/zips/#{@recording.label}.#{params['type']}.zip'>zip</a>"
+    #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
   
   def zip_link
     @recording = Recording.get(params["id"])
-    if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip")
-      "<a href='/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip'>zip</a>"
-    else
-      if File.exist?("public/ambernet/zips/#{@recording.label}.#{params['filetype']}.zip.lock")
-        "Generating..."
-      else
-        "<a href='/recordings/zip/#{@recording.id}/#{params['filetype']}' id='zip_link'>Generate</a>"
-      end
-    end
+    render :layout => false
   end    
 
 end

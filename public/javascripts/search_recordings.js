@@ -43,11 +43,17 @@ $(function() {
 	  });	
 	  $('#zip_link').livequery('click', function() {
 			var t = setInterval(function() {
-		     $('#zip').fadeOut("fast").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("fast");
+		     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		  }, 10000);
-		  $.ajax({
-			  url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
-	  	});
+		  if() {
+			  $.ajax({
+				  url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
+				  success: funtion(msg) {
+					  $('#zip').html(msg);
+					  clearTimeout();
+				  }
+		  	});
+      }
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {
