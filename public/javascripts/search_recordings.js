@@ -43,9 +43,10 @@ $(function() {
 	  });	
 	  $('#zip_link').livequery('click', function() {
 		  $('#zip').empty();
+		  $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 			var t = setInterval(function() {
 		     $('#zip').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
-		  }, 10000);
+		  }, 5000);
 		  $.ajax({
 			  url:  '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 			  success: function(msg) {
