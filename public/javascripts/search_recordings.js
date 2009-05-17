@@ -55,7 +55,7 @@ $(function() {
 		  $('#zip_mp3').empty();
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
-		     $('#zip_mp3').html());
+		     alert($('#zip_mp3').html());
 		     if($('#zip_mp3').html() != "<img src='/images/loading.gif'/>") {
 			     alert("stopping");
 					 clearInterval(m);			
