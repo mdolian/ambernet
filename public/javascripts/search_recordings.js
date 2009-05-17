@@ -55,7 +55,8 @@ $(function() {
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		     alert($('#status_mp3').html());
-		     if($('#status_mp3').html() != null) {
+		     if($('#status_mp3').html() == null || $('#status_mp3').html() == "") {
+			   } else {
 			     alert("stopping");
 					 clearInterval(m);			
 		     }
