@@ -53,9 +53,9 @@ $(function() {
 	  });		
 	  $('#zip_link_mp3').livequery('click', function() {
 		  $('#zip_mp3').empty();
-		  $('#zip_mp3').html("<img src='/images/loading.gif'/>");
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
+		     $('#zip_mp3').html());
 		     if($('#zip_mp3').html() != "<img src='/images/loading.gif'/>") {
 			     alert("stopping");
 					 clearInterval(m);			
@@ -66,9 +66,9 @@ $(function() {
 	  });	
 	  $('#zip_link_lossless').livequery('click', function() {
 		  $('#zip_lossless').empty();
-		  $('#zip_lossless').html("<img src='/images/loading.gif'/>");
 			var l = setInterval(function() {
 		     $('#zip_lossless').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless').fadeIn("slow");
+		     alert($('#zip_lossless').html());
 		     if($('#zip_lossless').html() != "<img src='/images/loading.gif'/>") {
 			     alert("stopping");
 					 clearInterval(l);			
