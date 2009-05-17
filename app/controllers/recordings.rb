@@ -168,8 +168,8 @@ class Recordings < Application
   
   def zip
     type = params["type"]
+    @recording = Recording.get(params["id"])
     run_later do
-      @recording = Recording.get(params["id"])
       if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")
         t = File.open("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock", "w")
         Zip::ZipOutputStream.open(t.path) do |zos|
