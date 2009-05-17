@@ -55,8 +55,8 @@ $(function() {
 		  $('#zip_mp3').empty();
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
-		     alert($('#status').html());
-		     if($('#status').html() != "") {
+		     alert($('#status_mp3').html());
+		     if($('#status_mp3').html() != "") {
 			     alert("stopping");
 					 clearInterval(m);			
 		     }
@@ -73,8 +73,8 @@ $(function() {
 		  $('#zip_lossless').empty();
 			var l = setInterval(function() {
 		     $('#zip_lossless').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless').fadeIn("slow");
-		     alert($('#status').html());
-		     if($('#status').html() != "") {
+		     alert($('#status_lossless').html());
+		     if($('#status_lossless').html() != "") {
 			     alert("stopping");
 					 clearInterval(l);			
 		     }		  
