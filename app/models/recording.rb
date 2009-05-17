@@ -63,7 +63,6 @@ class Recording
   # Returns a string containing a pls file
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
-    disc_count = 0
     total_count = 0
     tracks do |track|
       total_count = total_count + 1
