@@ -185,7 +185,7 @@ class Recordings < Application
                     "public/ambernet/zips/#{@recording.label}.#{type}.zip")
       end
     end
-    "<img src='/images/loading.gif'><br><div id='status'/>"
+    render :zip_link, :layout => false
   end
   
   def zip_link
