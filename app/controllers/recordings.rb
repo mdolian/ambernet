@@ -93,8 +93,8 @@ class Recordings < Application
   def stream
     only_provides :pls, :m3u
     format, id = params["format"], params["id"]
+    stream = ""
     if params["id"].length > 4 
-      stream = ""
       if Recording.count(Recording.show.date_played => id) > 0
         Recording.all(Recording.show.date_played => id).each do |recording|
           stream << format == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
