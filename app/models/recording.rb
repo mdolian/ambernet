@@ -70,6 +70,7 @@ class Recording
       pls << "Title#{total_count}=TBD\n"
       pls << "Length#{total_count}=-1\n\n"
     end
+    pls
   end
 
   # Returns a string containing a m3u file  
@@ -79,6 +80,7 @@ class Recording
       m3u << "#EXTINF:-1,TBD\n"
       m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
     end
+    m3u
   end
   
   def tracks
