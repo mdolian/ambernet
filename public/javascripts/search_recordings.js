@@ -61,7 +61,12 @@ $(function() {
 					 clearInterval(m);			
 		     }
 		  }, 30000);
-		  $.ajax({url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'})		
+		  $.ajax({
+				url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
+				success: function(msg) {
+					$('#zip_mp3').html(msg);
+				}			
+			})		
 	    return false;
 	  });	
 	  $('#zip_link_lossless').livequery('click', function() {
@@ -74,7 +79,12 @@ $(function() {
 					 clearInterval(l);			
 		     }		  
 		  }, 60000);
-		  $.ajax({url: '/recordings/zip/' + $('#recording_id').html()  + '/lossless'})		
+		  $.ajax({
+				url: '/recordings/zip/' + $('#recording_id').html()  + '/lossless',
+				success: function(msg) {
+					$('#zip_lossless').html(msg);
+				}
+			})		
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {
