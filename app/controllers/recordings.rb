@@ -108,13 +108,7 @@ class Recordings < Application
     else
       stream = format == "pls" ? Recording.get(id).to_pls : Recording.get(id).to_m3u
       label = Recording.get(id).label
-      Merb.logger.info("Stream: #{stream}")     
-      Merb.logger.info(Recording.get(id).to_pls)
-      Merb.logger.info(Recording.get(id).to_m3u) 
     end
-    Merb.logger.info("Stream: #{stream}")
-    Merb.logger.info("Format: #{format}")
-    Merb.logger.info("Label: #{label}")
     content_type = "application/m3u" if format == "m3u"
     content_type = "application/pls" if format == "pls"
     filename = "#{label}.#{format}"
@@ -123,7 +117,6 @@ class Recordings < Application
   
   def show
     @recording = Recording.get(params["id"])
-    # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
     render :layout => false
   end
     
