@@ -107,6 +107,8 @@ class Recordings < Application
       label = Recording.get(params["id"]).label
     end
     Merb.logger.info("Stream: #{stream}")
+    Merb.logger.info("Format: #{params['format']}")
+    Merb.logger.info("Label: #{label}")
     content_type = "application/m3u" if params["format"] == "m3u"
     content_type = "application/pls" if params["format"] == "pls"
     filename = "#{label}.#{format}"
