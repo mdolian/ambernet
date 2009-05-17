@@ -94,23 +94,24 @@ class Recordings < Application
     only_provides :pls, :m3u
     format, id = params["format"], params["id"]
     stream = ""
-    if params["id"].length > 4 
+    if id.length > 4 
       if Recording.count(Recording.show.date_played => id) > 0
         Recording.all(Recording.show.date_played => id).each do |recording|
-          stream << format == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
+          stream = format == "pls" ? recording.to_pls : recording.to_m3u
+          stream = stream + "\n\n"
         end
       else
         render "Sorry, no show exists for that date", :layout => false
       end
     else
-      stream = params["format"] == "pls" ? Recording.get(params["id"]).to_pls : Recording.get(params["id"]).to_m3u
-      label = Recording.get(params["id"]).label
+      stream = format == "pls" ? Recording.get(id).to_pls : Recording.get(id).to_m3u
+      label = Recording.get(id).label
     end
     Merb.logger.info("Stream: #{stream}")
-    Merb.logger.info("Format: #{params['format']}")
+    Merb.logger.info("Format: #{format}")
     Merb.logger.info("Label: #{label}")
-    content_type = "application/m3u" if params["format"] == "m3u"
-    content_type = "application/pls" if params["format"] == "pls"
+    content_type = "application/m3u" if format == "m3u"
+    content_type = "application/pls" if format == "pls"
     filename = "#{label}.#{format}"
     send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
   end
