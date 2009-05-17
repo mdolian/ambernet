@@ -52,11 +52,10 @@ $(function() {
 	    return false;
 	  });		
 	  $('#zip_link_mp3').livequery('click', function() {
-		  $('#zip_mp3').empty();
 			var m = setInterval(function() {
 		     $('#zip_mp3').fadeOut("slow").load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3').fadeIn("slow");
 		     alert($('#status_mp3').html());
-		     if($('#status_mp3').html() != "") {
+		     if($('#status_mp3').html() != null) {
 			     alert("stopping");
 					 clearInterval(m);			
 		     }
