@@ -167,7 +167,7 @@ class Recordings < Application
   end
   
   def zip
-    type = params["type"]
+    type = params["filetype"]
     @recording = Recording.get(params["id"])
     run_later do
       if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")

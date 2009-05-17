@@ -7,7 +7,7 @@ Merb::Router.prepare do
   match('/s/:id.:format').to(:controller => 'recordings', :action => 'stream')
   match('/admin').to(:controller => 'recordings', :action => 'admin')
   match('/recordings/zip_link/:id/:filetype').to(:controller => 'recordings', :action => 'zip_link')  
-  match("/recordings/zip/:id/:type").to(:controller => "recordings", :action => "zip").name(:zip)
+  match("/recordings/zip/:id/:filetype").to(:controller => "recordings", :action => "zip").name(:zip)
   match('/').to(:controller => 'amberland', :action =>'index')
   default_routes
 end
