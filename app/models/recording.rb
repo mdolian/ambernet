@@ -70,19 +70,15 @@ class Recording
       pls << "Title#{total_count}=TBD\n"
       pls << "Length#{total_count}=-1\n\n"
     end
-    Merb.logger.info("M3U: #{pls}")    
   end
 
   # Returns a string containing a m3u file  
   def to_m3u
     m3u = "#EXTM3\n"
-    disc_count = 0
-    total_count = 0
     tracks do |track|
       m3u << "#EXTINF:-1,TBD\n"
       m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
     end
-    Merb.logger.info("M3U: #{m3u}")
   end
   
   def tracks

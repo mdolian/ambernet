@@ -94,18 +94,23 @@ class Recordings < Application
     only_provides :pls, :m3u
     format, id = params["format"], params["id"]
     stream = ""
+    Merb.logger.info("Stream: #{stream}")    
     if id.length > 4 
       if Recording.count(Recording.show.date_played => id) > 0
         Recording.all(Recording.show.date_played => id).each do |recording|
           stream = format == "pls" ? recording.to_pls : recording.to_m3u
           stream = stream + "\n\n"
         end
+        label = id
       else
         render "Sorry, no show exists for that date", :layout => false
       end
     else
       stream = format == "pls" ? Recording.get(id).to_pls : Recording.get(id).to_m3u
       label = Recording.get(id).label
+      Merb.logger.info("Stream: #{stream}")     
+      Merb.logger.info(Recording.get(id).to_pls)
+      Merb.logger.info(Recording.get(id).to_m3u) 
     end
     Merb.logger.info("Stream: #{stream}")
     Merb.logger.info("Format: #{format}")
