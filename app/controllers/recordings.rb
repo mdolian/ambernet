@@ -173,7 +173,7 @@ class Recordings < Application
       if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")
         t = File.open("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock", "w")
         Zip::ZipOutputStream.open(t.path) do |zos|
-          @recording.files(params["type"]) do |file|
+          @recording.files(type) do |file|
             zos.put_next_entry(File.basename(file.path))
             zos.print IO.read(file.path)
             Merb.logger.debug "File added to zip: #{file.path}"    
