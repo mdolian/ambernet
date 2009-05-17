@@ -40,7 +40,17 @@ $(function() {
 			  }	
 		  })		
 	    return false;
-	  });	
+	  });
+	  $("#reload_rec").livequery('click', function() {
+			displayLoadingImage();
+		  $.ajax({
+			  url:  this.href,
+			  success: function(msg) {
+				  $('#search_accordion_recordings').html(msg);
+			  }	
+		  })		
+	    return false;
+	  });		
 	  $('#zip_link_mp3').livequery('click', function() {
 		  $('#zip_mp3').empty();
 		  $('#zip_mp3').html("Generating...");
