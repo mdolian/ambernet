@@ -62,7 +62,7 @@ $(function() {
 		     }
 		  }, 30000);
 		  $.ajax({
-				url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3'
+				url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 				success: function(msg) {
 					$('#zip_mp3').html(msg);
 				}			
