@@ -34,6 +34,7 @@ $(function() {
 					var l = setInterval(function() {
 				     $('#zip_lossless').load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless');
 				     if($('#status_lossless').html() == null || $('#status_lossless').html() == "") {
+					   } else {
 							 clearInterval(l);			
 				     }		  
 				  }, 60000);				
