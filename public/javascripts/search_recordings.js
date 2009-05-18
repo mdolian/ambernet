@@ -56,17 +56,15 @@ $(function() {
 				url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 				success: function(msg) {
 					$('#zip_mp3').html(msg);
+					var m = setInterval(function() {
+				     $('#zip_mp3').load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3');
+				     if($('#status_mp3').html() == null || $('#status_mp3').html() == "") {
+					   } else {
+							 clearInterval(m);			
+				     }
+				  }, 30000);				
 				}			
 			})
-			var m = setInterval(function() {
-		     $('#zip_mp3').load('/recordings/zip_link/' + $('#recording_id').html() + '/mp3');
-		     alert($('#status_mp3').html());
-		     if($('#status_mp3').html() == null || $('#status_mp3').html() == "") {
-			   } else {
-			     alert("stopping");
-					 clearInterval(m);			
-		     }
-		  }, 30000);	
 	    return false;
 	  });	
 	  $('#zip_link_lossless').livequery('click', function() {
