@@ -168,19 +168,18 @@ class Recordings < Application
   end
   
   def zip
-    type = params["filetype"]
-    @recording = Recording.get(params["id"])
-    run_later do
-      if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")
+    type, id = params["filetype"], params["id"]
+    @recording = Recording.get(id)
+    if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")      
+      run_later do
         t = File.open("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock", "w")
         Zip::ZipOutputStream.open(t.path) do |zos|
           @recording.files(type) do |file|
             zos.put_next_entry(File.basename(file.path))
             zos.print IO.read(file.path)
-            Merb.logger.debug "File added to zip: #{file.path}"    
+            Merb.logger.info "File added to zip: #{file.path}"    
           end
         end
-        Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
         t.close   
         File.rename("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock",
                     "public/ambernet/zips/#{@recording.label}.#{type}.zip")
@@ -190,7 +189,7 @@ class Recordings < Application
   end
   
   def zip_link
-    @recording = Recording.get(params["id"])
+    @recording = Recording.get(id)
     render :layout => false
   end    
 

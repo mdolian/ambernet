@@ -11,6 +11,7 @@ $(function() {
 		$("table").tablesorter({widthFixed: true, widgets: ['zebra']});	
 		$("#image_anchor").fancybox();
 		$('#zip_link_mp3').livequery('click', function() {
+			$('#zip_mp3').html("<img src='/images/loading.gif'/><br><div id='status_mp3'></div>")
 		  $.ajax({
 				url: '/recordings/zip/' + $('#recording_id').html()  + '/mp3',
 				success: function(msg) {
@@ -27,6 +28,7 @@ $(function() {
 		  return false;
 		});	
 		$('#zip_link_lossless').livequery('click', function() {
+			$('#zip_lossless').html("<img src='/images/loading.gif'/><br><div id='status_lossless'></div>")			
 		  $.ajax({
 				url: '/recordings/zip/' + $('#recording_id').html()  + '/lossless',
 				success: function(msg) {
