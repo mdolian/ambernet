@@ -72,17 +72,14 @@ $(function() {
 				url: '/recordings/zip/' + $('#recording_id').html()  + '/lossless',
 				success: function(msg) {
 					$('#zip_lossless').html(msg);
+					var l = setInterval(function() {
+				     $('#zip_lossless').load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless');
+				     if($('#status_lossless').html() == null || $('#status_lossless').html() == "") {
+							 clearInterval(l);			
+				     }		  
+				  }, 60000);				
 				}
 			})
-			var l = setInterval(function() {
-		     $('#zip_lossless').load('/recordings/zip_link/' + $('#recording_id').html() + '/lossless');
-		     alert($('#status_lossless').html());
-		     if($('#status_lossless').html() == null || $('#status_lossless').html() == "") {
-			   } else {
-			     alert("stopping");
-					 clearInterval(l);			
-		     }		  
-		  }, 60000);
 	    return false;
 	  });	
 	  $('#back').livequery('click', function() {
