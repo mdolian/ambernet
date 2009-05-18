@@ -117,6 +117,7 @@ class Recordings < Application
   
   def show
     @recording = Recording.get(params["id"])
+    Merb.logger.info("Branch: #{session['searchBranch']}")
     render :layout => false
   end
     

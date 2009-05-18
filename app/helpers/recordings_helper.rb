@@ -20,7 +20,7 @@ module Merb
         if File.exist?("public/ambernet/zips/#{@recording.label}.#{filetype}.zip.lock")
           "<img src='/images/loading.gif'/><br><div id='status_#{filetype}'></div>"
         else
-          "<a href='#' id='zip_link_#{filetype}'>>Generate</a>"
+          "<a href='#' id='zip_link_#{filetype}'>Generate</a>"
         end
       end
     end
