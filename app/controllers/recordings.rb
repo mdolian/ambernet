@@ -92,10 +92,8 @@ class Recordings < Application
  
   def stream
     only_provides :pls, :m3u
-    format, id = params["format"], params["id"]
-    stream = ""
-    Merb.logger.info("Stream: #{stream}")    
-    if id.length > 4 
+    format, id, stream = params["format"], params["id"], ""
+    if id.length > 4
       if Recording.count(Recording.show.date_played => id) > 0
         Recording.all(Recording.show.date_played => id).each do |recording|
           stream = format == "pls" ? recording.to_pls : recording.to_m3u
@@ -117,7 +115,6 @@ class Recordings < Application
   
   def show
     @recording = Recording.get(params["id"])
-    Merb.logger.info("Branch: #{session['searchBranch']}")
     render :layout => false
   end
     
@@ -170,6 +167,7 @@ class Recordings < Application
   def zip
     type, id = params["filetype"], params["id"]
     @recording = Recording.get(id)
+    Merb.logger.info("#{@recording.label}")
     if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")      
       run_later do
         t = File.open("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock", "w")
