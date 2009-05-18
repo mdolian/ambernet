@@ -167,7 +167,6 @@ class Recordings < Application
   def zip
     type, id = params["filetype"], params["id"]
     @recording = Recording.get(id)
-    Merb.logger.info("#{@recording.label}")
     if !File.exist?("public/ambernet/zips/#{@recording.label}.#{type}.zip")      
       run_later do
         t = File.open("public/ambernet/zips/#{@recording.label}.#{type}.zip.lock", "w")
@@ -187,7 +186,7 @@ class Recordings < Application
   end
   
   def zip_link
-    @recording = Recording.get(id)
+    @recording = Recording.get(params["id"])
     render :layout => false
   end    
 
