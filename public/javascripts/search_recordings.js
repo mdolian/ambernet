@@ -20,37 +20,7 @@ $(function() {
 		$('#paginate_form_recordings').ajaxForm({
 		   beforeSubmit: displayLoadingImage,			
 		 	 target: '#main_recordings'
-		});	
-	  $('div.paginated a').livequery('click', function() {
-			displayLoadingImage();
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#main_recordings').html(msg);
-			  }	
-		  })
-	    return false;
-	  });
-	  $("a[id*='recording_details_rec']").livequery('click', function() {
-			displayLoadingImage();
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#main_recordings').html(msg);
-			  }	
-		  })		
-	    return false;
-	  });
-	  $('#back').livequery('click', function() {
-			displayLoadingImage();
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#main_recordings').html(msg);
-			  }	
-		  })		
-	    return false;
-	  });			
+		});				
 	});	
 	function clearSearchButtons()  { 
 	  $('#search_buttons_recordings').empty();

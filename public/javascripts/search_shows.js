@@ -31,16 +31,6 @@ $(function() {
 		  })
 	    return false;
 	  });	
-	  $('#back').livequery('click', function() {
-			displayLoadingImage();
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#main_shows').html(msg);
-			  }	
-		  })		
-	    return false;
-	  });						
 	});		
 	function clearSearchButtons(responseText, statusText)  { 
 	    $('#search_buttons_shows').empty();

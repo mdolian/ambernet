@@ -1,29 +1,7 @@
 $(function() {
   jQuery(document).ready(function($) {
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
-	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });
-	  $("a[id*='recording_details_shows']").livequery('click', function() {
-			$("div[id*='dialog_rec']").dialog('close');
-			$("div[id*='dialog_setlist']").dialog('close');	
-			displayLoadingImage();	
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#search_accordion_shows').html(msg);
-			  }	
-		  })	   
-	    return false;
-	  });
-	  $("a[id*='recording_details_rec']").livequery('click', function() {
-			displayLoadingImage();
-		  $.ajax({
-			  url:  this.href,
-			  success: function(msg) {
-				  $('#search_accordion_recordings').html(msg);
-			  }	
-		  })		
-	    return false;
-	  });		
+	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });		
 		$.fn.setlist = function(show_id){
 			that = this
 			var set = new Array();
@@ -66,7 +44,7 @@ $(function() {
 		  $.ajax({
 			  url:  "/recordings/show/" + show_id,
 			  success: function(msg) {
-				  $('#search_accordion_shows').html(msg);
+				  $('#main_shows').html(msg);
 			  }	
 		  })						
 		}		

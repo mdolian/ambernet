@@ -1,4 +1,6 @@
 %div{:id => "main_recordings"}
+  %a{:class => "back_recordings"}
+  %a{:class => "reload_recording"}  
   = js_include_tag :search_recordings
   = js_include_tag :accordion
   %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off", :id => "search_form_recordings"}

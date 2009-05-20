@@ -1,4 +1,3 @@
-= js_include_tag :search_results
 - @recordings.each do |recording|
   %p
     %a{:href => "#", :onclick => "$(this).details(#{recording.id})"}=recording.label
