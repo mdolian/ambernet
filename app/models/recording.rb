@@ -66,7 +66,7 @@ class Recording
     total_count = 0
     tracks do |track|
       total_count = total_count + 1
-      pls << "File#{total_count}=http://ambernet.net/ambernet/#{label}/#{track}.mp3\n"
+      pls << "File#{total_count}=http://www.ambernet.net/ambernet/#{label}/#{track}.mp3\n"
       pls << "Title#{total_count}=Track #{total_count}\n"
       pls << "Length#{total_count}=-1\n\n"
     end
@@ -81,7 +81,7 @@ class Recording
     tracks do |track|
       total_count = total_count + 1      
       m3u << "#EXTINF:-1,Track #{total_count}\n"
-      m3u << "http://ambernet.net/ambernet/#{label}/#{track}.mp3\n"
+      m3u << "http://www.ambernet.net/ambernet/#{label}/#{track}.mp3\n"
     end
     Merb.logger.info "M3U: #{m3u}"
     m3u
