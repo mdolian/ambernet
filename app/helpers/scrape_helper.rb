@@ -1,5 +1,3 @@
-module Merb
-  module ScrapeHelper
+module ScrapeHelper
 
-  end
-end # Merb
+end

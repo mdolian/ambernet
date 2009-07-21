@@ -49,7 +49,7 @@ class Recording
     if tracks.to_i < 10
       "0" + tracks.to_s
     else
-      tracks.to_s
+      tracks
     end
   end
   
@@ -63,28 +63,24 @@ class Recording
   # Returns a string containing a pls file
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
+    disc_count = 0
     total_count = 0
     tracks do |track|
-      total_count = total_count + 1
-      pls << "File#{total_count}=http://www.ambernet.net/ambernet/#{label}/#{track}.mp3\n"
-      pls << "Title#{total_count}=Track #{total_count}\n"
+      pls << "File#{total_count}=http://ambernetonline.net/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
+      pls << "Title#{total_count}=TBD\n"
       pls << "Length#{total_count}=-1\n\n"
     end
-    Merb.logger.info "PLS: #{pls}"
-    pls
   end
 
   # Returns a string containing a m3u file  
   def to_m3u
     m3u = "#EXTM3\n"
-    total_count = 0    
+    disc_count = 0
+    total_count = 0
     tracks do |track|
-      total_count = total_count + 1      
-      m3u << "#EXTINF:-1,Track #{total_count}\n"
-      m3u << "http://www.ambernet.net/ambernet/#{label}/#{track}.mp3\n"
+      m3u << "#EXTINF:-1,TBD\n"
+      m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
     end
-    Merb.logger.info "M3U: #{m3u}"
-    m3u
   end
   
   def tracks

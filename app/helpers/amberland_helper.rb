@@ -1,5 +1,3 @@
-module Merb
-  module AmberlandHelper
+module AmberlandHelper
 
-  end
-end # Merb
+end

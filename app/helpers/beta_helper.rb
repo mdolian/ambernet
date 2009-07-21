@@ -1,5 +1,3 @@
-module Merb
-  module BetaHelper
+module BetaHelper
 
-  end
-end # Merb
+end

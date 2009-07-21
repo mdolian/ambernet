@@ -1,6 +1,3 @@
-module Merb
-  module ShowsHelper
+module ShowsHelper
 
-    
-  end
-end # Merb
+end

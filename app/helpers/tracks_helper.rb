@@ -1,5 +1,3 @@
-module Merb
-  module TracksHelper
+module TracksHelper
 
-  end
-end # Merb
+end

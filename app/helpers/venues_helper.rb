@@ -1,5 +1,3 @@
-module Merb
-  module VenuesHelper
+module VenuesHelper
 
-  end
-end # Merb
+end

@@ -1,5 +1,2 @@
-module Merb
-  module CompilationsHelper
-
-  end
-end # Merb
+module CompilationsHelper
+end

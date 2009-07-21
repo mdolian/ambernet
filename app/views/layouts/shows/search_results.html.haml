@@ -1,0 +1,30 @@
+= js_include_tag :search_results
+%form{:action => "/shows/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_shows"}
+  %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
+  %a{:href => "/#{session['searchBranch']}/index", :id => "back"} Back to Search Form
+  %br
+  %br    
+  = paginate @current_page, @page_count, :outer_window => 5, :url => "/shows/search_results"
+  %table{:width => "85%", :align => "center", :class => "tablesorter"}
+    %thead
+      %tr
+        %th{:width => "10%", :align => "left"} Show Date
+        %th{:width => "20%", :align => "left"} Venue Name
+        %th{:width => "18%", :align => "left"} City
+        %th{:width => "8%", :align => "left"} State
+        %th{:width => "8%", :align => "left"} Setlist
+        %th{:width => "8%", :align => "left"} Recordings
+      %tbody  
+        - @shows.each do |show|
+          %tr
+            %td= show.date_played
+            %td= show.venue.venue_name
+            %td= show.venue.venue_city
+            %td= show.venue.venue_state
+            %td 
+              %a{:href => "#", :onclick => "$('#dialog_setlist_#{show.id}').setlist(#{show.id})"} Setlist
+              %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
+            %td
+              %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
+              %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}        
+  = paginate @current_page, @page_count, :outer_window => 5, :url => "/shows/search_results"
