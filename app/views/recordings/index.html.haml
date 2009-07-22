@@ -1,7 +1,7 @@
 %div{:id => "main_recordings"}
-  = js_include_tag :search_recordings
-  = js_include_tag :accordion
-  %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off", :id => "search_form_recordings"}
+  = javascript_include_tag "search_recordings"
+  = javascript_include_tag "accordion"
+  - form_for :recording, :url => { :action => "search_results" } do |f|
     %div{:id => "search_accordion_recordings"}
       %h3
         %a{:href => "#"} General
@@ -16,7 +16,7 @@
             %td
               %label Song
             %td
-              = text_field :name => "song_name", :size => "25" 
+              %input{:type => "text", :name => "song_name", :size => "25"} 
       %h3
         %a{:href => "#"} Location
       %div         
@@ -24,15 +24,15 @@
           %tr
             %td
               %label Venue
-              = text_field :name => "venue_name", :id => "venue_name", :size => "25"
+              %input{:type => "text", :name => "venue_name", :size => "25"}               
           %tr
             %td
               %label City 
-              = text_field :name => "venue_city", :id => "venue_city", :size => "25"
+              %input{:type => "text", :name => "venue_city", :size => "25"}
           %tr
             %td
               %label State
-              = text_field :name => "venue_state", :size => "5"  
+              %input{:type => "text", :name => "venue_state", :size => "5"}  
       %h3
         %a{:href => "#"} Source
       %div
@@ -41,27 +41,26 @@
             %td
               %label Source
             %td
-              = text_field :name => "source", :size => "25"
+              %input{:type => "text", :name => "source", :size => "25"}
           %tr
             %td
               %label Lineage
             %td
-              = text_field :name => "lineage", :size => "25"
+              %input{:type => "text", :name => "lineage", :size => "25"}
           %tr
             %td
               %label Taper
             %td
-              = text_field :name => "taper", :size => "25"
+              %input{:type => "text", :name => "taper", :size => "25"}
           %tr
             %td
               %label Etree ID
             %td
-              = text_field :name => "shnid", :size => "5"
+              %input{:type => "text", :name => "shnid", :size => "5"}
           %tr
             %td
               %label Type
             %td
-              = select :name => "type", :collection => get_types
       %h3
         %a{:href => "#"} Date
       %div     
@@ -69,7 +68,6 @@
           %tr
             %td
               %label Year
-              = select:name => "year", :collection => get_years
           %tr
             %td
               %label Range

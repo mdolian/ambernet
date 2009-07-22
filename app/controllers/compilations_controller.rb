@@ -1,4 +1,4 @@
-class Compilations < ApplicationApplication
+class CompilationsController < ApplicationController
 
   before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
 

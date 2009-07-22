@@ -2,12 +2,12 @@ require 'date'
 require 'zip/zip'
 require 'zip/zipfilesystem'
 
-class Recordings < ApplicationController
+class RecordingsController < ApplicationController
 
-  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  
-  params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
-                              :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
+  # From Merb, to be implemented
+  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  #params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
+  #                            :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
 
 
   # Admin does not use tab ajax browsing so the layout is required
@@ -159,8 +159,8 @@ class Recordings < ApplicationController
     session[:conditions] = conditions                          if error_message == ''
     session[:searchBranch] = "recordings"                      if error_message == ''  
     session[:current_page] = @current_page                     if error_message == ''    
-    message[:error] = error_message                            if error_message != ''
-    message[:notice] = notice_message                          if notice_message != ''
+    #message[:error] = error_message                            if error_message != ''
+    #message[:notice] = notice_message                          if notice_message != ''
     render :layout => false
   end
   

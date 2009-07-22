@@ -1,0 +1,26 @@
+%html
+  %head
+    = javascript_include_tag 'jquery-1.3.2.min'
+    = javascript_include_tag 'jquery.tablesorter'
+    = javascript_include_tag 'jquery.autocomplete'
+    = javascript_include_tag 'jquery.confirm'
+    = javascript_include_tag 'jquery.form'
+    = javascript_include_tag 'jquery.livequery'
+    = javascript_include_tag 'jquery.fancybox'
+    = javascript_include_tag 'jquery.selectboxes'    
+    = javascript_include_tag 'jquery.ui'
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'jquery.tablesorter'
+    = stylesheet_link_tag 'jquery.autocomplete'
+    = stylesheet_link_tag 'jquery.fancybox'
+    = stylesheet_link_tag 'jquery.ui.custom'
+    = stylesheet_link_tag 'application'
+    %title
+      AmberNET Online
+  %body{:topmargin => "0", :leftmargin => "0", :marginwidth => "0", :marginheight => "0", :hspace => "0", :vspace => "0"}
+    %div{:align => "center"}
+      %p
+        %img{:src => "/images/header.jpg"}
+      %p     
+        %div
+          = yield

@@ -1,19 +1,19 @@
-= js_include_tag :admin
+= javascript_include_tag "admin"
 %h2 Add Venue (admin only)
-%form{:action => "/venues/create", :method => "post"}
+- form_for :venue, @venue, :url => { :action => "create"} do |f|
   %table
     %tr
       %td       
         %h5 Name:
-      %td= text_field :name => "venue_name"
+      %td= f.text_field :venue_name
     %tr
       %td
         %h5 City:
-      %td= text_field :name => "venue_city"
+      %td= f.text_field :venue_city
     %tr
       %td
         %h5 Venue State:
-      %td= text_field :name => "venue_state"
+      %td= f.text_field :venue_state
     %tr
       %td{:colspan => "2"}= submit "Add"
 %div{:id => "dialog"}

@@ -1,12 +1,12 @@
 require 'date'
 require 'dm-serializer'
 
-class Shows < ApplicationController
+class ShowsController < ApplicationController
 
-  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  
-  params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
-                              :venue_name, :venue_city, :venue_state, :song_name, :method]
+  # From Merb, to be implemented
+  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  #params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
+  #                            :venue_name, :venue_city, :venue_state, :song_name, :method]
 
 
   def index

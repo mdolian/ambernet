@@ -1,4 +1,4 @@
-class Beta < ApplicationController
+class BetaController < ApplicationController
 
   def index
     render :layout => false

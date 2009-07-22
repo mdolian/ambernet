@@ -1,8 +1,8 @@
-class Tracks < ApplicationController
+class TracksController < ApplicationController
 
-  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-
-  params_accessible :post => [:id, :recording_id, :track, :setlist]
+  # From Merb, to be implemented
+  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  #params_accessible :post => [:id, :recording_id, :track, :setlist]
 
   def edit
     recording = Recording.get(params["id"])

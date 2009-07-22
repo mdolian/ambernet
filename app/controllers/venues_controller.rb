@@ -1,8 +1,8 @@
-class Venues < ApplicationController
+class VenuesController < ApplicationController
   
-  before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
- 
-  params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
+  # From Merb, to be implemented
+  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+  #params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
  
   def admin
     render 
