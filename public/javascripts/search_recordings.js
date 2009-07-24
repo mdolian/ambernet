@@ -12,20 +12,4 @@ $(function() {
 			changeMonth: true,
 			changeYear: true
 		});	
-		$('#search_form_recordings').ajaxForm({
-		   beforeSubmit: displayLoadingImage,
-			 success: clearSearchButtons,
-		 	 target: '#main_recordings'
-		});	
-		$('#paginate_form_recordings').ajaxForm({
-		   beforeSubmit: displayLoadingImage,			
-		 	 target: '#main_recordings'
-		});				
-	});	
-	function clearSearchButtons()  { 
-	  $('#search_buttons_recordings').empty();
-	}
-	function displayLoadingImage() {
-		$('#main_recordings').html('<p><br><br><br><br><br><img src="/images/loading_bar.gif" width="220" height="19" /><br><br><br><br><br></p>');
-	}	
 });

@@ -1,7 +1,7 @@
 %div{:id => "main_shows"}
   = javascript_include_tag "search_shows"
   = javascript_include_tag "accordion"
-  %form{:action => "/shows/search_results", :method => "post", :autocomplete => "off", :id => "search_form_shows"}
+  - form_for :show, :url => { :action => "search_results" } do |f|  
     %div{:id => "search_accordion_shows"}
       %h3
         %a{:href => "#"} General
@@ -11,7 +11,7 @@
             %td        
               %label Song
             %td
-              = text_field :name => "song_name", :size => "25"
+              = text_field :song_name, :size => "25"
       %h3
         %a{:href => "#"} Location
       %div
@@ -20,17 +20,17 @@
             %td
               %label Venue
             %td
-              = text_field :name => "venue_name", :id => "venue_name", :size => "25"
+              = text_field :venue_name, :id => "venue_name", :size => "25"
           %tr
             %td
               %label City
             %td
-              = text_field :name => "venue_city", :size => "25"
+              = text_field :venue_city, :size => "25"
           %tr
             %td
               %label State
             %td
-              = text_field :name => "venue_state", :size => "5"
+              = text_field :venue_state, :size => "5"
       %h3
         %a{:href => "#"} Date
       %div
@@ -39,7 +39,6 @@
             %td
               %label Year
             %td
-              = select:name => "year", :collection => get_years
           %tr
             %td
               %label Range

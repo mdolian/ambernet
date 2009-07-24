@@ -84,10 +84,10 @@ class RecordingsController < ApplicationController
     redirect "/recordings/admin"
   end  
 
-  # The user views require  :layout => false because they are called by the JQuery UI Tabs by Ajax
+  # User views
 
   def index
-    render :layout => false
+    render
   end
  
   def stream
@@ -115,7 +115,7 @@ class RecordingsController < ApplicationController
   def show
     @recording = Recording.get(params["id"])
     # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
-    render :layout => false
+    render
   end
     
   def search_results
@@ -159,9 +159,9 @@ class RecordingsController < ApplicationController
     session[:conditions] = conditions                          if error_message == ''
     session[:searchBranch] = "recordings"                      if error_message == ''  
     session[:current_page] = @current_page                     if error_message == ''    
-    #message[:error] = error_message                            if error_message != ''
-    #message[:notice] = notice_message                          if notice_message != ''
-    render :layout => false
+    flash.now[:error] = error_message                            if error_message != ''
+    flash.now[:notice] = notice_message                          if notice_message != ''
+    render
   end
   
   def zip
@@ -182,7 +182,7 @@ class RecordingsController < ApplicationController
     
     headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
-    nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
+    #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
 
 end

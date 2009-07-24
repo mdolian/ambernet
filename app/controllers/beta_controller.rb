@@ -1,14 +1,15 @@
 class BetaController < ApplicationController
 
   def index
-    render :layout => false
+    render
   end
   
   def contact
-    render :layout => false
+    render
   end
   
   def bug
-    render :layout => false
+    render
   end
+  
 end

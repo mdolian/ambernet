@@ -121,17 +121,13 @@ input:hover, input:focus {
 	background:#f6f6f6;
 } 
 
-#search_tabs {
-	width: 500px;
-}
-
 #index_tabs {
-	width: 75%;
+	width: 80%;
 }
 
-#index_accordion, #beta_accordion {
+#index_accordion, #beta_accordion, #search_accordion_recordings, #search_accordion_shows {
 	text-align: left;
-	width: 100%;
+	width: 80%;
 }
 
 body{

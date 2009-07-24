@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
 
 
   def index
-    render :layout => false
+    render
   end
   
   def list
@@ -19,7 +19,7 @@ class ShowsController < ApplicationController
     shows.each do |show|
       list << {"label" => show.label, "id" => show.id}
     end
-    render list.to_json, :layout => false    
+    render list.to_json, :layout => false  
   end
 
   def setlist
@@ -34,7 +34,7 @@ class ShowsController < ApplicationController
 
   def recordings
     @recordings = Recording.all(:conditions => {:show_id => params["id"]})
-    render :layout => false
+    render
   end
     
   def search_results
@@ -70,9 +70,9 @@ class ShowsController < ApplicationController
     session[:conditions] = conditions           if error_message == ''
     session[:searchBranch] = "shows"            if error_message == '' 
     session[:current_page] = @current_page      if error_message == ''             
-    message[:error] = error_message             if error_message != ''
-    message[:notice] = notice_message           if notice_message != ''    
-    render :layout => false
+    flash[:error] = error_message             if error_message != ''
+    flash[:notice] = notice_message           if notice_message != ''    
+    render
 
   end   
  
