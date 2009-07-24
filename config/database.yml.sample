@@ -1,0 +1,9 @@
+development: &defaults
+  :adapter:  mysql  
+  :host:     localhost
+  :database: ambernet_development
+  :username: <user>
+  :password: <pass>
+  
+rake:
+  <<: *defaults
