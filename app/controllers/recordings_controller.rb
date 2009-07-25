@@ -122,9 +122,10 @@ class RecordingsController < ApplicationController
     @current_page = (params[:page] || 1).to_i
     conditions = {}
     error_message, notice_message = ""
-    logger.info params["taper"]
+
     if params["submit"] != nil
-      conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
+      # Need to get drop downs working in views
+      #conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
       conditions.merge!({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
       conditions.merge!({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
       conditions.merge!({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
@@ -135,7 +136,7 @@ class RecordingsController < ApplicationController
       conditions.merge!({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
       conditions.merge!({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
       conditions.merge!({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
-      #conditions.merge!({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
+      conditions.merge!({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
 
       unless (params["end_date"] == '' && params["start_date"] == '')
         end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       
@@ -151,16 +152,16 @@ class RecordingsController < ApplicationController
     
     error_message = "Please select at least one search filter" if conditions.empty?  
     
-    @page_count, @recordings = Recording.paginated(
-      :page => @current_page,
-      :per_page => 50,
-      :conditions => conditions)                               if error_message == ''  
-    #notice_message = "No recordings were found"                if @recordings.count == 0  
-    session[:conditions] = conditions                          if error_message == ''
-    session[:searchBranch] = "recordings"                      if error_message == ''  
-    session[:current_page] = @current_page                     if error_message == ''    
-    flash.now[:error] = error_message                            if error_message != ''
-    flash.now[:notice] = notice_message                          if notice_message != ''
+    # Need to implement mislav's will_paginate
+    #@page_count, @recordings = Recording.paginated(
+    #  :page => @current_page,
+    #  :per_page => 50,
+    
+    @recordings = Recording.all(:conditions => conditions)     if error_message == ''  
+    notice_message = "No recordings were found"               if @recordings.count == 0  
+    session[:conditions] = conditions                          if error_message == '' 
+    flash.now[:error] = error_message                          if error_message != ''
+    flash.now[:notice] = notice_message                        if notice_message != ''
     render
   end
   
@@ -173,15 +174,17 @@ class RecordingsController < ApplicationController
         @recording.files(params["type"]) do |file|
           zos.put_next_entry(File.basename(file.path))
           zos.print IO.read(file.path)
-          Merb.logger.debug "File added to zip: #{file.path}"    
+          logger.debug "File added to zip: #{file.path}"    
         end
       end
-      Merb.logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
+      logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
       t.close   
     end
     
     headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
+    
+    # Need to implement, this was a Merb function
     #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
 
