@@ -122,7 +122,7 @@ class RecordingsController < ApplicationController
     @current_page = (params[:page] || 1).to_i
     conditions = {}
     error_message, notice_message = ""
-
+    logger.info params["taper"]
     if params["submit"] != nil
       conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
       conditions.merge!({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      

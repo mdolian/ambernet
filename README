@@ -10,6 +10,7 @@ Configure a local development instance:
 Create a database called ambernet_development and grant a user access to it
 Using config/database.yml.sample as an example, create your own config/database.yml
 
+rake gems:install_custom (This is required to install a agnostic version of Mislav's will_paginate gem, you will be prompted for a sudo password)
 sudo rake gems:install 
 rake db:populate 
 
