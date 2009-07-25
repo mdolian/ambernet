@@ -8,7 +8,7 @@ class ScrapeController < ApplicationController
     case params["id"]
     when "all" then 
       for i in 483..1500 do
-        Merb.logger.info "Show ID: #{i}"
+        logger.info "Show ID: #{i}"
         if i != 1143 then
           doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{i}"))
           parse_and_insert_show(i, doc)
@@ -38,7 +38,7 @@ class ScrapeController < ApplicationController
   
   def parse_and_insert_show(show_id, doc)
     venue_name = doc.search("//td[@align='left'][@valign='top']/b").inner_html
-    Merb.logger.info "VENUE: #{venue_name}"
+    logger.info "VENUE: #{venue_name}"
     show_info = doc.search("//td[@align='left'][@valign='top']").inner_html.split('<br />')
     if venue_name == "" then
       message[:error] = "Show does not exist in Perpetual Archives"
@@ -70,7 +70,7 @@ class ScrapeController < ApplicationController
       if setlist[0] == nil then
         set, song_order, is_segue = 1, 1, "false"
         setlist_text.gsub!('<b>','').gsub!('</b>','').gsub!('<br />','').gsub!('&gt;',', >, ')
-        Merb.logger.info "Setlist: #{setlist_text}"
+        logger.info "Setlist: #{setlist_text}"
         # This is a hack - GUUUUUU!!!
         if setlist_text.include?('1st Set:') then
           setlist_text.gsub!('1st Set:','') 
@@ -94,7 +94,7 @@ class ScrapeController < ApplicationController
             song_order = song_order + 1
           end
           setlist.save  
-          Merb.logger.info "#{song_order} - Set: #{set} - Song ID: #{song_id} - #{is_segue}"  
+          logger.info "#{song_order} - Set: #{set} - Song ID: #{song_id} - #{is_segue}"  
         end             
       end   
     end
@@ -109,10 +109,10 @@ class ScrapeController < ApplicationController
     if song[0] == nil then
       song = Song.new(:song_name => song_name) 
       song.save
-      Merb.logger.info "Song Name: #{song_name}"
+      logger.info "Song Name: #{song_name}"
       song_id = song.id
     else
-      Merb.logger.info "Song Name: #{song_name}"      
+      logger.info "Song Name: #{song_name}"      
       song_id = song[0].id
     end
   end 

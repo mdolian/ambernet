@@ -19,7 +19,7 @@ class ShowsController < ApplicationController
     shows.each do |show|
       list << {"label" => show.label, "id" => show.id}
     end
-    render list.to_json, :layout => false  
+    render :json => list.to_json, :layout => false  
   end
 
   def setlist
@@ -29,7 +29,7 @@ class ShowsController < ApplicationController
       song = Song.get(setlist.song_id)
       setlist_json << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix, "total_sets" => total_sets}
     end     
-    render setlist_json.to_json, :layout => false
+    render :json => setlist_json.to_json, :layout => false
   end  
 
   def recordings
