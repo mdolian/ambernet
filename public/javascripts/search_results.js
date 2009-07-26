@@ -38,15 +38,6 @@ $(function() {
 				  $(that).dialog("open");
 			  }	
 		  })						
-		}
-		$.fn.details = function(show_id){
-		  $("div[id*='dialog_rec']").dialog('close');			
-		  $.ajax({
-			  url:  "/recordings/show/" + show_id,
-			  success: function(msg) {
-				  $('#main_shows').html(msg);
-			  }	
-		  })						
-		}		
+		}	
   });	
 });		

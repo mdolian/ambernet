@@ -13,7 +13,7 @@ class ScrapeController < ApplicationController
           doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{i}"))
           parse_and_insert_show(i, doc)
           parse_and_insert_setlist(i, doc)
-          message[:notice] = "All of the setlists have been scraped... bitch!"
+          flash[:notice] = "All of the setlists have been scraped... bitch!"
         end
       end  
     when "update" then
@@ -24,14 +24,14 @@ class ScrapeController < ApplicationController
         doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{show_id}"))
         parse_and_insert_show(show_id, doc)
         parse_and_insert_setlist(show_id, doc)
-        message[:notice] = "Updationplete.  All your setlist are belong to us... bitch!"         
+        flash[:notice] = "Updationplete.  All your setlist are belong to us... bitch!"         
       end             
     else
       show_id = params["id"]
       doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{show_id}"))
       parse_and_insert_show(show_id, doc)
       parse_and_insert_setlist(show_id, doc)
-      message[:notice] = "That setlist has been ripped bitch!" 
+      flash[:notice] = "That setlist has been ripped bitch!" 
     end
     render 
   end
@@ -41,7 +41,7 @@ class ScrapeController < ApplicationController
     logger.info "VENUE: #{venue_name}"
     show_info = doc.search("//td[@align='left'][@valign='top']").inner_html.split('<br />')
     if venue_name == "" then
-      message[:error] = "Show does not exist in Perpetual Archives"
+      notice[:error] = "Show does not exist in Perpetual Archives"
     else
       date_played, city_state = show_info[2].strip!, show_info[1].split(",")
       venue_city, venue_state = city_state[0].strip!, city_state[1].strip! 
@@ -64,7 +64,7 @@ class ScrapeController < ApplicationController
   def parse_and_insert_setlist(show_id, doc)
     setlist_text = (doc/"#linear_#{show_id}/tr/td").inner_html
     if setlist_text == "" then
-      message[:error] = "Setlist does not exist in Perpetual Archives"
+      notice[:error] = "Setlist does not exist in Perpetual Archives"
     else
       setlist = Setlist.all(:show_id => show_id)
       if setlist[0] == nil then

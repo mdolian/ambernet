@@ -1,5 +1,5 @@
 %div{:id => "main_recordings"}
-  = javascript_include_tag "search_recordings"
+  = javascript_include_tag "search"
   = javascript_include_tag "accordion"
   - form_for :recording, :url => { :action => "search_results" } do |f|
     %div{:id => "search_accordion_recordings"}
@@ -24,11 +24,11 @@
           %tr
             %td
               %label Venue
-              %input{:type => "text", :name => "venue_name", :size => "25"}               
+              %input{:type => "text", :name => "venue_name", :size => "25", :id => "venue_name"}               
           %tr
             %td
               %label City 
-              %input{:type => "text", :name => "venue_city", :size => "25"}
+              %input{:type => "text", :name => "venue_city", :size => "25", :id => "venue_city"}
           %tr
             %td
               %label State
