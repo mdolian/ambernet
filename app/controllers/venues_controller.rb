@@ -32,7 +32,7 @@ class VenuesController < ApplicationController
     venues.each do |venue|
       list << venue.venue_name << "\n"
     end
-    render list, :layout => false
+    render :json => list, :layout => false
   end
   
   def city_list
@@ -43,7 +43,7 @@ class VenuesController < ApplicationController
     venues.each do |venue|
       list << venue << "\n"
     end
-    render list, :layout => false
+    render :json => list, :layout => false
   end
   
 end

@@ -34,7 +34,7 @@ class ShowsController < ApplicationController
 
   def recordings
     @recordings = Recording.all(:conditions => {:show_id => params["id"]})
-    render
+    render :layout => false
   end
     
   def search_results

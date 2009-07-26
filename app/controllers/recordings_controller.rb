@@ -4,13 +4,16 @@ require 'zip/zipfilesystem'
 
 class RecordingsController < ApplicationController
 
-  # From Merb, to be implemented
+  # to-do - implement below
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   #params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
   #                            :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
 
 
-  # Admin does not use tab ajax browsing so the layout is required
+  # Admin actions
+
+  # to-do - test with Rails
+  # loads the admin page, a list of recordings
   def admin
     if params["year"] != nil
       conditions = {:label.not => nil}
@@ -22,12 +25,16 @@ class RecordingsController < ApplicationController
       render :year_list
     end
   end
-  
+
+  # to-do - test with Rails
+  # deletes a recording  
   def delete
     Recording.get(params["id"]).destroy
     redirect "/recordings/admin"
   end
-    
+  
+  # to-do - test with Rails    
+  # update a recording
   def edit
     if params["submit"] == 'Update'
       tracking_info = params["discs"] << "["
@@ -52,11 +59,14 @@ class RecordingsController < ApplicationController
        render 
     end
   end
-  
+ 
+  # form to create a new recording  
   def new
     render 
   end
-
+  
+  # to-do - test with Rails
+  # insert a new recording into the database
   def create
     tracking_info = params["discs"] << "["
     for i in (1..params["discs"].to_i)
@@ -84,12 +94,16 @@ class RecordingsController < ApplicationController
     redirect "/recordings/admin"
   end  
 
-  # User views
 
+
+  # User actions
+  # action for the search form page
   def index
     render
   end
- 
+
+  # to-do - convert to Rails
+  # streams a recording
   def stream
     only_provides :pls, :m3u
     format, id = params["format"], params["id"]
@@ -111,13 +125,14 @@ class RecordingsController < ApplicationController
     filename = "#{label}.#{format}"
     send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
   end
-  
+
+  # recording details action
   def show
     @recording = Recording.get(params["id"])
-    # @recording_tracks = RecordingTrack.all(:recording_id => params["id"])
     render
   end
-    
+ 
+  # search results action    
   def search_results
     @current_page = (params[:page] || 1).to_i
     conditions = {}
@@ -165,6 +180,7 @@ class RecordingsController < ApplicationController
     render
   end
   
+  # to-do - convert to Rails
   def zip
     only_provides :zip
     @recording = Recording.get(params["id"])
