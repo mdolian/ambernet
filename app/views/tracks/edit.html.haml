@@ -12,10 +12,11 @@
 %form{:action => "/tracks/add", :method => "post"}
   #addTracks
   %h5 Track Number
-  = text_field :name => "track"
+  %input{:type => "text", :name => "track"}
   #addTracks
   %h5 Songs on Track
-  = select :name => "setlist", :collection => @setlists, :size=>"10", :multiple => true
+  %select{:name => "setlist", :size=>"10", :multiple => true}
+    = options_for_select(@setlists)
   %input{:type => "hidden", :name => "id", :value => "#{@recording.id}"}
   #addTracks
   = submit "Add Tracks" 

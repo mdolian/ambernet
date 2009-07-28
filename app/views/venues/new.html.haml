@@ -1,19 +1,22 @@
 = javascript_include_tag "admin"
 %h2 Add Venue (admin only)
-- form_for :venue, @venue, :url => { :action => "create"} do |f|
+%form{:method => "post", :action => "/venue/create", :autocomplete => "off"}  
   %table
     %tr
       %td       
         %h5 Name:
-      %td= f.text_field :venue_name
+      %td
+        %input{:type => "text", :venue_name}
     %tr
       %td
         %h5 City:
-      %td= f.text_field :venue_city
+      %td
+        %input{:type => "text", :venue_city}
     %tr
       %td
         %h5 Venue State:
-      %td= f.text_field :venue_state
+      %td
+        %input{:type => "text", :venue_state}
     %tr
       %td{:colspan => "2"}= submit "Add"
 %div{:id => "dialog"}

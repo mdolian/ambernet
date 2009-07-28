@@ -1,7 +1,7 @@
 %div{:id => "main_shows"}
   = javascript_include_tag "search"
   = javascript_include_tag "accordion"
-  - form_for :show, :url => { :action => "search_results" } do |f|  
+  %form{:method => "post", :action => "/shows/search_results", :autocomplete => "off"}  
     %div{:id => "search_accordion_shows"}
       %h3
         %a{:href => "#"} General
@@ -39,7 +39,8 @@
             %td
               %label Year
             %td
-              %input{:type => "text", :name => "year", :size => "5", :value => "All"}
+              %select{:name => "year"}
+                = options_for_select(get_years)
           %tr
             %td
               %label Range

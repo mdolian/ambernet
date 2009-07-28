@@ -28,7 +28,6 @@ Rails::Initializer.run do |config|
   config.gem "merb-pagination"
   config.gem "hpricot"
   config.gem "rubyzip", :lib => "zip/zip"
-  config.gem "rails_datamapper"
   config.gem "will_paginate"
 
   # Only load the plugins named here, in the order given (default is alphabetical).

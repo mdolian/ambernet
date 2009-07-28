@@ -6,35 +6,45 @@
       %td{:width => "25%"}
         %h5 Show:
         %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
-      %td{:width => "75%"}= text_field :name => "date_played", :id => "show_date_played"
+      %td{:width => "75%"}
+        %input{:type => "text", :name => "date_played", :id => "show_date_played"}
     %tr
       %td       
         %h5 Label:
-      %td= text_field :name => "label", :size => "50"
+      %td
+        %input{:type => "text", :name => "label", :size => "50"}
     %tr
       %td
         %h5 Type:
-      %td= select :name => "type", :collection => get_types
+      %td
+        %select{:name => "type"}
+          = options_for_select(get_types)
     %tr
       %td
         %h5 File Type:
-      %td= select :name => "filetype", :collection => get_filetypes      
+      %td
+        %select{:name => "filetypes"}
+          = options_for_select(get_filetypes)
     %tr
       %td
         %h5 Source:
-      %td= text_field :name => "source", :size => "50"
+      %td
+        %input{:type => "text", :name => "source", :size => "50"}
     %tr
       %td
         %h5 Lineage:
-      %td= text_field :name => "lineage", :size => "50"
+      %td
+        %input{:type => "text", :name => "lineage", :size => "50"}
     %tr
       %td
         %h5 Taper:
-      %td= text_field :name => "taper", :size => "50"
+      %td
+        %input{:type => "text", :name => "taper", :size => "50"}
     %tr
       %td
         %h5 Transferred by:
-      %td= text_field :name => "transfered_by", :size => "50"
+      %td
+        %input{:type => "text", :name => "transfered_by", :size => "50"}
     %tr
       %td
         %h5 Notes:
@@ -44,11 +54,13 @@
       %td
         %h5 Disc Count
       %td
-        = select :name => "discs", :collection => get_discs, :id => "discs"
+        %select{:name => "discs", :id => "discs"}
+          = options_for_select(get_discs)
     %tr
       %td 
       %td
         %div{:id => "tracks"}
     %tr
-      %td{:colspan => "2"}= submit "Add"
+      %td{:colspan => "2"}
+        %input{:type => "submit", :value => "Add"}
 %div{:id => "dialog"}

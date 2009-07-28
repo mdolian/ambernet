@@ -4,7 +4,7 @@ require 'zip/zipfilesystem'
 
 class RecordingsController < ApplicationController
 
-  # to-do - implement below
+  # TO-DO - implement below
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   #params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
   #                            :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
@@ -12,7 +12,6 @@ class RecordingsController < ApplicationController
 
   # Admin actions
 
-  # to-do - test with Rails
   # loads the admin page, a list of recordings
   def admin
     if params["year"] != nil
@@ -26,14 +25,12 @@ class RecordingsController < ApplicationController
     end
   end
 
-  # to-do - test with Rails
   # deletes a recording  
   def delete
     Recording.get(params["id"]).destroy
-    redirect "/recordings/admin"
+    redirect_to "/recordings/admin"
   end
   
-  # to-do - test with Rails    
   # update a recording
   def edit
     if params["submit"] == 'Update'
@@ -53,7 +50,7 @@ class RecordingsController < ApplicationController
                                     :filetype => params["filetype"],
                                     :shnid => params["shnid"],
                                     :tracking_info => tracking_info)                                                                                             
-      redirect "/recordings/admin"
+      redirect_to "/recordings/admin"
     else  
        @recording = Recording.get(params["id"])
        render 
@@ -65,7 +62,6 @@ class RecordingsController < ApplicationController
     render 
   end
   
-  # to-do - test with Rails
   # insert a new recording into the database
   def create
     tracking_info = params["discs"] << "["
@@ -91,7 +87,7 @@ class RecordingsController < ApplicationController
     @page_count, @recordings = Recording.paginated(
       :page => @current_page,
       :per_page => 100)    
-    redirect "/recordings/admin"
+    redirect_to "/recordings/admin"
   end  
 
 
@@ -102,7 +98,7 @@ class RecordingsController < ApplicationController
     render
   end
 
-  # to-do - convert to Rails
+  # TO-DO - convert to Rails
   # streams a recording
   def stream
     only_provides :pls, :m3u
@@ -180,7 +176,7 @@ class RecordingsController < ApplicationController
     render
   end
   
-  # to-do - convert to Rails
+  # TO-DO - convert to Rails
   def zip
     only_provides :zip
     @recording = Recording.get(params["id"])

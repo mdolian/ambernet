@@ -15,31 +15,40 @@
       %tr
         %td 
           %h5 Type
-        %td= select :name => "type", :collection => get_types, :selected => @recording.type
+        %td
+          // TO-DO - Need to select type for select recording      
+          %select{:name => "type"}
+            = options_for_select(get_types)
       %tr
         %td 
           %h5 Label 
-        %td= text_field :name => "label", :value => @recording.label, :size => "50"
+        %td
+          %input{:type => "text", :name => "label", :value => @recording.label, :size => "50"}
       %tr
         %td 
           %h5 Taper
-        %td= text_field :name => "taper", :value => @recording.taper, :size => "50"
+        %td
+          %input{:type => "text", :name => "taper", :value => @recording.taper, :size => "50"}
       %tr
         %td 
           %h5 Transfered By
-        %td= text_field :name => "transfered_by", :value => @recording.transfered_by
+        %td
+          %input{:type => "text", :name => "transfered_by", :value => @recording.transfered_by}
       %tr
         %td 
           %h5 SHN ID
-        %td= text_field :name => "shnid", :value => @recording.shnid, :size => "50"  
+        %td
+          %input{:type => "text", :name => "shnid", :value => @recording.shnid, :size => "50"}  
       %tr
         %td 
           %h5 Source
-        %td= text_field :name => "source", :value => @recording.source, :size => "50"    
+        %td
+          %input{:type => "text", :name => "source", :value => @recording.source, :size => "50"}    
       %tr
         %td 
           %h5 Lineage
-        %td= text_field :name => "lineage", :value => @recording.lineage, :size => "50"
+        %td
+          %input{:type => "text", :name => "lineage", :value => @recording.lineage, :size => "50"}
       %tr
         %td 
           %h5 Notes
@@ -49,7 +58,9 @@
         %td
           %h5 Disc Count
         %td
-          = select :name => "discs", :collection => get_discs, :id => "discs"
+          // TO-DO - select total discs for selected recording
+          %select{:name => "discs", :id => "discs"}
+            = options_for_select(get_discs)          
       %tr
         %td 
         %td
