@@ -12,7 +12,7 @@ class RecordingsController < ApplicationController
 
   # Admin actions
 
-  # loads the admin page, a list of recordings
+  # loads the admin page, a list of recordings given a year
   def admin
     if params["year"] != nil
       conditions = {:label.not => nil}
