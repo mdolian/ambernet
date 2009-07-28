@@ -1,5 +1,5 @@
 = javascript_include_tag "admin"
-%form{:action => "/recordings/admin", :method => "post", :id => "years_form"}
+%form{:method => "post", :action => "/recordings/admin", :autocomplete => "off"}  
   %table{:border => "0", :width => "50%"}   
     %tr
       %td &nbsp;
@@ -10,7 +10,8 @@
       %td &nbsp;    
     %tr
       %td{:align => "center"}
-        = select :name => "year", :collection => get_years, :id => "year"
+        %select{:name => "year"} 
+          = options_for_select(get_years)
     %tr
       %td &nbsp;        
     %tr

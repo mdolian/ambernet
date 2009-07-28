@@ -15,3 +15,9 @@ sudo rake gems:install
 rake db:populate 
 
 Then run with script/server!
+
+TO-DO List:
+Search for 'TO-DO' in the project to find sections commented.
+Convert all forms to Rails form helpers and turn back on protect_from_forgery
+Add will_paginate support
+Make admin section RESTful
