@@ -24,8 +24,6 @@ Rails::Initializer.run do |config|
   config.gem "dm-serializer", :version => dm_gems_version 
   config.gem "rails_datamapper", :version => dm_gems_version   
   config.gem "haml"
-  config.gem "dm-is-paginated"
-  config.gem "merb-pagination"
   config.gem "hpricot"
   config.gem "rubyzip", :lib => "zip/zip"
   config.gem "will_paginate"

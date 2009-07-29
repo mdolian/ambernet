@@ -1,6 +1,5 @@
 require 'will_paginate'
 require 'will_paginate/finders/data_mapper'
-require 'will_paginate/view_helpers/action_view'
 
 class Show
   include DataMapper::Resource

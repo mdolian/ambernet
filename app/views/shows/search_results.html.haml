@@ -4,7 +4,7 @@
   %a{:href => "/#{session['searchBranch']}/index", :id => "back"} Back to Search Form
   %br
   %br    
-  = #will_paginate(@recordings)
+  = will_paginate(@shows)
   %table{:width => "85%", :align => "center", :class => "tablesorter"}
     %thead
       %tr
@@ -27,4 +27,4 @@
             %td
               %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
               %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}        
-  = #will_paginate(@recordings)
+  = will_paginate(@shows)
