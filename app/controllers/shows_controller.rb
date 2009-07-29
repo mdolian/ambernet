@@ -62,16 +62,15 @@ class ShowsController < ApplicationController
     
     error_message = "Please select at least one search filter" if conditions.empty? 
     
-    @page_count, @shows = Show.paginated(
+    @shows = Show.paginate(
       :page => @current_page,
-      :per_page => 50,
       :conditions => conditions,
       :order => [:date_played.asc])             if error_message == ''
     session[:conditions] = conditions           if error_message == ''
     session[:searchBranch] = "shows"            if error_message == '' 
     session[:current_page] = @current_page      if error_message == ''             
-    flash[:error] = error_message             if error_message != ''
-    flash[:notice] = notice_message           if notice_message != ''    
+    flash[:error] = error_message               if error_message != ''
+    flash[:notice] = notice_message             if notice_message != ''    
     render
 
   end   

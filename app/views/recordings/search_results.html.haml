@@ -4,7 +4,7 @@
   %a{:href => "/#{session['searchBranch']}/index", :id => "back"} Back to Search Form
   %br
   %br
-  = #paginate @current_page, @page_count, :outer_window => 5, :url => "/recordings/search_results"
+  = #will_paginate(@recordings)
   %table{:align => "center", :class => "tablesorter"}
     %thead
       %tr
@@ -29,4 +29,4 @@
             %td 
               %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
               %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}                       
-  = #paginate @current_page, @page_count, :outer_window => 5, :url => "/recordings/search_results"            
+  = #will_paginate(@recordings)

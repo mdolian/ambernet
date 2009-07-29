@@ -131,6 +131,7 @@ class RecordingsController < ApplicationController
   # search results action    
   def search_results
     @current_page = (params[:page] || 1).to_i
+    
     conditions = {}
     error_message, notice_message = ""
 
@@ -168,11 +169,13 @@ class RecordingsController < ApplicationController
     #  :page => @current_page,
     #  :per_page => 50,
     
-    @recordings = Recording.all(:conditions => conditions)     if error_message == ''  
-    notice_message = "No recordings were found"               if @recordings.count == 0  
-    session[:conditions] = conditions                          if error_message == '' 
-    flash.now[:error] = error_message                          if error_message != ''
-    flash.now[:notice] = notice_message                        if notice_message != ''
+    @recordings = Recording.paginate(
+      :page => @current_page, 
+      :conditions => conditions)                if error_message == ''
+    notice_message = "No recordings were found" if @recordings.count == 0  
+    session[:conditions] = conditions           if error_message == '' 
+    flash.now[:error] = error_message           if error_message != ''
+    flash.now[:notice] = notice_message         if notice_message != ''
     render
   end
   
