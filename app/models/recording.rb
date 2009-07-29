@@ -1,6 +1,4 @@
 require 'will_paginate'
-require 'will_paginate/finders/data_mapper'
-require 'will_paginate/view_helpers/action_view'
 
 class Recording
   include DataMapper::Resource

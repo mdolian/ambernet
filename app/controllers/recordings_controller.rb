@@ -172,7 +172,7 @@ class RecordingsController < ApplicationController
     @recordings = Recording.paginate(
       :page => @current_page, 
       :conditions => conditions)                if error_message == ''
-    notice_message = "No recordings were found" if @recordings.count == 0  
+    #notice_message = "No recordings were found" if @recordings.count == 0  
     session[:conditions] = conditions           if error_message == '' 
     flash.now[:error] = error_message           if error_message != ''
     flash.now[:notice] = notice_message         if notice_message != ''
