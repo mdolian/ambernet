@@ -1,23 +1,23 @@
 Stack:
-Ruby 1.8.6
-Rubygems 1.3.1
-Rails 2.3.3
+ruby 1.9.1p378
+Rubygems 1.3.5
+Rails 3.0.0.beta
 Haml
-Datamapper 0.9.11
+Datamapper 0.10.2
 Mysql 5.X
 
 Configure a local development instance:
 Create a database called ambernet_development and grant a user access to it
 Using config/database.yml.sample as an example, create your own config/database.yml
 
-rake gems:install_custom (This is required to install a agnostic version of Mislav's will_paginate gem, you will be prompted for a sudo password)
-sudo rake gems:install 
+Install Gems:
+bundle install
+
+Populate Database:
+unzip db/ambernet.zip (password protected)
 rake db:populate 
 
-Then run with script/server!
+Start the Application:
+script/rails server
 
-TO-DO List:
-Search for 'TO-DO' in the project to find sections commented.
-Convert all forms to Rails form helpers and turn back on protect_from_forgery
-Add will_paginate support
-Make admin section RESTful
+NOTE - rails3_datamapper is currently broken it seems and the application does not start up
