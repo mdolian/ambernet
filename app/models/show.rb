@@ -1,15 +1,13 @@
 require 'will_paginate'
-require 'will_paginate/finders/data_mapper'
 
-class Show
-  include DataMapper::Resource
+class Show < ActiveRecord::Base
     
-  property :id, Serial
-  property :date_played, Date
-  property :show_notes, Text
+  #t.date        :date_played
+  #t.text        :show_notes
+  #t.integer     :venue_id, :null => false
   
-  has n, :setlists
-  has n, :recordings
+  has_many :setlists
+  has_many :recordings
   belongs_to :venue
   
   def first
@@ -29,11 +27,11 @@ class Show
   end
   
   def setlists
-    Setlist.all(:show_id => id, :order => [:set_id.asc, :song_order.asc])
+    Setlist.find(:show_id => id, :order => [:set_id.asc, :song_order.asc])
   end
   
   def total_sets
-    Show.max(Show.setlists.set_id, :show_id => id)
+    Show.maxiumum(Show.setlists.set_id, :show_id => id)
   end
   
 end

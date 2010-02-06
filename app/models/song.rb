@@ -1,14 +1,12 @@
-class Song
-  include DataMapper::Resource
+class Song < ActiveRecord::Base
   
-  property :id, Serial
-  property :song_name, String, :length => 100
-  property :song_lyrics, Text
-  property :written_by, String
-  property :original_performer, String
-  property :is_instrumental, Boolean
+  #t.string              :song_name
+  #t.text                :song_lyrics
+  #t.string              :written_by
+  #t.string              :original_performer
+  #t.boolean             :is_instrumental
   
-  has n, :setlists
+  has_many :setlists
 
   def first
     id

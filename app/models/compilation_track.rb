@@ -1,10 +1,10 @@
-class CompilationTrack
-  include DataMapper::Resource
+class CompilationTrack < ActiveRecord::Base
   
-  property :id, Serial
-  property :notes, String
+  #t.string              :name
+  #t.integer             :compilation_id, :null => false
+  #t.integer             :recording_track_id, :null => false
 
   belongs_to :compilation
-  has n, :recording_tracks
+  has many :recording_tracks
 
 end

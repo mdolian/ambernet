@@ -1,14 +1,12 @@
-class Venue
-  include DataMapper::Resource
+class Venue < ActiveRecord::Base
   
-  property :id, Serial
-  property :venue_name, String
-  property :venue_image, String
-  property :venue_city, String
-  property :venue_state, String
-  property :venue_country, String
+  #t.string      :venue_name
+  #t.string      :venue_image
+  #t.string      :venue_city
+  #t.string      :venue_state
+  #t.string      :venue_country
   
-  has n, :shows  
+  has_many :shows  
   
   def first
     id

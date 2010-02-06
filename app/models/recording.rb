@@ -1,25 +1,21 @@
 require 'will_paginate'
 
-class Recording
-  include DataMapper::Resource
+class Recording < ActiveRecord::Base
   
-  property :id, Serial
-  property :label, String
-  property :source, Text
-  property :lineage, Text
-  property :taper, String
-  property :transfered_by, String
-  property :notes, Text
-  property :type, String
-  property :filetype, String
-  
-  # totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
-  property :tracking_info, String
-  property :shnid, String
+  #t.string        :label
+  #t.text          :source
+  #t.text          :lineage
+  #t.string        :taper
+  #t.string        :transfered_by
+  #t.text          :notes
+  #t.string        :type
+  #t.string        :tracking_info - totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
+  #t.string        :shnid
+  #t.string        :filetype      
+  #t.integer       :show_id, :null => false
     
   belongs_to :show  
-  has n, :recording_tracks
-#  has n, :users, :through => Resource
+  has_many :recording_tracks
 
   def lossless_extension
     case filetype

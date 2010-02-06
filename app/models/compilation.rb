@@ -1,10 +1,8 @@
-class Compilation
-  include DataMapper::Resource
+class Compilation < ActiveRecord::Base
   
-  property :id, Serial
-  property :label, String
-  property :comments, String
+  # t.string    :label
+  # t.string    :comments
 
-  has n, :compilation_tracks
+  has many :compilation_tracks
 
 end

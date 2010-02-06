@@ -1,22 +1,22 @@
-class Setlist
-  include DataMapper::Resource
+class Setlist < ActiveRecord::Base
   
-  property :id, Serial
-  property :set_id, Integer
-  property :song_order, Integer
-  property :song_comments, Text
-  property :is_segue, Boolean
+  #t.integer       :set_id
+  #t.integer       :song_order
+  #t.text          :song_comments
+  #t.boolean       :is_segue
+  #t.integer       :show_id, :null => false
+  #t.integer       :song_id, :null => false
   
   belongs_to :show
   belongs_to :song
-  has n, :recording_tracks, :through => Resource
+  has_and_belongs_to_many :recording_tracks
   
   def last
     song.song_name
   end
 
   def song_suffix
-    is_segue? ? " > " : song_order == Setlist.max(:song_order, :show_id => show_id, :set_id => set_id) ? "" : ", "
+    is_segue? ? " > " : song_order == Setlist.maximum(:song_order, :show_id => show_id, :set_id => set_id) ? "" : ", "
   end
     
   def first
@@ -24,7 +24,7 @@ class Setlist
   end
   
   def total_sets
-    Setlist.max(:set_id, :set_id.not => "9", :show_id => show_id)
+    Setlist.maximum(:set_id, :set_id.not => "9", :show_id => show_id)
   end
       
 end

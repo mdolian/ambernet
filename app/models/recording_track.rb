@@ -1,11 +1,10 @@
-class RecordingTrack
-  include DataMapper::Resource
+class RecordingTrack < ActiveRecord::Base
   
-  property :id, Serial
-  property :s3_bucket, String
-  property :track, String
+  #t.string        :s3_bucket
+  #t.string        :track
+  #t.integer       :recording_id, :null => false
 
   belongs_to :recording
-  has n, :setlists, :through => Resource
+  has_and_belongs_to_many :setlists
 
 end

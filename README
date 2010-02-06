@@ -1,9 +1,9 @@
 Stack:
-ruby 1.9.1p378
+Ruby 1.9.1p378
 Rubygems 1.3.5
 Rails 3.0.0.beta
 Haml
-Datamapper 0.10.2
+ActiveRecord 3.0.0.beta
 Mysql 5.X
 
 Configure a local development instance:
@@ -13,11 +13,14 @@ Using config/database.yml.sample as an example, create your own config/database.
 Install Gems:
 bundle install
 
+Run Migrations:
+rake db:migrate
+
 Populate Database:
-unzip db/ambernet.zip (password protected)
-rake db:populate 
+gunzip db/ambernet.sql.gz
+mysql -uroot -p<pass> ambernet_<environment> < db/ambernet.sql
 
 Start the Application:
 script/rails server
 
-NOTE - rails3_datamapper is currently broken it seems and the application does not start up
+NOTES: hpricot seems to break Rails 3
