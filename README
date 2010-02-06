@@ -2,8 +2,6 @@ Stack:
 Ruby 1.9.1p378
 Rubygems 1.3.5
 Rails 3.0.0.beta
-Haml
-ActiveRecord 3.0.0.beta
 Mysql 5.X
 
 Configure a local development instance:
@@ -11,6 +9,7 @@ Create a database called ambernet_development and grant a user access to it
 Using config/database.yml.sample as an example, create your own config/database.yml
 
 Install Gems:
+gem install bundler
 bundle install
 
 Run Migrations:
