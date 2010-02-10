@@ -1,7 +1,7 @@
 source 'http://gemcutter.org'
 
 ## Bundle edge rails:
-gem "rails", :git => "git://github.com/rails/rails.git"
+gem "rails", "3.0.0.beta" # :git => "git://github.com/rails/rails.git"
 
 # hpricot is currently broken in Rails 3
 #gem "hpricot"    
