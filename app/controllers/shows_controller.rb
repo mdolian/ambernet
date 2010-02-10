@@ -1,5 +1,4 @@
 require 'date'
-require 'dm-serializer'
 
 class ShowsController < ApplicationController
 
