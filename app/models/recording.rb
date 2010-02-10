@@ -19,18 +19,18 @@ class Recording < ActiveRecord::Base
 
   def lossless_extension
     case filetype
-      when "flac16": "flac"
-      when "flac24": "flac"
-      when "shnf":   "shn"
-      else           "ERROR"
+      when "flac16" then "flac"
+      when "flac24" then "flac"
+      when "shnf"   then  "shn"
+      else                "ERROR"
     end
   end
   
   def download_extension(type)
     case type
-      when "lossless": lossless_extension
-      when "mp3": "mp3"
-      else "ERROR"
+      when "lossless" then lossless_extension
+      when "mp3"      then "mp3"
+      else            "ERROR"
     end
   end
 
