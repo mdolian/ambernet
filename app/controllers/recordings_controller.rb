@@ -138,25 +138,25 @@ class RecordingsController < ApplicationController
     if params["submit"] != nil
       # Need to get drop downs working in views
       #conditions.merge!({:type => params["type"]})                                                          if params["type"] != 'all'
-      conditions.merge!({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
-      conditions.merge!({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
-      conditions.merge!({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
-      conditions.merge!({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
-      conditions.merge!({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
-      conditions.merge!({"show.date_played >= #{params['year']} AND show.date_played < (#{params['year'].to_i+1).to_s}"})        if params["year"] != 'All'
-      conditions.merge!({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
-      conditions.merge!({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
-      conditions.merge!({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
-      conditions.merge!({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
+      #conditions.merge!({:shnid => params["shnid"]})                                                        if params["shnid"] != ''      
+      #conditions.merge!({:label.like => "%" << params["label"] << "%"})                                     if params["label"] != ''
+      #conditions.merge!({:source.like => "%" << params["source"] << "%"})                                   if params["source"] != ''
+      #conditions.merge!({:lineage.like => "%" << params["lineage"] << "%"})                                 if params["lineage"] != ''
+      #conditions.merge!({:taper.like => "%" << params["taper"] << "%"})                                     if params["taper"] != ''
+      #conditions.merge!({"show.date_played >= #{params['year']} AND show.date_played < (#{params['year'].to_i+1).to_s}"})        if params["year"] != 'All'
+      #conditions.merge!({Recording.show.venue.venue_name.like => "%" << params["venue_name"] << "%"})       if params["venue_name"] != ''
+      #conditions.merge!({Recording.show.venue.venue_city.like => "%" << params["venue_city"] << "%"})       if params["venue_city"] != ''
+      #conditions.merge!({Recording.show.venue.venue_state.like => "%" << params["venue_state"] << "%"})     if params["venue_state"] != ''
+      #conditions.merge!({Recording.show.setlists.song.song_name.like => "%" << params["song_name"] << "%"}) if params["song_name"] != ''
 
-      unless (params["end_date"] == '' && params["start_date"] == '')
-        end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       
-        start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
-        error_message = "Start date later than end date" if (end_date < start_date)   
+      #unless (params["end_date"] == '' && params["start_date"] == '')
+      #  end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])       
+      #  start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
+      #  error_message = "Start date later than end date" if (end_date < start_date)   
          
-        conditions.merge!({Recording.show.date_played.gte => params["start_date"], 
-                                       Recording.show.date_played.lte => params["end_date"]})      
-      end
+      #  conditions.merge!({Recording.show.date_played.gte => params["start_date"], 
+       #                                Recording.show.date_played.lte => params["end_date"]})      
+      #end 
     else
       conditions = session[:conditions]
     end
