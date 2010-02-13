@@ -16,9 +16,7 @@ class RecordingsController < ApplicationController
   def admin
     if params["year"] != nil
       conditions = {:label.not => nil}
-      conditions.merge!({Recording.show.date_played.gte => params["year"], 
-                         Recording.show.date_played.lt => (params["year"].to_i+1).to_s})   if params["year"] != "All"
-      @recordings = Recording.all(:conditions => conditions)    
+      @recordings = Recording.all(:conditions => params["year"]..(params["year"].to_i+1).to_s})    
       render :admin
     else
       render :year_list
