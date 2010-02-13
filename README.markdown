@@ -2,7 +2,7 @@
 
   http://github.com/mdolian/ambernet
 
-### Stack:
+## Stack:
 
   Ruby 1.8.7 (2010-01-10 patchlevel 249)
   Rubygems 1.3.5
@@ -13,7 +13,7 @@
   Resque 1.4.0
   Redis 1.2.0
 
-### Quick Start
+## Quick Start
   Create a local database instance and create config/database.yml from sample file
   gem install bundler
   bundle install
@@ -27,11 +27,11 @@
 
   hpricot seems to break Rails 3
 
-### Sphinx
+## Sphinx
 
   TO-DO
 
-### Redis
+## Redis
 
   TO-DO
 
