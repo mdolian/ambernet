@@ -2,7 +2,6 @@
 
 ### Stack:
 Ruby 1.8.7 (2010-01-10 patchlevel 249)
-
 Rubygems 1.3.5
 Bundler 0.9.6
 Rails 3.0.0.beta
