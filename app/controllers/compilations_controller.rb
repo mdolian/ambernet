@@ -8,7 +8,7 @@ class CompilationsController < ApplicationController
   end
   
   def show
-    @compilation = Compilation.all(:id => params["id"])
+    @compilation = Compilation.find(params["id"])
     render
   end
   

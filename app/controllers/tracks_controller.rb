@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   #params_accessible :post => [:id, :recording_id, :track, :setlist]
 
   def edit
-    recording = Recording.get(params["id"])
+    recording = Recording.find(params["id"])
     @setlists = Setlist.all(:show_id => recording.show_id)
     @tracks = RecordingTrack.all(:recording_id => params["id"])
     render

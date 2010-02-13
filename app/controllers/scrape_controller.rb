@@ -17,7 +17,7 @@ class ScrapeController < ApplicationController
         end
       end  
     when "update" then
-      show_id = Show.all(:order => [:id.desc])[0].id
+      show_id = Show.all(:order => :id, :sort_by => :desc])[0].id
       venue_name = "start"
       while venue_name != "" do
         show_id = show_id + 1
@@ -53,7 +53,7 @@ class ScrapeController < ApplicationController
       else
         venue_id = venue[0].id
       end    
-      show = Show.get(show_id)
+      show = Show.find(show_id)
       if show == nil then
         show = Show.new(:id => show_id, :date_played => date_played, :venue_id => venue_id)
         show.save

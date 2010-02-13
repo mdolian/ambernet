@@ -27,7 +27,7 @@ class VenuesController < ApplicationController
   end
   
   def list
-    venues = Venue.all(:conditions => {:venue_name.like => params["q"] << "%"})
+    venues = Venue.search(:conditions => {:venue_name => params["q"], :star => true})
     list = ""
     venues.each do |venue|
       list << venue.venue_name << "\n"
@@ -36,7 +36,8 @@ class VenuesController < ApplicationController
   end
   
   def city_list
-    venues = repository(:default).adapter.query("SELECT DISTINCT venue_city FROM venues WHERE (`venue_city` LIKE '%" << params["q"] << "%')")
+    #NEED TO FIX
+    #venues = repository(:default).adapter.query("SELECT DISTINCT venue_city FROM venues WHERE (`venue_city` LIKE '%" << params["q"] << "%')")
     
     #Venue.all(:conditions => {:venue_city.like => params["q"] << "%"})
     list = ""
