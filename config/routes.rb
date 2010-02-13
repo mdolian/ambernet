@@ -52,7 +52,7 @@ Ambernet::Application.routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  root :to => "beta#index"
+  root :to => "index#index"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

@@ -59,7 +59,6 @@ class ShowsController < ApplicationController
     end
     
     error_message = "Please select at least one search filter" if conditions.empty?
-    :page => params[:page], :per_page => 42
     
     if error_message == ''
     
