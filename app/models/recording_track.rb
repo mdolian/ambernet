@@ -4,7 +4,7 @@ class RecordingTrack < ActiveRecord::Base
   #t.string        :track
   #t.integer       :recording_id, :null => false
 
-  belongs_to :recording
-  has_and_belongs_to_many :setlists
+#  belongs_to :recording
+#  has_and_belongs_to_many :setlists
 
 end

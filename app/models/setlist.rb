@@ -9,7 +9,7 @@ class Setlist < ActiveRecord::Base
   
   belongs_to :show
   belongs_to :song
-  has_and_belongs_to_many :recording_tracks
+#  has_and_belongs_to_many :recording_tracks
   
   def last
     song.song_name
