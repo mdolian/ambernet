@@ -17,13 +17,13 @@
       %td
         %h5 Type:
       %td
-        %select{:name => "type"}
+        %select{:name => "recording_type"}
           = options_for_select(get_types)
     %tr
       %td
         %h5 File Type:
       %td
-        %select{:name => "filetypes"}
+        %select{:name => "filetype"}
           = options_for_select(get_filetypes)
     %tr
       %td

@@ -96,20 +96,20 @@ class Recording < ActiveRecord::Base
     end
   end
 
-  define_index do
-    indexes :date_played, :sortable => true
-    indexes venue.venue_name, :sortable => true
-    indexes venue.venue_city, :sortable => true
-    indexes venue.venue_state, :sortable => true
-    indexes :label, :sortable => true
-    indexes :source, :sortable => true
-    indexes :lineage, :sortable => true
-    indexes :taper, :sortable => true
-    indexes :type, :sortable => true
-    indexes :shnid, :sortable => true       
-    indexes setlist.song.song_name
+#  define_index do
+#    indexes :date_played, :sortable => true
+#    indexes venue.venue_name, :sortable => true
+#    indexes venue.venue_city, :sortable => true
+#    indexes venue.venue_state, :sortable => true
+#    indexes :label, :sortable => true
+#    indexes :source, :sortable => true
+#    indexes :lineage, :sortable => true
+#    indexes :taper, :sortable => true
+#    indexes :type, :sortable => true
+#    indexes :shnid, :sortable => true       
+#    indexes setlist.song.song_name
 
-    has date_played, type, label, venue.venue_name, venue.venue_city, venue.venue_state
-  end  
+#    has date_played, type, label, venue.venue_name, venue.venue_city, venue.venue_state
+#  end  
 
 end

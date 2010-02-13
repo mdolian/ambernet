@@ -15,8 +15,8 @@ class RecordingsController < ApplicationController
   # loads the admin page, a list of recordings given a year
   def admin
     if params["year"] != nil
-      conditions = {:label.not => nil}
-      @recordings = Recording.all(:conditions => params["year"]..(params["year"].to_i+1).to_s})    
+      start_date, end_date = "01-01-" << params["year"], "31-12-" << params["year"]
+      @recordings = Recording.all(:joins => :show, :conditions => ["date_played IN (?)", (start_date.to_date)..(end_date.to_date)])    
       render :admin
     else
       render :year_list
@@ -24,35 +24,35 @@ class RecordingsController < ApplicationController
   end
 
   # deletes a recording  
-  def delete
+  def destroy
     Recording.find(params["id"]).destroy
     redirect_to "/recordings/admin"
   end
   
   # update a recording
-  def edit
-    if params["submit"] == 'Update'
-      tracking_info = params["discs"] << "["
-      for i in (1..params["discs"].to_i) 
-        tracking_info << params["tracksDisc" << i.to_s] << ","
-      end
-      tracking_info.chop! << "]"    
-      @recording = Recording.find(params["id"])
-      @recording.update_attributes( :label => params["label"],
-                                    :source => params["source"],
-                                    :lineage => params["lineage"],
-                                    :taper => params["taper"],
-                                    :transfered_by => params["transfered_by"],
-                                    :notes => params["notes"],
-                                    :type => params["type"],
-                                    :filetype => params["filetype"],
-                                    :shnid => params["shnid"],
-                                    :tracking_info => tracking_info)                                                                                             
-      redirect_to "/recordings/admin"
-    else  
-       @recording = Recording.find(params["id"])
-       render 
+  def edit 
+     @recording = Recording.find(params["id"])
+     render 
+  end
+  
+  def update
+    tracking_info = params["discs"] << "["
+    for i in (1..params["discs"].to_i) 
+      tracking_info << params["tracksDisc" << i.to_s] << ","
     end
+    tracking_info.chop! << "]"    
+    @recording = Recording.find(params["id"])
+    @recording.update_attributes( :label => params["label"],
+                                  :source => params["source"],
+                                  :lineage => params["lineage"],
+                                  :taper => params["taper"],
+                                  :transfered_by => params["transfered_by"],
+                                  :notes => params["notes"],
+                                  :recording_type => params["recording_type"],
+                                  :filetype => params["filetype"],
+                                  :shnid => params["shnid"],
+                                  :tracking_info => tracking_info)                                                                                             
+    redirect_to "/recordings/admin"    
   end
  
   # form to create a new recording  
@@ -75,7 +75,7 @@ class RecordingsController < ApplicationController
       :taper => params["taper"] == "" ? "unknown" : params["taper"],
       :transfered_by => params["transfered_by"] == "" ? "unknown" : params["transfered_by"],
       :notes => params["notes"],
-      :type => params["type"],
+      :recording_type => params["recording_type"],
       :filetype => params["filetype"],
       :shnid => params["shnid"],
       :tracking_info => tracking_info
@@ -135,7 +135,7 @@ class RecordingsController < ApplicationController
 
     if params["submit"] != nil
       # Need to get drop downs working in views
-      conditions.merge!({:type => params["type"]})                                  if params["type"] != 'all'
+      conditions.merge!({:recording_type => params["recording_type"]})              if params["recording_type"] != 'all'
       conditions.merge!({:shnid => params["shnid"]})                                if params["shnid"] != ''      
       conditions.merge!({:label => params["label"], :star => true})                 if params["label"] != ''
       conditions.merge!({:source => params["source"], :star => true})               if params["source"] != ''
@@ -192,6 +192,10 @@ class RecordingsController < ApplicationController
     
     headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
     headers['Content-Type'] = "application/zip"
+    
+    respond_to do |format|
+       format.zip
+     end
     
     # Need to implement, this was a Merb function
     #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 

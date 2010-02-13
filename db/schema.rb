@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100205203846) do
+ActiveRecord::Schema.define(:version => 20100213174405) do
 
   create_table "compilation_tracks", :force => true do |t|
     t.string  "name"
@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(:version => 20100205203846) do
     t.string  "taper"
     t.string  "transfered_by"
     t.text    "notes"
-    t.string  "type"
+    t.string  "recording_type"
     t.string  "tracking_info"
     t.string  "shnid"
     t.string  "filetype"
-    t.integer "show_id",       :null => false
+    t.integer "show_id",        :null => false
   end
 
   create_table "setlists", :force => true do |t|

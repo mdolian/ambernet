@@ -19,7 +19,7 @@
         - @recordings.each do |recording|
           %tr
             %td= recording.show.date_played
-            %td= recording.type
+            %td= recording.recording_type
             %td
               %a{:href => "/recordings/show/#{recording.id}", :id => "recording_details_rec_#{recording.id}"}
                 =recording.label

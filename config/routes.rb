@@ -39,6 +39,9 @@ Ambernet::Application.routes.draw do |map|
   #     end
   #   end
 
+  # Venues before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
+
+
   # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
@@ -48,13 +51,25 @@ Ambernet::Application.routes.draw do |map|
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "index#index"
+
+  resources :recordings
+  match '/recordings/admin' => "recordings#admin"
+
+  #resources :venues
+  match '/venues/city_list' => 'venues#city_list'
+  match '/venues/list' => 'venues#list'
+  match '/venues/admin' => 'venues#admin'
 
   # See how all your routes lay out with "rake routes"
 
-  root :to => "index#index"
-
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  #match ':controller(/:action(/:id(.:format)))'   
+  
+  match '/s/:id.:format' => 'recordings#stream'
+  match '/admin' => 'recordings#admin'
+  match '/recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
+  match '/recordings/zip/:id/:filetype' => 'recordings#zip'
+  
 end

@@ -1,8 +1,7 @@
 class VenuesController < ApplicationController
   
-  # From Merb, to be implemented
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  #params_accessible :post => [:q, :venue_name, :venue_city, :venue_state]
+  attr_accessible :q, :venue_name, :venue_city, :venue_state
  
   def admin
     render 
@@ -21,13 +20,9 @@ class VenuesController < ApplicationController
     @venue.save
     render :admin
   end
- 
-  def index
-    render
-  end
-  
+   
   def list
-    venues = Venue.search(:conditions => {:venue_name => params["q"], :star => true})
+    venues = Venue.all(:conditions => ["venue_name LIKE  ?", "%" << params[:q] << "%"])
     list = ""
     venues.each do |venue|
       list << venue.venue_name << "\n"
@@ -35,11 +30,8 @@ class VenuesController < ApplicationController
     render :json => list, :layout => false
   end
   
-  def city_list
-    #NEED TO FIX
-    #venues = repository(:default).adapter.query("SELECT DISTINCT venue_city FROM venues WHERE (`venue_city` LIKE '%" << params["q"] << "%')")
-    
-    #Venue.all(:conditions => {:venue_city.like => params["q"] << "%"})
+  def city_list 
+    Venue.all(:conditions => ["venue_city LIKE ?", "%" << params["q"] << "%"], :select => "DISTINCT(venue_name)")
     list = ""
     venues.each do |venue|
       list << venue << "\n"
