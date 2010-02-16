@@ -4,11 +4,11 @@ require 'zip/zipfilesystem'
 
 class RecordingsController < ApplicationController
 
-  # TO-DO - implement below
+  # TO-DO
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  #params_accessible :post => [:label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
-  #                            :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid]
-
+  
+  attr_accessible :label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
+                  :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid
 
   # Admin actions
 
@@ -190,13 +190,14 @@ class RecordingsController < ApplicationController
       t.close   
     end
     
-    headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
-    headers['Content-Type'] = "application/zip"
+    #headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
+    #headers['Content-Type'] = "application/zip"
     
-    respond_to do |format|
-       format.zip
-     end
+    #respond_to do |format|
+    #  format.zip
+    #end
     
+    # TO-DO - This will be replaced by resque
     # Need to implement, this was a Merb function
     #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end

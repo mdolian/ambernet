@@ -49,13 +49,16 @@ Ambernet::Application.routes.draw do |map|
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "index#index"
+  match '/admin' => 'recordings#admin'
 
+  match 'recordings/admin' => "recordings#admin"
+  match '/recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
+  match '/recordings/zip/:id/:filetype' => 'recordings#zip'
+  match '/s/:id(.:format)' => 'recordings#stream'
+  match '/stream/:id(.:format)' => 'recordings#stream'  
   resources :recordings
-  match '/recordings/admin' => "recordings#admin"
 
+  #TO-DO add RESTful controller actions for venue
   #resources :venues
   match '/venues/city_list' => 'venues#city_list'
   match '/venues/list' => 'venues#list'
@@ -66,10 +69,7 @@ Ambernet::Application.routes.draw do |map|
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   #match ':controller(/:action(/:id(.:format)))'   
-  
-  match '/s/:id.:format' => 'recordings#stream'
-  match '/admin' => 'recordings#admin'
-  match '/recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
-  match '/recordings/zip/:id/:filetype' => 'recordings#zip'
+
+  root :to => "index#index"
   
 end
