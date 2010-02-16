@@ -13,11 +13,23 @@ class CompilationsController < ApplicationController
   end
   
   def new
-    render "not completed"
+    render "TO-DO"
   end
   
   def create
-    render "not completed"
+    render "TO-DO"
   end
   
+  def update
+    render "TO-DO"
+  end
+  
+  def destroy
+    render "TO-DO"
+  end  
+  
+  def edit
+    render "TO-DO"
+  end  
+
 end

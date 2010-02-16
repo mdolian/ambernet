@@ -7,7 +7,7 @@ class Setlist < ActiveRecord::Base
   #t.integer       :show_id, :null => false
   #t.integer       :song_id, :null => false
   
-  belongs_to :show
+  has_one :show
   belongs_to :song
 #  has_and_belongs_to_many :recording_tracks
   

@@ -1,0 +1,20 @@
+- form_for(@venue) do |f|
+  = f.error_messages
+  %div{ :class => "field" }
+    = f.label :venue_name
+    %br    
+    = f.text_field :venue_name
+  %div{ :class => "field" }
+    = f.label :venue_city
+    %br    
+    = f.text_field :venue_city
+  %div{ :class => "field" }
+    = f.label :venue_state
+    %br
+    = f.text_field :venue_state
+  %div{ :class => "field" }
+    = f.label :venue_country
+    %br
+    = f.text_field :venue_country
+  %div{ :class => "actions" }
+    = f.submit

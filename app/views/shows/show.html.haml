@@ -1,0 +1,22 @@
+%br
+%br
+%div{:id => "main"}
+  %h3 Show Details
+  %div   
+    %table{:width => "65%", :align => "center", :class => "tablesorter"}
+      %tr
+        %td{:width => "20%"} 
+          %b Show ID
+        %td{:width => "80%"}= @show.id
+      %tr  
+        %td 
+          %b Date Played
+        %td= @show.date_played
+      %tr
+        %td 
+          %b Venue
+        %td= @show.venue.label
+      %tr
+        %td 
+          %b Show Notes
+        %td= @show.show_notes

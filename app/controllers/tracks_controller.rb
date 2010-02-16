@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
 
+  # TO-DO - This was never really implemented
   # From Merb, to be implemented
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   #params_accessible :post => [:id, :recording_id, :track, :setlist]
@@ -12,7 +13,7 @@ class TracksController < ApplicationController
   end
   
   def update
-    render "NOT DONE YET"
+    render "TO-DO"
   end
   
   def add

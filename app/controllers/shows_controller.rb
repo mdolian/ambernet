@@ -7,11 +7,76 @@ class ShowsController < ApplicationController
   #params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
   # :venue_name, :venue_city, :venue_state, :song_name, :method]
  
- 
   def index
-    render
+    @current_page = (params[:page] || 1).to_i 
+    @shows = Show.paginate(:joins => :venue, :page => @current_page, :per_page => 100, :order => :date_played) 
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @shows }
+    end
+  end
+
+  def show
+    @show = Show.find(params["id"], :joins => :venue)
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @show }
+    end
+  end 
+ 
+  def new
+    @show = Show.new
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @show }
+    end
+  end
+
+  def edit
+    @show = Show.find(params["id"])
+  end
+
+  def create 
+    @show = Show.new(params[:show])
+
+    respond_to do |format|
+      if @show.save
+        format.html { redirect_to(:action => "index", :notice => 'Show was successfully created.') }
+        format.xml  { render :xml => @show, :status => :created, :location => @show }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @show.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
+  def update
+    @show = Show.find(params["id"])
+  
+    respond_to do |format|
+      if @show.update_attributes(params[:show])
+        format.html { redirect_to(:action => "index", :notice => 'Show was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @show.errors, :status => :unprocessable_entity }
+      end
+    end    
+  end
+
+  def destroy
+    @show = Show.find(params[:id])
+    @show.destroy
+
+    respond_to do |format|
+      format.html { redirect_to :action => "index" }
+      format.xml  { head :ok }
+    end
+  end
+  
+  # List of shows for auto complete in json format
   def list
     list = []
     shows = Show.all(["date_played = " << Date.strptime(params["date_played"])])
@@ -21,6 +86,7 @@ class ShowsController < ApplicationController
     render :json => list.to_json, :layout => false
   end
  
+  # Setlist for a show in json format
   def setlist
     setlist_json = []
     total_sets = Show.find(params["id"]).setlists[0].total_sets
@@ -31,49 +97,56 @@ class ShowsController < ApplicationController
     render :json => setlist_json.to_json, :layout => false
   end
  
+  # List recordings for a show
   def recordings
     @recordings = Recording.all(:show_id => params["id"])
     render :layout => false
   end
     
-  def search_results
-    @current_page = (params[:page] || 1).to_i
-    conditions = {}
-    error_message, notice_message = "",""
-    
-    if params["submit"] != nil
-      conditions.merge!({:song_name => params["song_name"], :star => true})                           if params["song_name"] != ''
-      conditions.merge!({:date_played => params["year"].to_date..(params["year"].to_i+1).to_date})    if params["year"] != 'All'
-      conditions.merge!({:venue_city => params["venue_city"], :star => true})                         if params["venue_city"] != ''
-      conditions.merge!({:venue_state => params["venue_state"], :star => true})                       if params["venue_state"] != ''
-      conditions.merge!({:venue_name => params["venue_name"], :star => true})                         if params["venue_name"] != ''
- 
-      unless (params["end_date"] == '' && params["start_date"] == '')
-        end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])
-        start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
-        error_message = "Start date later than end date" if (end_date < start_date)
-        conditions.merge!({:date_played  => start_date..end_date})
-      end
+  # Search shows  
+  def search
+    if request.method == :get
+      render
     else
-      conditions = session[:conditions]
+    
+      @current_page = (params[:page] || 1).to_i
+      conditions = {}
+      error_message, notice_message = "",""
+    
+      if params["submit"] != nil
+        conditions.merge!({:song_name => params["song_name"], :star => true})                           if params["song_name"] != ''
+        conditions.merge!({:date_played => params["year"].to_date..(params["year"].to_i+1).to_date})    if params["year"] != 'All'
+        conditions.merge!({:venue_city => params["venue_city"], :star => true})                         if params["venue_city"] != ''
+        conditions.merge!({:venue_state => params["venue_state"], :star => true})                       if params["venue_state"] != ''
+        conditions.merge!({:venue_name => params["venue_name"], :star => true})                         if params["venue_name"] != ''
+ 
+        unless (params["end_date"] == '' && params["start_date"] == '')
+          end_date = params["end_date"] == '' ? Date.today : Date.parse(params["end_date"])
+          start_date = params["start_date"] == '' ? Date.today : Date.parse(params["start_date"])
+          error_message = "Start date later than end date" if (end_date < start_date)
+          conditions.merge!({:date_played  => start_date..end_date})
+        end
+      else
+        conditions = session[:conditions]
+      end
+    
+      error_message = "Please select at least one search filter" if conditions.empty?
+    
+      if error_message == ''
+    
+        @shows = Show.search(:conditions => conditions, :page => @current_page, 
+                             :order => :date_played, :sort_mode => :asc)  
+        session[:conditions] = conditions                        
+        session[:current_page] = @current_page
+      end
+    
+      if error_message != ''
+        flash[:error] = error_message
+        flash[:notice] = notice_message
+      end
+    
+      render :search_results
     end
-    
-    error_message = "Please select at least one search filter" if conditions.empty?
-    
-    if error_message == ''
-    
-      @shows = Show.search(:conditions => conditions, :page => @current_page, 
-                           :order => :date_played, :sort_mode => :asc)  
-      session[:conditions] = conditions                        
-      session[:current_page] = @current_page
-    end
-    
-    if error_message != ''
-      flash[:error] = error_message
-      flash[:notice] = notice_message
-    end
-    
-    render
  
   end
  

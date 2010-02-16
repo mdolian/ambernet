@@ -96,6 +96,10 @@ class Recording < ActiveRecord::Base
     end
   end
 
+  def self.per_page
+    100
+  end
+
 #  define_index do
 #    indexes :date_played, :sortable => true
 #    indexes venue.venue_name, :sortable => true

@@ -1,0 +1,16 @@
+- form_for(@show) do |f|
+  = f.error_messages
+  %div{ :class => "field" }
+    = f.label :date_played
+    %br    
+    = f.text_field :date_played
+  %div{ :class => "field" }
+    = f.label :venue_id
+    %br    
+    = f.text_field :venue_id
+  %div{ :class => "field" }
+    = f.label :show_notes
+    %br
+    = f.text_field :show_notes
+    %div{ :class => "actions" }
+      = f.submit

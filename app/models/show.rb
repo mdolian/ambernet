@@ -34,6 +34,10 @@ class Show < ActiveRecord::Base
     Show.maxiumum(Show.setlists.set_id, :show_id => id)
   end
   
+  def self.per_page
+    2
+  end
+  
 #  define_index do
 #    indexes recording.date_played, :sortable => true
 #    indexes venue.venue_name, :sortable => true

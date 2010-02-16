@@ -5,4 +5,8 @@ class Compilation < ActiveRecord::Base
 
   has many :compilation_tracks
 
+  def self.per_page
+    50
+  end
+
 end

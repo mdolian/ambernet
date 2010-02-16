@@ -15,6 +15,14 @@ class Venue < ActiveRecord::Base
   def last
     venue_name
   end  
+
+  def self.per_page
+    100
+  end
+  
+  def label
+    venue_name + " " + venue_city + ", " + venue_state
+  end
  
 #  define_index do
 #    indexes venue_name, :sortable => true
