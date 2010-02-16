@@ -49,20 +49,21 @@ Ambernet::Application.routes.draw do |map|
   #     resources :products
   #   end
 
-  match '/admin' => 'recordings#admin'
+  match 'admin' => 'recordings#admin'
 
-  match 'recordings/admin' => "recordings#admin"
-  match '/recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
-  match '/recordings/zip/:id/:filetype' => 'recordings#zip'
-  match '/s/:id(.:format)' => 'recordings#stream'
-  match '/stream/:id(.:format)' => 'recordings#stream'  
+  match 'recordings/admin' => 'recordings#admin'
+  match 'recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
+  match 'recordings/zip/:id/:filetype' => 'recordings#zip'
+  match 's/:id(.:format)' => 'recordings#stream'
+  match 'stream/:id(.:format)' => 'recordings#stream'  
+  
   resources :recordings
 
   #TO-DO add RESTful controller actions for venue
   #resources :venues
-  match '/venues/city_list' => 'venues#city_list'
-  match '/venues/list' => 'venues#list'
-  match '/venues/admin' => 'venues#admin'
+  match 'venues/city_list' => 'venues#city_list'
+  match 'venues/list' => 'venues#list'
+  match 'venues/admin' => 'venues#admin'
 
   # See how all your routes lay out with "rake routes"
 

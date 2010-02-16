@@ -1,7 +1,7 @@
 = javascript_include_tag "admin"
 %h2 Edit Recording
 %div{:width => "400"}
-  %form{:action => "/recordings/edit/#{@recording.id}", :method => "post", :autocomplete => "off"}
+  %form{:action => "/recordings/#{@recording.id}", :method => "put", :autocomplete => "off"}
     %table
       %tr
         %td{:width => "25%"}

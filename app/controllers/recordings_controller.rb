@@ -7,8 +7,8 @@ class RecordingsController < ApplicationController
   # TO-DO
   #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
   
-  attr_accessible :label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
-                  :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid
+  #attr_accessible :label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
+  #                :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid
 
   # Admin actions
 
@@ -51,7 +51,8 @@ class RecordingsController < ApplicationController
                                   :recording_type => params["recording_type"],
                                   :filetype => params["filetype"],
                                   :shnid => params["shnid"],
-                                  :tracking_info => tracking_info)                                                                                             
+                                  :tracking_info => tracking_info)    
+    @recording.save                                                                                                                       
     redirect_to "/recordings/admin"    
   end
  
