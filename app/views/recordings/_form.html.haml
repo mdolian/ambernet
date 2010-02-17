@@ -1,0 +1,48 @@
+- form_for(@recording) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td{:width => "25%"}
+        %h5 Show:
+        %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
+      %td{:width => "75%"}
+        %input{:type => "text", :name => "date_played", :id => "show_date_played"}  
+    %tr
+      %td= f.label :label
+      %td= f.text_field :label
+    %tr
+      %td= f.label :source
+      %td= f.text_field :source
+    %tr
+      %td= f.label :lineage
+      %td= f.text_field :lineage
+    %tr
+      %td= f.label :taper
+      %td= f.text_field :taper
+    %tr
+      %td= f.label :transfered_by
+      %td= f.text_field :transfered_by
+    %tr
+      %td= f.label :type
+      %td= f.text_field :type
+    %tr
+      %td= f.label :shnid
+      %td= f.text_field :shnid
+    %tr
+      %td= f.label :filetype
+      %td= f.text_field :filetype
+    %tr
+      %td= f.label :notes
+      %td= f.text_field :notes
+    %tr
+      %td
+        %h5 Disc Count
+      %td
+        %select{:name => "discs", :id => "discs"}
+          = options_for_select(get_discs)
+    %tr
+      %td 
+      %td
+        %div{:id => "tracks"}
+    %tr
+      %td{:colspan => "2"}= f.submit

@@ -1,6 +1,7 @@
 = javascript_include_tag "admin"
 %h2 Admin Recordings
-%a{:href => "/recordings/admin"} Back
+= link_to 'Back', recordings_path
+= will_paginate @recordings
 %table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
@@ -8,21 +9,15 @@
       %th{:width => "10%", :align => "left"} Edit
       %th{:width => "15%", :align => "left"} Show Date
       %th{:width => "30%", :align => "left"} Label
-      %th{:width => "20%", :align => "left"} Venue Name
+      %th{:width => "20%", :align => "left"} Venue Name  
     %tbody  
       %tr
-        %td
-          %a{:href => "/recordings/new"} Add
-        %td
-        %td
-        %td
-        %td
+        %td{:colspan => "6"}= link_to 'New Recording', new_recording_path
       - @recordings.each do |recording|
         %tr
           %td
-            %a{:href => "/recordings/delete/#{recording.id}", :id => "delete"} Delete
-          %td
-            %a{:href => "/recordings/#{recording.id}/edit"} Edit
+            %a{:href => "/recordings/destroy/#{recording.id}", :id => "delete"} Delete
+          %td= link_to 'Edit', edit_recording_path(recording)
           %td= recording.show.date_played
           %td= recording.label
-          %td= recording.show.venue.venue_name
+          %td= recording.show.venue.label

@@ -1,11 +1,6 @@
 require 'date'
- 
+
 class ShowsController < ApplicationController
- 
-  # From Merb, to be implemented
-  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  #params_accessible :post => [:date_played, :sid, :page, :year, :start_date, :end_date, :submit,
-  # :venue_name, :venue_city, :venue_state, :song_name, :method]
  
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -43,7 +38,8 @@ class ShowsController < ApplicationController
 
     respond_to do |format|
       if @show.save
-        format.html { redirect_to(:action => "index", :notice => 'Show was successfully created.') }
+        flash[:notice] = "Show was successfully created."
+        format.html { redirect_to :action => "index" }
         format.xml  { render :xml => @show, :status => :created, :location => @show }
       else
         format.html { render :action => "new" }
@@ -57,7 +53,8 @@ class ShowsController < ApplicationController
   
     respond_to do |format|
       if @show.update_attributes(params[:show])
-        format.html { redirect_to(:action => "index", :notice => 'Show was successfully updated.') }
+        flash[:notice] = "Show was successfully updated."
+        format.html { redirect_to :action => "index" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -71,6 +68,7 @@ class ShowsController < ApplicationController
     @show.destroy
 
     respond_to do |format|
+      flash[:notice] = "Show was successfully deleted."
       format.html { redirect_to :action => "index" }
       format.xml  { head :ok }
     end
@@ -79,7 +77,7 @@ class ShowsController < ApplicationController
   # List of shows for auto complete in json format
   def list
     list = []
-    shows = Show.all(["date_played = " << Date.strptime(params["date_played"])])
+    shows = Show.all(:conditions => ["date_played = ? ", params["date_played"]])
     shows.each do |show|
       list << {"label" => show.label, "id" => show.id}
     end

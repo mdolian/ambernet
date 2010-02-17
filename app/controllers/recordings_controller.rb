@@ -1,103 +1,95 @@
-require 'date'
 require 'zip/zip'
 require 'zip/zipfilesystem'
+require 'date'
 
 class RecordingsController < ApplicationController
 
-  # TO-DO
-  #before :ensure_authenticated, :only => [:admin, :new, :create, :edit, :delete, :update]
-  
-  #attr_accessible :label, :source, :lineage, :taper, :transfered_by, :notes, :type, :show_id, :page, :song_name, :filetype,
-  #                :year, :start_date, :end_date, :id, :submit, :venue_name, :venue_city, :venue_state, :submit, :shnid
+  def index
+    @current_page = (params[:page] || 1).to_i 
+    @recordings = Recording.paginate(:joins => {:show => :venue}, :page => @current_page) 
 
-  # Admin actions
-
-  # loads the admin page, a list of recordings given a year
-  def admin
-    if params["year"] != nil
-      start_date, end_date = "01-01-" << params["year"], "31-12-" << params["year"]
-      @recordings = Recording.all(:joins => :show, :conditions => ["date_played IN (?)", (start_date.to_date)..(end_date.to_date)])    
-      render :admin
-    else
-      render :year_list
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @recordings }
     end
   end
 
-  # deletes a recording  
-  def destroy
-    Recording.find(params["id"]).destroy
-    redirect_to "/recordings/admin"
+  def show
+    @recording = Recording.find(params["id"])
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @recording }
+    end
+  end 
+ 
+  def new
+    @recording = Recording.new
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @recording }
+    end
   end
-  
-  # update a recording
-  def edit 
-     @recording = Recording.find(params["id"])
-     render 
+
+  def edit
+    @recording = Recording.find(params["id"])
+  end
+
+  def create 
+    @recording = Recording.new(params[:venue])
+
+    tracking_info = params[:venue["discs"]] << "["
+    for i in (1..params[:venue["discs"]].to_i)
+      tracking_info << params[:venue["tracksDisc"] << i.to_s] << ","
+    end
+    tracking_info.chop! << "]"
+    params[:venue["tracking_info"]] = tracking_info    
+    
+    respond_to do |format|
+      if @recording.save
+        flash[:notice] = 'Recording was successfully created.'
+        format.html { redirect_to :action => "index" }
+        format.xml  { render :xml => @recording, :status => :created, :location => @recording }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @recording.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
   def update
+    @recording = Recording.find(params["id"])
+   
     tracking_info = params["discs"] << "["
     for i in (1..params["discs"].to_i) 
       tracking_info << params["tracksDisc" << i.to_s] << ","
     end
-    tracking_info.chop! << "]"    
-    @recording = Recording.find(params["id"])
-    @recording.update_attributes( :label => params["label"],
-                                  :source => params["source"],
-                                  :lineage => params["lineage"],
-                                  :taper => params["taper"],
-                                  :transfered_by => params["transfered_by"],
-                                  :notes => params["notes"],
-                                  :recording_type => params["recording_type"],
-                                  :filetype => params["filetype"],
-                                  :shnid => params["shnid"],
-                                  :tracking_info => tracking_info)    
-    @recording.save                                                                                                                       
-    redirect_to "/recordings/admin"    
+    tracking_info.chop! << "]"
+    params[:venue["tracking_info"]] = tracking_info
+     
+    respond_to do |format|
+      if @recording.update_attributes(params[:venue])
+        flash[:notice] = "Recording was successfully updated."
+        format.html { redirect_to :action => "index" }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @recording.errors, :status => :unprocessable_entity }
+      end
+    end    
   end
- 
-  # form to create a new recording  
-  def new
-    render 
-  end
-  
-  # insert a new recording into the database
-  def create
-    tracking_info = params["discs"] << "["
-    for i in (1..params["discs"].to_i)
-      tracking_info << params["tracksDisc" << i.to_s] << ","
+
+  def destroy
+    @recording = Recording.find(params[:id])
+    @recording.destroy
+
+    respond_to do |format|
+      flash[:notice] = "Recording was successfully deleted."
+      format.html { redirect_to :action => "index" }
+      format.xml  { head :ok }
     end
-    tracking_info.chop! << "]"    
-    @recording = Recording.new(
-      :show_id => params["show_id"],
-      :label => params["label"],
-      :source => params["source"] == "" ? "unknown" : params["source"],
-      :lineage => params["lineage"] == "" ? "unknown" : params["lineage"],
-      :taper => params["taper"] == "" ? "unknown" : params["taper"],
-      :transfered_by => params["transfered_by"] == "" ? "unknown" : params["transfered_by"],
-      :notes => params["notes"],
-      :recording_type => params["recording_type"],
-      :filetype => params["filetype"],
-      :shnid => params["shnid"],
-      :tracking_info => tracking_info
-    )
-    @recording.save
-    @current_page = (params[:page] || 1).to_i
-    @page_count, @recordings = Recording.paginated(
-      :page => @current_page,
-      :per_page => 100)    
-    redirect_to "/recordings/admin"
-  end  
-
-
-
-  # User actions
-  # action for the search form page
-  def index
-    render
   end
 
-  # TO-DO - convert to Rails
   # streams a recording
   def stream
     only_provides :pls, :m3u
@@ -119,12 +111,6 @@ class RecordingsController < ApplicationController
     content_type = "application/pls" if params["format"] == "pls"
     filename = "#{label}.#{format}"
     send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
-  end
-
-  # recording details action
-  def show
-    @recording = Recording.find(params["id"])
-    render
   end
  
   # search results action    

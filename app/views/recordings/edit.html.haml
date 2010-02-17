@@ -1,70 +1,8 @@
 = javascript_include_tag "admin"
-%h2 Edit Recording
-%div{:width => "400"}
-  %form{:action => "/recordings/#{@recording.id}", :method => "put", :autocomplete => "off"}
-    %table
-      %tr
-        %td{:width => "25%"}
-          %h5 ID
-          %input{:type => "hidden", :name => "id", :value => "#{@recording.id}"}
-        %td{:width => "75%"}= @recording.id
-      %tr
-        %td 
-          %h5 Show Date
-        %td= @recording.show.date_played
-      %tr
-        %td 
-          %h5 Type
-        %td
-          // TO-DO - Need to select type for select recording      
-          %select{:name => "recording_type"}
-            = options_for_select(get_types)
-      %tr
-        %td 
-          %h5 Label 
-        %td
-          %input{:type => "text", :name => "label", :value => @recording.label, :size => "50"}
-      %tr
-        %td 
-          %h5 Taper
-        %td
-          %input{:type => "text", :name => "taper", :value => @recording.taper, :size => "50"}
-      %tr
-        %td 
-          %h5 Transfered By
-        %td
-          %input{:type => "text", :name => "transfered_by", :value => @recording.transfered_by}
-      %tr
-        %td 
-          %h5 SHN ID
-        %td
-          %input{:type => "text", :name => "shnid", :value => @recording.shnid, :size => "50"}  
-      %tr
-        %td 
-          %h5 Source
-        %td
-          %input{:type => "text", :name => "source", :value => @recording.source, :size => "50"}    
-      %tr
-        %td 
-          %h5 Lineage
-        %td
-          %input{:type => "text", :name => "lineage", :value => @recording.lineage, :size => "50"}
-      %tr
-        %td 
-          %h5 Notes
-        %td
-          %textarea{:name => "notes", :rows => "5", :cols => "50"}= @recording.notes
-      %tr
-        %td
-          %h5 Disc Count
-        %td
-          // TO-DO - select total discs for selected recording
-          %select{:name => "discs", :id => "discs"}
-            = options_for_select(get_discs)          
-      %tr
-        %td 
-        %td
-          %div{:id => "tracks"}          
-      %tr 
-        %td{:colspan => "2"}
-          %input{:type => "submit", :value => "Update", :name => "submit"}
+%h2 Update Recording (admin only)
+
+= render 'form'
+
+= link_to 'Show', @recording
+|
+= link_to 'Back', recordings_path

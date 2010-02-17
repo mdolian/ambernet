@@ -1,9 +1,4 @@
 Ambernet::Application.routes.draw do |map|
-  resources :test2s
-
-  resources :tests
-  # admin root
-  match 'admin' => 'recordings#admin'
 
   # beta_controller
   match 'beta/index' => 'beta#index'
@@ -14,11 +9,11 @@ Ambernet::Application.routes.draw do |map|
   resources :compilations  
   
   # recordings_controller
-  match 'recordings/admin' => 'recordings#admin'
   match 'recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
   match 'recordings/zip/:id/:filetype' => 'recordings#zip'
   match 's/:id(.:format)' => 'recordings#stream'
-  match 'stream/:id(.:format)' => 'recordings#stream'   
+  match 'stream/:id(.:format)' => 'recordings#stream'
+  match 'recordings/destroy/:id' => 'recordings#destroy'    
   resources :recordings
   
   # scrape_controller

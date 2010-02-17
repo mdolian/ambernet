@@ -17,7 +17,7 @@
       - @venues.each do |venue|
         %tr        
           %td
-            %a{:href => "/venues/destroy/#{venue.id}"} Delete
+            %a{:href => "/venues/destroy/#{venue.id}", :id => "delete"} Delete
           %td= link_to 'Edit', edit_venue_path(venue)
           %td= venue.venue_name
           %td= venue.venue_city

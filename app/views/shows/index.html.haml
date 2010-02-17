@@ -15,7 +15,7 @@
       - @shows.each do |show|
         %tr        
           %td
-            %a{:href => "/shows/destroy/#{show.id}"} Delete
+            %a{:href => "/shows/destroy/#{show.id}", :id => "delete"} Delete
           %td= link_to 'Edit', edit_show_path(show)
           %td= show.date_played
           %td= show.venue.label
