@@ -16,15 +16,11 @@ class Setlist < ActiveRecord::Base
   end
 
   def song_suffix
-    is_segue? ? " > " : song_order == Setlist.maximum(:song_order, :show_id => show_id, :set_id => set_id) ? "" : ", "
+    is_segue? ? " > " : song_order == Setlist.maximum(:song_order, :conditions => ["show_id = ? AND set_id = ?", show_id, set_id]) ? "" : ", "
   end
     
   def first
     id
-  end
-  
-  def total_sets
-    Setlist.maximum(:set_id, :set_id.not => "9", :show_id => show_id)
   end
       
 end

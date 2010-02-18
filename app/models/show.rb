@@ -27,15 +27,24 @@ class Show < ActiveRecord::Base
   end
   
   def setlists
-    Setlist.find(:show_id => id, :order => [:set_id.asc, :song_order.asc])
+    Setlist.all(:conditions => ["show_id  = ? ", id], :order => "set_id ASC, song_order ASC")
   end
-  
+
   def total_sets
-    Show.maxiumum(Show.setlists.set_id, :show_id => id)
+    Setlist.maximum(:set_id, :conditions => ["set_id != '9' AND show_id = ?", id])
   end
   
   def self.per_page
     2
+  end
+  
+  def setlist_as_text(set_id)
+    setlist_text = ""
+    setlists.each do |setlist|
+      song = Song.find(setlist.song_id)      
+      setlist_text << song.song_name << setlist.song_suffix if (set_id == setlist.set_id)
+    end
+    setlist_text
   end
   
 #  define_index do

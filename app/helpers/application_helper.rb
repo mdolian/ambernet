@@ -1,19 +1,19 @@
 module ApplicationHelper
 
-  def get_types
+  def get_recording_types
     ["all", "sbd", "aud", "matrix", "fm", "other"]
   end
   
   def get_filetypes
-    ["flac16", "shnf", "flac24"]
+    ["flac16", "shnf", "flac24", "mp3f"]
   end    
   
   def get_venues
-    ["All"] + Venue.all(:order => [:venue_name.asc])
+    ["All"] + Venue.all(:order => "venue_name ASC").collect {|v| [ v.venue_name, v.id ]}
   end
   
   def get_songs
-    ["All"] + Song.all(:order => [:song_name.asc])
+    ["All"] + Song.all(:order => "song_name ASC").collect {|s| [ s.song_name, s.id ]}
   end
   
   def get_years

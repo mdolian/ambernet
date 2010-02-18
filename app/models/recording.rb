@@ -8,7 +8,7 @@ class Recording < ActiveRecord::Base
   #t.string        :taper
   #t.string        :transfered_by
   #t.text          :notes
-  #t.string        :type
+  #t.string        :recording_type
   #t.string        :tracking_info - totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
   #t.string        :shnid
   #t.string        :filetype      
@@ -21,8 +21,9 @@ class Recording < ActiveRecord::Base
     case filetype
       when "flac16" then "flac"
       when "flac24" then "flac"
-      when "shnf"   then  "shn"
-      else                "ERROR"
+      when "shnf"   then "shn"
+      when "mp3f"   then "mp3"
+      else               "ERROR"
     end
   end
   
@@ -30,7 +31,7 @@ class Recording < ActiveRecord::Base
     case type
       when "lossless" then lossless_extension
       when "mp3"      then "mp3"
-      else            "ERROR"
+      else                 "ERROR"
     end
   end
 

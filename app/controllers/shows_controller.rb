@@ -13,7 +13,7 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @show = Show.find(params["id"], :joins => :venue)
+    @show = Show.find(params["id"], :joins => [:venue, :setlists])
     respond_to do |format|
       format.html
       format.xml  { render :xml => @show }

@@ -7,7 +7,7 @@
   %div{ :class => "field" }
     = f.label :venue_id
     %br    
-    = f.text_field :venue_id
+    = f.select "venue_id", get_venues
   %div{ :class => "field" }
     = f.label :show_notes
     %br

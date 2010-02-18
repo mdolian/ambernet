@@ -1,7 +1,7 @@
 %div{:id => "main_recordings"}
   = javascript_include_tag "search"
   = javascript_include_tag "accordion"
-  %form{:method => "post", :action => "/recordings/search_results", :autocomplete => "off"}  
+  %form{:method => "post", :action => "/recordings/search", :autocomplete => "off"}  
     %div{:id => "search_accordion_recordings"}
       %h3
         %a{:href => "#"} General
@@ -62,7 +62,7 @@
               %label Type
             %td
               %select{:name => "recording_type"}
-                = options_for_select(get_types)
+                = options_for_select(get_recording_types)
       %h3
         %a{:href => "#"} Date
       %div     

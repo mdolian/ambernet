@@ -36,14 +36,14 @@ class RecordingsController < ApplicationController
   end
 
   def create 
-    @recording = Recording.new(params[:venue])
+    @recording = Recording.new(params[:recording])
 
-    tracking_info = params[:venue["discs"]] << "["
-    for i in (1..params[:venue["discs"]].to_i)
-      tracking_info << params[:venue["tracksDisc"] << i.to_s] << ","
+    tracking_info = params["discs"] << "["
+    for i in (1..params["discs"].to_i)
+      tracking_info << params["tracksDisc" << i.to_s] << ","
     end
     tracking_info.chop! << "]"
-    params[:venue["tracking_info"]] = tracking_info    
+    params["tracking_info"] = tracking_info    
     
     respond_to do |format|
       if @recording.save
@@ -65,10 +65,10 @@ class RecordingsController < ApplicationController
       tracking_info << params["tracksDisc" << i.to_s] << ","
     end
     tracking_info.chop! << "]"
-    params[:venue["tracking_info"]] = tracking_info
+    params["tracking_info"] = tracking_info
      
     respond_to do |format|
-      if @recording.update_attributes(params[:venue])
+      if @recording.update_attributes(params[:recording])
         flash[:notice] = "Recording was successfully updated."
         format.html { redirect_to :action => "index" }
         format.xml  { head :ok }

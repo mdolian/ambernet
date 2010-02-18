@@ -1,7 +1,7 @@
 = javascript_include_tag "search_results"
 %form{:action => "/recordings/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_recordings"}
   %input{:type => "hidden", :name => "page", :value => "#{params['page']}"}
-  %a{:href => "/#{session['searchBranch']}/index", :id => "back"} Back to Search Form
+  %a{:href => "/recordings/search", :id => "back"} Back to Search Form
   %br
   %br
   = will_paginate(@recordings)

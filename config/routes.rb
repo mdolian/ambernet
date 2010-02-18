@@ -1,6 +1,7 @@
 Ambernet::Application.routes.draw do |map|
 
   # beta_controller
+  match 'beta' => 'beta#index'
   match 'beta/index' => 'beta#index'
   match 'beta/contact' => 'beta#contact'
   match 'beta/bug' => 'beta#bug'
@@ -14,6 +15,7 @@ Ambernet::Application.routes.draw do |map|
   match 'recordings/zip/:id/:filetype' => 'recordings#zip'
   match 's/:id(.:format)' => 'recordings#stream'
   match 'stream/:id(.:format)' => 'recordings#stream'
+  match 'recordings/search' => 'recordings#search'
   match 'recordings/destroy/:id' => 'recordings#destroy'    
   resources :recordings
   
@@ -27,7 +29,6 @@ Ambernet::Application.routes.draw do |map|
   match 'shows/search' => 'shows#search'
   match 'shows/destroy/:id' => 'shows#destroy'  
   resources :shows
-
   # tracks_controller
   # TO-DO
   
@@ -41,6 +42,7 @@ Ambernet::Application.routes.draw do |map|
   match 'admin' => 'admin#index'
 
   # root
-  root :to => "index#index"
+  match 'index' => 'index#index'
+  root :to => 'index#index'
   
 end

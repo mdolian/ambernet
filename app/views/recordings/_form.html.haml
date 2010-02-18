@@ -4,7 +4,7 @@
     %tr
       %td{:width => "25%"}
         %h5 Show:
-        %input{:type => "hidden", :name => "show_id", :id => "show_id", :value => ""}
+        = f.hidden_field :show_id, {:id => "show_id"}
       %td{:width => "75%"}
         %input{:type => "text", :name => "date_played", :id => "show_date_played"}  
     %tr
@@ -23,14 +23,14 @@
       %td= f.label :transfered_by
       %td= f.text_field :transfered_by
     %tr
-      %td= f.label :type
-      %td= f.text_field :type
+      %td= f.label :recording_type
+      %td= f.select :recording_type, get_recording_types
     %tr
       %td= f.label :shnid
       %td= f.text_field :shnid
     %tr
       %td= f.label :filetype
-      %td= f.text_field :filetype
+      %td= f.select :filetype, get_filetypes
     %tr
       %td= f.label :notes
       %td= f.text_field :notes
