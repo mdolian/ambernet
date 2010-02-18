@@ -39,6 +39,8 @@ Ambernet::Application.routes.draw do |map|
   match 'venues/destroy/:id' => 'venues#destroy'
   resources :venues
 
+  devise_for :users
+
   match 'admin' => 'admin#index'
 
   # root
