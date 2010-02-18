@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  
+
   #t.string              :song_name
   #t.text                :song_lyrics
   #t.string              :written_by
@@ -7,13 +7,5 @@ class Song < ActiveRecord::Base
   #t.boolean             :is_instrumental
   
   has_many :setlists
-
-  def first
-    id
-  end
-  
-  def last
-    song_name
-  end
   
 end

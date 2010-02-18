@@ -1,10 +1,5 @@
 $(function() {
   jQuery(document).ready(function($) {	
-    $('#delete').confirm({
-	  	eventType:'mouseover',
-	    timeout:3000,
-		  dialogShow:'fadeIn',
-		  dialogSpeed:'slow'});	
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
@@ -35,8 +30,5 @@ $(function() {
 				$("#tracks").append("<h5>Disc " + i + " Track Count:&nbsp;&nbsp;&nbsp;<input size='2' type='text' name='tracksDisc" + i + "'/></h5>");
 			}
 		});
-		$("#year").change(function() {
-			$("#years_form").submit();
-		});			
   });		
 });

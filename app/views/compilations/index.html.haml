@@ -13,8 +13,7 @@
         %td{:colspan => "6"}= link_to 'New Compilation', new_compilation_path
       - @compilations.each do |compilation|
         %tr        
-          %td
-            %a{:href => "/compilations/destroy/#{compilation.id}", :id => "delete"} Delete
+          %td= link_to 'Destroy', compilation_path(compilation), :confirm => "Are you sure?", :method => :delete
           %td= link_to 'Edit', edit_compilation_path(compilation)
           %td= compilation.label
           

@@ -15,8 +15,7 @@
         %td{:colspan => "6"}= link_to 'New Recording', new_recording_path
       - @recordings.each do |recording|
         %tr
-          %td
-            %a{:href => "/recordings/destroy/#{recording.id}", :id => "delete"} Delete
+          %td= link_to 'Destroy', recording_path(recording), :confirm => "Are you sure?", :method => :delete
           %td= link_to 'Edit', edit_recording_path(recording)
           %td= recording.show.date_played
           %td= recording.label

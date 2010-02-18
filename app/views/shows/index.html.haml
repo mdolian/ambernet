@@ -14,8 +14,7 @@
         %td{:colspan => "7"}= link_to 'New Show', new_show_path
       - @shows.each do |show|
         %tr        
-          %td
-            %a{:href => "/shows/destroy/#{show.id}", :id => "delete"} Delete
+          %td= link_to 'Destroy', show_path(show), :confirm => "Are you sure?", :method => :delete
           %td= link_to 'Edit', edit_show_path(show)
           %td= show.date_played
           %td= show.venue.label

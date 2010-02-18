@@ -1,0 +1,25 @@
+- form_for(@song) do |f|
+  = f.error_messages
+  %div{ :class => "field" }
+    = f.label :song_name
+    %br    
+    = f.text_field :song_name
+  %div{ :class => "field" }
+    = f.label :song_lyrics
+    %br    
+    = f.text_field :song_lyrics
+  %div{ :class => "field" }
+    = f.label :written_by
+    %br
+    = f.text_field :written_by
+  %div{ :class => "field" }
+    = f.label :original_performer
+    %br
+    = f.text_field :original_performer
+  %div{ :class => "field" }
+    = f.label :is_instrumental
+    %br
+    = f.text_field :is_instrumental
+  %div{ :class => "actions" }
+    = f.submit    
+  

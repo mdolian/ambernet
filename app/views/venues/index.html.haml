@@ -16,8 +16,7 @@
         %td{:colspan => "6"}= link_to 'New Venue', new_venue_path
       - @venues.each do |venue|
         %tr        
-          %td
-            %a{:href => "/venues/destroy/#{venue.id}", :id => "delete"} Delete
+          %td= link_to 'Destroy', venue_path(venue), :confirm => "Are you sure?", :method => :delete
           %td= link_to 'Edit', edit_venue_path(venue)
           %td= venue.venue_name
           %td= venue.venue_city
