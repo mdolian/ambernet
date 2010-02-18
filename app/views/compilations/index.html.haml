@@ -1,11 +1,20 @@
-%h2{:align => "center"} Compilation List
-%table{:align => "center"}
-  %tbody  
-    - @compilations.each do |compilation|
+= javascript_include_tag "admin"
+%h2 Admin Compilations
+= link_to 'Back', 'admin'
+= will_paginate @compilations
+%table{:align => "center", :class => "tablesorter"}
+  %thead
+    %tr
+      %th{:width => "10%", :align => "left"} Delete 
+      %th{:width => "10%", :align => "left"} Edit
+      %th{:width => "15%", :align => "left"} Label 
+    %tbody  
       %tr
-        %td= compilation.label
-        %td
-          %a{:href => "/compilations/show/#{compilation.id}"} View
-        %td 
-          %a{:href => "#", :onclick => "$('#dialog_notes_#{compilation.id}').notes(#{compilation.id})"} Notes
-          %div{:id => "dialog_notes_#{compilation.id}", :title => "Notes for #{compilation.label}"}    
+        %td{:colspan => "6"}= link_to 'New Compilation', new_compilation_path
+      - @compilations.each do |compilation|
+        %tr        
+          %td
+            %a{:href => "/compilations/destroy/#{compilation.id}", :id => "delete"} Delete
+          %td= link_to 'Edit', edit_compilation_path(compilation)
+          %td= compilation.label
+          

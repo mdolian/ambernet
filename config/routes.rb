@@ -6,6 +6,7 @@ Ambernet::Application.routes.draw do |map|
   match 'beta/bug' => 'beta#bug'
 
   # compilations_controller
+  match 'compilations/destroy/:id' => 'compilations#destroy'   
   resources :compilations  
   
   # recordings_controller
@@ -36,6 +37,8 @@ Ambernet::Application.routes.draw do |map|
   match 'venues/admin' => 'venues#admin'
   match 'venues/destroy/:id' => 'venues#destroy'
   resources :venues
+
+  match 'admin' => 'admin#index'
 
   # root
   root :to => "index#index"

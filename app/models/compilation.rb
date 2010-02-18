@@ -3,7 +3,7 @@ class Compilation < ActiveRecord::Base
   # t.string    :label
   # t.string    :comments
 
-  has many :compilation_tracks
+  has_many :compilation_tracks
 
   def self.per_page
     50
