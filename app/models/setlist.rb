@@ -11,16 +11,8 @@ class Setlist < ActiveRecord::Base
   belongs_to :song
 #  has_and_belongs_to_many :recording_tracks
   
-  def last
-    song.song_name
-  end
-
   def song_suffix
     is_segue? ? " > " : song_order == Setlist.maximum(:song_order, :conditions => ["show_id = ? AND set_id = ?", show_id, set_id]) ? "" : ", "
   end
-    
-  def first
-    id
-  end
-      
+        
 end

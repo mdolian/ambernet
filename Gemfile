@@ -11,4 +11,9 @@ gem "haml"
 gem "will_paginate", "3.0.pre"
 gem "ruby-shout", :require => 'shout'
 
+gem "warden"
+gem "devise", "1.1.pre"
+#gem "hoptoad_notifier"
+#gem "rack_hoptoad", :require "rack/hoptoad"
+
 gem "ruby-debug", :group => :test

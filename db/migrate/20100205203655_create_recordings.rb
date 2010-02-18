@@ -7,7 +7,7 @@ class CreateRecordings < ActiveRecord::Migration
       t.string        :taper
       t.string        :transfered_by
       t.text          :notes
-      t.string        :recording_type
+      t.string        :type
       t.string        :tracking_info
       t.string        :shnid
       t.string        :filetype      

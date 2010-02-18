@@ -4,6 +4,8 @@ require 'date'
 
 class RecordingsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [:search, :stream, :zip, :show]
+
   def index
     @current_page = (params[:page] || 1).to_i 
     @recordings = Recording.paginate(:joins => {:show => :venue}, :page => @current_page) 

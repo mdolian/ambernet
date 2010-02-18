@@ -1,9 +1,8 @@
 require 'open-uri'
 class ScrapeController < ApplicationController
 
-  # From Merb, to be implemented
-  #before :ensure_authenticated
-
+  before_filter :authenticate_user!
+  
   def perpetual_archives
     case params["id"]
     when "all" then 

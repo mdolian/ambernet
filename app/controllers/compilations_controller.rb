@@ -1,5 +1,7 @@
 class CompilationsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [:show]
+
   def index
     @current_page = (params[:page] || 1).to_i 
     @compilations = Compilation.paginate(:page => @current_page) 

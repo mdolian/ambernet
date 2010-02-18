@@ -10,14 +10,6 @@ class Show < ActiveRecord::Base
   has_many :recordings
   belongs_to :venue
   
-  def first
-    id
-  end
-  
-  def last
-    date_played
-  end
-  
   def date_as_label
     date_played.to_s
   end
@@ -35,7 +27,7 @@ class Show < ActiveRecord::Base
   end
   
   def self.per_page
-    2
+    100
   end
   
   def setlist_as_text(set_id)

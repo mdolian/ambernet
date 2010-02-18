@@ -1,4 +1,6 @@
 Ambernet::Application.routes.draw do |map|
+  resources :songs
+
 
   match 'radio/stream' => 'radio#stream'
 
@@ -9,7 +11,6 @@ Ambernet::Application.routes.draw do |map|
   match 'beta/bug' => 'beta#bug'
 
   # compilations_controller
-  match 'compilations/destroy/:id' => 'compilations#destroy'   
   resources :compilations  
   
   # recordings_controller
@@ -18,7 +19,6 @@ Ambernet::Application.routes.draw do |map|
   match 's/:id(.:format)' => 'recordings#stream'
   match 'stream/:id(.:format)' => 'recordings#stream'
   match 'recordings/search' => 'recordings#search'
-  match 'recordings/destroy/:id' => 'recordings#destroy'    
   resources :recordings
   
   # scrape_controller
@@ -29,16 +29,20 @@ Ambernet::Application.routes.draw do |map|
   match 'shows/setlist' => 'shows#setlist'
   match 'shows/recordings' => 'shows#recordings'
   match 'shows/search' => 'shows#search'
-  match 'shows/destroy/:id' => 'shows#destroy'  
   resources :shows
+  
+  # songs_controller
+  resources :songs
+    
   # tracks_controller
   # TO-DO
+
+  devise_for :users
   
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'
   match 'venues/list' => 'venues#list'
   match 'venues/admin' => 'venues#admin'
-  match 'venues/destroy/:id' => 'venues#destroy'
   resources :venues
 
   match 'admin' => 'admin#index'

@@ -31,6 +31,14 @@ h3 {
   padding: 5px;
   margin-top: 5px;
 }
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
 a {
   color: #331111;
   text-decoration: none;

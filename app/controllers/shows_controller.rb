@@ -2,9 +2,11 @@ require 'date'
 
 class ShowsController < ApplicationController
  
+  before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show] 
+ 
   def index
     @current_page = (params[:page] || 1).to_i 
-    @shows = Show.paginate(:joins => :venue, :page => @current_page, :per_page => 100, :order => :date_played) 
+    @shows = Show.paginate(:joins => :venue, :page => @current_page, :order => :date_played) 
 
     respond_to do |format|
       format.html
