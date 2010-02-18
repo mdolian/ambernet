@@ -1,5 +1,7 @@
 Ambernet::Application.routes.draw do |map|
 
+  match 'radio/stream' => 'radio#stream'
+
   # beta_controller
   match 'beta' => 'beta#index'
   match 'beta/index' => 'beta#index'

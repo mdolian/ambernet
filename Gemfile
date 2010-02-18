@@ -9,5 +9,6 @@ gem "rubyzip", :require => "zip/zip"
 gem "mysql"
 gem "haml"
 gem "will_paginate", "3.0.pre"
+gem "ruby-shout", :require => 'shout'
 
 gem "ruby-debug", :group => :test
