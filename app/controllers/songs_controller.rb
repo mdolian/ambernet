@@ -15,6 +15,7 @@ class SongsController < ApplicationController
 
   # GET /songs/1
   def show
+    sdfa
     @song = Song.find(params[:id])
 
     respond_to do |format|
