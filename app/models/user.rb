@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 #  has n, :recordings, :thorough => :wish_lists
 
   devise :registerable, :authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation
+  #attr_accessible :email, :password, :password_confirmation
   
 end

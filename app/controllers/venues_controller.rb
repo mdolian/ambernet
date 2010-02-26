@@ -81,19 +81,19 @@ class VenuesController < ApplicationController
       list << venue.venue_name << "\n"
     end
     
-    responds_to do |format|
+    respond_to do |format|
       format.json { render :json => list, :layout => false }
     end
   end
   
   def city_list 
-    venues = Venue.all(:conditions => ["venue_city LIKE ?", "%" << params["q"] << "%"], :select => "DISTINCT(venue_name)")
+    venues = Venue.all(:conditions => ["venue_city LIKE ?", "%" << params["q"] << "%"], :select => "DISTINCT(venue_city)")
     list = ""
     venues.each do |venue|
-      list << venue << "\n"
+      list << venue.venue_city << "\n"
     end
     
-    responds_to do |format|    
+    respond_to do |format|    
       format.json { render :json => list, :layout => false }
     end
   end

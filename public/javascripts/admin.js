@@ -1,5 +1,7 @@
 $(function() {
   jQuery(document).ready(function($) {	
+		$("#song_id_start").autocomplete("/songs/list");
+		$("#song_id_end").autocomplete("/songs/list");		
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

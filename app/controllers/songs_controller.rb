@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show, :list]
 
   # GET /songs
   def index
@@ -15,7 +15,6 @@ class SongsController < ApplicationController
 
   # GET /songs/1
   def show
-    sdfa
     @song = Song.find(params[:id])
 
     respond_to do |format|
@@ -82,4 +81,17 @@ class SongsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def list
+    list = []
+    songs = Song.all(:conditions => ["song_name LIKE  ?", "%" << params[:q] << "%"])
+    songs.each do |song|
+      list << {"label" => song.song_name, "id" => song.id}
+    end
+    
+    respond_to do |format|
+      format.json { render :json => list.to_json, :layout => false }
+    end
+  end
+    
 end

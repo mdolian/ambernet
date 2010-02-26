@@ -1,3 +1,4 @@
+.bundle/*
 gems/*
 *.mp3
 .DS_Store

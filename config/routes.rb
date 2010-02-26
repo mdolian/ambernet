@@ -1,7 +1,7 @@
 Ambernet::Application.routes.draw do |map|
-  resources :songs
-
-
+  
+  match 'tracks/edit/:id' => 'tracks#edit'
+  
   match 'radio/stream' => 'radio#stream'
 
   # beta_controller
@@ -32,6 +32,7 @@ Ambernet::Application.routes.draw do |map|
   resources :shows
   
   # songs_controller
+  match 'songs/list' => 'songs#list'
   resources :songs
     
   # tracks_controller

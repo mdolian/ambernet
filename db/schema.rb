@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100218152632) do
+ActiveRecord::Schema.define(:version => 20100226005547) do
 
   create_table "compilation_tracks", :force => true do |t|
     t.string  "name"
@@ -23,14 +23,10 @@ ActiveRecord::Schema.define(:version => 20100218152632) do
   end
 
   create_table "recording_tracks", :force => true do |t|
-    t.string  "s3_bucket"
-    t.string  "track"
-    t.integer "recording_id", :null => false
-  end
-
-  create_table "recording_tracks_setlists", :id => false, :force => true do |t|
-    t.integer "setlist_id",         :null => false
-    t.integer "recording_track_id", :null => false
+    t.integer "track"
+    t.integer "recording_id",  :null => false
+    t.integer "song_id_start", :null => false
+    t.integer "song_id_end",   :null => false
   end
 
   create_table "recordings", :force => true do |t|
