@@ -2,6 +2,7 @@ class TracksController < ApplicationController
 
   def edit
     @recording = Recording.find(params["id"])
+    @show = Show.find(@recording.show_id)
     setlists = Setlist.all(:conditions => ["show_id = ?", @recording.show_id], :order => "song_order ASC")
     if setlists.size == @recording.total_tracks.to_i
       setlists.each do |setlist|
@@ -15,7 +16,7 @@ class TracksController < ApplicationController
       render :import
     else
       1.upto(@recording.total_tracks.to_i) do |i|
-        song_id = i < setlists.size ? setlists[i].song_id : 0
+        song_id = i < setlists.size ? setlists[i-1].song_id : 0
         tracks = RecordingTrack.all(:conditions => {:track => i,
                                                     :recording_id => @recording.id,
                                                     :song_id_start => song_id,

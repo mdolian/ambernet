@@ -10,26 +10,41 @@ class Show < ActiveRecord::Base
   has_many :recordings
   belongs_to :venue
   
+  # I forget why this was needed
   def date_as_label
     date_played.to_s
   end
   
+  # the show label
   def label
     date_played.to_s << " - " << venue.venue_name << " " << venue.venue_city << ", " << venue.venue_state
   end
   
+  # get an array of setlist objects for show
   def setlists
     Setlist.all(:conditions => ["show_id  = ? ", id], :order => "set_id ASC, song_order ASC")
   end
 
+  # get the total sets in the show
   def total_sets
     Setlist.maximum(:set_id, :conditions => ["set_id != '9' AND show_id = ?", id])
   end
   
+  # for will_paginate
   def self.per_page
     100
   end
   
+  # untested
+  def setlist
+    for i in 1..9 do
+      setlist << ", " if i == 1
+      setlist << setlist_as_text(i) if setlist_as_text(i) != ""
+    end
+    setlist
+  end
+  
+  # returns the setlist given a set_id, encore=9
   def setlist_as_text(set_id)
     setlist_text = ""
     setlists.each do |setlist|
