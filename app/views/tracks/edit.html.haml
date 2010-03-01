@@ -1,23 +1,25 @@
 = javascript_include_tag "admin"
 %script{:type => "text/javascript"}
   jQuery(document).ready(function($) {	
-  - @recording_tracks.each do |recording_track|
-    $.getJSON('/tracks/list/#{recording_track.recording_id}/#{recording_track.track}', function(data) {$("#song_name_#{recording_track.track}").autoSuggest("/songs/list", {selectedItemProp: "label",selectedValuesProp: "id",searchObjProps: "label",preFill: data,asHtmlID: "track_#{recording_track.track}"});});
+  - for i in 1..@recording.total_tracks.to_i do
+    $.getJSON('/tracks/list/#{@recording.id}/#{i}', function(data) {$("#song_name_#{i}").autoSuggest("/songs/list", {selectedItemProp: "label",selectedValuesProp: "id",searchObjProps: "label",preFill: data,asHtmlID: "track_#{i}"});});
   });
 %br
 %table{:width => "50%", :align => "center", :bgcolor => "#FFFFFF"}
   %tr
     %td= render 'shows/setlist'
 %br
-%form{:action => '/tracks/add', :method => 'post'}
+%form{:action => '/tracks/save', :method => 'post'}
+  %input{:type => "hidden", :name => "recording_id", :value => "#{@recording.id}"}
+  %input{:type => "hidden", :name => "total_tracks", :value => "#{@recording.total_tracks}"}  
   %table{:width => "90%", :align => "center"}
     %tr
-      %th Track Number
-      %th Setlist
-    - @recording_tracks.each do |recording_track|
+      %th Track
+      %th Songs
+    - for i in 1..@recording.total_tracks.to_i do
       %tr
-        %td{:align => "center"}= recording_track.track
+        %td{:align => "center"}= i
         %td
-          %input{:type => "text", :id => "song_name_#{recording_track.track}", :name => "song_name_#{recording_track.track}", :size => "50", :value => recording_track.song_name}
-  %input{:type => "submit"}
+          %input{:type => "text", :id => "song_name_#{i}", :name => "song_name_#{i}", :size => "50"}
+  %input{:type => "submit", :value => "Save"}
     

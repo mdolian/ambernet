@@ -2,7 +2,7 @@ Ambernet::Application.routes.draw do |map|
   
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
-  match 'tracks/add' => 'tracks#add'   
+  match 'tracks/save' => 'tracks#save'   
   
   match 'radio/stream' => 'radio#stream'
 

@@ -4,7 +4,8 @@ class TracksController < ApplicationController
     @recording = Recording.find(params["id"])
     @show = Show.find(@recording.show_id)
     setlists = Setlist.all(:conditions => ["show_id = ?", @recording.show_id], :order => "song_order ASC")
-    if setlists.size == @recording.total_tracks.to_i
+    tracks = RecordingTrack.all(:conditions => {:recording_id => @recording.id})
+    if setlists.size == @recording.total_tracks.to_i && tracks.empty?
       setlists.each do |setlist|
         track = RecordingTrack.new(:track => setlist.song_order, 
                                     :recording_id => @recording.id, 
@@ -15,7 +16,7 @@ class TracksController < ApplicationController
       render :import
     else
       1.upto(@recording.total_tracks.to_i) do |i|
-        song_id = i < setlists.size ? setlists[i-1].song_id : 0
+        song_id = i < setlists.size+1 ? setlists[i-1].song_id : 0
         tracks = RecordingTrack.all(:conditions => {:track => i,
                                                     :recording_id => @recording.id,
                                                     :song_id => song_id})
@@ -44,7 +45,20 @@ class TracksController < ApplicationController
     end
   end  
   
-  def add
-    "not done yet"
+  def save
+    tracks = RecordingTrack.all(:conditions => {:recording_id => params["recording_id"]})
+    tracks.each do |track|
+      track.destroy
+    end
+    for i in 1..params["total_tracks"].to_i do
+      song_list = params["as_values_track_#{i}"].split(",")
+      song_list.each do |song_id|
+        track = RecordingTrack.new(:track => i,
+                                   :recording_id => params["recording_id"],
+                                   :song_id => song_id)
+        track.save
+      end
+    end
+    redirect_to "/tracks/edit/#{params["recording_id"]}"
   end
 end
