@@ -2,18 +2,13 @@ class RecordingTrack < ActiveRecord::Base
   
   #t.integer       :track
   #t.integer       :recording_id, :null => false
-  #t.integer       :song_id_start, :null => false
-  #t.integer       :song_id_end, :null => false    
+  #t.integer       :song_id, :null => false
 
-#  belongs_to :recording
-#  has_and_belongs_to_many :setlists
+  belongs_to :recording
+  belongs_to :song
 
-  def song_name_start
-    song_id_start == 0 ? "" : Song.find(song_id_start).song_name
-  end
-  
-  def song_name_end
-    song_id_end == 0 ? "" : Song.find(song_id_end).song_name
+  def song_name
+    song_id == 0 ? "" : Song.find(song_id).song_name
   end
 
 end

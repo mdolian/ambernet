@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100226005547) do
+ActiveRecord::Schema.define(:version => 20100301010903) do
 
   create_table "compilation_tracks", :force => true do |t|
     t.string  "name"
@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(:version => 20100226005547) do
 
   create_table "recording_tracks", :force => true do |t|
     t.integer "track"
-    t.integer "recording_id",  :null => false
-    t.integer "song_id_start", :null => false
-    t.integer "song_id_end",   :null => false
+    t.integer "recording_id", :null => false
+    t.integer "song_id",      :null => false
   end
 
   create_table "recordings", :force => true do |t|

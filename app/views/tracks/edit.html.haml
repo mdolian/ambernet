@@ -7,18 +7,13 @@
 %table{:width => "90%", :align => "center"}
   %tr
     %th Track Number
-    %th Song Start
-    %th Song End
-    %th Save
+    %th Setlist
   - @recording_tracks.each do |recording_track|
     %form{:action => '/tracks/add', :method => 'post'}
       %tr
         %td= recording_track.track
         %td
-          %input{:type => "text", :name => "song_id_start", :id => "song_id_start", :size => "25", :value => recording_track.song_name_start}
-        %td
-          %input{:type => "text", :name => "song_id_start", :id => "song_id_end", :size => "25", :value => recording_track.song_name_end}
-        %td
-          %input{:type => "submit", :value => "Update"}
+          %input{:type => "text", :id => "song_id_#{recording_track.track}", :name => "song_name_#{recording_track.track}", :size => "50", :value => recording_track.song_name}
+          %input{:type => "hidden", :name => "song_id_#{recording_track.track}"}
       
     

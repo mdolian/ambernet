@@ -1,7 +1,23 @@
 $(function() {
   jQuery(document).ready(function($) {	
-		$("#song_id_start").autocomplete("/songs/list");
-		$("#song_id_end").autocomplete("/songs/list");		
+		$("input[id*='song_id']").autocomplete("/songs/list",{
+			max: 15,
+			multiple: true,
+			multipleSeparator: ", ",
+      parse: function(data) {
+          var rows = new Array();
+          for(var i=0; i<data.length; i++){
+              rows[i] = { data:data[i], value: '' + data[i].id, result:data[i].label };
+          }
+          return rows;
+      },
+      formatItem: function(row, i, n) {
+          return row.label;
+      }
+		}).result(function(event, item) {
+				  $("[name=" + this.id + "]").val($("[name=" + this.id + "]").attr("value") + "," + item.id);	
+					alert($("[name=" + this.id + "]").attr("value"));
+		});	
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

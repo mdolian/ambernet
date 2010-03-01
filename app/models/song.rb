@@ -7,6 +7,7 @@ class Song < ActiveRecord::Base
   #t.boolean             :is_instrumental
   
   has_many :setlists
+  has_many :recording_tracks
 
   def self.per_page
     100

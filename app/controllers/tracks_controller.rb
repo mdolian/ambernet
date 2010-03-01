@@ -8,8 +8,7 @@ class TracksController < ApplicationController
       setlists.each do |setlist|
         track = RecordingTrack.new(:track => setlist.song_order, 
                                     :recording_id => @recording.id, 
-                                    :song_id_start => setlist.song_id,
-                                    :song_id_end => setlist.song_id)
+                                    :song_id => setlist.song_id)
         track.save
       end
       flash.now[:notice] = "We were able to automatically import this one!"
@@ -19,13 +18,11 @@ class TracksController < ApplicationController
         song_id = i < setlists.size ? setlists[i-1].song_id : 0
         tracks = RecordingTrack.all(:conditions => {:track => i,
                                                     :recording_id => @recording.id,
-                                                    :song_id_start => song_id,
-                                                    :song_id_end => song_id})
+                                                    :song_id => song_id})
         if tracks.empty?                               
           track = RecordingTrack.new(:track => i,
                                      :recording_id => @recording.id,
-                                     :song_id_start => song_id,
-                                     :song_id_end => song_id)
+                                     :song_id => song_id)
           track.save
         end
       end
