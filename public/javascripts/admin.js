@@ -1,6 +1,6 @@
 $(function() {
   jQuery(document).ready(function($) {	
-		$("input[id*='song_id']").autocomplete("/songs/list",{
+		/*$("input[id*='song_id']").autocomplete("/songs/list",{
 			max: 15,
 			multiple: true,
 			multipleSeparator: ", ",
@@ -17,7 +17,12 @@ $(function() {
 		}).result(function(event, item) {
 				  $("[name=" + this.id + "]").val($("[name=" + this.id + "]").attr("value") + "," + item.id);	
 					alert($("[name=" + this.id + "]").attr("value"));
-		});	
+		});	*/
+		$("input[id*='song_id']").autoSuggest("/songs/list", {
+			selectedItemProp: "label", 
+			selectedValuesProp: "id", 
+			searchObjProps: "label"
+		});
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

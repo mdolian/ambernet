@@ -11,7 +11,7 @@
   - @recording_tracks.each do |recording_track|
     %form{:action => '/tracks/add', :method => 'post'}
       %tr
-        %td= recording_track.track
+        %td{:align => "center"}= recording_track.track
         %td
           %input{:type => "text", :id => "song_id_#{recording_track.track}", :name => "song_name_#{recording_track.track}", :size => "50", :value => recording_track.song_name}
           %input{:type => "hidden", :name => "song_id_#{recording_track.track}"}
