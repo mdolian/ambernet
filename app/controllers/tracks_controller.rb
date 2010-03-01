@@ -32,4 +32,19 @@ class TracksController < ApplicationController
     end
   end
   
+  def list
+    list = []
+    tracks = RecordingTrack.all(:conditions => ["recording_id=? AND track=?", params["recording_id"], params["track"]])
+    tracks.each do |track|
+      list << {"label" => track.song_name, "id" => track.song_id}
+    end
+
+    respond_to do |format|
+      format.json { render :json => list.to_json, :layout => false }
+    end
+  end  
+  
+  def add
+    "not done yet"
+  end
 end
