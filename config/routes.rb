@@ -1,5 +1,5 @@
 Ambernet::Application.routes.draw do |map|
-  
+match 'admin/test' => 'admin#test'  
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
   match 'tracks/save' => 'tracks#save'   

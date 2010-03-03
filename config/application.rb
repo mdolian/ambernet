@@ -36,10 +36,9 @@ module Ambernet
       g.test_framework  :test_unit, :fixture => true
     end
 
-    #HoptoadNotifier.configure do |c|
-    #  c.api_key      = '8f35f072dd38fab1566cc09cb8e48304'
-    #end
-    #config.middleware.insert_before ActionDispatch::Static, Rack::Hoptoad, {:api_key => '8f35f072dd38fab1566cc09cb8e48304'}
+    config.middleware.insert_after ActionDispatch::Head, Rack::Hoptoad, "8f35f072dd38fab1566cc09cb8e48304"do |notifier|
+      notifier.report_under << 'development'
+    end
 
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
