@@ -1,4 +1,6 @@
 = javascript_include_tag "accordion"
+%script{:type => "text/javascript"}
+  jQuery(document).ready(function($) {$('.auto-submit-star').rating({callback: function(value, link){$.post("/recordings/rate/#{@recording.id}/" + value,"html");}});});
 %a{:href => "/recordings/search_results?page=#{session['current_page']}", :id => "back"} Back to Search Results
 %br
 %br
@@ -36,6 +38,20 @@
           %td 
             %b Notes
           %td= @recording.notes
+        %tr
+          %td
+            %b Rate
+          %td
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "1"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "2"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "3"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "4"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "5"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "6"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "7"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "8"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "9"}
+            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "10"}
     %h3
       %a{:href => "#"} Download Options
     %div

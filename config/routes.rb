@@ -1,5 +1,5 @@
 Ambernet::Application.routes.draw do |map|
-match 'admin/test' => 'admin#test'  
+
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
   match 'tracks/save' => 'tracks#save'   
@@ -21,6 +21,7 @@ match 'admin/test' => 'admin#test'
   match 's/:id(.:format)' => 'recordings#stream'
   match 'stream/:id(.:format)' => 'recordings#stream'
   match 'recordings/search' => 'recordings#search'
+  match 'recordings/rate/:id/:rating' => 'recordings#rate'
   resources :recordings
   
   # scrape_controller

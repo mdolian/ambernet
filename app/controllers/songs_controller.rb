@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:show, :list]
+  #before_filter :authenticate_user!, :except => [:show, :list]
 
   # GET /songs
   def index

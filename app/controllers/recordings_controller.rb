@@ -1,10 +1,6 @@
-require 'zip/zip'
-require 'zip/zipfilesystem'
-require 'date'
-
 class RecordingsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:search, :stream, :zip, :show]
+  #before_filter :authenticate_user!, :except => [:search, :stream, :zip, :show]
 
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -165,6 +161,11 @@ class RecordingsController < ApplicationController
     
     end
   
+  end
+  
+  # Rate a show via ajax call
+  def rate
+    Recording.update(params["id"], {:rating => params["rating"]})
   end
   
   # TO-DO - convert to Rails
