@@ -22,6 +22,7 @@ Ambernet::Application.routes.draw do |map|
   match 'stream/:id(.:format)' => 'recordings#stream'
   match 'recordings/search' => 'recordings#search'
   match 'recordings/rate/:id/:rating' => 'recordings#rate'
+  match 'recordings/browse' => 'recordings#index'
   resources :recordings
   
   # scrape_controller
@@ -32,6 +33,7 @@ Ambernet::Application.routes.draw do |map|
   match 'shows/setlist' => 'shows#setlist'
   match 'shows/recordings' => 'shows#recordings'
   match 'shows/search' => 'shows#search'
+  match 'shows/browse' => 'shows#index'
   resources :shows
   
   # songs_controller
@@ -41,13 +43,15 @@ Ambernet::Application.routes.draw do |map|
   # tracks_controller
   # TO-DO
 
-  devise_for :users
+  #devise_for :users
   
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'
   match 'venues/list' => 'venues#list'
   match 'venues/admin' => 'venues#admin'
   resources :venues
+
+  match 'search' => 'search#search'
 
   match 'admin' => 'admin#index'
 

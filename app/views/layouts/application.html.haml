@@ -10,6 +10,7 @@
     = javascript_include_tag 'jquery.autoSuggest'
     = javascript_include_tag 'jquery.rating'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery.corner'
     = javascript_include_tag 'rails'
     = stylesheet_link_tag 'jquery.tablesorter'
     = stylesheet_link_tag 'jquery.autocomplete'
@@ -20,29 +21,36 @@
     = stylesheet_link_tag 'application'
     %title
       AmberNET Online
-  %body{:topmargin => "0", :leftmargin => "0", :marginwidth => "0", :marginheight => "0", :hspace => "0", :vspace => "0"}
+  %body{:topmargin => "5", :leftmargin => "5", :marginwidth => "5", :marginheight => "5", :hspace => "5", :vspace => "5"}
     %div{:align => "center"}
-      %p
-        %img{:src => "/images/header.jpg"}
-      %p
-        %a{:href => "/index"} Home
-        |
-        %a{:href => "/recordings/search"} Search Recordings
-        |
-        %a{:href => "/shows/search"} Search Shows
-        |
-        %a{:href => "/beta"} Beta Information      
-      %p
-        %div{:class => "ui-widget"}
-          - if flash[:notice]
-            %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-              %p
-                %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
-                = flash[:notice]
-          - if flash[:error]
-            %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-              %p
-                %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
-                = flash[:error]           
-        %div
-          = yield
+      %img{:src => "/images/header.jpg"}  
+    %div{:align => "center", :id => "nav"}
+      %ul
+        %li
+          %a{:href =>"/", :class => "selected"} Home
+        %li
+          %a{:href => "/recordings/browse"} Browse Recordings
+        %li
+          %a{:href => "/shows/browse"} Browse Shows
+        %li
+          %a{:href => "/search"} Search
+        %li
+          %a{:href => "/about"} About
+    - if flash[:notice]          
+      %div{:class => "ui-widget"}
+        %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+          %p
+            %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+            = flash[:notice]
+    - if flash[:error]
+      %div{:class => "ui-widget"}
+        %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+          %p
+            %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+            = flash[:error]           
+    %br
+    %br
+    %br
+    %br
+    %br
+    %div{:align => "center"}= yield

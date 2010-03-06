@@ -1,8 +1,8 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
-Devise.setup do |config|
+#Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+#  config.mailer_sender = "please-change-me@config-initializers-devise.com"
 
   # ==> Configuration for :authenticatable
   # Invoke `rake secret` and use the printed value to setup a pepper to generate
@@ -63,7 +63,7 @@ Devise.setup do |config|
   # ==> General configuration
   # Load and configure the ORM. Supports :active_record (default), :mongo_mapper
   # (requires mongo_ext installed) and :data_mapper (experimental).
-  require 'devise/orm/active_record'
+#  require 'devise/orm/active_record'
 
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "sessions/users/new". It's turned off by default because it's slower if you
@@ -92,4 +92,4 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies.unshift :twitter_oauth
   # end
-end
+#end

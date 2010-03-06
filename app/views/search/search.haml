@@ -1,0 +1,79 @@
+%div{:id => "main_recordings"}
+  = javascript_include_tag "search"
+  = javascript_include_tag "accordion"
+  %form{:method => "post", :action => "/recordings/search", :autocomplete => "off"}  
+    %table{:border => "0", :width => "75%", :align => "center"}
+      %tr
+        %td{:width => "25%"}
+          %label Label
+        %td{:width => "75%"}
+          %input{:type => "text", :name => "label", :size => "25"} 
+      %tr
+        %td
+          %label Song
+        %td
+          %input{:type => "text", :name => "song_name", :size => "25"}
+      %tr
+        %td
+          %label Venue
+        %td
+          %input{:type => "text", :name => "venue_name", :size => "25", :id => "venue_name"}               
+      %tr
+        %td
+          %label City 
+        %td
+          %input{:type => "text", :name => "venue_city", :size => "25", :id => "venue_city"}
+      %tr
+        %td
+          %label State
+        %td
+          %input{:type => "text", :name => "venue_state", :size => "5"}  
+      %tr
+        %td
+          %label Source
+        %td
+          %input{:type => "text", :name => "source", :size => "25"}
+      %tr
+        %td
+          %label Lineage
+        %td
+          %input{:type => "text", :name => "lineage", :size => "25"}
+      %tr
+        %td
+          %label Taper
+        %td
+          %input{:type => "text", :name => "taper", :size => "25"}
+      %tr
+        %td
+          %label Etree ID
+        %td
+          %input{:type => "text", :name => "shnid", :size => "5"}
+      %tr
+        %td
+          %label Type
+        %td
+          %select{:name => "recording_type"}
+            = options_for_select(get_recording_types)
+      %tr
+        %td{:width => "25%"}
+          %label Year
+        %td{:width => "75%"}
+          %select{:name => "year"}
+            = options_for_select(get_years)
+      %tr
+        %td
+          %label Range
+        %td
+          %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"} 
+          to
+          %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}         
+  %div{:id => "search_buttons_recordings"} 
+    %table{:width => "50%", :colspacing => "4"}    
+      %tr
+        %td{:colspan => "2"}  
+          &nbsp      
+      %tr
+        %td{:align => "right"}
+          %input{:type => "submit", :value => "Search", :name => "submit"} 
+        %td{:align => "left"}
+          %input{:type => "reset", :value => "Clear"}

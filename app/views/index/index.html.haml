@@ -1,165 +1,159 @@
-%div{:id => "main_index"}
-  = javascript_include_tag "accordion"
-  %div{:id => "index_accordion"}
-    %h3
-      %a{:href => "#"} Welcome!
-    %div
-      %p 
-        Welcome to AmberNET!  Currently the site is in a beta testing period and media is not available.  The site will officially launch at 
-        %a{:href => "http://www.pgroove.com/index.php/amberland/", :target => "_blank"} Amberland 
-        where all of the media will be available for download.
-      %p
-        Once on site connect to a hot spot called AmberNET, then browse to http://www.ambernet.net in your web browser.  There are a number of ways to download recordings as well as 
-        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 2 ))"} streaming options 
-        for devices like iPhones.  You can visit the sections below for more information on each option.  
-      %p 
-        Please note that the AmberNET database contains a list of 
-        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
-        and 
-        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings.  
-        There might be more than one recording available for some shows while other shows may have no recordings.
-      %p 
-        All setlist data is pulled directly from  
-        %a{:href => "http://perpetualarchives.mongoosecommunication.com"} Perpetual Archives. 
-        We would like to thank Rick Hadley and Bridger Deville for tracking and making this data accessible.
-    %h3
-      %a{:href => "#"} Web
-    %div      
-      %p 
-        Using a web browser is the easiest way to access AmberNET.  The first step is to search for 
-        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings 
-        or 
-        %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
-        in the database.  We have made it possible to search by date range, venue name, city, state, source, taper and more!  
-      %p Once you find a recording that interests you, click on the label to view the recording details, download options and streaming options.  
-      %p In the download section you will have the option to download the entire show or individual tracks.  Most shows are available in shn or flac and mp3 (V0).  
-    %h3
-      %a{:href => "#"} Stream
-    %div  
-      %p 
-        All recordings on AmberNET can be streamed using pls or m3u playlist files.  If you wish to stream shows using a laptop make sure you have an application associated with whichever file type you choose.  
-      %p 
-        Streaming on an iPhone or iPod Touch requires that you have an application 
-        do do so.  Before Amberland, you should go ahead check out the 
-        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section
-        and select an application for streaming.
-      %p 
-        If you prefer to skip the web interface, you can queue up every recording for a particular date by hitting the following URL in your favorite streaming application:
-        %br
-        %br  
-        http://ambernet.net/s/YYYY-MM-DD.pls
-        %br
-        http://ambernet.net/s/YYYY-MM-DD.m3u  
-    %h3
-      %a{:href => "#"} iTunes
-    %div  
-      %p Just like prior years, we will be running an iTunes server.  Load up iTunes and connect to AmberNET to sync up some recordings to your iPod or create a custom playlist!
-      %p 
-        For faster access, grab 
-        %a{:href => "/downloads/OT44.jar"} OurTunes
-        from the 
-        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section 
-        and queue up a bunch of shows.
-      %p 
-        The name of the server will be 'AmberNET' and appears in the left column of iTunes.  Make sure iTunes is configured to 'Look for shared libraries' in the 
-        %a{:href => "/images/itunes_preferences.jpg", :id => "image_anchor"} preferences.
-    %h3
-      %a{:href => "#"} FTP
-    %div
-      %p 
-        For more advanced users, we se tup an FTP server.  Just fire up your favorite
-        %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} FTP application
-        and queue up as many recordings as you want.
-      %p Login as anonymous with your email address as the password to ftp.ambernet.net:21
-    %h3
-      %a{:href => "#"} Apps
-    %div  
-      %table{:class => "tablesorter", :id => "apps_table"}
-        %thead
-          %tr
-            %th{:width => "10%"} Type
-            %th{:width => "25%"} Name
-            %th{:width => "10%"} OS
-            %th{:width => "55%"} Description
-          %tbody
-            %tr
-              %td FTP Client
-              %td
-                %a{:href => "/downloads/SFTPMSI.exe"} SmartFTP
-              %td Windows
-              %td SmartFTP is an FTP (File Transfer Protocol) client which allows you to transfer files between your local computer and a server on the Internet.            
-            %tr
-              %td FTP Client
-              %td 
-                %a{:href => "/downloads/Cyberduck-3.2.dmg"} Cyberduck
-              %td OSX
-              %td FTP, SFTP, WebDAV, Cloud Files & Amazon S3 Browser for Mac OS X.                      
-            %tr
-              %td Media/Streaming Client
-              %td 
-                %a{:href => "/downloads/winamp5552_full_emusic-7plus_en-us.exe"} Winamp
-              %td Windows
-              %td Winamp is a proprietary media player written by Nullsoft, now a subsidiary of AOL.  Besides MP3, Winamp supports a wide variety of contemporary and specialized music file formats, including MIDI, MOD, MPEG-1 audio layers 1 and 2, AAC, M4A, FLAC, WAV and Windows Media Audio.
-            %tr
-              %td Media/Streaming Client
-              %td 
-                %a{:href => "/downloads/vlc-0.9.9a.dmg"} VLC
-              %td OSX
-              %td VLC media player is an open source, free software media player written by the VideoLAN project.  VLC is a portable multimedia player, encoder, and streamer supporting many audio and video codecs and file formats as well as DVDs, VCDs, and various streaming protocols.
-            %tr
-              %td iTunes Client
-              %td 
-                %a{:href => "/downloads/OT44.jar"} OurTunes
-              %td N/A            
-              %td ourTunes is the continuation of several open source projects designed to allow you to browse and download from other people's iTunes Music Shares.
-            %tr 
-              %td Other
-              %td
-                %a{:href => "/downloads/jre-6u13.exe"} JRE
-              %td Windows              
-              %td Java Runtime Environment, required for OurTunes (JRE is automatically installed on OSX). 
-            %tr 
-              %td iPhone
-              %td
-                %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=289892007&mt=8"} FStream 
-              %td iPhone        
-              %td FStream is a little webradio player. FStream recognizes mp3, ogg, wma, aac, pls, m3u and asx.                                
-            %tr
-              %td iPhone             
-              %td
-                %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=294952511&mt=8"} Radio
-              %td iPhone               
-              %td Listen to over 6300 radio stations anywhere in the world!  Supports mp3 and aac stream formats and pls, m3u and xspf playlists.
-            %tr
-              %td iPhone             
-              %td
-                %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=292233889&mt=8"} WunderRadio
-              %td iPhone              
-              %td Link to over thirty thousand radio stations on your iPhone with WunderRadio.  Suupports many formats including asx, m3u and pls.                   
-            %tr 
-              %td Media Conversion
-              %td
-                %a{:href => "/downloads/flac-1.2.1b.exe"} Flac Frontend
-              %td Windows           
-              %td Encode/decode flac files.
-            %tr
-              %td Media Conversion           
-              %td
-                %a{:href => "/downloads/mkwact097b1.exe"} mkwACT
-              %td Windows           
-              %td
-                Encode/decode shn files.  Don't forget to download the
-                %a{:href => "/downloads/mkw-mfc42.exe"} Runtime Libraries
-                as well.
-            %tr
-              %td Other           
-              %td
-                %a{:href => "/downloads/mkw-mfc42.exe"} mkwAct Runtime Libraries
-              %td Windows           
-              %td Required for mkwACT.                             
-            %tr 
-              %td Media Conversion      
-              %td
-                %a{:href => "/downloads/xACT1.62.dmg"} xACT
-              %td OSX             
-              %td Encode/decode flac and shn files
+%div{:class => "anythingSlider"}
+  %div{:class => "wrapper"}
+    %ul
+      %li
+        %div{:id => "welcome"}
+          %p 
+            Welcome to AmberNET!  Currently the site is in a beta testing period and media is not available.  The site will officially launch at 
+            %a{:href => "http://www.pgroove.com/index.php/amberland/", :target => "_blank"} Amberland 
+            where all of the media will be available for download.
+          %p
+            Once on site connect to a hot spot called AmberNET, then browse to http://www.ambernet.net in your web browser.  There are a number of ways to download recordings as well as 
+            %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 2 ))"} streaming options 
+            for devices like iPhones.  You can visit the sections below for more information on each option.  
+          %p 
+            Please note that the AmberNET database contains a list of 
+            %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
+            and 
+            %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings.  
+            There might be more than one recording available for some shows while other shows may have no recordings.
+          %p 
+            All setlist data is pulled directly from  
+            %a{:href => "http://perpetualarchives.mongoosecommunication.com"} Perpetual Archives. 
+            We would like to thank Rick Hadley and Bridger Deville for tracking and making this data accessible.
+      %li
+        %div{:id => "web"} 
+          %p 
+            Using a web browser is the easiest way to access AmberNET.  The first step is to search for 
+            %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings 
+            or 
+            %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
+            in the database.  We have made it possible to search by date range, venue name, city, state, source, taper and more!  
+          %p Once you find a recording that interests you, click on the label to view the recording details, download options and streaming options.  
+          %p In the download section you will have the option to download the entire show or individual tracks.  Most shows are available in shn or flac and mp3 (V0).  
+      %li
+        %div{:id => "welcome"}
+          %p 
+            All recordings on AmberNET can be streamed using pls or m3u playlist files.  If you wish to stream shows using a laptop make sure you have an application associated with whichever file type you choose.  
+          %p 
+            Streaming on an iPhone or iPod Touch requires that you have an application 
+            do do so.  Before Amberland, you should go ahead check out the 
+            %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section
+            and select an application for streaming.
+          %p 
+            If you prefer to skip the web interface, you can queue up every recording for a particular date by hitting the following URL in your favorite streaming application:
+            %br
+            %br  
+            http://ambernet.net/s/YYYY-MM-DD.pls
+            %br
+            http://ambernet.net/s/YYYY-MM-DD.m3u  
+      %li
+        %div{:id => "itunes"}
+          %p Just like prior years, we will be running an iTunes server.  Load up iTunes and connect to AmberNET to sync up some recordings to your iPod or create a custom playlist!
+          %p 
+            For faster access, grab 
+            %a{:href => "/downloads/OT44.jar"} OurTunes
+            from the 
+            %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section 
+            and queue up a bunch of shows.
+          %p 
+            The name of the server will be 'AmberNET' and appears in the left column of iTunes.  Make sure iTunes is configured to 'Look for shared libraries' in the 
+            %a{:href => "/images/itunes_preferences.jpg", :id => "image_anchor"} preferences.
+      %li
+        %div{:id => "ftp"}
+          %p 
+            For more advanced users, we se tup an FTP server.  Just fire up your favorite
+            %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} FTP application
+            and queue up as many recordings as you want.
+          %p Login as anonymous with your email address as the password to ftp.ambernet.net:21
+      %li
+        %div{:id => "apps"}
+          %table{:class => "tablesorter", :id => "apps_table"}
+            %thead
+              %tr
+                %th{:width => "10%"} Type
+                %th{:width => "25%"} Name
+                %th{:width => "10%"} OS
+                %th{:width => "55%"} Description
+              %tbody
+                %tr
+                  %td FTP Client
+                  %td
+                    %a{:href => "/downloads/SFTPMSI.exe"} SmartFTP
+                  %td Windows
+                  %td SmartFTP is an FTP (File Transfer Protocol) client which allows you to transfer files between your local computer and a server on the Internet.            
+                %tr
+                  %td FTP Client
+                  %td 
+                    %a{:href => "/downloads/Cyberduck-3.2.dmg"} Cyberduck
+                  %td OSX
+                  %td FTP, SFTP, WebDAV, Cloud Files & Amazon S3 Browser for Mac OS X.                      
+                %tr
+                  %td Media/Streaming Client
+                  %td 
+                    %a{:href => "/downloads/winamp5552_full_emusic-7plus_en-us.exe"} Winamp
+                  %td Windows
+                  %td Winamp is a proprietary media player written by Nullsoft, now a subsidiary of AOL.  Besides MP3, Winamp supports a wide variety of contemporary and specialized music file formats, including MIDI, MOD, MPEG-1 audio layers 1 and 2, AAC, M4A, FLAC, WAV and Windows Media Audio.
+                %tr
+                  %td Media/Streaming Client
+                  %td 
+                    %a{:href => "/downloads/vlc-0.9.9a.dmg"} VLC
+                  %td OSX
+                  %td VLC media player is an open source, free software media player written by the VideoLAN project.  VLC is a portable multimedia player, encoder, and streamer supporting many audio and video codecs and file formats as well as DVDs, VCDs, and various streaming protocols.
+                %tr
+                  %td iTunes Client
+                  %td 
+                    %a{:href => "/downloads/OT44.jar"} OurTunes
+                  %td N/A            
+                  %td ourTunes is the continuation of several open source projects designed to allow you to browse and download from other people's iTunes Music Shares.
+                %tr 
+                  %td Other
+                  %td
+                    %a{:href => "/downloads/jre-6u13.exe"} JRE
+                  %td Windows              
+                  %td Java Runtime Environment, required for OurTunes (JRE is automatically installed on OSX). 
+                %tr 
+                  %td iPhone
+                  %td
+                    %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=289892007&mt=8"} FStream 
+                  %td iPhone        
+                  %td FStream is a little webradio player. FStream recognizes mp3, ogg, wma, aac, pls, m3u and asx.                                
+                %tr
+                  %td iPhone             
+                  %td
+                    %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=294952511&mt=8"} Radio
+                  %td iPhone               
+                  %td Listen to over 6300 radio stations anywhere in the world!  Supports mp3 and aac stream formats and pls, m3u and xspf playlists.
+                %tr
+                  %td iPhone             
+                  %td
+                    %a{:href => "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=292233889&mt=8"} WunderRadio
+                  %td iPhone              
+                  %td Link to over thirty thousand radio stations on your iPhone with WunderRadio.  Suupports many formats including asx, m3u and pls.                   
+                %tr 
+                  %td Media Conversion
+                  %td
+                    %a{:href => "/downloads/flac-1.2.1b.exe"} Flac Frontend
+                  %td Windows           
+                  %td Encode/decode flac files.
+                %tr
+                  %td Media Conversion           
+                  %td
+                    %a{:href => "/downloads/mkwact097b1.exe"} mkwACT
+                  %td Windows           
+                  %td
+                    Encode/decode shn files.  Don't forget to download the
+                    %a{:href => "/downloads/mkw-mfc42.exe"} Runtime Libraries
+                    as well.
+                %tr
+                  %td Other           
+                  %td
+                    %a{:href => "/downloads/mkw-mfc42.exe"} mkwAct Runtime Libraries
+                  %td Windows           
+                  %td Required for mkwACT.                             
+                %tr 
+                  %td Media Conversion      
+                  %td
+                    %a{:href => "/downloads/xACT1.62.dmg"} xACT
+                  %td OSX             
+                  %td Encode/decode flac and shn files

@@ -38,8 +38,6 @@ module Ambernet
 
     config.middleware.insert_after ActionDispatch::Head, Rack::Hoptoad, "8f35f072dd38fab1566cc09cb8e48304"
 
-    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
   end
