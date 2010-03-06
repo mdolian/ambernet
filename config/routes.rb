@@ -1,5 +1,6 @@
 Ambernet::Application.routes.draw do |map|
 
+  # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
   match 'tracks/save' => 'tracks#save'   
@@ -39,9 +40,6 @@ Ambernet::Application.routes.draw do |map|
   # songs_controller
   match 'songs/list' => 'songs#list'
   resources :songs
-    
-  # tracks_controller
-  # TO-DO
 
   #devise_for :users
   
