@@ -12,5 +12,9 @@ class Song < ActiveRecord::Base
   def self.per_page
     100
   end
+
+  scope :song_name_like, lambda { |song_name|
+    where("songs.song_name LIKE ?",  "%#{song_name}%")
+  }
   
 end

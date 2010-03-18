@@ -17,6 +17,22 @@ class Recording < ActiveRecord::Base
   belongs_to :show  
   has_many :recording_tracks
 
+  scope :label, lambda { |label|
+    where("recordings.label LIKE ?",  "%#{label}%")
+  }
+  
+  scope :source, lambda { |source|
+    where("recordings.source LIKE ?",  "%#{source}%")
+  }
+  
+  scope :lineage, lambda { |source|
+    where("recordings.lineage LIKE ?",  "%#{lineage}%")
+  }
+
+  scope :taper, lambda { |taper|
+    where("recordings.taper LIKE ?",  "%#{taper}%")
+  }  
+  
   def lossless_extension
     case filetype
       when "flac16" then "flac"

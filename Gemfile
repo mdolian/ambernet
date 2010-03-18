@@ -4,7 +4,7 @@ source "http://rubygems.org"
 gem "rails", :git => "git://github.com/rails/rails.git"
 
 # hpricot is currently broken in Rails 3
-#gem "hpricot"    
+gem "hpricot"    
 gem "rubyzip", :require => "zip/zip"
 gem "mysql"
 gem "haml"

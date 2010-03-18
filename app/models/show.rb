@@ -34,6 +34,16 @@ class Show < ActiveRecord::Base
   def self.per_page
     100
   end
+
+  scope :venue_city, lambda { |venue_city|
+    joins(:venue).
+    where("venues.venue_city LIKE ?",  "%#{venue_city}%")
+  }  
+
+  scope :venue_state, lambda { |venue_state|
+    joins(:venue).
+    where("venues.venue_city LIKE ?",  "%#{venue_state}%")
+  }  
   
   # untested
   def setlist
