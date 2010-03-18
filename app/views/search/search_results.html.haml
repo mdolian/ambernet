@@ -1,0 +1,14 @@
+= javascript_include_tag "search_results"
+%form{:action => "/search/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_shows"}
+  %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
+  %a{:href => "/search", :id => "back"} Back to Search Form
+  %br
+  %div{:id => "shows_accordion"}
+    %h3
+      %a{:href => "#"} Show results
+    %div  
+      = render 'show_list'
+    %h3
+      %a{:href => "#"} Recording results
+    %div  
+      = render 'recording_list'
