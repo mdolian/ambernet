@@ -49,6 +49,7 @@ Ambernet::Application.routes.draw do |map|
   match 'venues/admin' => 'venues#admin'
   resources :venues
 
+  match 'search/search_results' => 'search#search_results'
   match 'search' => 'search#search'
 
   match 'admin' => 'admin#index'

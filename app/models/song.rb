@@ -8,6 +8,7 @@ class Song < ActiveRecord::Base
   
   has_many :setlists
   has_many :recording_tracks
+  has_many :shows, :through => :setlists
 
   def self.per_page
     100

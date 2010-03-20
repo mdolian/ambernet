@@ -7,6 +7,7 @@ class Venue < ActiveRecord::Base
   #t.string      :venue_country
   
   has_many :shows  
+  has_many :recordings, :through => :shows
   
   def first
     id

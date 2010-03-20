@@ -16,22 +16,35 @@ class Recording < ActiveRecord::Base
     
   belongs_to :show  
   has_many :recording_tracks
+  has_one :venue, :through => :show
 
-  scope :label, lambda { |label|
+  scope :by_recording_type, lambda { |recording_type|
+    where("recordings.recording_type LIKE ?", "%#{recording_type}%")
+  }
+
+  scope :by_label, lambda { |label|
     where("recordings.label LIKE ?",  "%#{label}%")
   }
   
-  scope :source, lambda { |source|
+  scope :by_source, lambda { |source|
     where("recordings.source LIKE ?",  "%#{source}%")
   }
   
-  scope :lineage, lambda { |source|
+  scope :by_lineage, lambda { |lineage|
     where("recordings.lineage LIKE ?",  "%#{lineage}%")
   }
 
-  scope :taper, lambda { |taper|
+  scope :by_taper, lambda { |taper|
     where("recordings.taper LIKE ?",  "%#{taper}%")
-  }  
+  }
+    
+  scope :by_shnid, lambda { |shnid|
+    where("recordings.shnid = ?", shnid)
+  }
+  
+  scope :by_date, lambda { |*dates|
+    joins(:show) & Show.by_date(dates)
+  }
   
   def lossless_extension
     case filetype

@@ -3,12 +3,51 @@
   %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
   %a{:href => "/search", :id => "back"} Back to Search Form
   %br
-  %div{:id => "shows_accordion"}
-    %h3
-      %a{:href => "#"} Show results
-    %div  
-      = render 'show_list'
-    %h3
-      %a{:href => "#"} Recording results
-    %div  
-      = render 'recording_list'
+  %table{:align => "center", :class => "tablesorter"}
+    %thead
+      %tr
+        %th{:width => "10%", :align => "left"} Show Date
+        %th{:width => "8%", :align => "left"} Type
+        %th{:width => "20%", :align => "left"} Label
+        %th{:width => "20%", :align => "left"} Venue Name
+        %th{:width => "18%", :align => "left"} City
+        %th{:width => "8%", :align => "left"} State
+        %th{:width => "8%", :align => "left"} Setlist
+      %tbody  
+        - @recordings.each do |recording|
+          %tr
+            %td= recording.show.date_played
+            %td= recording.recording_type
+            %td
+              %a{:href => "/recordings/show/#{recording.id}", :id => "recording_details_rec_#{recording.id}"}
+                =recording.label
+            %td= recording.show.venue.venue_name
+            %td= recording.show.venue.venue_city
+            %td= recording.show.venue.venue_state
+            %td 
+              %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
+              %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}        
+              
+  %table{:width => "85%", :align => "center", :class => "tablesorter"}
+    %thead
+      %tr
+        %th{:width => "10%", :align => "left"} Show Date
+        %th{:width => "20%", :align => "left"} Venue Name
+        %th{:width => "18%", :align => "left"} City
+        %th{:width => "8%", :align => "left"} State
+        %th{:width => "8%", :align => "left"} Setlist
+        %th{:width => "8%", :align => "left"} Recordings
+      %tbody  
+        - @shows.each do |show|
+          %tr
+            %td= show.date_played
+            %td= show.venue.venue_name
+            %td= show.venue.venue_city
+            %td= show.venue.venue_state
+            %td 
+              %a{:href => "#", :onclick => "$('#dialog_setlist_#{show.id}').setlist(#{show.id})"} Setlist
+              %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
+            %td
+              %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings
+              %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}        
+        

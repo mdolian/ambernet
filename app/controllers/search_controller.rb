@@ -1,5 +1,16 @@
 class SearchController < ApplicationController
 
+  def search_results
+    @current_page = (params[:page] || 1).to_i
+    
+    @recordings = Recording.label(params["label"]).lineage(params["linage"]).taper(params["taper"])
+    @recordings = @recordings.shnid(params["shnid"])  if params["shnid"] != ''
+    @recordings.collect!
+    
+    @shows = Show.venue_city(params["venue_city"]).venue_state(params["venue_state"]).collect
+  end
+    
+
     # Search shows  
     def search_shows
       if request.method == :get
@@ -46,30 +57,6 @@ class SearchController < ApplicationController
       end
 
     end
-
-    # streams a recording
-    def stream
-      only_provides :pls, :m3u
-      format, id = params["format"], params["id"]
-      if params["id"].length > 4 
-        stream = ""
-        if Recording.count(:join => :shows, conditions => {:date_played => id}) > 0
-          Recording.all(:date_played => id).each do |recording|
-            stream << format == "pls" ? recording.to_pls : recording.to_m3u << "\n\n"
-          end
-        else
-          render "Sorry, no show exists for that date", :layout => false
-        end
-      else
-        stream = params["format"] == "pls" ? Recording.find(params["id"]).to_pls : Recording.find(params["id"]).to_m3u
-        label = Recording.find(params["id"]).label
-      end
-      content_type = "application/m3u" if params["format"] == "m3u"
-      content_type = "application/pls" if params["format"] == "pls"
-      filename = "#{label}.#{format}"
-      send_data stream, :type => content_type, :disposition => 'attachment', :filename => filename
-    end
-
     # search results action    
     def search_recordings
       if request.method == :get

@@ -1,0 +1,22 @@
+Recordings Only
+label
+source
+lineage 
+taper
+shnid
+recording type
+
+Shows Only
+venue_name
+venue_city
+venue_state
+song_name 
+date range
+
+
+Browse Shows/Recordings
+by year
+by recording type
+by venue
+by city
+by state

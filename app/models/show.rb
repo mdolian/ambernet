@@ -8,6 +8,7 @@ class Show < ActiveRecord::Base
   
   has_many :setlists
   has_many :recordings
+  has_many :songs, :through => :setlists
   belongs_to :venue
   
   # I forget why this was needed
@@ -35,14 +36,48 @@ class Show < ActiveRecord::Base
     100
   end
 
-  scope :venue_city, lambda { |venue_city|
+  scope :by_venue_city, lambda { |venue_city|
     joins(:venue).
     where("venues.venue_city LIKE ?",  "%#{venue_city}%")
   }  
 
-  scope :venue_state, lambda { |venue_state|
+  scope :by_venue_state, lambda { |venue_state|
     joins(:venue).
     where("venues.venue_city LIKE ?",  "%#{venue_state}%")
+  }  
+
+  scope :by_date, lambda { |*dates|
+    where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
+  }
+  
+  scope :by_song, lambda { |song_name|
+    joins(:setlists, :songs).
+    where("songs.song_name LIKE ?", "%#{song_name}%").
+    group("shows.id")
+  }
+  
+  scope :by_label, lambda { |label| 
+    joins(:recordings) & Recording.by_label(label)
+  }
+
+  scope :by_source, lambda { |source|
+    joins(:recordings) & Recording.by_source(source)
+  }
+  
+  scope :by_lineage, lambda { |lineage|
+    joins(:recordings) & Recording.by_lineage(lineage)
+  }
+
+  scope :by_taper, lambda { |taper|
+    joins(:recordings) & Recording.by_taper(taper)
+  }
+    
+  scope :by_shnid, lambda { |shnid|
+    joins(:recordings) & Recording.by_shinid(shnid)
+  }
+
+  scope :by_recording_type, lambda { |recording_type|
+    joins(:recordings) & Recording.by_recording_type(recording_type)
   }  
   
   # untested
