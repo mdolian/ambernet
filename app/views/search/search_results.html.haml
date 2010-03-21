@@ -2,32 +2,7 @@
 %form{:action => "/search/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_shows"}
   %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
   %a{:href => "/search", :id => "back"} Back to Search Form
-  %br
-  %table{:align => "center", :class => "tablesorter"}
-    %thead
-      %tr
-        %th{:width => "10%", :align => "left"} Show Date
-        %th{:width => "8%", :align => "left"} Type
-        %th{:width => "20%", :align => "left"} Label
-        %th{:width => "20%", :align => "left"} Venue Name
-        %th{:width => "18%", :align => "left"} City
-        %th{:width => "8%", :align => "left"} State
-        %th{:width => "8%", :align => "left"} Setlist
-      %tbody  
-        - @recordings.each do |recording|
-          %tr
-            %td= recording.show.date_played
-            %td= recording.recording_type
-            %td
-              %a{:href => "/recordings/show/#{recording.id}", :id => "recording_details_rec_#{recording.id}"}
-                =recording.label
-            %td= recording.show.venue.venue_name
-            %td= recording.show.venue.venue_city
-            %td= recording.show.venue.venue_state
-            %td 
-              %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
-              %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}        
-              
+  %br              
   %table{:width => "85%", :align => "center", :class => "tablesorter"}
     %thead
       %tr

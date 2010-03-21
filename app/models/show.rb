@@ -44,7 +44,12 @@ class Show < ActiveRecord::Base
   scope :by_venue_state, lambda { |venue_state|
     joins(:venue).
     where("venues.venue_city LIKE ?",  "%#{venue_state}%")
-  }  
+  }
+
+  scope :by_venue_name, lambda { |venue_name|
+    joins(:venue).
+    where("venues.venue_name LIKE ?",  "%#{venue_name}%")
+  }    
 
   scope :by_date, lambda { |*dates|
     where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
