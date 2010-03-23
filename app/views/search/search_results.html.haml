@@ -1,4 +1,4 @@
-= javascript_include_tag "search_results"
+= javascript_include_tag "search"
 %form{:action => "/search/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_shows"}
   %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
   %a{:href => "/search", :id => "back"} Back to Search Form

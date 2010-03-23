@@ -1,4 +1,3 @@
-= javascript_include_tag "accordion"
 %script{:type => "text/javascript"}
   jQuery(document).ready(function($) {$('.auto-submit-star').rating({callback: function(value, link){$.post("/recordings/rate/#{@recording.id}/" + value,"html");}});});
 %a{:href => "/recordings/search_results?page=#{session['current_page']}", :id => "back"} Back to Search Results
