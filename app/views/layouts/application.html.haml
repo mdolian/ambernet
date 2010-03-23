@@ -4,7 +4,6 @@
     = javascript_include_tag 'jquery.metadata'
     = javascript_include_tag 'jquery.tablesorter'
     = javascript_include_tag 'jquery.confirm'
-    = javascript_include_tag 'jquery.form'
     = javascript_include_tag 'jquery.fancybox'
     = javascript_include_tag 'jquery.ui'
     = javascript_include_tag 'jquery.autoSuggest'
@@ -13,7 +12,6 @@
     = javascript_include_tag 'jquery.corner'
     = javascript_include_tag 'rails'
     = stylesheet_link_tag 'jquery.tablesorter'
-    = stylesheet_link_tag 'jquery.autocomplete'
     = stylesheet_link_tag 'jquery.fancybox'
     = stylesheet_link_tag 'autoSuggest'
     = stylesheet_link_tag 'jquery.ui.custom'
@@ -21,19 +19,17 @@
     = stylesheet_link_tag 'application'
     %title
       AmberNET Online
-  %body{:topmargin => "5", :leftmargin => "5", :marginwidth => "5", :marginheight => "5", :hspace => "5", :vspace => "5"}
-    %div{:align => "center"}
+  %body
+    %div{:align => "left"}
       %img{:src => "/images/header.jpg"}  
-    %div{:align => "center", :id => "nav"}
+    %div{:id => "nav"}
       %ul
         %li
           %a{:href =>"/", :class => "selected"} Home
         %li
-          %a{:href => "/recordings/browse"} Browse Recordings
+          %a{:href => "/shows/browse"} Browse
         %li
-          %a{:href => "/shows/browse"} Browse Shows
-        %li
-          %a{:href => "/search"} Search
+          %a{:href => "/search"} Advanced Search
         %li
           %a{:href => "/about"} About
     - if flash[:notice]          
@@ -53,4 +49,4 @@
     %br
     %br
     %br
-    %div{:align => "center"}= yield
+    %div= yield

@@ -1,0 +1,45 @@
+= javascript_include_tag "search"
+%div{:id => "browse"}
+  %ul
+    %li
+      %a{:href => "#browse-1"} By Date
+    %li
+      %a{:href => "#browse-2"} By Venue
+    %li
+      %a{:href => "#browse-3"} By Recording
+  %div{:id => "browse-1"}
+    Year:
+    %br
+    %select{:name => "year", :id => "year"}
+      = options_for_select(get_years)
+    %br
+    %br
+    Date Range:
+    %br
+    %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"}
+    to
+    %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}    
+  %div{:id => "browse-2"}
+    Venue Name:
+    %br
+    %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
+    %br
+    %br
+    City:
+    %br
+    %input{:type => "text", :id => "venue_city", :name => "venue_city", :size => "20"}
+    %br
+    %br
+    State:
+    %br
+    %input{:type => "text", :id => "venue_state", :name => "venue_state", :size => "3"}        
+  %div{:id => "browse-3"}
+    Keywords:
+    %br    
+    %input{:type => "text", :id => "recording_search", :name => "recording_search", :size => "50"}
+    %br
+    %br
+    Recording Type:
+    %br
+    %select{:name => "recording_types", :id => "recording_types"}
+      = options_for_select(get_recording_types)    

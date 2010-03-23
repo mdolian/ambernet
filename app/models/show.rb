@@ -10,6 +10,55 @@ class Show < ActiveRecord::Base
   has_many :recordings
   has_many :songs, :through => :setlists
   belongs_to :venue
+
+  scope :by_venue_city, lambda { |venue_city|
+    joins(:venue).
+    where("venues.venue_city LIKE ?",  "%#{venue_city}%")
+  }  
+
+  scope :by_venue_state, lambda { |venue_state|
+    joins(:venue).
+    where("venues.venue_city LIKE ?",  "%#{venue_state}%")
+  }
+
+  scope :by_venue_name, lambda { |venue_name|
+    joins(:venue).
+    where("venues.venue_name LIKE ?",  "%#{venue_name}%")
+  }    
+
+  scope :by_date, lambda { |*dates|
+    where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
+  }
+  
+  scope :by_song, lambda { |song_name|
+    joins(:setlists, :songs).
+    where("songs.song_name LIKE ?", "%#{song_name}%")
+    group("shows.id")
+  }
+  
+  scope :by_label, lambda { |label| 
+    joins(:recordings) & Recording.by_label(label)
+  }
+
+  scope :by_source, lambda { |source|
+    joins(:recordings) & Recording.by_source(source)
+  }
+  
+  scope :by_lineage, lambda { |lineage|
+    joins(:recordings) & Recording.by_lineage(lineage)
+  }
+
+  scope :by_taper, lambda { |taper|
+    joins(:recordings) & Recording.by_taper(taper)
+  }
+    
+  scope :by_shnid, lambda { |shnid|
+    joins(:recordings) & Recording.by_shnid(shnid)
+  }
+
+  scope :by_recording_type, lambda { |recording_type|
+    joins(:recordings) & Recording.by_recording_type(recording_type)
+  }
   
   # I forget why this was needed
   def date_as_label
@@ -35,55 +84,18 @@ class Show < ActiveRecord::Base
   def self.per_page
     100
   end
-
-  scope :by_venue_city, lambda { |venue_city|
-    joins(:venue).
-    where("venues.venue_city LIKE ?",  "%#{venue_city}%")
-  }  
-
-  scope :by_venue_state, lambda { |venue_state|
-    joins(:venue).
-    where("venues.venue_city LIKE ?",  "%#{venue_state}%")
-  }
-
-  scope :by_venue_name, lambda { |venue_name|
-    joins(:venue).
-    where("venues.venue_name LIKE ?",  "%#{venue_name}%")
-  }    
-
-  scope :by_date, lambda { |*dates|
-    where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
-  }
   
-  scope :by_song, lambda { |song_name|
-    joins(:setlists, :songs).
-    where("songs.song_name LIKE ?", "%#{song_name}%").
-    group("shows.id")
-  }
-  
-  scope :by_label, lambda { |label| 
-    joins(:recordings) & Recording.by_label(label)
-  }
+  def recording_count
+    Recording.joins(:show).where("recordings.show_id = ?", id).count
+  end 
 
-  scope :by_source, lambda { |source|
-    joins(:recordings) & Recording.by_source(source)
-  }
-  
-  scope :by_lineage, lambda { |lineage|
-    joins(:recordings) & Recording.by_lineage(lineage)
-  }
-
-  scope :by_taper, lambda { |taper|
-    joins(:recordings) & Recording.by_taper(taper)
-  }
-    
-  scope :by_shnid, lambda { |shnid|
-    joins(:recordings) & Recording.by_shinid(shnid)
-  }
-
-  scope :by_recording_type, lambda { |recording_type|
-    joins(:recordings) & Recording.by_recording_type(recording_type)
-  }  
+  def search(asset_params, page, per_page)
+    main = order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue)
+    asset_params.each do |key, value|
+      main = main.send(:"by_#{key.to_s}", value)  if main.respond_to?(:"by_#{key.to_s}") && !(value == '' || value == 'all')
+    end if asset_params
+    main.paginate(:all, :page => page, :per_page => per_page)
+  end
   
   # untested
   def setlist

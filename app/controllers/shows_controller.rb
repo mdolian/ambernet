@@ -2,6 +2,10 @@ class ShowsController < ApplicationController
  
   #before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show] 
  
+  def browse
+    render
+  end
+ 
   def index
     @current_page = (params[:page] || 1).to_i 
     @shows = Show.paginate(:joins => :venue, :page => @current_page, :order => :date_played) 
@@ -87,7 +91,7 @@ class ShowsController < ApplicationController
   # Setlist for a show in json format
   def setlist
     setlist_json = []
-    total_sets = Show.find(params["id"]).setlists[0].total_sets
+    total_sets = Show.find(params["id"]).total_sets
     Show.find(params["id"]).setlists.each do |setlist|
       song = Song.find(setlist.song_id)
       setlist_json << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix, "total_sets" => total_sets}
@@ -97,7 +101,7 @@ class ShowsController < ApplicationController
  
   # List recordings for a show
   def recordings
-    @recordings = Recording.all(:show_id => params["id"])
+    @recordings = Recording.where("show_id =? ", params["id"])
     render :layout => false
   end
  

@@ -1,7 +1,8 @@
 $(function() {
   jQuery(document).ready(function($) {
-		$("#venue_name").autocomplete("/venues/list");
-		$("#venue_city").autocomplete("/venues/city_list");	
+		$("#venue_name").autoSuggest("/venues/list");
+		$("#venue_city").autoSuggest("/venues/city_list");	
+		$("#browse").tabs();
 		$('#start_date').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

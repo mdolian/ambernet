@@ -1,0 +1,11 @@
+= javascript_include_tag "search"
+%form{:method => "post", :action => "/search/simple_search_results", :autocomplete => "off", :id => "columnarForm"}  
+  %fieldset
+    %legend
+      Show Details
+    %label{:class => "first", :for => "search"} 
+      Keyword
+      %input{:type => "text", :name => "search", :size => "25", :id => "search"} 
+
+  %input{:type => "submit", :value => "Search", :name => "submit"} 
+  %input{:type => "reset", :value => "Clear"}

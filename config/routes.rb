@@ -31,10 +31,10 @@ Ambernet::Application.routes.draw do |map|
   
   # shows_controller
   match 'shows/list' => 'shows#list'
-  match 'shows/setlist' => 'shows#setlist'
-  match 'shows/recordings' => 'shows#recordings'
+  match 'shows/setlist/:id' => 'shows#setlist'
+  match 'shows/recordings/:id' => 'shows#recordings'
   match 'shows/search' => 'shows#search'
-  match 'shows/browse' => 'shows#index'
+  match 'shows/browse' => 'shows#browse'
   resources :shows
   
   # songs_controller
@@ -49,8 +49,11 @@ Ambernet::Application.routes.draw do |map|
   match 'venues/admin' => 'venues#admin'
   resources :venues
 
-  match 'search/search_results' => 'search#search_results'
   match 'search' => 'search#search'
+  match 'search/simple_search' => 'search#simple_search'
+  match 'search/advanced_search' => 'search#advanced_search'  
+  match 'search/simple_search_results' => 'search#simple_search_results'
+  match 'search/advanced_search_results' => 'search#advanced_search_results'
 
   match 'admin' => 'admin#index'
 
