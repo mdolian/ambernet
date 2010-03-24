@@ -1,45 +1,60 @@
 = javascript_include_tag "search"
-%div{:id => "browse"}
-  %ul
-    %li
-      %a{:href => "#browse-1"} By Date
-    %li
-      %a{:href => "#browse-2"} By Venue
-    %li
-      %a{:href => "#browse-3"} By Recording
-  %div{:id => "browse-1"}
-    Year:
+%br
+%form{:id => "browseForm", :method => "post", :action => "#"}
+  %div{:class => "wizard"}    
+    %div{:id => "firstStep", :class => "step"}
+      %p
+        %select{:class => "link required", :id => "browse"}
+          %option{:value => "date"} By Date
+          %option{:value => "venue"} By Venue
+          %option{:value => "songs"} By Songs
+          %option{:value => "recording"} By Recording Type
+    %div{:id => "date", :class => "step"}
+      Year:
+      %br
+      %select{:name => "year", :id => "year"}
+        = options_for_select(get_years)
+      %br
+      %br
+      Date Range:
+      %br
+      %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"}
+      to
+      %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}  
+      %input{:type => "hidden", :class => "link", :value => "lastStep"}  
+    %div{:id => "venue", :class => "step"}
+      Venue Name:
+      %br
+      %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
+      %br
+      %br
+      City:
+      %br
+      %input{:type => "text", :id => "venue_city", :name => "venue_city", :size => "20"}
+      %br
+      %br
+      State:
+      %br
+      %select{:name => "venue_state", :id => "venue_state"}
+        = options_for_select(get_states)
+      %input{:type => "hidden", :class => "link", :value => "lastStep"}   
+    %div{:id => "recordings", :class => "step submit_step"}
+      Recording Type:
+      %br
+      %select{:name => "recording_types", :id => "recording_types"}
+        = options_for_select(get_recording_types)
+    %div{:id => "songs", :class => "step"}
+      Songs:
+      %br    
+      %input{:type => "text", :id => "recording_search", :name => "recording_search", :size => "50"}
+      %br
+      %br
+      %input{:type => "hidden", :class => "link", :value => "lastStep"}         
+    %div{:id => "lastStep", :class => "step submit_step"}
+      %input{:type => "button", :name => "filter", :value => "View Recordings"}
+      %input{:type => "button", :name => "filter", :value => "View Shows"}
+      %input{:type => "button", :name => "filter", :value => "View Both"}
     %br
-    %select{:name => "year", :id => "year"}
-      = options_for_select(get_years)
     %br
-    %br
-    Date Range:
-    %br
-    %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"}
-    to
-    %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}    
-  %div{:id => "browse-2"}
-    Venue Name:
-    %br
-    %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
-    %br
-    %br
-    City:
-    %br
-    %input{:type => "text", :id => "venue_city", :name => "venue_city", :size => "20"}
-    %br
-    %br
-    State:
-    %br
-    %input{:type => "text", :id => "venue_state", :name => "venue_state", :size => "3"}        
-  %div{:id => "browse-3"}
-    Keywords:
-    %br    
-    %input{:type => "text", :id => "recording_search", :name => "recording_search", :size => "50"}
-    %br
-    %br
-    Recording Type:
-    %br
-    %select{:name => "recording_types", :id => "recording_types"}
-      = options_for_select(get_recording_types)    
+    %input{:class => "navigation_button", :value => "Back", :type => "reset"}
+    %input{:class => "navigation_button", :value => "Next", :type => "submit"}

@@ -4,6 +4,60 @@ module ApplicationHelper
     ["all", "sbd", "aud", "matrix", "fm", "other"]
   end
   
+  def get_states
+     [["All", "All"],
+      [ "Alabama", "AL" ],
+      [ "Alaska", "AK" ],
+      [ "Arizona", "AZ" ],
+      [ "Arkansas", "AR" ],
+      [ "California", "CA" ],
+      [ "Colorado", "CO" ],
+      [ "Connecticut", "CT" ],
+      [ "Delaware", "DE" ],
+      [ "Florida", "FL" ],
+      [ "Georgia", "GA" ],
+      [ "Hawaii", "HI" ],
+      [ "Idaho", "ID" ],
+      [ "Illinois", "IL" ],
+      [ "Indiana", "IN" ],
+      [ "Iowa", "IA" ],
+      [ "Kansas", "KS" ],
+      [ "Kentucky", "KY" ],
+      [ "Louisiana", "LA" ],
+      [ "Maine", "ME" ],
+      [ "Maryland", "MD" ],
+      [ "Massachusetts", "MA" ],
+      [ "Michigan", "MI" ],
+      [ "Minnesota", "MN" ],
+      [ "Mississippi", "MS" ],
+      [ "Missouri", "MO" ],
+      [ "Montana", "MT" ],
+      [ "Nebraska", "NE" ],
+      [ "Nevada", "NV" ],
+      [ "New Hampshire", "NH" ],
+      [ "New Jersey", "NJ" ],
+      [ "New Mexico", "NM" ],
+      [ "New York", "NY" ],
+      [ "North Carolina", "NC" ],
+      [ "North Dakota", "ND" ],
+      [ "Ohio", "OH" ],
+      [ "Oklahoma", "OK" ],
+      [ "Oregon", "OR" ],
+      [ "Pennsylvania", "PA" ],
+      [ "Rhode Island", "RI" ],
+      [ "South Carolina", "SC" ],
+      [ "South Dakota", "SD" ],
+      [ "Tennessee", "TN" ],
+      [ "Texas", "TX" ],
+      [ "Utah", "UT" ],
+      [ "Vermont", "VT" ],
+      [ "Virginia", "VA" ],
+      [ "Washington", "WA" ],
+      [ "West Virginia", "WV" ],
+      [ "Wisconsin", "WI" ],
+      [ "Wyoming", "WY" ]]
+  end  
+  
   def get_filetypes
     ["flac16", "shnf", "flac24", "mp3f"]
   end    
@@ -28,18 +82,6 @@ module ApplicationHelper
      ["2003", "2003"], 
      ["2002", "2002"],
      ["2001", "2001"]]
-  end
-  
-  def get_search_filters
-    [["search_source", "Source"], 
-     ["search_lineage", "Lineage"], 
-     ["search_taper", "Taper"], 
-     ["search_venue_name", "Venue Search"], 
-     ["search_year", "Year"], 
-     ["search_label", "Label"], 
-     ["search_venue_city", "City"], 
-     ["search_venue_state", "State"], 
-     ["search_type", "Recording Type"]]
   end
 
 end
