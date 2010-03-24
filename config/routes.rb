@@ -1,5 +1,8 @@
 Ambernet::Application.routes.draw do |map|
 
+  # browse_controller
+  match 'browse' => 'browse#index'
+
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
@@ -34,7 +37,6 @@ Ambernet::Application.routes.draw do |map|
   match 'shows/setlist/:id' => 'shows#setlist'
   match 'shows/recordings/:id' => 'shows#recordings'
   match 'shows/search' => 'shows#search'
-  match 'shows/browse' => 'shows#browse'
   resources :shows
   
   # songs_controller
