@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:city_list, :list, :show] 
+  before_filter :authenticate_admin!, :except => [:city_list, :list, :show] 
   
   def index
     @current_page = (params[:page] || 1).to_i 
