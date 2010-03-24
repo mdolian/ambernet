@@ -1,6 +1,4 @@
 %script{:type => "text/javascript"}
-  jQuery(document).ready(function($) {$('.auto-submit-star').rating({callback: function(value, link){$.post("/recordings/rate/#{@recording.id}/" + value,"html");}});});
-%a{:href => "/recordings/search_results?page=#{session['current_page']}", :id => "back"} Back to Search Results
 %br
 %br
 %div{:id => "main"}
@@ -8,49 +6,11 @@
     %h3
       %a{:href => "#"} Recording Details
     %div   
-      %table{:width => "65%", :align => "center", :class => "tablesorter"}
-        %tr
-          %td{:width => "20%"} 
-            %b Show ID
-          %td{:width => "80%"}= @recording.show.id
-        %tr  
-          %td 
-            %b Show Label
-          %td= @recording.label
-        %tr
-          %td 
-            %b Taper
-          %td= @recording.taper
-        %tr
-          %td 
-            %b Transferred By
-          %td= @recording.transfered_by
-        %tr
-          %td 
-            %b Source:
-          %td= @recording.source
-        %tr
-          %td 
-            %b Lineage:
-          %td= @recording.lineage
-        %tr
-          %td 
-            %b Notes
-          %td= @recording.notes
-        %tr
-          %td
-            %b Rate
-          %td
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "1"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "2"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "3"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "4"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "5"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "6"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "7"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "8"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "9"}
-            %input{:name => "rating", :type => "radio", :class => "auto-submit-star {split:2}", :value => "10"}
+      = render 'recordings/detail'
+    %h3
+      %a{:href => "#"} Show Details
+    %div          
+      = render 'shows/detail'
     %h3
       %a{:href => "#"} Download Options
     %div

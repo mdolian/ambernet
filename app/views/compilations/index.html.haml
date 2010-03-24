@@ -5,15 +5,17 @@
 %table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
-      %th{:width => "10%", :align => "left"} Delete 
-      %th{:width => "10%", :align => "left"} Edit
+      - if admin_signed_in?
+        %th{:width => "10%", :align => "left"} Delete 
+        %th{:width => "10%", :align => "left"} Edit
       %th{:width => "15%", :align => "left"} Label 
     %tbody  
       %tr
         %td{:colspan => "6"}= link_to 'New Compilation', new_compilation_path
       - @compilations.each do |compilation|
         %tr        
-          %td= link_to 'Destroy', compilation_path(compilation), :confirm => "Are you sure?", :method => :delete
-          %td= link_to 'Edit', edit_compilation_path(compilation)
+          - if admin_signed_in?
+            %td= link_to 'Destroy', compilation_path(compilation), :confirm => "Are you sure?", :method => :delete
+            %td= link_to 'Edit', edit_compilation_path(compilation)
           %td= compilation.label
           

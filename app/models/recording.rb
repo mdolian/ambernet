@@ -14,9 +14,8 @@ class Recording < ActiveRecord::Base
   #t.string        :filetype      
   #t.integer       :show_id, :null => false
     
-  belongs_to :show  
   has_many :recording_tracks
-  has_one :venue, :through => :show
+  belongs_to :show  
 
   scope :by_recording_type, lambda { |recording_type|
     where("recordings.recording_type LIKE ?", "%#{recording_type}%")

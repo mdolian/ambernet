@@ -1,22 +1,7 @@
-= javascript_include_tag "admin"
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
+= javascript_include_tag "browse"
+
 %h2 Browse Recordings
-= link_to 'Back', 'admin'
-= will_paginate @recordings
-%table{:align => "center", :class => "tablesorter"}
-  %thead
-    %tr
-      %th{:width => "10%", :align => "left"} Delete 
-      %th{:width => "10%", :align => "left"} Edit
-      %th{:width => "15%", :align => "left"} Show Date
-      %th{:width => "30%", :align => "left"} Label
-      %th{:width => "20%", :align => "left"} Venue Name  
-    %tbody  
-      %tr
-        %td{:colspan => "6"}= link_to 'New Recording', new_recording_path
-      - @recordings.each do |recording|
-        %tr
-          %td= link_to 'Destroy', recording_path(recording), :confirm => "Are you sure?", :method => :delete
-          %td= link_to 'Edit', edit_recording_path(recording)
-          %td= recording.show.date_played
-          %td= recording.label
-          %td= recording.show.venue.label
+
+= render 'recordings/list'

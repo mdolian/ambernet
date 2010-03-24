@@ -89,10 +89,10 @@ class Show < ActiveRecord::Base
     Recording.joins(:show).where("recordings.show_id = ?", id).count
   end 
 
-  def search(asset_params, page, per_page)
+  def self.search(asset_params, page, per_page)
     main = order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue)
     asset_params.each do |key, value|
-      main = main.send(:"by_#{key.to_s}", value)  if main.respond_to?(:"by_#{key.to_s}") && !(value == '' || value == 'all')
+      main = main.send(:"by_#{key.to_s}", value)  if main.respond_to?(:"by_#{key.to_s}") && !(value == '' || value == 'all' || value == 'Enter Name Here')
     end if asset_params
     main.paginate(:all, :page => page, :per_page => per_page)
   end

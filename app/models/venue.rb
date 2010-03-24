@@ -7,7 +7,6 @@ class Venue < ActiveRecord::Base
   #t.string      :venue_country
   
   has_many :shows  
-  has_many :recordings, :through => :shows
   
   def first
     id
@@ -21,7 +20,7 @@ class Venue < ActiveRecord::Base
     100
   end
   
-  def label
+  def venue_label
     venue_name + " " + venue_city + ", " + venue_state
   end
  

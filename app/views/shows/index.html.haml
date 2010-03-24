@@ -1,20 +1,7 @@
-= javascript_include_tag "admin"
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
+= javascript_include_tag "search"
+
 %h2 Browse Shows
-= link_to 'Back', 'admin'
-= will_paginate @shows
-%table{:align => "center", :class => "tablesorter"}
-  %thead
-    %tr
-      %th{:width => "10%", :align => "left"} Delete 
-      %th{:width => "10%", :align => "left"} Edit
-      %th{:width => "15%", :align => "left"} Date Played      
-      %th{:width => "15%", :align => "left"} Venue
-    %tbody  
-      %tr
-        %td{:colspan => "7"}= link_to 'New Show', new_show_path
-      - @shows.each do |show|
-        %tr        
-          %td= link_to 'Destroy', show_path(show), :confirm => "Are you sure?", :method => :delete
-          %td= link_to 'Edit', edit_show_path(show)
-          %td= show.date_played
-          %td= show.venue.label
+
+= render 'shows/list'

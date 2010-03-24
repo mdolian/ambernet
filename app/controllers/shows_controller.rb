@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
  
-  before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show] 
+  before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show, :browse, :index] 
  
   def browse
     render
@@ -18,6 +18,7 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.find(params["id"], :joins => [:venue, :setlists])
+    @recordings = Recording.where("show_id = ?", @show.id)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @show }

@@ -1,30 +1,7 @@
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
 = javascript_include_tag "search"
-%form{:action => "/search/search_results", :method => "post", :autocomplete => "off", :id => "paginate_form_shows"}
-  %input{:type => "hidden", :name => "page", :value => "#{params[:page]}"}
-  %a{:href => "/search", :id => "back"} Back to Search Form
-  %br              
-  %table{:width => "85%", :align => "center", :class => "tablesorter"}
-    %thead
-      %tr
-        %th{:width => "5%", :align => "left"} Show ID
-        %th{:width => "10%", :align => "left"} Show Date
-        %th{:width => "20%", :align => "left"} Venue Name
-        %th{:width => "13%", :align => "left"} City
-        %th{:width => "8%", :align => "left"} State
-        %th{:width => "8%", :align => "left"} Setlist
-        %th{:width => "8%", :align => "left"} Recordings
-      %tbody  
-        - @shows.each do |show|
-          %tr
-            %td= show.id
-            %td= show.date_played
-            %td= show.venue.venue_name
-            %td= show.venue.venue_city
-            %td= show.venue.venue_state
-            %td 
-              %a{:href => "#", :onclick => "$('#dialog_setlist_#{show.id}').setlist(#{show.id})"} Setlist
-              %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
-            %td
-              %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings (#{show.recording_count})
-              %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}        
-        
+
+%h2 Search Results
+
+= render 'shows/list'

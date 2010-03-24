@@ -1,0 +1,29 @@
+%table{:width => "65%", :align => "center", :class => "tablesorter"}
+  %tr
+    %td{:width => "20%"} 
+      %b Show ID
+    %td{:width => "80%"}= @recording.show.id
+  %tr  
+    %td 
+      %b Recording Label
+    %td= @recording.label
+  %tr
+    %td 
+      %b Taper
+    %td= @recording.taper
+  %tr
+    %td 
+      %b Transferred By
+    %td= @recording.transfered_by
+  %tr
+    %td 
+      %b Source:
+    %td= @recording.source
+  %tr
+    %td 
+      %b Lineage:
+    %td= @recording.lineage
+  %tr
+    %td 
+      %b Notes
+    %td= @recording.notes

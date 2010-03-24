@@ -4,7 +4,7 @@ class RecordingsController < ApplicationController
 
   def index
     @current_page = (params[:page] || 1).to_i 
-    @recordings = Recording.paginate(:joins => {:show => :venue}, :page => @current_page) 
+    @recordings = Recording.joins(:show).paginate(:all, :page => @current_page)
 
     respond_to do |format|
       format.html
@@ -14,6 +14,7 @@ class RecordingsController < ApplicationController
 
   def show
     @recording = Recording.find(params["id"])
+    @show = Show.find(@recording.show_id)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @recording }

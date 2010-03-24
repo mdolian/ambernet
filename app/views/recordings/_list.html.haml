@@ -1,0 +1,28 @@
+= will_paginate @recordings
+%table{:align => "center", :class => "tablesorter"}
+  %thead
+    %tr
+      - if admin_signed_in?
+        %th{:width => "10%", :align => "left"} Delete 
+        %th{:width => "10%", :align => "left"} Edit
+      %th{:width => "10%", :align => "left"} Details  
+      %th{:width => "15%", :align => "left"} Show Date
+      %th{:width => "30%", :align => "left"} Label
+      %th{:width => "20%", :align => "left"} Venue Name
+      %th{:width => "20%", :align => "left"} Setlist
+    %tbody  
+      %tr
+        %td{:colspan => "6"}= link_to 'New Recording', new_recording_path
+      - @recordings.each do |recording|
+        %tr
+          - if admin_signed_in?
+            %td= link_to 'Destroy', recording_path(recording), :confirm => "Are you sure?", :method => :delete
+            %td= link_to 'Edit', edit_recording_path(recording)
+          %td= link_to 'Show', recording_path(recording)
+          %td= recording.show.date_played
+          %td= recording.label
+          %td= recording.show.venue.venue_label
+          %td 
+            %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
+            %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}          
+= will_paginate @recordings
