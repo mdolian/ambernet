@@ -3,12 +3,18 @@
 %form{:id => "browseForm", :method => "post", :action => "#"}
   %div{:class => "wizard"}    
     %div{:id => "firstStep", :class => "step"}
-      %p
-        %select{:class => "link required", :id => "browse"}
-          %option{:value => "date"} By Date
-          %option{:value => "venue"} By Venue
-          %option{:value => "songs"} By Songs
-          %option{:value => "recording"} By Recording Type
+      %br
+      %input{:type => "radio", :class => "link", :value => "date", :name => "browse", :checked => "true"}
+      &nbsp;&nbsp;&nbsp; By Date
+      %br
+      %input{:type => "radio", :class => "link", :value => "venue", :name => "browse"}  
+      &nbsp;&nbsp;&nbsp; By Venue
+      %br
+      %input{:type => "radio", :class => "link", :value => "songs", :name => "browse"}  
+      &nbsp;&nbsp;&nbsp; By Songs
+      %br
+      %input{:type => "radio", :class => "link", :value => "recording", :name => "browse"}  
+      &nbsp;&nbsp;&nbsp; By Recording Type
     %div{:id => "date", :class => "step"}
       Year:
       %br
@@ -46,14 +52,17 @@
     %div{:id => "songs", :class => "step"}
       Songs:
       %br    
-      %input{:type => "text", :id => "recording_search", :name => "recording_search", :size => "50"}
+      %input{:type => "text", :id => "song_name", :name => "song_name", :size => "20"}
       %br
       %br
       %input{:type => "hidden", :class => "link", :value => "lastStep"}         
     %div{:id => "lastStep", :class => "step submit_step"}
-      %input{:type => "button", :name => "filter", :value => "View Recordings"}
-      %input{:type => "button", :name => "filter", :value => "View Shows"}
-      %input{:type => "button", :name => "filter", :value => "View Both"}
+      %p
+        %input{:type => "checkbox", :name => "display", :value => "recordings"} 
+        &nbsp;&nbsp;&nbsp; Display Recordings
+      %p
+        %input{:type => "checkbox", :name => "display", :value => "shows"} 
+        &nbsp;&nbsp;&nbsp; Display Shows
     %br
     %br
     %input{:class => "navigation_button", :value => "Back", :type => "reset"}

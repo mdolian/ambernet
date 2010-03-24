@@ -18,7 +18,13 @@ $(function() {
 			selectedValuesProp: "label",
 			searchObjProps: "label"
 		});
-
+		
+		$("#song_name").autoSuggest("/songs/list", {
+			selectedItemProp: "label",
+			selectedValuesProp: "id",
+			searchObjProps: "label"
+		});		
+		
 		$("button, input:button, a", ".wizard").button();
 		$("a", ".wizard").click(function() { return false; });
 
@@ -26,5 +32,8 @@ $(function() {
 			validationEnabled : true,
 			focusFirstInput : true
 		});
+		
+		$('input:checkbox, input:radio').checkbox();
+		
   });	
 });
