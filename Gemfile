@@ -13,7 +13,7 @@ gem "will_paginate", "3.0.pre"
 gem "warden"
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
 
-gem "pg". :group => :production
+gem "pg", :group => :production
 gem "rack_hoptoad", :require => "rack/hoptoad", :group => :production
 gem "bundler", "0.9.11", :group => :production
 
