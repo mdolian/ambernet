@@ -1,5 +1,7 @@
 class TracksController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def edit
     @recording = Recording.find(params["id"])
     @show = Show.find(@recording.show_id)

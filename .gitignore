@@ -1,3 +1,7 @@
+test/gems/*
+test/*
+test/cache/*
+test/specifications/*
 .bundle/*
 gems/*
 *.mp3

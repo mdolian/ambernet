@@ -13,6 +13,10 @@ $(function() {
 			changeMonth: true,
 			changeYear: true
 		});
+		$("#browseForm").formwizard({ 
+			validationEnabled : true,
+			focusFirstInput : true
+		});		
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
 	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });		
 		$.fn.setlist = function(show_id){

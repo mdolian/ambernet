@@ -28,11 +28,6 @@ $(function() {
 		$("button, input:button, a", ".wizard").button();
 		$("a", ".wizard").click(function() { return false; });
 
-		$("#browseForm").formwizard({ 
-			validationEnabled : true,
-			focusFirstInput : true
-		});
-		
 		$('input:checkbox, input:radio').checkbox();
 		
   });	

@@ -1,4 +1,6 @@
 Ambernet::Application.routes.draw do |map|
+  devise_for :admins
+
 
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
@@ -42,6 +44,7 @@ Ambernet::Application.routes.draw do |map|
   resources :songs
 
   devise_for :users
+  devise_for :admins
   
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'

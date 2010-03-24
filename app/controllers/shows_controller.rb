@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
  
-  #before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show] 
+  before_filter :authenticate_user!, :except => [:search, :list, :setlist, :recordings, :show] 
  
   def browse
     render
