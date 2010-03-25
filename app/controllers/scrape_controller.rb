@@ -67,7 +67,7 @@ class ScrapeController < ApplicationController
     else
       setlist = Setlist.all(:show_id => show_id)
       if setlist[0] == nil then
-        set, song_order, is_segue = 1, 1, "false"
+        set, song_order, segue = 1, 1, "0"
         setlist_text.gsub!('<b>','').gsub!('</b>','').gsub!('<br />','').gsub!('&gt;',', >, ')
         logger.info "Setlist: #{setlist_text}"
         # This is a hack - GUUUUUU!!!
@@ -81,19 +81,19 @@ class ScrapeController < ApplicationController
           set = set +1  if song.slice!('2nd Set:') || song.slice!('3rd Set:') || song.slice!('4th Set:')
           set = 9       if song.slice!('Encore:')  
           if song == ' >,' then
-            setlist.is_segue = 'true'
+            setlist.segue = 1
           else
             song_id = parse_and_insert_song(song.chop!)        
             setlist = Setlist.new(
                 :show_id => show_id,
                 :set_id => set,
                 :song_order => song_order,
-                :is_segue => 'false',
+                :segue => 0,
                 :song_id => song_id)
             song_order = song_order + 1
           end
           setlist.save  
-          logger.info "#{song_order} - Set: #{set} - Song ID: #{song_id} - #{is_segue}"  
+          logger.info "#{song_order} - Set: #{set} - Song ID: #{song_id} - #{segue}"  
         end             
       end   
     end

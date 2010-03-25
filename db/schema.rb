@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.integer "song_id",      :null => false
   end
 
+  create_table "recording_tracks_setlists", :id => false, :force => true do |t|
+    t.integer "setlist_id",         :null => false
+    t.integer "recording_track_id", :null => false
+  end
+
   create_table "recordings", :force => true do |t|
     t.string  "label"
     t.text    "source"
@@ -65,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.integer "set_id"
     t.integer "song_order"
     t.text    "song_comments"
-    t.boolean "is_segue"
+    t.integer "segue"
     t.integer "show_id",       :null => false
     t.integer "song_id",       :null => false
   end
@@ -81,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.text    "song_lyrics"
     t.string  "written_by"
     t.string  "original_performer"
-    t.boolean "is_instrumental"
+    t.integer "instrumental"
   end
 
   create_table "users", :force => true do |t|
