@@ -7,9 +7,10 @@
         %th{:width => "8%", :align => "left"} Edit
       %th{:width => "8%", :align => "left"} Details
       %th{:width => "50%", :align => "left"} Label 
-    %tbody  
-      %tr
-        %td{:colspan => "7"}= link_to 'New Compilation', new_compilation_path
+    %tbody
+      - if admin_signed_in?
+        %tr
+          %td{:colspan => "7"}= link_to 'New Compilation', new_compilation_path
       - @compilations.each do |compilation|
         %tr        
           - if admin_signed_in?

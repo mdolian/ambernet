@@ -11,8 +11,9 @@
       %th{:width => "10%", :align => "left"} State
       %th{:width => "10%", :align => "left"} Country      
     %tbody  
-      %tr
-        %td{:colspan => "7"}= link_to 'New Venue', new_venue_path
+      - if admin_signed_in?
+        %tr
+          %td{:colspan => "7"}= link_to 'New Venue', new_venue_path
       - @venues.each do |venue|
         %tr
           - if admin_signed_in?      

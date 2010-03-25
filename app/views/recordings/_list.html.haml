@@ -12,9 +12,10 @@
       %th{:width => "12%", :align => "left"} City
       %th{:width => "5%", :align => "left"} State           
       %th{:width => "6%", :align => "left"} Setlist
-    %tbody  
-      %tr
-        %td{:colspan => "9"}= link_to 'New Recording', new_recording_path
+    %tbody
+      - if admin_signed_in?
+        %tr
+          %td{:colspan => "9"}= link_to 'New Recording', new_recording_path
       - @recordings.each do |recording|
         %tr
           - if admin_signed_in?

@@ -13,8 +13,9 @@
       %th{:width => "10%", :align => "left"} Setlist
       %th{:width => "12%", :align => "left"} Recordings            
     %tbody  
-      %tr
-        %td{:colspan => "9"}= link_to 'New Show', new_show_path
+      - if admin_signed_in?
+        %tr
+          %td{:colspan => "9"}= link_to 'New Show', new_show_path
       - @shows.each do |show|
         %tr
           - if admin_signed_in?

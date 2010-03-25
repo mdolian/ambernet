@@ -7,8 +7,9 @@
       %th{:width => "13%", :align => "left"} Details      
       %th{:width => "61%", :align => "left"} Song Name 
     %tbody
-      %tr
-        %td{:colspan => "6"}= link_to 'New Song', new_song_path
+      - if admin_signed_in?
+        %tr
+          %td{:colspan => "6"}= link_to 'New Song', new_song_path
       - @songs.each do |song|
         %tr 
           %td= link_to 'Delete', song_path(song), :id => "delete", :method => :delete
