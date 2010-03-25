@@ -1,25 +1,8 @@
-= javascript_include_tag "admin"
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
+= javascript_include_tag "search"
+
 %h2 Browse Venues
-= link_to 'Back', 'admin'
-= will_paginate @venues
-%table{:align => "center", :class => "tablesorter"}
-  %thead
-    %tr
-      %th{:width => "10%", :align => "left"} Delete 
-      %th{:width => "10%", :align => "left"} Edit
-      %th{:width => "15%", :align => "left"} Venue Name
-      %th{:width => "30%", :align => "left"} Venue City
-      %th{:width => "20%", :align => "left"} Venue State
-      %th{:width => "20%", :align => "left"} Venue Country      
-    %tbody  
-      %tr
-        %td{:colspan => "6"}= link_to 'New Venue', new_venue_path
-      - @venues.each do |venue|
-        %tr        
-          %td= link_to 'Destroy', venue_path(venue), :confirm => "Are you sure?", :method => :delete
-          %td= link_to 'Edit', edit_venue_path(venue)
-          %td= venue.venue_name
-          %td= venue.venue_city
-          %td= venue.venue_state
-          %td= venue.venue_country
+
+= render "venues/list"
           

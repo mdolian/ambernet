@@ -11,6 +11,7 @@
     = javascript_include_tag 'jquery.form'
     = javascript_include_tag 'jquery.validate'
     = javascript_include_tag 'jquery.easing'
+    = javascript_include_tag 'jquery.confirm'
     = javascript_include_tag 'jquery.lavalamp'
     = javascript_include_tag 'application'
     = javascript_include_tag 'rails'
@@ -40,8 +41,20 @@
               %a{:href => "/browse", :title => "Browse"} Browse
             %li
               %a{:href => "/search", :title => "Advanced Search"} Advanced Search
-            %li
-              %a{:href => "/about", :title => "About"} About
+            - if admin_signed_in?  
+              %li
+                %a{:href => "/admin", :title => "About"} Admin
+            - if admin_signed_in? 
+              %li
+                %a{:href => "/admins/sign_out", :title => "Logout"} Logout       
+            - if user_signed_in? 
+              %li
+                %a{:href => "/users/sign_out", :title => "Logout"} Logout
+            - if !admin_signed_in? && !user_signed_in?
+              %li
+                %a{:href => "/users/sign_in", :title => "Login"} Login
+              %li
+                %a{:href => "/users/sign_up", :title => "Register"} Register
       %tr
         %td{:align => "center"}
           - if flash[:notice]          
@@ -57,5 +70,5 @@
                   %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
                   = flash[:error]           
       %tr
-        %td{:align => "center"}
+        %td
           %div= yield

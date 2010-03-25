@@ -1,5 +1,6 @@
 $(function() {
-  jQuery(document).ready(function($) {	
+  jQuery(document).ready(function($) {
+		
 		$('#show_date_played').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
@@ -20,15 +21,18 @@ $(function() {
 				});			
 			}
 		});	
+		
     $.fn.select_show = function(show_id){
 	    $("#dialog").dialog("close");
 	    $("#show_id").val(show_id);
 		}
+		
 		$("#discs").change(function() {
 			$("#tracks").html("<br>");
 			for (var i=1; i<=$("#discs").selectedValues(); i++) {
 				$("#tracks").append("<h5>Disc " + i + " Track Count:&nbsp;&nbsp;&nbsp;<input size='2' type='text' name='tracksDisc" + i + "'/></h5>");
 			}
 		});
+		
   });		
 });

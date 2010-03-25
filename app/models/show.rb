@@ -82,7 +82,7 @@ class Show < ActiveRecord::Base
   
   # for will_paginate
   def self.per_page
-    100
+    25
   end
   
   def recording_count

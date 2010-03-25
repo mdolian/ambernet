@@ -1,6 +1,6 @@
 class CompilationsController < ApplicationController
 
-  before_filter :authenticate_admin!, :except => [:show]
+  before_filter :authenticate_admin!, :except => [:show, :index]
 
   def index
     @current_page = (params[:page] || 1).to_i 

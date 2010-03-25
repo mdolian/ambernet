@@ -1,0 +1,17 @@
+= will_paginate @songs
+%table{:align => "center", :class => "tablesorter"}
+  %thead
+    %tr
+      %th{:width => "13%", :align => "left"} Delete 
+      %th{:width => "13%", :align => "left"} Edit
+      %th{:width => "13%", :align => "left"} Details      
+      %th{:width => "61%", :align => "left"} Song Name 
+    %tbody
+      %tr
+        %td{:colspan => "6"}= link_to 'New Song', new_song_path
+      - @songs.each do |song|
+        %tr 
+          %td= link_to 'Delete', song_path(song), :id => "delete", :method => :delete
+          %td= link_to 'Edit', edit_song_path(song)
+          %td= link_to 'Show', song_path(song)          
+          %td= song.song_name

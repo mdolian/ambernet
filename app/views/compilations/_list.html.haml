@@ -1,0 +1,19 @@
+= will_paginate @compilations
+%table{:align => "center", :class => "tablesorter"}
+  %thead
+    %tr
+      - if admin_signed_in?
+        %th{:width => "8%", :align => "left"} Delete 
+        %th{:width => "8%", :align => "left"} Edit
+      %th{:width => "8%", :align => "left"} Details
+      %th{:width => "50%", :align => "left"} Label 
+    %tbody  
+      %tr
+        %td{:colspan => "7"}= link_to 'New Compilation', new_compilation_path
+      - @compilations.each do |compilation|
+        %tr        
+          - if admin_signed_in?
+            %td= link_to 'Delete', compilation_path(compilation), :id => "delete", :method => :delete
+            %td= link_to 'Edit', edit_compilation_path(compilation)
+          %td= link_to 'Show', compilation_path(compilation)            
+          %td= compilation.label

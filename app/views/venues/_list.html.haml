@@ -1,0 +1,25 @@
+= will_paginate @venues
+%table{:align => "center", :class => "tablesorter"}
+  %thead
+    %tr
+      - if admin_signed_in?
+        %th{:width => "8%", :align => "left"} Delete 
+        %th{:width => "8%", :align => "left"} Edit
+      %th{:width => "8%", :align => "left"} Details      
+      %th{:width => "31%", :align => "left"} Name
+      %th{:width => "25%", :align => "left"} City
+      %th{:width => "10%", :align => "left"} State
+      %th{:width => "10%", :align => "left"} Country      
+    %tbody  
+      %tr
+        %td{:colspan => "7"}= link_to 'New Venue', new_venue_path
+      - @venues.each do |venue|
+        %tr
+          - if admin_signed_in?      
+            %td= link_to 'Delete', venue_path(venue), :id => "delete", :method => :delete
+            %td= link_to 'Edit', edit_venue_path(venue)
+          %td= link_to 'Show', venue_path(venue)          
+          %td= venue.venue_name
+          %td= venue.venue_city
+          %td= venue.venue_state
+          %td= venue.venue_country

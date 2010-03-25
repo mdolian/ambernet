@@ -1,18 +1,7 @@
-= javascript_include_tag "admin"
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
+= javascript_include_tag "search"
+
 %h2 Browse Songs
-= link_to 'Back', 'admin'
-= will_paginate @songs
-%table{:align => "center", :class => "tablesorter"}
-  %thead
-    %tr
-      %th{:width => "10%", :align => "left"} Delete 
-      %th{:width => "10%", :align => "left"} Edit
-      %th{:width => "15%", :align => "left"} Song Name 
-    %tbody
-      %tr
-        %td{:colspan => "6"}= link_to 'New Song', new_song_path
-      - @songs.each do |song|
-        %tr 
-          %td= link_to 'Destroy', song_path(song), :confirm => "Are you sure?", :method => :delete
-          %td= link_to 'Edit', edit_song_path(song)
-          %td= song.song_name
+
+= render 'songs/list'
