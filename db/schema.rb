@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.integer "set_id"
     t.integer "song_order"
     t.text    "song_comments"
-    t.integer "segue"
+    t.boolean "is_segue"
     t.integer "show_id",       :null => false
     t.integer "song_id",       :null => false
   end
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.text    "song_lyrics"
     t.string  "written_by"
     t.string  "original_performer"
-    t.integer "instrumental"
+    t.boolean "is_instrumental"
   end
 
   create_table "users", :force => true do |t|

@@ -5,7 +5,7 @@ class CreateSongs < ActiveRecord::Migration
       t.text                :song_lyrics
       t.string              :written_by
       t.string              :original_performer
-      t.integer             :instrumental
+      t.boolean             :is_instrumental
     end
   end
 
