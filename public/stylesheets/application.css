@@ -24,7 +24,7 @@ border-radius:3px;
 -moz-border-radius:3px;
 z-index:3;
 }
-
+ 
 ul li a {
 display: block;
 color: #000;
@@ -36,46 +36,11 @@ padding: 2px 5px 3px;
 position: relative;
 z-index: 10;
 }
-
+ 
 ul li a:hover {
 	color:#555;
 }
-
-
-/* Nav CSS */
-#nav {
-	float: center;
-}
-#nav ul {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-}
  
-#nav ul li {
-  background-color: #990000;
-}
- 
-#nav ul li,
-#nav ul li a {
-  float: left;
-  display: block;
-}
- 
-#nav ul li a {
-  margin: 15px;
-  padding: 5px;
-  font-size: 24px;
-  color: #fff;
-  text-decoration: none;
-}
-
-#nav ul li a:hover,
-#nav ul li a.selected {
-  background-color: #fff;
-  color: #272727;
-}
-
 /* Site CSS */
 body{
 	margin: 5;

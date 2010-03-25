@@ -25,62 +25,44 @@
           %td{:align => "left"} 
             By Recording Type
     %div{:id => "date", :class => "step"}
-      Year:
-      %br
-      %select{:name => "year", :id => "year"}
-        = options_for_select(get_years)
-      %br
-      %br
-      Date Range:
-      %br
-      %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"}
-      to
-      %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}  
+      %table{:width => "50%", :align => "center"}
+        %tr{:height => "94"}
+          %td{:align => "center"}
+            %input{:type => "text", :name => "start_date", :id => "start_date", :size => "10"}
+            to
+            %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}  
     %div{:id => "venue", :class => "step"}
-      %table{:width => "75%", :align => "center"}
-        %tr
-          %td{:align => "left"}      
-            Venue Name:
-        %tr
-          %td{:align => "left"}
+      %table{:width => "85%", :align => "center"}
+        %tr{:height => "94"}
+          %td{:align => "center"}
             %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
-        %tr
-          %td{:align => "left"}
-            City:
-        %tr
-          %td{:align => "left"} 
-            %input{:type => "text", :id => "venue_city", :name => "venue_city", :size => "20"}
-        %tr
-          %td{:align => "left"}
-            State:
-        %tr
-          %td{:align => "left"}
-            %select{:name => "venue_state", :id => "venue_state"}
-              = options_for_select(get_states)
       %input{:type => "hidden", :class => "link", :value => "lastStep"}   
-    %div{:id => "recordings", :class => "step submit_step"}
-      Recording Type:
-      %br
-      %select{:name => "recording_types", :id => "recording_types"}
-        = options_for_select(get_recording_types)
+    %div{:id => "recording", :class => "step submit_step"}
+      %table{:width => "85%", :align => "center"}
+        %tr{:height => "94"}
+          %td{:align => "center"}
+            %select{:name => "recording_types", :id => "recording_types"}
+              = options_for_select(get_recording_types)
     %div{:id => "songs", :class => "step"}
       %table{:width => "75%", :align => "center"}
-        %tr
-          %td{:align => "left"}      
-            Enter Songs Below
-        %tr
+        %tr{:height => "94"}
           %td
             %input{:type => "text", :id => "song_name", :name => "song_name", :size => "20"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}         
     %div{:id => "lastStep", :class => "step submit_step"}
-      %p
-        %input{:type => "checkbox", :name => "display", :value => "recordings"} 
-        &nbsp;&nbsp;&nbsp; Display Recordings
-      %p
-        %input{:type => "checkbox", :name => "display", :value => "shows"} 
-        &nbsp;&nbsp;&nbsp; Display Shows
-    %br
-    %br
+      %table{:width => "40%", :align => "center"}
+        %tr
+          %td{:align => "center"}
+            %input{:type => "checkbox", :name => "display", :value => "recordings"}
+          %td{:align => "left"}
+            Display Recordings
+        %tr
+          %td{:align => "center"}
+            %input{:type => "checkbox", :name => "display", :value => "shows"} 
+          %td{:align => "left"}
+            Display Shows
+  %br
+  %div{:align => "center"}
     %input{:class => "navigation_button", :value => "Back", :type => "reset"}
     %input{:class => "navigation_button", :value => "Next", :type => "submit"}

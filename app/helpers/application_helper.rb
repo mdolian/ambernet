@@ -1,7 +1,12 @@
 module ApplicationHelper
 
   def get_recording_types
-    ["all", "sbd", "aud", "matrix", "fm", "other"]
+    [["Select a Recording Type", "all"], 
+     ["sbd", "sbd"],
+     ["aud", "aud"],
+     ["matrix", "matrix"],
+     ["fm", "fm"],
+     ["other", "other"]]
   end
   
   def get_states
@@ -59,7 +64,11 @@ module ApplicationHelper
   end  
   
   def get_filetypes
-    ["flac16", "shnf", "flac24", "mp3f"]
+    [["Select a Recording Type", "All"],
+      ["flac16", "flac16"],
+      ["shnf", "shnf"],
+      ["flac24", "flac24"],
+      ["mp3f", "mp3f"]]
   end    
   
   def get_venues
@@ -71,7 +80,7 @@ module ApplicationHelper
   end
   
   def get_years
-    [["All", "All"], 
+    [["Select a Year", "All"], 
      ["2010", "2010"],    
      ["2009", "2009"],
      ["2008", "2008"], 

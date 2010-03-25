@@ -1,6 +1,8 @@
 $(function() {
   jQuery(document).ready(function($) {
 
+		$("#lavaLamp").lavaLamp();
+
 		$('#delete').click(function() {
 		  return true;
 		})
@@ -15,21 +17,21 @@ $(function() {
 		});
 		
 		$("#venue_name").autoSuggest("/venues/list", {
-			startText: "Enter Venue Here",
+			startText: "Enter Venues",
 			selectedItemProp: "label",
 			selectedValuesProp: "id",
 			searchObjProps: "label"
 		});
 
 		$("#venue_city").autoSuggest("/venues/city_list", {
-			startText: "Enter City Here",
+			startText: "Enter Cities",
 			selectedItemProp: "label",
 			selectedValuesProp: "label",
 			searchObjProps: "label"
 		});
 		
 		$("#song_name").autoSuggest("/songs/list", {
-			startText: "Enter Song Names Here",
+			startText: "Enter Song Names",
 			selectedItemProp: "label",
 			selectedValuesProp: "id",
 			searchObjProps: "label"

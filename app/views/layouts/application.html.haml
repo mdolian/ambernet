@@ -5,11 +5,8 @@
     = javascript_include_tag 'jquery.tablesorter'
     = javascript_include_tag 'jquery.ui'
     = javascript_include_tag 'jquery.autoSuggest'
-    = javascript_include_tag 'jquery.corner'
     = javascript_include_tag 'jquery.form.wizard'
     = javascript_include_tag 'jquery.checkbox'
-    = javascript_include_tag 'jquery.form'
-    = javascript_include_tag 'jquery.validate'
     = javascript_include_tag 'jquery.easing'
     = javascript_include_tag 'jquery.confirm'
     = javascript_include_tag 'jquery.lavalamp'
@@ -22,39 +19,35 @@
     = stylesheet_link_tag 'application'
     %title
       AmberNET Online
-    %script{:type => "text/javascript"}
-      jQuery(document).ready(function($){$('#nav_home').addClass('current');$('#nav_about').removeClass('current');$('#nav_search').removeClass('current');$('#nav_browse').removeClass('current');});      
+    - if admin_signed_in?  
+      %script{:type => "text/javascript"}
+        jQuery(document).ready(function($){$('#lavaLamp').attr("width", 530);});
   %body
     %table{:width => "75%", :align => "center"}
       %tr
         %td{:align => "center"}
           %img{:src => "/images/header.jpg"}
       %tr
-        %td{:align => "center"}
+        %td
           %ul{:id => "lavaLamp"}
-            %li{:id => "menu-title", :class => "noLava"} 
-              %span
-                Navigation
             %li
               %a{:href => "/", :title => "Home"} Home
             %li
               %a{:href => "/browse", :title => "Browse"} Browse
             %li
               %a{:href => "/search", :title => "Advanced Search"} Advanced Search
-            - if admin_signed_in?  
+            - if admin_signed_in?
               %li
-                %a{:href => "/admin", :title => "About"} Admin
+                %a{:href => "/admin", :title => "Admin"} Admin
+            - if admin_signed_in? || user_signed_in?
+              %li
+                %a{:href => "/account", :title => "Account"} Settings                
             - if admin_signed_in? 
               %li
                 %a{:href => "/admins/sign_out", :title => "Logout"} Logout       
             - if user_signed_in? 
               %li
                 %a{:href => "/users/sign_out", :title => "Logout"} Logout
-            - if !admin_signed_in? && !user_signed_in?
-              %li
-                %a{:href => "/users/sign_in", :title => "Login"} Login
-              %li
-                %a{:href => "/users/sign_up", :title => "Register"} Register
       %tr
         %td{:align => "center"}
           - if flash[:notice]          
@@ -70,5 +63,4 @@
                   %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
                   = flash[:error]           
       %tr
-        %td
-          %div= yield
+        %td{:colspan => "3"}= yield
