@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100324213132) do
+ActiveRecord::Schema.define(:version => 20100325184529) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                              :null => false
@@ -53,17 +53,17 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
   end
 
   create_table "recordings", :force => true do |t|
-    t.string  "label"
+    t.string  "label",          :limit => 50
     t.text    "source"
     t.text    "lineage"
-    t.string  "taper"
-    t.string  "transfered_by"
+    t.string  "taper",          :limit => 50
+    t.string  "transfered_by",  :limit => 50
     t.text    "notes"
-    t.string  "recording_type"
-    t.string  "tracking_info"
-    t.string  "shnid"
-    t.string  "filetype"
-    t.integer "show_id",        :null => false
+    t.string  "recording_type", :limit => 50
+    t.string  "tracking_info",  :limit => 50
+    t.string  "shnid",          :limit => 50
+    t.string  "filetype",       :limit => 8
+    t.integer "show_id"
   end
 
   create_table "setlists", :force => true do |t|
@@ -71,21 +71,21 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
     t.integer "song_order"
     t.text    "song_comments"
     t.boolean "is_segue"
-    t.integer "show_id",       :null => false
-    t.integer "song_id",       :null => false
+    t.integer "show_id"
+    t.integer "song_id"
   end
 
   create_table "shows", :force => true do |t|
     t.date    "date_played"
     t.text    "show_notes"
-    t.integer "venue_id",    :null => false
+    t.integer "venue_id"
   end
 
   create_table "songs", :force => true do |t|
-    t.string  "song_name"
+    t.string  "song_name",          :limit => 100
     t.text    "song_lyrics"
-    t.string  "written_by"
-    t.string  "original_performer"
+    t.string  "written_by",         :limit => 50
+    t.string  "original_performer", :limit => 50
     t.boolean "is_instrumental"
   end
 
@@ -113,11 +113,11 @@ ActiveRecord::Schema.define(:version => 20100324213132) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "venues", :force => true do |t|
-    t.string "venue_name"
-    t.string "venue_image"
-    t.string "venue_city"
-    t.string "venue_state"
-    t.string "venue_country"
+    t.string "venue_name",    :limit => 50
+    t.string "venue_image",   :limit => 50
+    t.string "venue_city",    :limit => 50
+    t.string "venue_state",   :limit => 50
+    t.string "venue_country", :limit => 50
   end
 
 end
