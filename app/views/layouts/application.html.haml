@@ -3,56 +3,59 @@
     = javascript_include_tag 'jquery-1.4.2'
     = javascript_include_tag 'jquery.metadata'
     = javascript_include_tag 'jquery.tablesorter'
-    = javascript_include_tag 'jquery.confirm'
-    = javascript_include_tag 'jquery.fancybox'
     = javascript_include_tag 'jquery.ui'
     = javascript_include_tag 'jquery.autoSuggest'
-    = javascript_include_tag 'jquery.rating'
-    = javascript_include_tag 'application'
     = javascript_include_tag 'jquery.corner'
     = javascript_include_tag 'jquery.form.wizard'
+    = javascript_include_tag 'jquery.checkbox'
     = javascript_include_tag 'jquery.form'
     = javascript_include_tag 'jquery.validate'
-    = javascript_include_tag 'jquery.history'
-    = javascript_include_tag 'jquery.checkbox'
+    = javascript_include_tag 'jquery.easing'
+    = javascript_include_tag 'jquery.lavalamp'
+    = javascript_include_tag 'application'
     = javascript_include_tag 'rails'
     = stylesheet_link_tag 'jquery.tablesorter'
-    = stylesheet_link_tag 'jquery.fancybox'
     = stylesheet_link_tag 'jquery.checkbox'
     = stylesheet_link_tag 'autoSuggest'
     = stylesheet_link_tag 'jquery.ui.custom'
-    = stylesheet_link_tag 'jquery.rating'
     = stylesheet_link_tag 'application'
     %title
       AmberNET Online
+    %script{:type => "text/javascript"}
+      jQuery(document).ready(function($){$('#nav_home').addClass('current');$('#nav_about').removeClass('current');$('#nav_search').removeClass('current');$('#nav_browse').removeClass('current');});      
   %body
-    %div{:align => "left"}
-      %img{:src => "/images/header.jpg"}  
-    %div{:id => "nav"}
-      %ul
-        %li
-          %a{:href =>"/", :class => "selected"} Home
-        %li
-          %a{:href => "/shows/browse"} Browse
-        %li
-          %a{:href => "/search"} Advanced Search
-        %li
-          %a{:href => "/about"} About
-    - if flash[:notice]          
-      %div{:class => "ui-widget"}
-        %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-          %p
-            %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
-            = flash[:notice]
-    - if flash[:error]
-      %div{:class => "ui-widget"}
-        %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-          %p
-            %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
-            = flash[:error]           
-    %br
-    %br
-    %br
-    %br
-    %br
-    %div= yield
+    %table{:width => "75%", :align => "center"}
+      %tr
+        %td{:align => "center"}
+          %img{:src => "/images/header.jpg"}
+      %tr
+        %td{:align => "center"}
+          %ul{:id => "lavaLamp"}
+            %li{:id => "menu-title", :class => "noLava"} 
+              %span
+                Navigation
+            %li
+              %a{:href => "/", :title => "Home"} Home
+            %li
+              %a{:href => "/browse", :title => "Browse"} Browse
+            %li
+              %a{:href => "/search", :title => "Advanced Search"} Advanced Search
+            %li
+              %a{:href => "/about", :title => "About"} About
+      %tr
+        %td{:align => "center"}
+          - if flash[:notice]          
+            %div{:class => "ui-widget"}
+              %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+                  = flash[:notice]
+          - if flash[:error]
+            %div{:class => "ui-widget"}
+              %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+                  = flash[:error]           
+      %tr
+        %td{:align => "center"}
+          %div= yield

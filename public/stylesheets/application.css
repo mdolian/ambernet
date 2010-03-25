@@ -1,4 +1,51 @@
+/* all menus */
+ul,ol {
+padding: 5px 10px;
+margin: 10px 0;
+overflow: hidden;
+background-color:silver;
+border:1px solid #333;
+border-radius:3px;
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+list-style: none;
+}
+ul li {
+float: left;
+margin:3px;
+}
+ul li.backLava {
+background-color:#CDE2FF;
+border:1px solid navy;
+border-right:3px solid navy;
+border-bottom:2px solid navy;
+border-radius:3px;
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+z-index:3;
+}
+
+ul li a {
+display: block;
+color: #000;
+font-size: 120%;
+font-weight:bold;
+text-decoration: none;
+text-shadow: rgba(255,255,255,1) 1px 1px 2px;
+padding: 2px 5px 3px;
+position: relative;
+z-index: 10;
+}
+
+ul li a:hover {
+	color:#555;
+}
+
+
 /* Nav CSS */
+#nav {
+	float: center;
+}
 #nav ul {
   margin: 0px;
   padding: 0px;
