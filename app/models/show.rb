@@ -90,7 +90,7 @@ class Show < ActiveRecord::Base
   end 
 
   def self.search(asset_params, page, per_page)
-    main = order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue)
+    main = order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue).group("shows.date_played")
     asset_params.each do |key, value|
       main = main.send(:"by_#{key.to_s}", value)  if main.respond_to?(:"by_#{key.to_s}") && !(value == '' || value == 'all' || value == 'Enter Name Here')
     end if asset_params
