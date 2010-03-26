@@ -1,0 +1,7 @@
+= javascript_include_tag "browse"
+%br
+- if @display_shows == true
+  = render 'shows/list'
+%br
+- if @display_recordings == true
+  = render 'recordings/list'

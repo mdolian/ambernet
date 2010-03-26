@@ -5,7 +5,9 @@
     $.getJSON('/tracks/list/#{@recording.id}/#{i}', function(data) {$("#song_name_#{i}").autoSuggest("/songs/list", {selectedItemProp: "label",selectedValuesProp: "id",searchObjProps: "label",preFill: data,asHtmlID: "track_#{i}"});});
   });
 %br
-%table{:width => "50%", :align => "center", :bgcolor => "#FFFFFF"}
+%div{:align => "center"}= link_to 'Recording Details', recording_path(@recording) 
+%br
+%table{:width => "90%", :align => "center", :bgcolor => "#FFFFFF"}
   %tr
     %td= render 'shows/setlist'
 %br
@@ -14,12 +16,19 @@
   %input{:type => "hidden", :name => "total_tracks", :value => "#{@recording.total_tracks}"}  
   %table{:width => "90%", :align => "center"}
     %tr
+      %td{:align => "center", :colspan => "2", :align => "center"} 
+        %input{:type => "submit", :value => "Save"}  
+    %tr
       %th Track
-      %th Songs
+      %th
     - for i in 1..@recording.total_tracks.to_i do
       %tr
         %td{:align => "center"}= i
         %td
           %input{:type => "text", :id => "song_name_#{i}", :name => "song_name_#{i}", :size => "50"}
-  %input{:type => "submit", :value => "Save"}
+    %tr
+      %td{:align => "center", :colspan => "2", :align => "center"} &nbsp;
+    %tr
+      %td{:align => "center", :colspan => "2", :align => "center"} 
+        %input{:type => "submit", :value => "Save"}
     

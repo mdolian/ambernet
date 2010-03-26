@@ -24,7 +24,11 @@ class Show < ActiveRecord::Base
   scope :by_venue_name, lambda { |venue_name|
     joins(:venue).
     where("venues.venue_name LIKE ?",  "%#{venue_name}%")
-  }    
+  }   
+  
+  scope :by_venue_id, lambda { |venue_id|
+    where("shows.venue_id = ?", venue_id)
+  }   
 
   scope :by_date, lambda { |*dates|
     where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
@@ -33,6 +37,12 @@ class Show < ActiveRecord::Base
   scope :by_song, lambda { |song_name|
     joins(:setlists, :songs).
     where("songs.song_name LIKE ?", "%#{song_name}%")
+    group("shows.id")
+  }
+  
+  scope :by_song_id, lambda { |song_id|
+    joins(:setlists).
+    where("setlists.song_id = ?", song_id).
     group("shows.id")
   }
   

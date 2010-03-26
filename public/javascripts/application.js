@@ -9,8 +9,6 @@ $(function() {
 		
 		$('#delete').confirm();
 
-		$("#lavaLamp").lavaLamp();
-
 		$("div[id*='accordion']").accordion({
 			autoHeight: false, 
 			collapsible: true
@@ -20,6 +18,7 @@ $(function() {
 			startText: "Enter Venues",
 			selectedItemProp: "label",
 			selectedValuesProp: "id",
+			asHtmlID: "venues",
 			searchObjProps: "label"
 		});
 
@@ -27,6 +26,7 @@ $(function() {
 			startText: "Enter Cities",
 			selectedItemProp: "label",
 			selectedValuesProp: "label",
+			asHtmlID: "cities",
 			searchObjProps: "label"
 		});
 		
@@ -34,10 +34,10 @@ $(function() {
 			startText: "Enter Song Names",
 			selectedItemProp: "label",
 			selectedValuesProp: "id",
+			asHtmlID: "songs",
 			searchObjProps: "label"
 		});		
 		
-		$("button, input:button, a", ".wizard").button();
 		$("a", ".wizard").click(function() { return false; });
 
 		$('input:checkbox, input:radio').checkbox();
@@ -55,7 +55,8 @@ $(function() {
 		});		
 
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
-	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });		
+	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });
+			
 		$.fn.setlist = function(show_id){
 			that = this
 			var set = new Array();

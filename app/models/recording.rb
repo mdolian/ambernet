@@ -45,6 +45,14 @@ class Recording < ActiveRecord::Base
     joins(:show) & Show.by_date(dates)
   }
   
+  scope :by_venue_id, lambda { |venue_id|
+    joins(:show) & Show.by_venue_id(venue_id)
+  }
+  
+  scope :by_song_id, lambda { |song_id|
+    joins(:show) & Show.by_song_id(song_id)
+  }
+  
   def lossless_extension
     case filetype
       when "flac16" then "flac"

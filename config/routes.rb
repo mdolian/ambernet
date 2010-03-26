@@ -2,6 +2,7 @@ Ambernet::Application.routes.draw do |map|
 
   # browse_controller
   match 'browse' => 'browse#index'
+  match 'browse/browse' => 'browse#browse'
 
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'

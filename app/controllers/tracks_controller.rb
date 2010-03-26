@@ -30,7 +30,7 @@ class TracksController < ApplicationController
         end
       end
       @recording_tracks = RecordingTrack.all(:conditions => ["recording_id = ?", @recording.id], :order => "track ASC")
-      flash.now[:error] = "Total Tracks = #{@recording.total_tracks} ::::: Setlist Size = #{setlists.size}"
+      flash.now[:error] = "Total Tracks :: #{@recording.total_tracks} | Setlist Length :: #{setlists.size}"
       render :edit
     end
   end

@@ -1,6 +1,6 @@
 = javascript_include_tag "browse"
 %br
-%form{:id => "browseForm", :method => "post", :action => "#"}
+%form{:id => "browseForm", :method => "post", :action => "/browse/browse"}
   %div{:class => "wizard"}    
     %div{:id => "firstStep", :class => "step"}
       %table{:width => "50%", :align => "center"}
@@ -8,12 +8,12 @@
           %td{:align => "center"}
             %input{:type => "radio", :class => "link", :value => "date", :name => "browse", :checked => "true"}
           %td{:align => "left"}
-            By Date
+            By Date Range
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "venue", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "venues", :name => "browse"}  
           %td{:align => "left"}
-            By Venue
+            By Venues
         %tr
           %td{:align => "center"}
             %input{:type => "radio", :class => "link", :value => "songs", :name => "browse"}  
@@ -32,7 +32,7 @@
             to
             %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}  
-    %div{:id => "venue", :class => "step"}
+    %div{:id => "venues", :class => "step"}
       %table{:width => "85%", :align => "center"}
         %tr{:height => "94"}
           %td{:align => "center"}
@@ -42,7 +42,7 @@
       %table{:width => "85%", :align => "center"}
         %tr{:height => "94"}
           %td{:align => "center"}
-            %select{:name => "recording_types", :id => "recording_types"}
+            %select{:name => "recording_type", :id => "recording_type"}
               = options_for_select(get_recording_types)
     %div{:id => "songs", :class => "step"}
       %table{:width => "75%", :align => "center"}
