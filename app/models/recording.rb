@@ -2,17 +2,8 @@ require 'will_paginate'
 
 class Recording < ActiveRecord::Base
   
-  #t.string        :label
-  #t.text          :source
-  #t.text          :lineage
-  #t.string        :taper
-  #t.string        :transfered_by
-  #t.text          :notes
-  #t.string        :recording_type
-  #t.string        :tracking_info - totalDiscs[totalDisc1Tracks, TotalDisc2Tracks, TotalDisc3Tracks...]
-  #t.string        :shnid
-  #t.string        :filetype      
-  #t.integer       :show_id, :null => false
+  attr_accessible :id, :label, :source, :lineage, :taper, :transfered_by, :notes, 
+                 :recording_type, :tracking_indo, :shnid, :filetype, :show_id
     
   has_many :recording_tracks
   belongs_to :show  

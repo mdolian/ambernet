@@ -5,8 +5,8 @@ class TracksController < ApplicationController
   def edit
     @recording = Recording.find(params["id"])
     @show = Show.find(@recording.show_id)
-    setlists = Setlist.all(:conditions => ["show_id = ?", @recording.show_id], :order => "song_order ASC")
-    tracks = RecordingTrack.all(:conditions => {:recording_id => @recording.id})
+    setlists = Setlist.where("show_id = ?", @recording.show_id]).order("song_order ASC")
+    tracks = RecordingTrack.where("recording_id = ?", @recording.id)
     if setlists.size == @recording.total_tracks.to_i && tracks.empty?
       setlists.each do |setlist|
         track = RecordingTrack.new(:track => setlist.song_order, 
@@ -19,9 +19,7 @@ class TracksController < ApplicationController
     else
       1.upto(@recording.total_tracks.to_i) do |i|
         song_id = i < setlists.size+1 ? setlists[i-1].song_id : 0
-        tracks = RecordingTrack.all(:conditions => {:track => i,
-                                                    :recording_id => @recording.id,
-                                                    :song_id => song_id})
+        tracks = RecordingTrack.where("track = ? AND recording_id = ? AND song_id = ?", i, @recording.id, song_id)
         if tracks.empty?                               
           track = RecordingTrack.new(:track => i,
                                      :recording_id => @recording.id,
@@ -29,7 +27,7 @@ class TracksController < ApplicationController
           track.save
         end
       end
-      @recording_tracks = RecordingTrack.all(:conditions => ["recording_id = ?", @recording.id], :order => "track ASC")
+      @recording_tracks = RecordingTrack.where("recording_id = ?", @recording.id).order("track ASC")
       flash.now[:error] = "Total Tracks :: #{@recording.total_tracks} | Setlist Length :: #{setlists.size}"
       render :edit
     end
@@ -37,7 +35,7 @@ class TracksController < ApplicationController
   
   def list
     list = []
-    tracks = RecordingTrack.all(:conditions => ["recording_id=? AND track=?", params["recording_id"], params["track"]])
+    tracks = RecordingTrack.where("recording_id = ? AND track = ?", params["recording_id"], params["track"])
     tracks.each do |track|
       list << {"label" => track.song_name, "id" => track.song_id}
     end
@@ -48,7 +46,7 @@ class TracksController < ApplicationController
   end  
   
   def save
-    tracks = RecordingTrack.all(:conditions => {:recording_id => params["recording_id"]})
+    tracks = RecordingTrack.where("recording_id = ? ", params["recording_id"])
     tracks.each do |track|
       track.destroy
     end

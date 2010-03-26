@@ -1,7 +1,6 @@
 class Compilation < ActiveRecord::Base
-  
-  # t.string    :label
-  # t.string    :comments
+
+  attr_accessible :label, :comments, :id
 
   has_many :compilation_tracks
 

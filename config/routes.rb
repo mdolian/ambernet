@@ -31,7 +31,7 @@ Ambernet::Application.routes.draw do |map|
   resources :recordings
   
   # scrape_controller
-  match 'admin/scrape/perpetual_archives/:id' => 'scrape#perpetual_archives'  
+  match 'scrape/perpetual_archives' => 'scrape#perpetual_archives'  
   
   # shows_controller
   match 'shows/list' => 'shows#list'
@@ -50,17 +50,19 @@ Ambernet::Application.routes.draw do |map|
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'
   match 'venues/list' => 'venues#list'
-  match 'venues/admin' => 'venues#admin'
   resources :venues
 
+  # search_controller
   match 'search' => 'search#advanced_search'
   match 'search/simple_search' => 'search#simple_search'
   match 'search/advanced_search' => 'search#advanced_search'  
   match 'search/simple_search_results' => 'search#simple_search_results'
   match 'search/advanced_search_results' => 'search#advanced_search_results'
 
+  # admin_controller
   match 'admin' => 'admin#index'
-
+  match 'admin/import' => 'admin#import'
+  
   # root
   match 'index' => 'index#index'
   root :to => 'index#index'

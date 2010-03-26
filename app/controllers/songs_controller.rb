@@ -84,7 +84,7 @@ class SongsController < ApplicationController
   
   def list
     list = []
-    songs = Song.all(:conditions => ["song_name LIKE  ?", "%" << params[:q] << "%"])
+    songs = Song.where("song_name LIKE  ?", "%#{params[:q]}%")
     songs.each do |song|
       list << {"label" => song.song_name, "id" => song.id}
     end

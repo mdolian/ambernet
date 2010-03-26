@@ -72,11 +72,11 @@ module ApplicationHelper
   end    
   
   def get_venues
-    ["All"] + Venue.all(:order => "venue_name ASC").collect {|v| [ v.venue_name, v.id ]}
+    ["All"] + Venue.order("venue_name ASC").all.collect! {|v| [ v.venue_name, v.id ]}
   end
   
   def get_songs
-    ["All"] + Song.all(:order => "song_name ASC").collect {|s| [ s.song_name, s.id ]}
+    ["All"] + Song.order("song_name ASC").all.collect! {|s| [ s.song_name, s.id ]}
   end
   
   def get_years

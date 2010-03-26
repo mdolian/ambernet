@@ -1,10 +1,6 @@
 class Venue < ActiveRecord::Base
   
-  #t.string      :venue_name
-  #t.string      :venue_image
-  #t.string      :venue_city
-  #t.string      :venue_state
-  #t.string      :venue_country
+  attr_accessible :id, :venue_name, :venue_image, :venue_city, :venue_state, :venue_country
   
   has_many :shows  
   

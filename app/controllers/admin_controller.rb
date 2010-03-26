@@ -6,8 +6,8 @@ class AdminController < ApplicationController
     render
   end
   
-  def test
-    throw StandardError
+  def import
+    render
   end
   
 end

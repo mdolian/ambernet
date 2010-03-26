@@ -1,11 +1,6 @@
 class Setlist < ActiveRecord::Base
-  
-  #t.integer       :set_id
-  #t.integer       :song_order
-  #t.text          :song_comments
-  #t.boolean       :is_segue
-  #t.integer       :show_id, :null => false
-  #t.integer       :song_id, :null => false
+
+  attr_accessible :id, :set_id, :song_order, :song_comments, :is_segue, :show_id, :song_id
   
   belongs_to :show
   belongs_to :song

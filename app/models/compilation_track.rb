@@ -1,8 +1,6 @@
 class CompilationTrack < ActiveRecord::Base
   
-  #t.string              :name
-  #t.integer             :compilation_id, :null => false
-  #t.integer             :recording_track_id, :null => false
+  attr_accessible :name, :compilation_id, :recording_track_id
 
   belongs_to :compilation
   has many :recording_tracks

@@ -3,6 +3,8 @@ class RecordingTrack < ActiveRecord::Base
   #t.integer       :track
   #t.integer       :recording_id, :null => false
   #t.integer       :song_id, :null => false
+  
+  attr_accessible :track, :recording_id, :song_id
 
   belongs_to :recording
   belongs_to :song

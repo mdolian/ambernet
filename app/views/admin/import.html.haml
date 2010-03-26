@@ -1,0 +1,11 @@
+%form{:method => "post", :action => "/scrape/perpetual_archives/"}
+  %table{:align => "center", :width => "45%"}
+    %tr
+      %td{:align => "left"}
+        Enter Perpetual Archives Show ID:
+    %tr
+      %td{:align => "left"}
+        %input{:type => "text", :name => "id", :size => "5"}
+    %tr
+      %td{:align => "left"}
+        %input{:type => "submit", :value => "Attempt Import"}

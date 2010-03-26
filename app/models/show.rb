@@ -2,14 +2,12 @@ require 'will_paginate'
 
 class Show < ActiveRecord::Base
     
-  #t.date        :date_played
-  #t.text        :show_notes
-  #t.integer     :venue_id, :null => false
-  
   has_many :setlists
   has_many :recordings
   has_many :songs, :through => :setlists
   belongs_to :venue
+  
+  attr_accessible :id, :date_played, :show_notes, :venue_id
 
   scope :by_venue_city, lambda { |venue_city|
     joins(:venue).
@@ -82,7 +80,7 @@ class Show < ActiveRecord::Base
   
   # get an array of setlist objects for show
   def setlists
-    Setlist.all(:conditions => ["show_id  = ? ", id], :order => "set_id ASC, song_order ASC")
+    Setlist.where("show_id  = ? ", id).order("set_id ASC, song_order ASC").all
   end
 
   # get the total sets in the show

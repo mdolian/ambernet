@@ -82,7 +82,7 @@ class ShowsController < ApplicationController
   # List of shows for auto complete in json format
   def list
     list = []
-    shows = Show.all(:conditions => ["date_played = ? ", params["date_played"]])
+    shows = Show.where("date_played = ? ", params["date_played"])
     shows.each do |show|
       list << {"label" => show.label, "id" => show.id}
     end
