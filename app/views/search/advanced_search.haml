@@ -14,13 +14,14 @@
       %input{:type => "text", :name => "venue_city", :size => "25", :id => "venue_city"}
     %label{:for => "venue_state"} 
       State
-      %input{:type => "text", :name => "venue_state", :size => "5", :id => "venue_state"}
+      %select{:name => "venue_state", :id => "venue_state"}
+        = options_for_select get_states
     %label{:for => "start_date"} 
       Date Range
       %input{:type => "text", :name => "start_date", :id => "start_date", :size => "7"}
-      %label{:for => "end_date"}   
-        to
-        %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}          
+    %label{:for => "end_date"}   
+      to
+      %input{:type => "text", :name => "end_date", :id => "end_date", :size => "7"}          
   %fieldset
     %legend 
       Recording Details
@@ -42,7 +43,7 @@
     %label{:for => "recording_type"} 
       Recording Type
       %select{:name => "recording_type", :id => "recording_type"}
-        = options_for_select(get_recording_types)       
+        = options_for_select get_recording_types
 
   %input{:type => "submit", :value => "Search", :name => "submit"} 
   %input{:type => "reset", :value => "Clear"}

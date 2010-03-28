@@ -6,7 +6,8 @@ class Recording < ActiveRecord::Base
                  :recording_type, :tracking_indo, :shnid, :filetype, :show_id
     
   has_many :recording_tracks
-  belongs_to :show  
+  belongs_to :show
+  has_one :venue, :through => :show  
 
   scope :by_recording_type, lambda { |recording_type|
     where("recordings.recording_type LIKE ?", "%#{recording_type}%")
@@ -33,11 +34,19 @@ class Recording < ActiveRecord::Base
   }
   
   scope :by_date, lambda { |*dates|
-    joins(:show) & Show.by_date(dates)
+    joins(:show) & Show.by_date(*dates)
   }
   
   scope :by_venue_id, lambda { |venue_id|
     joins(:show) & Show.by_venue_id(venue_id)
+  }
+  
+  scope :by_venues, lambda { |venue_ids|
+    joins(:show, :venue) & Show.by_venues(venue_ids)
+  }
+  
+  scope :by_songs, lambda { |song_ids|
+      joins(:show) & Show.by_songs(*song_ids)
   }
   
   scope :by_song_id, lambda { |song_id|
@@ -125,7 +134,7 @@ class Recording < ActiveRecord::Base
   end
 
   def self.per_page
-    100
+    25
   end
 
 #  define_index do

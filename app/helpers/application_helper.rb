@@ -10,7 +10,7 @@ module ApplicationHelper
   end
   
   def get_states
-     [["All", "All"],
+     [["All", "all"],
       [ "Alabama", "AL" ],
       [ "Alaska", "AK" ],
       [ "Arizona", "AZ" ],

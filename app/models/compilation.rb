@@ -5,7 +5,7 @@ class Compilation < ActiveRecord::Base
   has_many :compilation_tracks
 
   def self.per_page
-    50
+    25
   end
 
 end

@@ -26,7 +26,12 @@ class Show < ActiveRecord::Base
   
   scope :by_venue_id, lambda { |venue_id|
     where("shows.venue_id = ?", venue_id)
-  }   
+  }
+  
+  scope :by_venues, lambda { |venue_ids|
+   joins(:venue).
+   where("shows.venue_id IN (?)", venue_ids) 
+  }
 
   scope :by_date, lambda { |*dates|
     where("shows.date_played BETWEEN ? AND ?", dates[0], dates[1])
@@ -42,6 +47,11 @@ class Show < ActiveRecord::Base
     joins(:setlists).
     where("setlists.song_id = ?", song_id).
     group("shows.id")
+  }
+  
+  scope :by_songs, lambda { |song_ids|
+    joins(:setlists).
+    where("setlists.song_id IN (?)", song_ids)
   }
   
   scope :by_label, lambda { |label| 
@@ -97,14 +107,6 @@ class Show < ActiveRecord::Base
     Recording.joins(:show).where("recordings.show_id = ?", id).count
   end 
 
-  def self.search(asset_params, page, per_page)
-    main = order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue).group("shows.date_played")
-    asset_params.each do |key, value|
-      main = main.send(:"by_#{key.to_s}", value)  if main.respond_to?(:"by_#{key.to_s}") && !(value == '' || value == 'all' || value == 'Enter Name Here')
-    end if asset_params
-    main.paginate(:all, :page => page, :per_page => per_page)
-  end
-  
   # untested
   def setlist
     for i in 1..9 do

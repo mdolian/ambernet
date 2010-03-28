@@ -7,7 +7,7 @@ class Song < ActiveRecord::Base
   has_many :shows, :through => :setlists
 
   def self.per_page
-    100
+    25
   end
 
   scope :song_name_like, lambda { |song_name|

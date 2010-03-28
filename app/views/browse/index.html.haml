@@ -6,22 +6,22 @@
       %table{:width => "50%", :align => "center"}
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "date", :name => "browse", :checked => "true"}
+            %input{:type => "radio", :class => "link", :value => "date", :name => "browse", :id => "browse", :checked => "true"}
           %td{:align => "left"}
             By Date Range
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "venues", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "venues", :id => "browse", :name => "browse"}  
           %td{:align => "left"}
             By Venues
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "songs", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "songs", :id => "browse", :name => "browse"}  
           %td{:align => "left"} 
             By Songs
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "recording", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "recording", :id => "browse", :name => "browse"}  
           %td{:align => "left"} 
             By Recording Type
     %div{:id => "date", :class => "step"}
@@ -32,7 +32,7 @@
             to
             %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}  
-    %div{:id => "venues", :class => "step"}
+    %div{:id => "venues", :class => "step submit_step"}
       %table{:width => "85%", :align => "center"}
         %tr{:height => "94"}
           %td{:align => "center"}
@@ -44,7 +44,7 @@
           %td{:align => "center"}
             %select{:name => "recording_type", :id => "recording_type"}
               = options_for_select(get_recording_types)
-    %div{:id => "songs", :class => "step"}
+    %div{:id => "songs", :class => "step submit_step"}
       %table{:width => "75%", :align => "center"}
         %tr{:height => "94"}
           %td
@@ -53,15 +53,11 @@
     %div{:id => "lastStep", :class => "step submit_step"}
       %table{:width => "40%", :align => "center"}
         %tr
-          %td{:align => "center"}
-            %input{:type => "checkbox", :name => "display", :value => "recordings"}
-          %td{:align => "left"}
-            Display Recordings
+          %div{:id => "parameters"}
         %tr
-          %td{:align => "center"}
-            %input{:type => "checkbox", :name => "display", :value => "shows"} 
-          %td{:align => "left"}
-            Display Shows
+          %div
+            LOGICAL OPERATORS
+      %input{:type => "hidden", :name => "done", :value => "#{params["browse"]}"}  
   %br
   %div{:align => "center"}
     %input{:class => "navigation_button", :value => "Back", :type => "reset"}

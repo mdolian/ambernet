@@ -23,15 +23,16 @@ $(function() {
 		});
 
 		$("#venue_city").autoSuggest("/venues/city_list", {
-			startText: "Enter Cities",
+			startText: "Enter City",
 			selectedItemProp: "label",
 			selectedValuesProp: "label",
 			asHtmlID: "cities",
-			searchObjProps: "label"
+			searchObjProps: "label",
+			selectionLimit: 1
 		});
 		
 		$("#song_name").autoSuggest("/songs/list", {
-			startText: "Enter Song Names",
+			startText: "Enter Songs",
 			selectedItemProp: "label",
 			selectedValuesProp: "id",
 			asHtmlID: "songs",
@@ -52,7 +53,7 @@ $(function() {
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
 			changeYear: true
-		});		
+		});
 
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
 	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });

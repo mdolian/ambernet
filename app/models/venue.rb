@@ -2,7 +2,8 @@ class Venue < ActiveRecord::Base
   
   attr_accessible :id, :venue_name, :venue_image, :venue_city, :venue_state, :venue_country
   
-  has_many :shows  
+  has_many :shows
+  has_many :recordings, :through => :shows  
   
   def first
     id
@@ -13,7 +14,7 @@ class Venue < ActiveRecord::Base
   end  
 
   def self.per_page
-    100
+    25
   end
   
   def venue_label
