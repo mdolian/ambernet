@@ -3,7 +3,13 @@ $(function() {
 		$("#browseForm").formwizard();
 		
 		$('.navigation_button').bind('click', function() {
-			alert($('input[name=browse]:checked').val() );
+			browse = $('input[name=browse]:checked').val()
+			
+			if(browse == 'shows') {
+				text = "Confirm your list of songs: "
+				
+			}
+			
 		});		
 		
 	});
