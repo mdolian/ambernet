@@ -38,7 +38,7 @@ module Ambernet
 
     config.middleware.insert_after ActionDispatch::Head, Rack::Hoptoad, "8f35f072dd38fab1566cc09cb8e48304"
 
-    config.token = "KLSD84KLF8QIOEUF03Q40980934809F890AFSD890ASFD890SAD8F90A0S-8D089-FADS809-SADF"
+    config.secret_token = "KLSD84KLF8QIOEUF03Q40980934809F890AFSD890ASFD890SAD8F90A0S-8D089-FADS809-SADF"
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
   end
