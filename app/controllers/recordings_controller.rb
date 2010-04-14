@@ -93,8 +93,11 @@ class RecordingsController < ApplicationController
   def rate
     Recording.update(params["id"], {:rating => params["rating"]})
   end
+
+  def zip_request
+    self.sent_later(:zip)
+  end
   
-  # TO-DO - convert to Rails
   def zip
     only_provides :zip
     @recording = Recording.find(params["id"])
@@ -110,17 +113,6 @@ class RecordingsController < ApplicationController
       logger.debug "Temp Zip Path: /zips/#{File.basename(t.path)}"
       t.close   
     end
-    
-    #headers['Content-Disposition'] = "attachment; filename = #{@recording.label}.#{params['type']}.zip"
-    #headers['Content-Type'] = "application/zip"
-    
-    #respond_to do |format|
-    #  format.zip
-    #end
-    
-    # TO-DO - This will be replaced by resque
-    # Need to implement, this was a Merb function
-    #nginx_send_file "/ambernet/zips/#{@recording.label}.#{params['type']}.zip" 
   end
 
 end
