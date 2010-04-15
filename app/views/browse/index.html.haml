@@ -11,17 +11,17 @@
             By Date Range
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "venues", :id => "browse", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "venue", :id => "browse", :name => "browse"}  
           %td{:align => "left"}
             By Venues
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "songs", :id => "browse", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "song", :id => "browse", :name => "browse"}  
           %td{:align => "left"} 
             By Songs
         %tr
           %td{:align => "center"}
-            %input{:type => "radio", :class => "link", :value => "recording", :id => "browse", :name => "browse"}  
+            %input{:type => "radio", :class => "link", :value => "recording_type", :id => "browse", :name => "browse"}  
           %td{:align => "left"} 
             By Recording Type
     %div{:id => "date", :class => "step"}
@@ -32,19 +32,19 @@
             to
             %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}  
-    %div{:id => "venues", :class => "step submit_step"}
+    %div{:id => "venue", :class => "step"}
       %table{:width => "85%", :align => "center"}
         %tr{:height => "94"}
           %td{:align => "center"}
             %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
       %input{:type => "hidden", :class => "link", :value => "lastStep"}   
-    %div{:id => "recording", :class => "step submit_step"}
+    %div{:id => "recording_type", :class => "step"}
       %table{:width => "85%", :align => "center"}
         %tr{:height => "94"}
           %td{:align => "center"}
             %select{:name => "recording_type", :id => "recording_type"}
               = options_for_select(get_recording_types)
-    %div{:id => "songs", :class => "step submit_step"}
+    %div{:id => "song", :class => "step"}
       %table{:width => "75%", :align => "center"}
         %tr{:height => "94"}
           %td
@@ -54,9 +54,19 @@
       %table{:width => "40%", :align => "center"}
         %tr
           %div{:id => "parameters"}
-        %tr
-          %div
-            LOGICAL OPERATORS
+            %table{:width => "100%"}
+              %tr
+                %td
+                  %div{:id => "confirm_value"}
+              %tr
+                %td
+                  %div{:id => "information"}
+              %tr
+                %td
+                  %div{:id => "logical_operator"}
+                    
+            
+              
       %input{:type => "hidden", :name => "done", :value => "#{params["browse"]}"}  
   %br
   %div{:align => "center"}
