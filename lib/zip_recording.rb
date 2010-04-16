@@ -1,4 +1,5 @@
 require 'resque'
+require 'recording'
 
 class ZipRecording
   @queue = :default
@@ -7,12 +8,12 @@ class ZipRecording
     Resque.enqueue(self, *args)
   end
 
-  def self.perform(id, type, label, files)
-    if !File.exist?("public/ambernet/zips/#{label}.#{type}.zip")
+  def self.perform(recording, type)
+    if !File.exist?("public/ambernet/zips/#{recording.label}.#{recording.type}.zip")
       logger.info("Creating Zip")
-      t = File.open("public/ambernet/zips/#{label}.#{type}.zip", "w")
+      t = File.open("public/ambernet/zips/#{recording.label}.#{recording.type}.zip", "w")
       Zip::ZipOutputStream.open(t.path) do |zos|
-        files(type) do |file|
+        recording.files(type) do |file|
           zos.put_next_entry(File.basename(file.path))
           zos.print IO.read(file.path)
           logger.debug "File added to zip: #{file.path}"    
