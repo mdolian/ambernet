@@ -1,4 +1,4 @@
-require 'resque'
+require 'lib/zip_recording'
 
 class RecordingsController < ApplicationController
 

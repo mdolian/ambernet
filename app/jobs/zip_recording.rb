@@ -1,7 +1,11 @@
 require 'resque'
 
-class ZipRecording < AbstractJob
+class ZipRecording
   @queue = :default
+
+  def self.enqueue(*args)
+    Resque.enqueue(self, *args)
+  end
 
   def self.perform(id, type)
     @recording = Recording.find(id)

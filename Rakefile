@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'lib/abstract_job'
+require 'zip_recording'
 require 'resque/tasks'
 
 Rails::Application.load_tasks
