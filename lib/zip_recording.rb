@@ -1,5 +1,6 @@
 require 'resque'
-require 'recording'
+require 'app/models/recording'
+require 'active_record'
 
 class ZipRecording
   @queue = :default
@@ -9,6 +10,8 @@ class ZipRecording
   end
 
   def self.perform(id, type)
+    ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml'))  )
+
     recording = Recording.find(id)  
     if !File.exist?("public/ambernet/zips/#{recording.label}.#{recording.type}.zip")
       logger.info("Creating Zip")
