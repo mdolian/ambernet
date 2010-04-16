@@ -92,7 +92,7 @@ class RecordingsController < ApplicationController
   end
 
   def zip
-    Resque.enqueue(Zip, params["id"], params["type"])
+    ZipRecording.enqueue(params["id"], params["type"])
   end
 
 end
