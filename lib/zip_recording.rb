@@ -16,7 +16,8 @@ class ZipRecording
     if !File.exist?("public/zips/#{label}.#{type}.zip")
       t = File.open("public/zips/#{label}.#{type}.zip", "w")
       Zip::ZipOutputStream.open(t.path) do |zos|
-        files.each do |file|
+        files.each do |filename|
+          file = File.open(filename)
           zos.put_next_entry(File.basename(file.path))
           zos.print IO.read(file.path)
         end

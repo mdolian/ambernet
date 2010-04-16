@@ -128,7 +128,7 @@ class Recording < ActiveRecord::Base
    
   def files(type)
     tracks do |track|
-      yield File.open("/media/PG_Archive/ambernet/#{label}/#{track}.#{download_extension(type)}") 
+      yield "/media/PG_Archive/ambernet/#{label}/#{track}.#{download_extension(type)}" 
     end
   end
 
