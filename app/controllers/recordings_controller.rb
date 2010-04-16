@@ -1,5 +1,3 @@
-require 'lib/zip_recording'
-
 class RecordingsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index]
@@ -92,7 +90,8 @@ class RecordingsController < ApplicationController
   end
 
   def zip
-    ZipRecording.enqueue(params["id"], params["type"])
+    recording = Recording.find(id)    
+    ZipRecording.enqueue(params["id"], params["type"], recording.label, recording.files)
   end
 
 end
