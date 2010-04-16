@@ -8,7 +8,8 @@ class ZipRecording
     Resque.enqueue(self, *args)
   end
 
-  def self.perform(recording, type)
+  def self.perform(id, type)
+    recording = Recording.find(id)  
     if !File.exist?("public/ambernet/zips/#{recording.label}.#{recording.type}.zip")
       logger.info("Creating Zip")
       t = File.open("public/ambernet/zips/#{recording.label}.#{recording.type}.zip", "w")

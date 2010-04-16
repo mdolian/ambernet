@@ -90,8 +90,7 @@ class RecordingsController < ApplicationController
   end
 
   def zip
-    recording = Recording.find(params["id"])    
-    ZipRecording.enqueue(recording, params["filetype"])
+    ZipRecording.enqueue(id, params["filetype"])
   end
 
 end
