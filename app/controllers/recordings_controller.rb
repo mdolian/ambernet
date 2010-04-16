@@ -95,7 +95,7 @@ class RecordingsController < ApplicationController
     recording.files(params["filetype"]) do |file|
       file_list << file
     end
-    Resque.enqueue(ZipRecording, recording.label, params["filetype"], file_list)
+    ZipRecording.enqueue(recording.label, params["filetype"], file_list)
   end
 
 end
