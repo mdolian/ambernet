@@ -95,7 +95,7 @@ class RecordingsController < ApplicationController
   end
 
   def zip
-    Resque.enqueue(Jobs, params["id"], params["type"]
+    Resque.enqueue(Jobs, params["id"], params["type"])
   end
 
 end
