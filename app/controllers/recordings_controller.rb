@@ -90,7 +90,13 @@ class RecordingsController < ApplicationController
   end
 
   def zip
-    ZipRecording.enqueue(params["id"], params["filetype"])
+    recording = Recording.find(params["id"])
+    files = []
+    recording.files(params["filetype"]).each do |file|
+      logger.info files
+      files << file
+    end
+    ZipRecording.enqueue(recording.id, recording.label, params["filetype"], files)
   end
 
 end
