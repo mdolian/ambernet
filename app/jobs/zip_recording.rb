@@ -1,6 +1,6 @@
 require 'resque'
 
-class ZipRecording < Ambernet::AbstractJob
+class ZipRecording < AbstractJob
   @queue = :default
 
   def self.perform(id, type)

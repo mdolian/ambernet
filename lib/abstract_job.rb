@@ -1,4 +1,4 @@
-class Ambernet::AbstractJob
+class AbstractJob
   def self.queue
     name.underscore.to_sym
   end
