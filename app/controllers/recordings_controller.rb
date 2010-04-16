@@ -1,3 +1,5 @@
+require 'resque'
+
 class RecordingsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index]
@@ -88,14 +90,9 @@ class RecordingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # Rate a show via ajax call
-  def rate
-    Recording.update(params["id"], {:rating => params["rating"]})
-  end
 
   def zip
-    Resque.enqueue(Jobs, params["id"], params["type"])
+    Resque.enqueue(Zip, params["id"], params["type"])
   end
 
 end

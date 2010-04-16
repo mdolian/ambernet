@@ -1,6 +1,6 @@
 require 'resque'
 
-module Jobs
+module Ambernet
   module Zip
     @queue = :default
 
