@@ -94,7 +94,7 @@ class RecordingsController < ApplicationController
     Recording.update(params["id"], {:rating => params["rating"]})
   end
 
-  def zip_request
+  def zip
     Resque.enqueue(Jobs, params["id"], params["type"]
   end
 
