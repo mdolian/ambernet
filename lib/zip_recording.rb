@@ -3,10 +3,6 @@ require 'resque'
 class ZipRecording
   @queue = :default
 
-  def self.enqueue(*args)
-    Resque.enqueue(self, *args)
-  end
-
   def self.perform(id, label, type, files)
     if !File.exist?("public/ambernet/zips/#{label}.#{type}.zip")
       logger.info("Creating Zip")

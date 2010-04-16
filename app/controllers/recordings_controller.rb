@@ -91,12 +91,11 @@ class RecordingsController < ApplicationController
 
   def zip
     recording = Recording.find(params["id"])
-    files = []
-    recording.files(params["filetype"]).each do |file|
-      logger.info files
-      files << file
+    file_list = []
+    recording.files(params["filetype"]) do |file|
+      file_list << file
     end
-    ZipRecording.enqueue(recording.id, recording.label, params["filetype"], files)
+    Resque.enqueue(ZipRecording, recording.id, recording.label, params["filetype"], file_list)
   end
 
 end
