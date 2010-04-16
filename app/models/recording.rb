@@ -117,8 +117,7 @@ class Recording < ActiveRecord::Base
   end
   
   def tracks
-    disc_count = 0
-    total_count = 0
+    disc_count, total_count = 0, 0
     for disc_count in (1..total_discs.to_i)
       for track_count in "01"..tracks_for_disc(disc_count) do     
         total_count = total_count + 1
