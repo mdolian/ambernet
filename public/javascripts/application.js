@@ -2,6 +2,8 @@ $(function() {
   jQuery(document).ready(function($) {
 
 		$("#lavaLamp").lavaLamp();
+		
+		$('#browse_tabs').tabs();		
 
 		$('#delete').click(function() {
 		  return true;
@@ -41,8 +43,6 @@ $(function() {
 		
 		$("a", ".wizard").click(function() { return false; });
 
-		$('input:checkbox, input:radio').checkbox();
-	
 		$('#start_date').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,

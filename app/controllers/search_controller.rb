@@ -4,8 +4,8 @@ class SearchController < ApplicationController
     @current_page, error_message = (params[:page] || 1).to_i, ""
     
     @shows = Show.order("date_played desc").group("shows.id")  
-    @shows = @shows.by_songs params["as_values_songs"].chop!.split(",")       if params["song_name"] != "Enter Songs"  && params["song_name"] != "" 
-    @shows = @shows.by_venues params["as_values_venues"].chop!.split(",")     if params["venue_name"] != "Enter Venues" && params["venue_name"] != ""
+    @shows = @shows.by_songs params["as_values_songs"].chop!.split(",")       if params["as_values_songs"] != "" 
+    @shows = @shows.by_venues params["as_values_venues"].chop!.split(",")     if params["as_values_venues"] != ""
     @shows = @shows.by_venue_city params["venue_city"]                        if params["venue_city"] != "Enter City" && params["venue_city"] != ""
     @shows = @shows.by_venue_state params["venue_state"]                      if params["venue_state"] != "all"
     @shows = @shows.by_label params["label"]                                  if params["label"] != ""
