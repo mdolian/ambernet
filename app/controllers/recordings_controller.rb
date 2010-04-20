@@ -1,6 +1,6 @@
 class RecordingsController < ApplicationController
 
-  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index]
+  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, :zip_link]
 
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -97,5 +97,17 @@ class RecordingsController < ApplicationController
     end
     ZipRecording.enqueue(recording.label, params["filetype"], file_list)
   end
-
+  
+  def zip_link
+    recording, filetype = Recording.find(params["id"]), params["filetype"]
+    basefile = "public/zips/#{recording.label}.#{filetype}.zip"    
+    if File.exist? basefile
+      render :text => "<a href='#{basefile}'> Download </a>"
+    elsif File.exist? basefile << ".tmp"
+      render :text => "<img src='public/images/loading.gif'>"
+    else
+      render :text => "<a href='/recordings/zip/#{params["id"]}/#{filetype}> Zip </a>"
+    end
+  end
+    
 end
