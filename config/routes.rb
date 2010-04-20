@@ -17,7 +17,7 @@ Ambernet::Application.routes.draw do |map|
   resources :compilations  
   
   # recordings_controller
-  match 'recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
+  match 'recordings/zip_link/:id/:filetype/:timestamp' => 'recordings#zip_link'
   match 'recordings/zip/:id/:filetype' => 'recordings#zip'
   match 's/:id(.:format)' => 'recordings#stream'
   match 'stream/:id(.:format)' => 'recordings#stream'

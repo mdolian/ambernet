@@ -1,5 +1,5 @@
 %script{:type => "text/javascript"}
-  jQuery(document).ready(function($) {$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_mp3").append(data);});$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/lossless',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_lossless").append(data);});})    
+  jQuery(document).ready(function($) {$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/#{Time.now.strftime("%y%m%d%H%M%S")}',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_mp3").html(data);});$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/lossless/#{Time.now.strftime("%y%m%d%H%M%S")}',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_lossless").html(data);});})    
 %div{:id => "recording_detail_accordion"}
   %h3
     %a{:href => "#"} Recording Details
