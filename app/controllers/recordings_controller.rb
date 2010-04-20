@@ -104,7 +104,7 @@ class RecordingsController < ApplicationController
     if File.exist? basefile
       render :text => "<a href='#{basefile}'> Download </a>"
     elsif File.exist? basefile << ".tmp"
-      render :text => "<img src='public/images/loading.gif'>"
+      render :text => "<img src='/public/images/loading.gif'>"
     else
       render :text => "<a href='/recordings/zip/#{params["id"]}/#{filetype}> Zip </a>"
     end
