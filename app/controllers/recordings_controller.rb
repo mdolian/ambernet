@@ -100,10 +100,10 @@ class RecordingsController < ApplicationController
   end
   
   def zip_link
-    recording, filetype = Recording.find(params["id"]), params["filetype"]
-    basefile, timestamp = "public/zips/#{recording.label}.#{filetype}.zip", Time.now.strftime("%y%m%d%H%M%S")
-    if File.exist? basefile
-      render :text => "<a href='#{basefile}?t=#{timestamp}'> Download </a>"
+    recording, filetype, timestamp = Recording.find(params["id"]), params["filetype"], Time.now.strftime("%y%m%d%H%M%S")
+    basefile = "/zips/#{recording.label}.#{filetype}.zip"
+    if File.exist? "public#{basefile}"
+      render :text => "<a href='/#{basefile}?t=#{timestamp}'> Download </a>"
     elsif File.exist? basefile << ".tmp"
       render :text => "<img src='/images/loading.gif?t=#{timestamp}'>"
     else
