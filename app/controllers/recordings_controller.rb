@@ -96,6 +96,7 @@ class RecordingsController < ApplicationController
       file_list << file
     end
     ZipRecording.enqueue(recording.label, params["filetype"], file_list)
+    redirect_to :action => "show", :id => params["id"]
   end
   
   def zip_link
@@ -104,7 +105,7 @@ class RecordingsController < ApplicationController
     if File.exist? basefile
       render :text => "<a href='#{basefile}?t=#{timestamp}'> Download </a>"
     elsif File.exist? basefile << ".tmp"
-      render :text => "<img src='/public/images/loading.gif?t=#{timestamp}'>"
+      render :text => "<img src='/images/loading.gif?t=#{timestamp}'>"
     else
       render :text => "<a href='/recordings/zip/#{params["id"]}/#{filetype}?t=#{timestamp}'> Zip </a>"
     end
