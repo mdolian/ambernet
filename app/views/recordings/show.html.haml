@@ -1,5 +1,4 @@
 %script{:type => "text/javascript"}
-  var ts = Math.round(new Date().getTime() / 1000);
   jQuery(document).ready(function($) {$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_mp3").html(data);});$.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/lossless/',{method: 'post',type: 'text',minTimeout: '5000'},function(data) {$("#zip_lossless").html(data);});})    
 %div{:id => "recording_detail_accordion"}
   %h3
