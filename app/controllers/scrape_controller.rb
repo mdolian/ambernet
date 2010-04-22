@@ -7,10 +7,10 @@ class ScrapeController < ApplicationController
     require 'hpricot'
     require 'open-uri'
     case params["id"]
-    when "all" then 
-      for i in 483..1500 do
+    when "" then
+      for i in params["start_id"].to_i..params["end_id"].to_i do
         logger.info "Show ID: #{i}"
-        if i != 1143 then
+        if !Show.exists?(i) then
           doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{i}"))
           parse_and_insert_show(i, doc)
           parse_and_insert_setlist(i, doc)
@@ -28,11 +28,14 @@ class ScrapeController < ApplicationController
         flash[:notice] = "Updationplete.  All your setlist are belong to us... bitch!"         
       end             
     else
-      show_id = params["id"]
-      doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{show_id}"))
-      parse_and_insert_show(show_id, doc)
-      parse_and_insert_setlist(show_id, doc)
-      flash[:notice] = "That setlist has been ripped bitch!" 
+      if !Show.exists?(params["id"]) then
+        doc = Hpricot(open("http://perpetualarchives.mongoosecommunication.com/shows.asp?show_ID=#{show_id}"))
+        parse_and_insert_show(show_id, doc)
+        parse_and_insert_setlist(show_id, doc)
+        flash[:notice] = "That setlist has been ripped bitch!"
+      else
+        flash[:notice] = "That show already existed in the database."
+      end
     end
     render 
   end
@@ -41,9 +44,7 @@ class ScrapeController < ApplicationController
     venue_name = doc.search("//td[@align='left'][@valign='top']/b").inner_html
     logger.info "VENUE: #{venue_name}"
     show_info = doc.search("//td[@align='left'][@valign='top']").inner_html.split('<br />')
-    if venue_name == "" then
-      notice[:error] = "Show does not exist in Perpetual Archives"
-    else
+    if venue_name != "" then
       date_played, city_state = show_info[2].strip!, show_info[1].split(",")
       venue_city, venue_state = city_state[0].strip!, city_state[1].strip! 
       venue = Venue.where("venue_name = ?", venue_name).first
@@ -63,9 +64,7 @@ class ScrapeController < ApplicationController
   
   def parse_and_insert_setlist(show_id, doc)
     setlist_text = (doc/"#linear_#{show_id}/tr/td").inner_html
-    if setlist_text == "" then
-      notice[:error] = "Setlist does not exist in Perpetual Archives"
-    else
+    if setlist_text != "" then
       setlist = Setlist.where("show_id = ?", show_id)
       if setlist[0] == nil then
         set, song_order, is_segue = 1, 1, false

@@ -17,5 +17,3 @@ gem "warden"
 gem "devise", "1.1.rc1"
 
 gem "rack_hoptoad", :require => "rack/hoptoad"
-
-gem "ruby-debug", :group => :test

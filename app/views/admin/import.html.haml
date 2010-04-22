@@ -1,11 +1,33 @@
 %form{:method => "post", :action => "/scrape/perpetual_archives/"}
-  %table{:align => "center", :width => "45%"}
+  %table{:width => "65%", :align => "center"}
     %tr
-      %td{:align => "left"}
-        Enter Perpetual Archives Show ID:
-    %tr
-      %td{:align => "left"}
-        %input{:type => "text", :name => "id", :size => "5"}
-    %tr
-      %td{:align => "left"}
-        %input{:type => "submit", :value => "Attempt Import"}
+      %td{:align => "center"}
+        %div{:id => "import_accordion"}
+          %h3
+            %a{:href => "#"} Import a Single Show
+          %div
+            %table{:align => "center", :width => "100%"}
+              %tr
+                %td{:align => "left"}
+                  Perpetual Archives Show ID:
+                %td{:align => "left"}
+                  %input{:type => "text", :name => "id", :size => "5"}
+          %h3
+            %a{:href => "#"} Import a Range of Shows
+          %div       
+            %table{:align => "center", :width => "100%"}
+              %tr{:colspan => "2"}
+                %td{:align => "center"} 
+                  %h2 Perpetual Archives
+              %tr
+                %td{:align => "left"}
+                  Enter Start ID:
+                %td{:align => "left"}
+                  %input{:type => "text", :name => "start_id", :size => "5"}
+              %tr
+                %td{:align => "left"}
+                  Enter End ID:
+                %td{:align => "left"}
+                  %input{:type => "text", :name => "end_id", :size => "5"}                    
+        %br
+        %input{:type => "submit", :value => "Attempt Import"}     
