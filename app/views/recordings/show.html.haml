@@ -27,7 +27,7 @@
           %div{:id => "zip_mp3"}
         %td
           %div{:id => "zip_lossless"}
-      - @recording.tracks do |track|
+      - @recording.tracks do |track, total_count|
         %tr
           %td 
             = track

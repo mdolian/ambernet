@@ -128,7 +128,7 @@ class Recording < ActiveRecord::Base
   end
    
   def files(type)
-    tracks do |track|
+    tracks do |track, total_count|
       yield "/media/PG_Archive/ambernet/#{label}/#{track}.#{download_extension(type)}" 
     end
   end
