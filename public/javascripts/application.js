@@ -1,9 +1,7 @@
 $(function() {
   jQuery(document).ready(function($) {
 
-		$("#lavaLamp").lavaLamp();
-		
-		$('#browse_tabs').tabs();		
+  	$('#browse_tabs').tabs();		
 
 		$('#delete').click(function() {
 		  return true;

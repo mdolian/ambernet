@@ -7,7 +7,7 @@
     = javascript_include_tag 'jquery.autoSuggest'
     = javascript_include_tag 'jquery.easing'
     = javascript_include_tag 'jquery.confirm'
-    = javascript_include_tag 'jquery.lavalamp'
+    = javascript_include_tag 'jquery.superfish'
     = javascript_include_tag 'jquery.periodicalupdater.js'
     = javascript_include_tag 'application'
     = javascript_include_tag 'rails'
@@ -27,25 +27,26 @@
           %img{:src => "/images/header.jpg"}
       %tr
         %td
-          %ul{:id => "lavaLamp"}
-            %li
-              %a{:href => "/", :title => "Home"} Home
-            %li
-              %a{:href => "/browse", :title => "Browse"} Browse By
-            %li
-              %a{:href => "/search", :title => "Advanced Search"} Advanced Search
-            - if admin_signed_in?
+          %del{:class => "container"}
+            %ul{:class => "sf-menu"}
+              %li{:class => "current"}
+                %a{:href => "/", :title => "Home"} Home
               %li
-                %a{:href => "/admin", :title => "Admin"} Admin
-            - if admin_signed_in? || user_signed_in?
+                %a{:href => "/browse", :title => "Browse"} Browse By
               %li
-                %a{:href => "/account", :title => "Account"} Settings                
-            - if admin_signed_in? 
-              %li
-                %a{:href => "/admins/sign_out", :title => "Logout"} Logout       
-            - if user_signed_in? 
-              %li
-                %a{:href => "/users/sign_out", :title => "Logout"} Logout
+                %a{:href => "/search", :title => "Advanced Search"} Advanced Search
+              - if admin_signed_in?
+                %li
+                  %a{:href => "/admin", :title => "Admin"} Admin
+              - if admin_signed_in? || user_signed_in?
+                %li
+                  %a{:href => "/account", :title => "Account"} Settings                
+              - if admin_signed_in? 
+                %li
+                  %a{:href => "/admins/sign_out", :title => "Logout"} Logout       
+              - if user_signed_in? 
+                %li
+                  %a{:href => "/users/sign_out", :title => "Logout"} Logout
       %tr
         %td{:align => "center"}
           - if flash[:notice]          
