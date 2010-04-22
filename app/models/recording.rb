@@ -53,6 +53,11 @@ class Recording < ActiveRecord::Base
     joins(:show) & Show.by_song_id(song_id)
   }
   
+  scope :by_show_id, lambda { |show_ids|
+    joins(:show).
+    where("recordings.show_id IN (?)", show_ids)
+  }
+  
   def lossless_extension
     case filetype
       when "flac16" then "flac"

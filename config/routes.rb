@@ -34,6 +34,7 @@ Ambernet::Application.routes.draw do |map|
   match 'shows/setlist/:id' => 'shows#setlist'
   match 'shows/recordings/:id' => 'shows#recordings'
   match 'shows/search' => 'shows#search'
+  match 'shows/:id/recordings/' => 'shows#recordings'
   resources :shows
   
   # songs_controller

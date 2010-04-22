@@ -2,10 +2,6 @@ class ShowsController < ApplicationController
  
   before_filter :authenticate_admin!, :except => [:search, :list, :setlist, :recordings, :show, :browse, :index, :browse, :browse_by] 
  
-  def browse
-    render
-  end
- 
   def index
     @current_page = (params[:page] || 1).to_i 
     @shows = Show.paginate(:joins => :venue, :page => @current_page, :order => :date_played) 
@@ -18,7 +14,7 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.find(params["id"], :joins => [:venue, :setlists])
-    @recordings = Recording.where("show_id = ?", @show.id)
+    @recordings = Recording.where("show_id = ?", @show.id).paginate(:page => (params[:page] || 1).to_i)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @show }
@@ -106,6 +102,11 @@ class ShowsController < ApplicationController
 
   end
   
+  def recordings
+    @recordings = Recording.where("show_id = ?", params["id"]).paginate(:page => (params[:page] || 1).to_i)
+    render :partial => 'recordings/list', :layout => false
+  end
+  
   # List of shows for auto complete in json format
   def list
     list = []
@@ -125,12 +126,6 @@ class ShowsController < ApplicationController
       setlist_json << {"set_id" => setlist.set_id, "song_order" => setlist.song_order, "song_name" => song.song_name, "segue" => setlist.song_suffix, "total_sets" => total_sets}
     end
     render :json => setlist_json.to_json, :layout => false
-  end
- 
-  # List recordings for a show
-  def recordings
-    @recordings = Recording.where("show_id =? ", params["id"])
-    render :layout => false
   end
  
 end

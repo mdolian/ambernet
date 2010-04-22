@@ -30,6 +30,9 @@
             %a{:href => "#", :onclick => "$('#dialog_setlist_#{show.id}').setlist(#{show.id})"} Setlist
             %div{:id => "dialog_setlist_#{show.id}", :title => "Setlist for #{show.date_played}"}
           %td
-            %a{:href => "#", :onclick => "$('#dialog_rec_#{show.id}').recordings(#{show.id})"} Recordings (#{show.recording_count})
-            %div{:id => "dialog_rec_#{show.id}", :title => "Recordings for #{show.date_played}"}
-= will_paginate @shows
+            %a{:href => "#", :onclick => "$('recording_list_#{show.id}').recordings(#{show.id})"} Recordings (#{show.recording_count})
+          %tr{:id => "recording_list_row_#{show.id}"}
+            %td{:colspan => "9"}
+              %div{:id => "recording_list_#{show.id}"}
+= will_paginate @shows  
+          

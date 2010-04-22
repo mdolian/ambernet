@@ -1,5 +1,9 @@
-= render 'shows/detail'
-%tr
-  %td 
-    %b Recordings Available
-  %td= render 'shows/recordings'
+%div{:id => "show_detail_accordion"}
+  %h3
+    %a{:href => "#"} Show Details
+  %div   
+    = render 'shows/detail'
+  %h3
+    %a{:href => "#"} Recordings Available
+  %div          
+    = render 'recordings/list'

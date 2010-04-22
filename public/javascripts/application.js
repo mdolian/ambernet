@@ -39,8 +39,6 @@ $(function() {
 			searchObjProps: "label"
 		});		
 		
-		$("a", ".wizard").click(function() { return false; });
-
 		$('#start_date').datepicker({
 			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
@@ -54,7 +52,6 @@ $(function() {
 		});
 
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
-	  $("div[id*='dialog_rec']").dialog({ autoOpen: false, width: 400, modal: true });
 			
 		$.fn.setlist = function(show_id){
 			that = this
@@ -84,16 +81,20 @@ $(function() {
 			});								
 		}
 		
+    $("tr[id*='recording_list_row']").hide();		
+		
 		$.fn.recordings = function(show_id){
-			that = this; 
-		  $.ajax({
-			  url:  "/shows/recordings/" + show_id,
-			  success: function(msg) {
-				  $(that).html(msg);
-				  $(that).dialog("open");
-			  }	
-		  })						
+		  if($("#recording_list_row_" + show_id).is(":visible") == false) {
+				$.ajax({
+				  url:  "/shows/" + show_id + "/recordings",
+				  success: function(msg) {
+					  $('#recording_list_' + show_id).html(msg);
+	    			$("#recording_list_row_" + show_id).show();
+				  }	
+			  })
+			} else {
+				$("#recording_list_row_" + show_id).hide();
+			}						
 		}
-	
   });	
 });
