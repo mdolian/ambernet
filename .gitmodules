@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/rpm"]
+	path = vendor/plugins/rpm
+	url = http://github.com/jaggederest/rpm.git
