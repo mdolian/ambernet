@@ -1,16 +1,16 @@
 %br
-%form{:id => "browse_form", :method => "post", :action => "/shows/browse"}
-%input{:type => "hidden", :name => "done", :value => "yes"}
+%form{:id => "browse_form", :method => "get", :action => "/shows/browse"}
   %div{:id => "browse_tabs"}    
     %ul
       %li
-        %a{:href => "#date_tab"} By Date Range
+        %a{:href => "#date_tab"} Date
       %li
-        %a{:href => "#venue_tab"} By Venue
+        %a{:href => "#venue_tab"} Venue
       %li
-        %a{:href => "#song_tab"} By Song
+        %a{:href => "#song_tab"} Song
       %li
-        %a{:href => "#recording_tab"} By Recording Quality
+        %a{:href => "#recording_tab"} Recording
+    %br
     %div{:id => "date_tab"}    
       %table{:width => "50%", :align => "center"}
         %tr
@@ -18,31 +18,25 @@
             %input{:type => "text", :name => "start_date", :id => "start_date", :size => "10"}
             to
             %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}
-        %tr
-          %td{:align => "center"}
-            %input{:type => "submit"}
     %div{:id => "venue_tab"}
       %table{:width => "85%", :align => "center"}
         %tr
           %td{:align => "center"}
             %input{:type => "text", :id => "venue_name", :name => "venue_name", :size => "20"}
-        %tr
-          %td{:align => "center"}
-            %input{:type => "submit"}
     %div{:id => "song_tab"}
       %table{:width => "75%", :align => "center"}
         %tr
           %td
-            %input{:type => "text", :id => "song_name", :name => "song_name", :size => "20"}
-        %tr
-          %td{:align => "center"}
-            %input{:type => "submit"}            
+            %input{:type => "text", :id => "song_name", :name => "song_name", :size => "20"}       
     %div{:id => "recording_tab"}
       %table{:width => "85%", :align => "center"}
         %tr
           %td{:align => "center"}
             %select{:name => "recording_type", :id => "recording_type"}
               = options_for_select(get_recording_types)
-        %tr
-          %td{:align => "center"}
-            %input{:type => "submit"}
+    %div{:align => "center"}
+      %input{:type => "hidden", :name => "done", :value => "yes"}
+      %input{:type => "submit", :value => "Submit"}
+      %input{:type => "reset", :value => "Clear"}
+    %div
+      %br

@@ -110,5 +110,11 @@ class RecordingsController < ApplicationController
       render :text => "<a href='/recordings/zip/#{params["id"]}/#{filetype}?t=#{timestamp}'> Zip </a>"
     end
   end
-    
+  
+  def stream
+    recording = Recording.find params["id"]
+    stream_file = params["format"] == "pls" ? recording.to_pls : recording.to_m3u
+    render :text => stream_file
+  end
+  
 end

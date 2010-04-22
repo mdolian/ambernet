@@ -82,7 +82,7 @@ class ShowsController < ApplicationController
   def browse
     @current_page, error_message = (params[:page] || 1).to_i, ""
 
-    if params["done"] == ""
+    if params["done"].nil?
       render
     else 
       @shows = Show.order("date_played desc").group("shows.id").joins(:venue, :setlists)

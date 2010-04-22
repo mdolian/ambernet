@@ -5,8 +5,6 @@ Ambernet::Application.routes.draw do |map|
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
   match 'tracks/save' => 'tracks#save'   
   
-  match 'radio/stream' => 'radio#stream'
-
   # beta_controller
   match 'beta' => 'beta#index'
   match 'beta/index' => 'beta#index'
@@ -30,7 +28,7 @@ Ambernet::Application.routes.draw do |map|
   match 'scrape/perpetual_archives' => 'scrape#perpetual_archives'  
   
   # shows_controller
-  match 'browse' => 'shows#browse_by'
+  match 'browse' => 'shows#browse'
   match 'shows/browse' => 'shows#browse'
   match 'shows/list' => 'shows#list'
   match 'shows/setlist/:id' => 'shows#setlist'

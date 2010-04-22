@@ -96,13 +96,13 @@ class Recording < ActiveRecord::Base
   # Returns a string containing a pls file
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
-    disc_count = 0
-    total_count = 0
-    tracks do |track|
-      pls << "File#{total_count}=http://ambernetonline.net/ambernet/#{label}/pgroove#{show.date_as_label}d#{disc_count}t#{track_count}.mp3\n"
-      pls << "Title#{total_count}=TBD\n"
-      pls << "Length#{total_count}=-1\n\n"
+    tracks do |track, count|
+      pls << "File#{count}=http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
+      pls << "Title#{count}=TBD\n"
+      pls << "Length#{count}=-1\n\n"
     end
+    logger.info pls
+    pls
   end
 
   # Returns a string containing a m3u file  
@@ -110,10 +110,11 @@ class Recording < ActiveRecord::Base
     m3u = "#EXTM3\n"
     disc_count = 0
     total_count = 0
-    tracks do |track|
+    tracks do |track, count|
       m3u << "#EXTINF:-1,TBD\n"
       m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
     end
+    m3u
   end
   
   def tracks
@@ -121,7 +122,7 @@ class Recording < ActiveRecord::Base
     for disc_count in (1..total_discs.to_i)
       for track_count in "01"..tracks_for_disc(disc_count) do     
         total_count = total_count + 1
-        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}"
+        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", total_count
       end
     end
   end
