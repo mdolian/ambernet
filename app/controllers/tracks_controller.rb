@@ -36,7 +36,7 @@ class TracksController < ApplicationController
   def list
     list = []
     tracks = RecordingTrack.where("recording_id = ? AND track = ?", params["recording_id"], params["track"])
-    tracks.each do |track|
+    tracks.each do |track, total_count|
       list << {"label" => track.song_name, "id" => track.song_id}
     end
 
@@ -47,7 +47,7 @@ class TracksController < ApplicationController
   
   def save
     tracks = RecordingTrack.where("recording_id = ? ", params["recording_id"])
-    tracks.each do |track|
+    tracks.each do |track, total_count|
       track.destroy
     end
     for i in 1..params["total_tracks"].to_i do

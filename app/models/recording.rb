@@ -79,10 +79,10 @@ class Recording < ActiveRecord::Base
   # Returns the total number of tracks for a given disc number
   def tracks_for_disc(disc_num)
     tracks = tracking_info[2..-1].chop!.split(',')[disc_num-1].to_i
-    if tracks.to_i < 10
+    if tracks < 10
       "0" + tracks.to_s
     else
-      tracks
+      tracks.to_s
     end
   end
   
@@ -120,7 +120,7 @@ class Recording < ActiveRecord::Base
   def tracks
     disc_count, total_count = 0, 0
     for disc_count in (1..total_discs.to_i)
-      for track_count in "01"..tracks_for_disc(disc_count) do     
+      for track_count in "01"..tracks_for_disc(disc_count) do
         total_count = total_count + 1
         yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", total_count
       end
