@@ -25,4 +25,5 @@ src/*
 .svn/*
 ._*
 config/deploy.rb
+config/newrelic.yml
 config/database.yml
