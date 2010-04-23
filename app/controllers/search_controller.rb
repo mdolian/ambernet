@@ -6,7 +6,7 @@ class SearchController < ApplicationController
     @shows = Show.order("date_played desc").group("shows.id")  
     @shows = @shows.by_songs params["as_values_songs"].chop!.split(",")       if params["as_values_songs"] != "" 
     @shows = @shows.by_venues params["as_values_venues"].chop!.split(",")     if params["as_values_venues"] != ""
-    @shows = @shows.by_venue_city params["venue_city"]                        if params["venue_city"] != "Enter City" && params["venue_city"] != ""
+    @shows = @shows.by_venue_city params["as_values_cities"].chop!            if params["as_values_cities"] != ""
     @shows = @shows.by_venue_state params["venue_state"]                      if params["venue_state"] != "all"
     @shows = @shows.by_label params["label"]                                  if params["label"] != ""
     @shows = @shows.by_source params["source"]                                if params["source"] != ""
@@ -35,14 +35,14 @@ class SearchController < ApplicationController
     @current_page = (params[:page] || 1).to_i   
     
     @shows = Show.order("date_played desc").group("shows.id").joins(:setlists, :songs, :venue)
-    @shows = @shows.by_venue_city(params["search"])     if Show.by_venue_city(params["search"]).count > 0
-    @shows = @shows.by_venue_state(params["search"])    if Show.by_venue_state(params["search"]).count > 0
-    @shows = @shows.by_venue_name(params["search"])     if Show.by_venue_name(params["search"]).count > 0                   
-    @shows = @shows.by_song(params["search"])           if Show.by_song(params["search"]).count > 0
-    @shows = @shows.by_label(params["search"])          if Show.by_label(params["search"]).count > 0
-    @shows = @shows.by_source(params["search"])         if Show.by_source(params["search"]).count > 0                     
-    @shows = @shows.by_lineage(params["search"])        if Show.by_lineage(params["search"]).count > 0                
-    @shows = @shows.by_taper(params["search"])          if Show.by_taper(params["search"]).count > 0                     
+    @shows = @shows.by_venue_city params["search"]     if Show.by_venue_city(params["search"]).count > 0
+    @shows = @shows.by_venue_state params["search"]    if Show.by_venue_state(params["search"]).count > 0
+    @shows = @shows.by_venue_name params["search"]     if Show.by_venue_name(params["search"]).count > 0                   
+    @shows = @shows.by_song params["search"]           if Show.by_song(params["search"]).count > 0
+    @shows = @shows.by_label params["search"]          if Show.by_label(params["search"]).count > 0
+    @shows = @shows.by_source params["search"]         if Show.by_source(params["search"]).count > 0                     
+    @shows = @shows.by_lineage params["search"]        if Show.by_lineage(params["search"]).count > 0                
+    @shows = @shows.by_taper params["search"]          if Show.by_taper(params["search"]).count > 0                     
     
     @shows = @shows.paginate :page => @current_page, :per_page => 25
     render :search_results
