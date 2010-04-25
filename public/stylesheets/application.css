@@ -28,7 +28,7 @@
 	margin-right: 5px;
 	font-size: 15px;
 	text-decoration: none;
-	color: #f2f2f2;
+	color: #6da1a0;
 	font-family: Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -41,7 +41,7 @@
 	background: #514539;
 }
 #sub-link-bar {
-	background: #514539;
+	background: #493a16;
 	min-height: 10px;
 	border-bottom: #645546 1px solid;
 }
@@ -72,42 +72,42 @@
 	height:1px;
 	overflow:hidden;
 	font-size:.01em;
-	background:#645546
+	background:#493a16
 }
 .round1 {
 	margin-left:3px;
 	margin-right:3px;
 	padding-left:1px;
 	padding-right:1px;
-	border-left:1px solid #443a30;
-	border-right:1px solid #443a30;
-	background:#56493c
+	border-left:1px solid #493a16;
+	border-right:1px solid #493a16;
+	background:#493a16
 }
 .round2 {
 	margin-left:1px;
 	margin-right:1px;
 	padding-right:1px;
 	padding-left:1px;
-	border-left:1px solid #322a23;
-	border-right:1px solid #322a23;
-	background:#594c3e
+	border-left:1px solid #493a16;
+	border-right:1px solid #493a16;
+	background:#493a16
 }
 .round3 {
 	margin-left:1px;
 	margin-right:1px;
-	border-left:1px solid #594c3e;
-	border-right:1px solid #594c3e;
+	border-left:1px solid #493a16;
+	border-right:1px solid #493a16;
 }
 .round4 {
-	border-left:1px solid #443a30;
-	border-right:1px solid #443a30
+	border-left:1px solid #493a16;
+	border-right:1px solid #493a16
 }
 .round5 {
-	border-left:1px solid #56493c;
-	border-right:1px solid #56493c
+	border-left:1px solid #493a16;
+	border-right:1px solid #493a16
 }
 .roundfg {
-	background:#645546
+	background:#493a16
 }
 
 /* Site CSS */
@@ -118,7 +118,7 @@ body{
 	height: 100%; 
 	max-height: 100%; 
 	font-size: 13;
-	background-color: #c2cfdd;	
+	background-color: #d6c166;	
 }
 .spacer {
   width: 100%;
