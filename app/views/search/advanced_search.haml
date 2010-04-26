@@ -56,6 +56,7 @@
           %td
             %select{:name => "recording_type", :id => "recording_type"}
               = options_for_select get_recording_types
-    %br
-    %input{:type => "submit", :value => "Search", :name => "submit"} 
+  %br
+  %div{:align => "center"}
+    %input{:type => "submit", :value => "Search"} 
     %input{:type => "reset", :value => "Clear"}

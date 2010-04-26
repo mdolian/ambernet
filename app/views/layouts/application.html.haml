@@ -34,13 +34,13 @@
               %a{:class => "main-link", :href => "/browse"} Browse
               %ul{:class => "sub-links"}
                 %li
-                  %a{:href => "/browse"} Browse By Date, Venue, Song and Recording Type 
+                  %a{:href => "/browse"} Browse Shows
                          
             %li
               %a{:class => "main-link", :href => "/search"} Search
               %ul{:class => "sub-links"}
                 %li
-                  %a{:href => "/search"} Search by any field in the database
+                  %a{:href => "/search"} Search Shows
             - if admin_signed_in?
               %li
                 %a{:class => "main-link", :href => "/admin"} Admin
@@ -66,7 +66,7 @@
                 %a{:class => "main-link", :href => "/admins/sign_out"} Logout
                 %ul{:class => "sub-links"}
                   %li
-                    %a{:href => "/admins/sign_out"} Sign out of your admin account
+                    %a{:href => "/admins/sign_out"} Sign out of your account
             - if user_signed_in? 
               %li
                 %a{:class => "main-link", :href => "/users/sign_out"} Logout
