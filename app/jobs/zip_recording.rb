@@ -1,16 +1,7 @@
 require 'zip/zip'
 require 'resque'
 
-class ZipRecording
-  @queue = :default
-
-  def self.queue
-    name.underscore.to_sym
-  end
-
-  def self.enqueue(*args)
-    Resque.enqueue(self, *args)
-  end
+class ZipRecording < DefaultJob
 
   def self.perform(label, type, files)
     if !File.exist?("public/zips/#{label}.#{type}.zip") && !File.exist?("public/zips/#{label}.#{type}.zip.tmp")

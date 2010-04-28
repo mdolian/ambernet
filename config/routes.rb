@@ -16,7 +16,8 @@ Ambernet::Application.routes.draw do |map|
   
   # recordings_controller
   match 'recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
-  match 'recordings/zip/:id/:filetype' => 'recordings#zip'
+  match 'recordings/zip/:id/:filetype' => 'recordings#zip'  
+  match 'recordings/generate_mp3/:id' => 'recordings#generate_mp3'
   match 's/:id(.:format)' => 'recordings#stream'
   match 'stream/:id(.:format)' => 'recordings#stream'
   match 'recordings/search' => 'recordings#search'

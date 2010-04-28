@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# This script starts and stops the Resque daemon
+# This script belongs in /data/ambernet/shared/bin/
+#
+PATH=/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+CURDIR=`pwd`
+
+usage() {
+  echo "Usage: $0 <appname> {start|stop} <environment>"
+  exit 1
+}
+
+if [ $# -lt 3 ]; then usage; fi
+
+if [ "`whoami`" != "root" ]; then
+  logger -t `basename $0` -s "Must be run as root" 
+  exit 1
+fi
+
+#Baisc Setup of default values
+APP=$1 ; ACTION=$2; RACK_ENV=$3; 
+
+LOG_FILE="/data/$APP/current/log/resque.log"
+COMMAND="/usr/bin/rake -f /data/$APP/current/Rakefile APP_ROOT=/data/$APP/current RACK_ENV=$RACK_ENV RAILS_ENV=$RACK_ENV QUEUE=* resque:work"
+
+PID_FILE="/data/$APP/shared/pids/resque.pid"
+
+if [ -d /data/$APP/current ]; then
+  USER=`stat -c"%U" /data/$APP/current`
+  HOME="/home/$USER" ; export HOME
+
+  cd /data/$APP/current
+  if [ ! -d /var/run/engineyard/resque/$APP ]; then
+    mkdir -p /var/run/engineyard/resque/$APP
+  fi
+  # handle the second param, don't start if already existing
+  case "$ACTION" in
+    start)
+      cd /data/$APP/current
+      echo "Starting Resque worker"
+      if [ -f $PID_FILE ]; then
+        PID=`cat $PID_FILE`
+        if [ -d /proc/$PID ]; then
+          echo "Resque worker is already running."
+          exit 1
+        fi
+        rm -f $PID_FILE
+      fi
+      exec su -c"$COMMAND" $USER > $LOG_FILE 2>&1 &
+      echo "Started with pid $! and exit $?"
+      echo $! > $PID_FILE
+      #exit $?
+      ;;
+    stop)
+      echo "Stopping Resque worker"
+      if [ -f $PID_FILE ]; then
+        for child in $(ps axo pid,ppid | awk "{ if ( \$2 == `cat $PID_FILE` ) { print \$1 }}");
+        do
+          kill -15 $child;
+          SLEEP_COUNT=0
+          while [ -e /proc/$child ]; do
+            sleep .25
+            let "SLEEP_COUNT+=1"
+            if(( "$SLEEP_COUNT" > 240 )); then
+              kill -9 $child 2>/dev/null; true
+              break
+            fi
+          done
+        done
+      fi
+      [ -e "$PID_FILE" ] && rm -f $PID_FILE
+      exit 0
+      ;;
+    *)
+      usage
+      ;;
+        esac
+else
+  echo "/data/$APP/current doesn't exist."
+  usage
+fi
+cd $CURDIR

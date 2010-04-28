@@ -99,6 +99,11 @@ class RecordingsController < ApplicationController
     redirect_to :action => "show", :id => params["id"]
   end
   
+  def generate_mp3
+    ZipRecording.enqueue(Recording.find(params["id"]).label)
+    redirect_to :action => "show", :id => params["id"]
+  end  
+  
   def zip_link
     recording, filetype, timestamp = Recording.find(params["id"]), params["filetype"], Time.now.strftime("%y%m%d%H%M%S")
     basefile = "/zips/#{recording.label}.#{filetype}.zip"
