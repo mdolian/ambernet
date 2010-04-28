@@ -7,12 +7,11 @@
     = javascript_include_tag 'jquery.autoSuggest'
     = javascript_include_tag 'jquery.easing'
     = javascript_include_tag 'jquery.confirm'
-    = javascript_include_tag 'jquery.superfish'
     = javascript_include_tag 'jquery.periodicalupdater.js'
     = javascript_include_tag 'application'
     = javascript_include_tag 'rails'
     = stylesheet_link_tag 'jquery.tablesorter'
-    = stylesheet_link_tag 'autoSuggest'
+    = stylesheet_link_tag 'jquery.autoSuggest'
     = stylesheet_link_tag 'jquery.ui.custom'
     = stylesheet_link_tag 'application'
     %title
@@ -21,45 +20,85 @@
       %script{:type => "text/javascript"}
         jQuery(document).ready(function($){$('#lavaLamp').attr("width", 530);});
   %body
-    %table{:width => "75%", :align => "center"}
-      %tr
-        %td{:align => "center"}
-          %img{:src => "/images/header.jpg"}
-      %tr
-        %td
-          %del{:class => "container"}
-            %ul{:class => "sf-menu"}
-              %li{:class => "current"}
-                %a{:href => "/", :title => "Home"} Home
+    %div{:id => "sub-link-bar"}
+    %div{:id => "wrap"}
+      %div{:id => "main-handle"}
+        %div{:class => "roundfg"}
+          %ul{:id => "main-nav"}
+            %li
+              %a{:class => "main-link", :href => "/"} Home
+              %ul{:class => "sub-links"}
+                %li
+                  %a{:href => "main-link", :href => "/"} Home
+            %li
+              %a{:class => "main-link", :href => "/browse"} Browse
+              %ul{:class => "sub-links"}
+                %li
+                  %a{:href => "/browse"} Browse Shows
+                         
+            %li
+              %a{:class => "main-link", :href => "/search"} Search
+              %ul{:class => "sub-links"}
+                %li
+                  %a{:href => "/search"} Search Shows
+            - if admin_signed_in?
               %li
-                %a{:href => "/browse", :title => "Browse"} Browse By
+                %a{:class => "main-link", :href => "/admin"} Admin
+                %ul{:class => "sub-links"}
+                  %li
+                    %a{:href => "/shows"} Shows
+                  %li
+                    %a{:href => "/recordings"} Recordings
+                  %li
+                    %a{:href => "/venues"} Venues
+                  %li
+                    %a{:href => "/songs"} Songs
+                  %li
+                    %a{:href => "/admin/import"} Import Tracks                                                                                    
+            - if admin_signed_in? || user_signed_in?
               %li
-                %a{:href => "/search", :title => "Advanced Search"} Advanced Search
-              - if admin_signed_in?
-                %li
-                  %a{:href => "/admin", :title => "Admin"} Admin
-              - if admin_signed_in? || user_signed_in?
-                %li
-                  %a{:href => "/account", :title => "Account"} Settings                
-              - if admin_signed_in? 
-                %li
-                  %a{:href => "/admins/sign_out", :title => "Logout"} Logout       
-              - if user_signed_in? 
-                %li
-                  %a{:href => "/users/sign_out", :title => "Logout"} Logout
-      %tr
-        %td{:align => "center"}
-          - if flash[:notice]          
-            %div{:class => "ui-widget"}
-              %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                %p
-                  %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
-                  = flash[:notice]
-          - if flash[:error]
-            %div{:class => "ui-widget"}
-              %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                %p
-                  %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
-                  = flash[:error]           
-      %tr
-        %td{:colspan => "3"}= yield
+                %a{:class => "main-link", :href => "/account"} Settings
+                %ul{:class => "sub-links"}                
+                  %li
+                    %a{:href => "/account"} Edit your account settings                     
+            - if admin_signed_in? 
+              %li
+                %a{:class => "main-link", :href => "/admins/sign_out"} Logout
+                %ul{:class => "sub-links"}
+                  %li
+                    %a{:href => "/admins/sign_out"} Sign out of your account
+            - if user_signed_in? 
+              %li
+                %a{:class => "main-link", :href => "/users/sign_out"} Logout
+                %ul{:class => "sub-links"}
+                  %li
+                    %a{:href => "/users/sign_out"} Sign out of your user account
+            %li
+              %a{:class => "close", :title => "Click to Collapse", :href => "#"} X
+        %b{:class => "round"}
+          %b{:class => "round5"}
+          %b{:class => "round4"}
+          %b{:class => "round3"}
+          %b{:class => "round2"}
+          %b{:class => "round1"}
+    %div{:style => "position: absolute;top: 81px;width: 1000px;margin-left:-500px;left:50%"}
+      %table{:width => "75%", :align => "center"}
+        %tr
+          %td{:align => "center"}
+            %img{:src => "/images/header.png"}
+        %tr
+          %td{:align => "center"}
+            - if flash[:notice]          
+              %div{:class => "ui-widget"}
+                %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                  %p
+                    %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+                    = flash[:notice]
+            - if flash[:error]
+              %div{:class => "ui-widget"}
+                %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                  %p
+                    %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+                    = flash[:error]           
+        %tr
+          %td{:colspan => "3"}= yield

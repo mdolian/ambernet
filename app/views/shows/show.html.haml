@@ -1,9 +1,10 @@
-%div{:id => "show_detail_accordion"}
-  %h3
-    %a{:href => "#"} Show Details
-  %div   
-    = render 'shows/detail'
-  %h3
-    %a{:href => "#"} Recordings Available
-  %div          
-    = render 'recordings/list'
+- cache do
+  %div{:id => "show_detail_accordion"}
+    %h3
+      %a{:href => "#"} Show Details
+    %div   
+      = render 'shows/detail'
+    %h3
+      %a{:href => "#"} Recordings Available
+    %div          
+      = render 'recordings/list'

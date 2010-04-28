@@ -1,7 +1,7 @@
-- if admin_signed_in?  
-  = javascript_include_tag "admin"
-= javascript_include_tag "search"
+- cache do
+  - if admin_signed_in?  
+    = javascript_include_tag "admin"
 
-%h2 Browse Shows
+  %h2 Browse Shows
 
-= render 'shows/list'
+  = render 'shows/list'

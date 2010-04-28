@@ -1,6 +1,7 @@
 class CompilationsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:show, :index]
+  before_filter :sweep, :only => [:create, :update, :destroy]
 
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -72,6 +73,11 @@ class CompilationsController < ApplicationController
       format.html { redirect_to :action => "index" }
       format.xml  { head :ok }
     end
+  end
+
+private
+  def sweep
+    expire_fragment :action => [:index, :show]
   end
 
 end

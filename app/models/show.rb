@@ -16,7 +16,7 @@ class Show < ActiveRecord::Base
 
   scope :by_venue_state, lambda { |venue_state|
     joins(:venue).
-    where("venues.venue_city LIKE ?",  "%#{venue_state}%")
+    where("venues.venue_state LIKE ?",  "%#{venue_state}%")
   }
 
   scope :by_venue_name, lambda { |venue_name|

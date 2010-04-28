@@ -1,6 +1,7 @@
 class RecordingsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, :zip_link]
+  before_filter :sweep, :only => [:create, :update, :destroy]
 
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -88,7 +89,7 @@ class RecordingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
   def zip
     recording = Recording.find(params["id"])
     file_list = []
@@ -120,6 +121,11 @@ class RecordingsController < ApplicationController
     recording = Recording.find params["id"]
     stream_file = params["format"] == "pls" ? recording.to_pls : recording.to_m3u
     render :text => stream_file
+  end
+  
+private
+  def sweep
+    expire_fragment :action => [:show, :index]
   end
   
 end

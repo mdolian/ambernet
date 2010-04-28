@@ -1,66 +1,62 @@
-= javascript_include_tag "search"
-%table{:width => "75%", :align => "center"}
-  %tr
-    %td
-      %form{:method => "get", :action => "/search/advanced_search_results", :autocomplete => "off"}
-        %div{:id => "search_accordion", :align => "center"}
-          %h3
-            %a{:href => "#"} Show Details
-          %div
-            %table{:width => "100%"}
-              %tr
-                %td Song
-                %td
-                  %input{:type => "text", :name => "song_name", :size => "45", :id => "song_name"}
-              %tr
-                %td Venue
-                %td
-                  %input{:type => "text", :name => "venue_name", :size => "45", :id => "venue_name"}               
-              %tr
-                %td City
-                %td
-                  %input{:type => "text", :name => "venue_city", :size => "45", :id => "venue_city"}
-              %tr
-                %td State
-                %td
-                  %select{:name => "venue_state", :id => "venue_state"}
-                    = options_for_select get_states
-              %tr
-                %td Date Range
-                %td
-                  %input{:type => "text", :name => "start_date", :id => "start_date", :size => "10"}
-                  to
-                  %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}          
-          %h3
-            %a{:href => "#"} Recording Details
-          %div
-            %table{:width => "100%"}
-              %tr
-                %td Label
-                %td
-                  %input{:type => "text", :name => "label", :size => "25", :id => "label"}            
-              %tr
-                %td Source
-                %td
-                  %input{:type => "text", :name => "source", :size => "25", :id => "source"}
-              %tr
-                %td Lineage
-                %td
-                  %input{:type => "text", :name => "lineage", :size => "25", :id => "lineage"}
-              %tr
-                %td Taper
-                %td
-                  %input{:type => "text", :name => "taper", :size => "25", :id => "taper"}
-              %tr
-                %td Etree ID
-                %td  
-                  %input{:type => "text", :name => "shnid", :size => "5", :id => "shnid"}
-              %tr
-                %td Recording Type
-                %td
-                  %select{:name => "recording_type", :id => "recording_type"}
-                    = options_for_select get_recording_types
-        %div{:align => "center"}
-          %br
-          %input{:type => "submit", :value => "Search", :name => "submit"} 
-          %input{:type => "reset", :value => "Clear"}
+%form{:method => "get", :action => "/search/advanced_search_results", :autocomplete => "off"}
+  %div{:id => "search_accordion"}
+    %h3
+      %a{:href => "#"} Show Details
+    %div
+      %table
+        %tr
+          %td Song
+          %td
+            %input{:type => "text", :name => "song_name", :size => "45", :id => "song_name"}
+        %tr
+          %td Venue
+          %td
+            %input{:type => "text", :name => "venue_name", :size => "45", :id => "venue_name"}               
+        %tr
+          %td City
+          %td
+            %input{:type => "text", :name => "venue_city", :size => "45", :id => "venue_city"}
+        %tr
+          %td State
+          %td
+            %select{:name => "venue_state", :id => "venue_state"}
+              = options_for_select get_states
+        %tr
+          %td Date Range
+          %td
+            %input{:type => "text", :name => "start_date", :id => "start_date", :size => "10"}
+            to
+            %input{:type => "text", :name => "end_date", :id => "end_date", :size => "10"}          
+    %h3
+      %a{:href => "#"} Recording Details
+    %div
+      %table
+        %tr
+          %td Label
+          %td
+            %input{:type => "text", :name => "label", :size => "25", :id => "label"}            
+        %tr
+          %td Source
+          %td
+            %input{:type => "text", :name => "source", :size => "25", :id => "source"}
+        %tr
+          %td Lineage
+          %td
+            %input{:type => "text", :name => "lineage", :size => "25", :id => "lineage"}
+        %tr
+          %td Taper
+          %td
+            %input{:type => "text", :name => "taper", :size => "25", :id => "taper"}
+        %tr
+          %td Etree ID
+          %td  
+            %input{:type => "text", :name => "shnid", :size => "5", :id => "shnid"}
+        %tr
+          %td Recording Type
+          %td
+            %select{:name => "recording_type", :id => "recording_type"}
+              = options_for_select get_recording_types
+  %br
+  %div{:align => "center"}
+    %input{:type => "submit", :value => "Search"} 
+    %input{:type => "reset", :value => "Clear"}

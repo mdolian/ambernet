@@ -1,7 +1,8 @@
-- if admin_signed_in?  
-  = javascript_include_tag "admin"
+- cache do
+  - if admin_signed_in?  
+    = javascript_include_tag "admin"
   
-%h2 Browse Compilations
+  %h2 Browse Compilations
 
-= render 'compilations/list'
+  = render 'compilations/list'
           
