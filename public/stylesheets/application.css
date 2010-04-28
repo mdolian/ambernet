@@ -26,10 +26,10 @@
 }
 #main-nav li a {
 	margin-right: 5px;
-	font-size: 20px;
+	font-size: 15px;
 	text-decoration: none;
 	color: #6da1a0;
-	font-family: Steak;
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
 	padding: 10px;
@@ -135,13 +135,13 @@ hr {
 h1 {
   font-size: 28px;
   color: #000000;
-  font-family: Arial, Verdana, sans-serif;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;;
   font-weight: 300;
 }
 h2 {
   font-size: 17px;
   color: #000000;
-  font-family: Arial, Verdana, sans-serif;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
   font-weight: 400;
 }
 h3 {
