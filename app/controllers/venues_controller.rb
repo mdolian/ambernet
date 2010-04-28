@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:city_list, :list, :show] 
+  before_filter :sweep, :only => [:create, :update, :destroy]  
   
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -97,6 +98,11 @@ class VenuesController < ApplicationController
     respond_to do |format|    
       format.json { render :json => list, :layout => false }
     end
+  end
+
+private
+  def sweep
+    expire_fragment :action => [:index, :show]
   end
   
 end

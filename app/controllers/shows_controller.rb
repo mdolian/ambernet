@@ -1,6 +1,7 @@
 class ShowsController < ApplicationController
  
   before_filter :authenticate_admin!, :except => [:search, :list, :setlist, :recordings, :show, :browse, :index, :browse, :browse_by] 
+  before_filter :sweep, :only => [:create, :update, :destroy]
  
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -127,5 +128,10 @@ class ShowsController < ApplicationController
     end
     render :json => setlist_json.to_json, :layout => false
   end
+ 
+private
+  def sweep
+    expire_fragment :action => [:show, :index]
+  end 
  
 end
