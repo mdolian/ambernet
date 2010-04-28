@@ -101,7 +101,7 @@ class RecordingsController < ApplicationController
   end
   
   def generate_mp3
-    ZipRecording.enqueue(Recording.find(params["id"]).label)
+    GenerateMp3.enqueue(Recording.find(params["id"]).label)
     redirect_to :action => "show", :id => params["id"]
   end  
   
