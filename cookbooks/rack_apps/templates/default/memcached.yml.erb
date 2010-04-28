@@ -1,0 +1,16 @@
+defaults:
+  ttl: 1800
+  readonly: false
+  urlencode: false
+  c_threshold: 10000
+  compression: true
+  debug: false
+  namespace: <%= @app[:name] %> 
+  sessions: true
+  fragments: true
+  memory: <%= @node[:memcached][:memory] %> 
+  servers: localhost:11211
+  benchmarking: true
+  raise_errors: true
+  fast_hash: false
+  fastest_hash: false

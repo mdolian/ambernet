@@ -1,0 +1,16 @@
+# sudoers file.
+#
+# Distributed by Chef
+#
+# Local changes will be destroyed
+
+# Reset environment by default
+Defaults	env_reset
+
+# User privilege specification
+root	ALL=(ALL) ALL
+
+# Allow owner to sudo
+<% for user in @node[:users].find_all {|u| u[:sudo]} %>
+<%= user[:username] %> ALL=(ALL) ALL
+<% end %>

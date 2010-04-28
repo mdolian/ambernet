@@ -1,0 +1,49 @@
+upstream <%= @app_name %> {
+  <% for port in @ports %>
+   server 127.0.0.1:<%= port %>;
+  <% end %>
+}
+
+server {
+  listen <%= @http_bind_port %>;
+
+  <% if @server_names %>
+  <%= "server_name #{[*@server_names].join(" ")};" %>
+  <% else %>
+  server_name _;
+  <% end %>
+
+  root <%= @app_dir %>/current/public;
+  
+  access_log <%= @node[:nginx_log_dir] %>/<%= @app_name %>.access.log main;
+  error_log <%= @node[:nginx_log_dir] %>/<%= @app_name %>.error.log notice;
+
+  include <%= @node[:nginx_dir] %>/common/app.conf;
+
+  # ---------------------
+  # Custom App Conf Begin
+  # ---------------------
+
+<%= @custom_conf %>
+
+  # ---------------------
+  # Custom App Conf End
+  # ---------------------
+
+  location / {
+    # auth is disabled for this server
+    # auth_basic            "Restricted";
+    # auth_basic_user_file  /etc/nginx/apps/<%=@app_name %>.users;
+
+    include <%= @node[:nginx_dir] %>/common/proxy.conf;
+
+    if (!-f $request_filename) {
+      proxy_pass http://<%= @app_name %>;
+      break;
+    }
+  }
+  
+  location = /500.html {
+    root <%= @app_dir %>/current/public;
+  }
+}
