@@ -4,7 +4,7 @@
 # $Revision: 24 $, $Date: 2006-10-04 19:10:00 -0700 (Wed, 04 Oct 2006) $
 # Release: 1.1
 #
-# Usage: flac2mp3 <input-dir> <output-dir>
+# Usage: flac2mp3 <recording-label>
 
 ### Begin Configuration
 # The values below will be overridden by those in ~/.flac2mp3.conf if it
@@ -63,8 +63,8 @@ if [ ! -x "$LAME" ]; then
 fi
 
 # Were we called correctly?
-if [ -z "$1" -o -z "$2" ]; then
-  echo "Usage: flac2mp3 <input-dir> <output-dir>" >&2
+if [ -z "$1" ]; then
+  echo "Usage: flac2mp3 <recording-label>" >&2
   exit 1
 fi
 
