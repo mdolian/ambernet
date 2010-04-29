@@ -124,7 +124,10 @@ class RecordingsController < ApplicationController
   end
   
   def directory
-    render :text => Dir.glob("/media/PG_archive/ambernet/#{Recording.find(params['id']).label}/*")
+    label = Recording.find(params['id']).label
+    logger.info label
+    logger.info Dir.glob("/media/PG_archive/ambernet/#{label}/*")
+    render :text => Dir.glob("/media/PG_archive/ambernet/#{label}/*")
   end
   
 private
