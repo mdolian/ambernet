@@ -1,34 +1,52 @@
-user <%= @node[:nginx_user] %>;
-worker_processes 4;
-pid /var/run/nginx.pid;
+#user  nobody;
+worker_processes  1;
+
+error_log  logs/error.log  notice;
+
+pid        logs/nginx.pid;
 
 events {
-  worker_connections 8192;
-  use epoll;
+  worker_connections  1024;
 }
+
 
 http {
+  passenger_root /home/dolian/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11;
+  passenger_ruby /home/dolian/.rvm/rubies/ruby-1.8.7-p249/bin/ruby;
 
-  include /etc/nginx/mime.types;
+  include       mime.types;
+  default_type  application/octet-stream;
 
-  default_type application/octet-stream;
+  sendfile        on;
+  #tcp_nopush     on;
+  access_log /opt/nginx/logs/ambernet.access.log;
 
-  log_format main '$remote_addr - $remote_user [$time_local] '
-                  '"$request" $status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" "$http_x_forwarded_for"';
+  #keepalive_timeout  0;
+  keepalive_timeout  65;
 
-  sendfile on;
+  gzip  on;
 
-  tcp_nopush        on;
+  server {
+    listen       80;
+    server_name  _;
 
-  gzip              on;
-  gzip_http_version 1.0;
-  gzip_comp_level   2;
-  gzip_proxied      any;
-  gzip_buffers      16 8k;
-  gzip_types        text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
-  # gzip_disable      "MSIE [1-6]\.(?!.*SV1)";
+    root /data/ambernet/current/public;
 
-  include /etc/nginx/apps/*.conf;
+    passenger_enabled on;
+    rack_env production;
 
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   html;
+    }
+  }
+
+  server {
+	  listen 		81;
+	  server_name	ambernetonline.net;
+	  location / {
+		  proxy_pass http://localhost:8282;
+	  }
+  }	
 }
+
