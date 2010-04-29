@@ -17,7 +17,7 @@ class ZipRecording < DefaultJob
         t.close
         FileUtils.mv("public/zips/#{label}.#{type}.zip.tmp", "public/zips/#{label}.#{type}.zip")
       end
-    rescue Exception => msg
+    rescue => msg
       puts "Error: #{msg}"
     end
   end

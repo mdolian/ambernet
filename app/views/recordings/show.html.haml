@@ -13,6 +13,14 @@
     %h3
       %a{:href => "#"} Download Options
     %div
+      %table{:width => "100%"}
+        %tr
+          %td{:align => "left"}
+            %a{:href => "#", :onclick => "$('#recording_directory').listing(#{@recording.id})"} Directory Listing
+          %td
+            %div{:id => "recording_directory"}
+          %td{:align => "right"}
+            %a{:href => "/recordings/generate_mp3/#{@recording.id}"} Generate MP3s      
       %table{:class => "tablesorter"}
         %tr
           %td{:colspan => "3"}

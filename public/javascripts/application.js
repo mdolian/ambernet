@@ -71,6 +71,17 @@ $(function() {
 		});
 
 	  $("div[id*='dialog_setlist']").dialog({ autoOpen: false, width: 400, modal: true });
+		$("#recording_directory").dialog({ autoOpen: false, modal: true });
+
+		$.fn.listing = function(recording_id){
+			$.ajax({    
+				url: "/recordings/directory/" + recording_id, 
+				success: function(listing) {
+					$(this).html(listing);
+					$("#recording_directory").dialog("open");
+				}
+			})
+		}
 			
 		$.fn.setlist = function(show_id){
 			that = this

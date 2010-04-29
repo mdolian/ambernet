@@ -123,6 +123,10 @@ class RecordingsController < ApplicationController
     render :text => stream_file
   end
   
+  def directory
+    render :text => Dir.glob("/media/PG_archive/ambernet/#{Recording.find(params['id']).label}/*")
+  end
+  
 private
   def sweep
     expire_fragment :action => [:show, :index]
