@@ -1,0 +1,5 @@
+check process resque-web
+  with pidfile '/var/run/resque/ambernet/resque-web.pid'
+  start program = "/data/ambernet/current/bin/resque-web ambernet start"
+  stop program = "/data/ambernet/current/bin/resque-web ambernet stop"
+  group resque-web

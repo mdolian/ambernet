@@ -17,4 +17,5 @@ class ZipRecording < DefaultJob
       FileUtils.mv("public/zips/#{label}.#{type}.zip.tmp", "public/zips/#{label}.#{type}.zip")
     end
   end
+
 end
