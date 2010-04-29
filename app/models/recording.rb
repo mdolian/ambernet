@@ -58,7 +58,7 @@ class Recording < ActiveRecord::Base
     where("recordings.show_id IN (?)", show_ids)
   }
   
-  def lossless_extension
+  def extension
     case filetype
       when "flac16" then "flac"
       when "flac24" then "flac"
@@ -70,7 +70,7 @@ class Recording < ActiveRecord::Base
   
   def download_extension(type)
     case type
-      when "lossless" then lossless_extension
+      when "lossless" then extension
       when "mp3"      then "mp3"
       else                 "ERROR"
     end
