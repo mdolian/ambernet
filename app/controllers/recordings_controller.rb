@@ -1,6 +1,6 @@
 class RecordingsController < ApplicationController
 
-  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, :zip_link, :generate_mp3]
+  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, :zip_link, :generate_mp3, :directory]
   before_filter :sweep, :only => [:create, :update, :destroy]
 
   def index
@@ -124,10 +124,11 @@ class RecordingsController < ApplicationController
   end
   
   def directory
-    label = Recording.find(params['id']).label
-    logger.info label
-    logger.info Dir.glob("/media/PG_archive/ambernet/#{label}/*")
-    render :text => Dir.glob("/media/PG_archive/ambernet/#{label}/*")
+    label, listing = Recording.find(params['id']).label, ""
+    Dir.entries("/media/PG_Archive/ambernet/#{label}/*").each do |entry| 
+      listing = listing << entry << "<br>"
+    end
+    render :text => listing
   end
   
 private

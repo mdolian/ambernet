@@ -76,8 +76,8 @@ $(function() {
 		$.fn.listing = function(recording_id){
 			$.ajax({    
 				url: "/recordings/directory/" + recording_id, 
-				success: function(listing) {
-					$(this).html(listing);
+				success: function(msg) {
+					$("#recording_directory").html(msg);
 					$("#recording_directory").dialog("open");
 				}
 			})
