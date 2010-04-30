@@ -1,0 +1,55 @@
+This can be easily done by copying the setup disk to an external hard drive and making the drive active. Then just change the bootup options in the BIOS (DEL key) to "Boot from USB" and the rest is a snap. Don't forget to switch it back after your it's first restart. 
+
+http://www.greenhughes.com/content/how-install-ubuntu-910-and-boxee-beta-acer-aspire-revo-including-64-bit-option
+
+
+Install packages
+  sudo apt-get install vim git-core curl build-essential zlib1g-dev libssl-dev libreadline5-dev redis-server mysql-server libmysqlclient15-dev mysql-client monit 
+  
+Install rvm
+  git clone git://github.com/wayneeseguin/rvm.git /tmp && cd /tmp && ./install
+  echo "if [[ -s /home/dolian/.rvm/scripts/rvm ]] ; then source /home/dolian/.rvm/scripts/rvm ; fi" >> ~/.bashrc  
+
+Install ruby 1.8.7 and passenger
+  rvm install 1.8.7
+  gem install passenger bundler --no-ri --no-rdoc
+  passenger-install-nginx-module
+  
+Application Setup
+  Add deploy key to github repository
+  mkdir -p /data/ambernet/
+  cap production deploy:setup
+  cap production deploy
+  rm -rf /etc/monit/conf.d && ln -nfs /data/ambernet/current/monitrc/ /etc/monit/conf.d
+  
+Mounting the PG Archive
+  umount if necessary
+  mount -t hfsplus /source /media/PG_Archive
+  
+Nginx Vhosts
+
+  server {
+    listen       80;
+    server_name  _;
+    root /data/ambernet/current/public;
+
+    passenger_enabled on;
+    rack_env production;
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   html;
+    }
+  }
+
+  server {
+    listen 		81;
+    server_name	ambernetonline.net;
+    location / {
+      proxy_pass http://localhost:8282;
+    }
+  }	
+
+  
+
+  
+

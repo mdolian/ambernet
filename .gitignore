@@ -1,3 +1,5 @@
+config/dna.json
+config/dna.rb
 test/gems/*
 test/*
 test/cache/*
