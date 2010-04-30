@@ -147,7 +147,7 @@ class Recording < ActiveRecord::Base
       Dir.chdir("/media/PG_Archive/ambernet/#{label}/")
       Dir.glob("*.flac")
     rescue
-      ["No FLACs exist"]
+      ["Empty"]
     end
   end
   
@@ -156,7 +156,7 @@ class Recording < ActiveRecord::Base
       Dir.chdir("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/")
       Dir.glob("*.mp3")
     rescue
-      ["No MP3s exist"]
+      ["Empty"]
     end
   end
   

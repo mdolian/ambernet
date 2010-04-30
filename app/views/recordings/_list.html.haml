@@ -6,6 +6,7 @@
         %th{:width => "6%", :align => "left"} Delete 
         %th{:width => "4%", :align => "left"} Edit
         %th{:width => "4%", :align => "left"} Tracks
+        %th{:width => "4%", :align => "left"} MP3s
       %th{:width => "5%", :align => "left"} Details  
       %th{:width => "10%", :align => "left"} Show Date
       %th{:width => "35%", :align => "left"} Label
@@ -25,6 +26,11 @@
             %td= link_to 'Edit', edit_recording_path(recording)
             %td
               %a{:href => "/tracks/edit/#{recording.id}"} Tracks
+            %td
+              - if recording.mp3s_generated?
+                DONE
+              - else
+                %a{:href => "/recordings/generate_mp3/#{recording.id}"} Create
           %td= link_to 'Show', recording_path(recording)
           %td= recording.show.date_played
           %td= recording.label
