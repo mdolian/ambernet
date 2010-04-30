@@ -141,6 +141,20 @@ class Recording < ActiveRecord::Base
   def self.per_page
     25
   end
+  
+  def flac_list
+    Dir.chdir("/media/PG_Archive/ambernet/#{label}/")
+    Dir.glob("*.flac")
+  end
+  
+  def mp3_list list
+    Dir.chdir("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/")
+    Dir.glob("*.mp3")
+  end
+  
+  def mp3s_generated?
+    flac_list.size == mp3_list.size
+  end
 
 #  define_index do
 #    indexes :date_played, :sortable => true

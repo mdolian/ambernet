@@ -125,11 +125,11 @@ class RecordingsController < ApplicationController
   end
   
   def directory
-    label, listing = Recording.find(params['id']).label, ""
-    flacs = Dir.glob("/media/PG_Archive/ambernet/#{label}/*.flac")
-    mp3s = Dir.glob("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/*.mp3")
-    flacs.each { |entry| listing << entry << "<br>" }
-    mp3s.each { |entry| listing << entry << "<br>"}
+    recording, listing = Recording.find(params['id']).label, "<table width='100%'><tr><td>"
+    recording.flac_list.each { |entry| listing << entry << "<br>" }
+    listing << "</td><td>" 
+    recording.mp3_list.each { |entry| listing << entry << "<br>"}
+    listing << "</td></tr></table>"
     render :text => listing
   end
   
