@@ -131,7 +131,7 @@ class ShowsController < ApplicationController
  
 private
   def sweep
-    expire_fragment :action => [:show, :index]
+    expire_fragment :action => [:show]
   end 
  
 end
