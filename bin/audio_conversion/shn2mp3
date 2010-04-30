@@ -216,7 +216,7 @@ my %ENCODER = ( "mp3" => ("lame " .
 			   "--preset %PRESET% " :
 			   defined $altpreset ?
 			   "--alt-preset %ALTPRESET% " :
-			   "-b %BITRATE% -q %QUALITY% ") .
+			   "-V0 ") .
 			  "--add-id3v2 --pad-id3v2 " .
 			  "--ta %ARTIST% --tl %ALBUM% --tt %TITLE% " .
 			  "--tc %COMMENT% --ty %YEAR% --tn %TRACK% " .
