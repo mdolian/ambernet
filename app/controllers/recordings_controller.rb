@@ -125,7 +125,7 @@ class RecordingsController < ApplicationController
   end
   
   def directory
-    recording, listing = Recording.find(params['id']).label, "<table width='100%'><tr><td>"
+    recording, listing = Recording.find(params['id']), "<table width='100%'><tr><td>"
     recording.flac_list.each { |entry| listing << entry << "<br>" }
     listing << "</td><td>" 
     recording.mp3_list.each { |entry| listing << entry << "<br>"}

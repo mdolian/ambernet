@@ -143,13 +143,21 @@ class Recording < ActiveRecord::Base
   end
   
   def flac_list
-    Dir.chdir("/media/PG_Archive/ambernet/#{label}/")
-    Dir.glob("*.flac")
+    begin
+      Dir.chdir("/media/PG_Archive/ambernet/#{label}/")
+      Dir.glob("*.flac")
+    rescue
+      ["No FLACs exist"]
+    end
   end
   
-  def mp3_list list
-    Dir.chdir("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/")
-    Dir.glob("*.mp3")
+  def mp3_list
+    begin
+      Dir.chdir("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/")
+      Dir.glob("*.mp3")
+    rescue
+      ["No MP3s exist"]
+    end
   end
   
   def mp3s_generated?
