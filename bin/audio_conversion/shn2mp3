@@ -212,12 +212,7 @@ my %DECODER = ( "shn" => "shorten -x %FILE% -",
 		"ogg" => "oggdec -q -o - %FILE%");
 
 my %ENCODER = ( "mp3" => ("lame " .
-			  (defined $preset ?
-			   "--preset %PRESET% " :
-			   defined $altpreset ?
-			   "--alt-preset %ALTPRESET% " :
-			   "-V0 ") .
-			  "--add-id3v2 --pad-id3v2 " .
+			  "-V0 --add-id3v2 --pad-id3v2 " .
 			  "--ta %ARTIST% --tl %ALBUM% --tt %TITLE% " .
 			  "--tc %COMMENT% --ty %YEAR% --tn %TRACK% " .
 			  "%ENCODEROPTS% - %OUTFILE%" ),

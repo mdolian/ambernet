@@ -2,9 +2,9 @@ require 'resque'
 
 class GenerateMp3 < DefaultJob
 
-  def self.perform(label)
+  def self.perform(directory)
     begin
-      results = %x[/data/ambernet/current/bin/flac2mp3 #{label}]
+      results = %x[shn2mp3 --target #{directory} #{directory}]
     rescue => msg
       puts "MP3 conversion failed with: #{results} - #{msg}"
     end

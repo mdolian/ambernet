@@ -1,6 +1,7 @@
 class RecordingsController < ApplicationController
 
-  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, :zip_link, :generate_mp3, :directory]
+  before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, 
+                :zip_link, :generate_mp3, :directory]
   before_filter :sweep, :only => [:create, :update, :destroy]
 
   def index
@@ -101,7 +102,7 @@ class RecordingsController < ApplicationController
   end
   
   def generate_mp3
-    GenerateMp3.enqueue(Recording.find(params["id"]).label)
+    GenerateMp3.enqueue("/media/PG_Archive/ambernet/" << Recording.find(params["id"]).label)
     redirect_to :action => "show", :id => params["id"]
   end  
   
@@ -125,9 +126,10 @@ class RecordingsController < ApplicationController
   
   def directory
     label, listing = Recording.find(params['id']).label, ""
-    Dir.entries("/media/PG_Archive/ambernet/#{label}/*").each do |entry| 
-      listing = listing << entry << "<br>"
-    end
+    flacs = Dir.glob("/media/PG_Archive/ambernet/#{label}/*.flac")
+    mp3s = Dir.glob("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/*.mp3")
+    flacs.each { |entry| listing << entry << "<br>" }
+    mp3s.each { |entry| listing << entry << "<br>"}
     render :text => listing
   end
   
