@@ -18,7 +18,7 @@
     %tbody
       - if admin_signed_in?
         %tr
-          %td{:colspan => "10"}= link_to 'New Recording', new_recording_path
+          %td{:colspan => "11"}= link_to 'New Recording', new_recording_path
       - @recordings.each do |recording|
         %tr
           - if admin_signed_in?

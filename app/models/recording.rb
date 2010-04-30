@@ -169,7 +169,7 @@ class Recording < ActiveRecord::Base
   end
   
   def flac_dir
-    "#{AppConfig.medi_dir}#{label}"
+    "#{AppConfig.media_dir}#{label}"
   end
     
 

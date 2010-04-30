@@ -103,7 +103,7 @@ class RecordingsController < ApplicationController
   
   def generate_mp3
     GenerateMp3.enqueue(AppConfig.media_dir << Recording.find(params["id"]).label)
-    redirect_to :action => "show", :id => params["id"]
+    redirect_to :action => "index"
   end  
   
   def zip_link
