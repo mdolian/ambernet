@@ -144,7 +144,7 @@ class Recording < ActiveRecord::Base
   
   def flac_list
     begin
-      Dir.chdir("/media/PG_Archive/ambernet/#{label}/")
+      Dir.chdir(dir)
       Dir.glob("*.flac")
     rescue
       ["Empty"]
@@ -153,7 +153,7 @@ class Recording < ActiveRecord::Base
   
   def mp3_list
     begin
-      Dir.chdir(dir)
+      Dir.chdir(mp3_dir)
       Dir.glob("*.mp3")
     rescue
       ["Empty"]
