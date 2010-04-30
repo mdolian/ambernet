@@ -28,7 +28,7 @@ http {
 
   server {
     listen       80;
-    server_name  _;
+    server_name  _ ambernetonline.net ambernet.net;
 
     root /data/ambernet/current/public;
 
@@ -43,7 +43,7 @@ http {
 
   server {
 	  listen 		81;
-	  server_name	ambernetonline.net;
+	  server_name	ambernetonline.net ambernet.net;
 	  location / {
 		  proxy_pass http://localhost:8282;
 	  }

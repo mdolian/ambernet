@@ -102,7 +102,7 @@ class Recording < ActiveRecord::Base
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
     tracks do |track, count|
-      pls << "File#{count}=http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
+      pls << "File#{count}=http://#{AppConfig.host}/ambernet/#{label}/#{track}.mp3\n"
       pls << "Title#{count}=TBD\n"
       pls << "Length#{count}=-1\n\n"
     end
@@ -117,7 +117,7 @@ class Recording < ActiveRecord::Base
     total_count = 0
     tracks do |track, count|
       m3u << "#EXTINF:-1,TBD\n"
-      m3u << "http://ambernetonline.net/ambernet/#{label}/#{track}.mp3\n"
+      m3u << "http://#{AppConfig.host}/ambernet/#{label}/#{track}.mp3\n"
     end
     m3u
   end
@@ -134,7 +134,7 @@ class Recording < ActiveRecord::Base
    
   def files(type)
     tracks do |track, total_count|
-      yield "/media/PG_Archive/ambernet/#{label}/#{track}.#{download_extension(type)}" 
+      yield "#{AppConfig.media_dir}#{label}/#{track}.#{download_extension(type)}" 
     end
   end
 
@@ -144,7 +144,7 @@ class Recording < ActiveRecord::Base
   
   def flac_list
     begin
-      Dir.chdir(dir)
+      Dir.chdir(flac_dir)
       Dir.glob("*.flac")
     rescue
       ["Empty"]
@@ -165,11 +165,11 @@ class Recording < ActiveRecord::Base
   end
   
   def mp3_dir
-    temp = dir.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")
+    flac_dir << "/" << label.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")
   end
   
-  def dir
-    "/media/PG_Archive/ambernet/#{label}"
+  def flac_dir
+    "#{AppConfig.medi_dir}#{label}"
   end
     
 
