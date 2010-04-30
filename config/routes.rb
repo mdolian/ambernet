@@ -22,7 +22,8 @@ Ambernet::Application.routes.draw do |map|
   match 'stream/:id(.:format)' => 'recordings#stream'
   match 'recordings/search' => 'recordings#search'
   match 'recordings/rate/:id/:rating' => 'recordings#rate'
-  match 'recordings/browse' => 'recordings#index'
+  match 'recordings/index' => 'recordings#index'
+  match 'recordings' => 'recordings#index'
   match 'recordings/directory/:id' => 'recordings#directory'
   resources :recordings
   

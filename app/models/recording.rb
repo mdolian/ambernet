@@ -145,7 +145,7 @@ class Recording < ActiveRecord::Base
   def flac_list
     begin
       Dir.chdir(flac_dir)
-      Dir.glob("*.flac")
+      Dir.glob("*.#{filetype}")
     rescue
       ["Empty"]
     end
