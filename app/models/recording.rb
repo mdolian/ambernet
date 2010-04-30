@@ -153,7 +153,7 @@ class Recording < ActiveRecord::Base
   
   def mp3_list
     begin
-      Dir.chdir("/media/PG_Archive/ambernet/#{label}/#{label}.mp3f/")
+      Dir.chdir(dir)
       Dir.glob("*.mp3")
     rescue
       ["Empty"]
@@ -163,6 +163,15 @@ class Recording < ActiveRecord::Base
   def mp3s_generated?
     flac_list.size == mp3_list.size
   end
+  
+  def mp3_dir
+    temp = dir.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")
+  end
+  
+  def dir
+    "/media/PG_Archive/ambernet/#{label}"
+  end
+    
 
 #  define_index do
 #    indexes :date_played, :sortable => true
