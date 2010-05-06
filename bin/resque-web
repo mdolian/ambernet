@@ -17,7 +17,7 @@ if [ "`whoami`" != "root" ]; then
   exit 1
 fi
 
-COMMAND="resque-web -p 8282"
+COMMAND="bundle exec resque-web -p 8282"
 PID_FILE="/var/run/resque-web.pid"
 
 

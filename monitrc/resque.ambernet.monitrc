@@ -1,6 +1,6 @@
 check process resque
   with pidfile /data/ambernet/shared/pids/resque.pid
-  start program = "/data/ambernet/shared/bin/resque ambernet start production" 
-  stop program = "/data/ambernet/shared/bin/resque ambernet stop production"
+  start program = "/data/ambernet/current/bin/resque ambernet start production" 
+  stop program = "/data/ambernet/current/bin/resque ambernet stop production"
   group resque
 

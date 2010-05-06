@@ -22,7 +22,7 @@ fi
 APP=$1 ; ACTION=$2; RACK_ENV=$3; 
 
 LOG_FILE="/data/$APP/current/log/resque.log"
-COMMAND="/usr/bin/rake -f /data/$APP/current/Rakefile APP_ROOT=/data/$APP/current RACK_ENV=$RACK_ENV RAILS_ENV=$RACK_ENV QUEUE=* resque:work"
+COMMAND="bundle exec rake -f /data/$APP/current/Rakefile APP_ROOT=/data/$APP/current RACK_ENV=$RACK_ENV RAILS_ENV=$RACK_ENV QUEUE=* resque:work"
 
 PID_FILE="/data/$APP/shared/pids/resque.pid"
 
