@@ -4,14 +4,7 @@ http://www.greenhughes.com/content/how-install-ubuntu-910-and-boxee-beta-acer-as
 
 
 Install packages
-  sudo apt-get install vim git-core curl build-essential zlib1g-dev libssl-dev libreadline5-dev redis-server mysql-server libmysqlclient15-dev mysql-client monit 
-  
-Install rvm
-  git clone git://github.com/wayneeseguin/rvm.git /tmp && cd /tmp && ./install
-  echo "if [[ -s /home/dolian/.rvm/scripts/rvm ]] ; then source /home/dolian/.rvm/scripts/rvm ; fi" >> ~/.bashrc  
-
-Install ruby 1.8.7 and passenger
-  rvm install 1.8.7
+  sudo apt-get install vim git-core curl build-essential ruby1.8-dev zlib1g-dev libssl-dev libreadline5-dev redis-server mysql-server libmysqlclient15-dev mysql-client monit 
   gem install passenger bundler --no-ri --no-rdoc
   passenger-install-nginx-module
   

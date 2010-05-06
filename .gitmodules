@@ -1,3 +1,0 @@
-[submodule "vendor/plugins/rpm"]
-	path = vendor/plugins/rpm
-	url = http://github.com/newrelic/rpm.git
