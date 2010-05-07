@@ -144,8 +144,10 @@ class Recording < ActiveRecord::Base
   
   def flac_list
     begin
-      Dir.chdir(flac_dir)
-      Dir.glob("*.#{filetype}")
+      logger.info "FLAC DIR: #{flac_dir}"
+      Dir.chdir flac_dir 
+      Dir.glob "*.#{extension}"
+      logger.info "#{Dir.glob}"
     rescue
       ["Empty"]
     end
@@ -153,8 +155,10 @@ class Recording < ActiveRecord::Base
   
   def mp3_list
     begin
-      Dir.chdir(mp3_dir)
-      Dir.glob("*.mp3")
+      logger.info "MP3 DIR: #{flac_dir}"      
+      Dir.chdir mp3_dir
+      Dir.glob "*.mp3"
+      logger.info "#{Dir.glob}"      
     rescue
       ["Empty"]
     end
