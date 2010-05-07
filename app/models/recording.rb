@@ -143,25 +143,29 @@ class Recording < ActiveRecord::Base
   end
   
   def flac_list
+    flac_list = []
     begin
       logger.info "FLAC DIR: #{flac_dir}"
       Dir.chdir flac_dir 
-      Dir.glob "*.#{extension}"
+      flac_list = Dir.glob "*.#{extension}"
       logger.info "#{Dir.glob}"
     rescue
-      ["Empty"]
+      flac_list = ["Empty"]
     end
+    flac_list
   end
   
   def mp3_list
+    mp3_list = []
     begin
-      logger.info "MP3 DIR: #{flac_dir}"      
+      logger.info "MP3 DIR: #{mp3_dir}"      
       Dir.chdir mp3_dir
-      Dir.glob "*.mp3"
+      mp3_list = Dir.glob "*.mp3"
       logger.info "#{Dir.glob}"      
     rescue
-      ["Empty"]
+      mp3_list = ["Empty"]
     end
+    mp3_list
   end
   
   def mp3s_generated?
