@@ -161,6 +161,7 @@ class Recording < ActiveRecord::Base
   end
   
   def mp3s_generated?
+    logger.info "ID: #{id} - #{flac_list.size.to_s}:#{mp3_list.size.to_s}"    
     flac_list.size == mp3_list.size
   end
   
