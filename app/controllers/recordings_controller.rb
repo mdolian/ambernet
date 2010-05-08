@@ -104,7 +104,14 @@ class RecordingsController < ApplicationController
   def generate_mp3
     GenerateMp3.enqueue(AppConfig.media_dir << Recording.find(params["id"]).label)
     redirect_to :action => "index"
-  end  
+  end
+  
+  def generate_all_mp3s
+    Recording.order("id ASC").each do |recording|
+      GenerateMp3.enqueue(AppConfig.media_dir << recording.label)
+    end
+    render
+  end
   
   def zip_link
     recording, filetype, timestamp = Recording.find(params["id"]), params["filetype"], Time.now.strftime("%y%m%d%H%M%S")
