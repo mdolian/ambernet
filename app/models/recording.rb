@@ -147,10 +147,9 @@ class Recording < ActiveRecord::Base
     begin
       logger.info "FLAC DIR: #{flac_dir}"
       Dir.chdir flac_dir
-      logger.info Dir.pwd
-      logger.info "#{Dir.entries}.join(' ')"             
+      logger.info "Dir.pwd: #{Dir.pwd}"
+      logger.info "Entries: #{Dir.entries}.join(' ')"             
       flac_list = Dir.glob "*.#{extension}"
-      logger.info "#{flac_list}"
     rescue
       flac_list = ["Empty"]
     end
@@ -161,11 +160,10 @@ class Recording < ActiveRecord::Base
     mp3_list = []
     begin
       logger.info "MP3 DIR: #{mp3_dir}"      
-      Dir.chdir mp3_dir
-      logger.info Dir.pwd
-      logger.info "#{Dir.entries}.join(' ')"        
-      mp3_list = Dir.glob "*.mp3"
-      logger.info "#{mp3_list}"          
+      Dir.chdir "#{mp3_dir}"
+      logger.info "Dir.pwd: #{Dir.pwd}"
+      logger.info "Entries: #{Dir.entries}.join(' ')"        
+      mp3_list = Dir.glob "*.mp3"         
     rescue
       mp3_list = ["Empty"]
     end
