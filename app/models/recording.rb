@@ -143,31 +143,19 @@ class Recording < ActiveRecord::Base
   end
   
   def flac_list
-    flac_list = []
-    begin
-      logger.info "FLAC DIR: #{flac_dir}"
-      Dir.chdir flac_dir
-      logger.info "Dir.pwd: #{Dir.pwd}"
-      logger.info "Entries: #{Dir.entries}.join(' ')"             
-      flac_list = Dir.glob "*.#{extension}"
+    begin         
+      Dir.glob "#{flac_dir}/*.#{extension}"
     rescue
-      flac_list = ["Empty"]
+      ["Empty"]
     end
-    flac_list
   end
   
   def mp3_list
-    mp3_list = []
-    begin
-      logger.info "MP3 DIR: #{mp3_dir}"      
-      Dir.chdir "#{mp3_dir}"
-      logger.info "Dir.pwd: #{Dir.pwd}"
-      logger.info "Entries: #{Dir.entries}.join(' ')"        
-      mp3_list = Dir.glob "*.mp3"         
+    begin   
+      Dir.glob "#{mp3_dir}/*.mp3"         
     rescue
-      mp3_list = ["Empty"]
+      ["Empty"]
     end
-    mp3_list
   end
   
   def mp3s_generated?
