@@ -4,7 +4,7 @@ http://www.greenhughes.com/content/how-install-ubuntu-910-and-boxee-beta-acer-as
 
 
 Install packages
-  sudo apt-get install vim git-core curl build-essential ruby1.8-dev rubygems1.8 zlib1g-dev libssl-dev libreadline5-dev redis-server mysql-server libmysqlclient15-dev mysql-client monit 
+  sudo apt-get install vim git-core curl build-essential ruby1.8-dev rubygems1.8 zlib1g-dev libssl-dev libreadline5-dev redis-server mysql-server libmysqlclient15-dev mysql-client monit flac lame 
   gem install passenger bundler --no-ri --no-rdoc
   passenger-install-nginx-module
   cd /etc/init.d && sudo wget http://github.com/jnstq/rails-nginx-passenger-ubuntu/raw/master/nginx/nginx && sudo chmod +x nginx
@@ -15,6 +15,8 @@ Application Setup
   cap production deploy:setup
   cap production deploy
   rm -rf /etc/monit/conf.d && ln -nfs /data/ambernet/current/monitrc/ /etc/monit/conf.d
+  Install shorten:  http://www.etree.org/shnutils/shorten/
+  
   
 Mounting the PG Archive
   umount if necessary
@@ -43,6 +45,9 @@ Nginx Vhosts
     }
   }	
 
+Amberland Specific Stuff
+
+  sudo apt-get install mt-daapd proftpd
   
 
   
