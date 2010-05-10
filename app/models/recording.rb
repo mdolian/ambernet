@@ -134,7 +134,11 @@ class Recording < ActiveRecord::Base
    
   def files(type)
     tracks do |track, total_count|
-      yield "#{AppConfig.media_dir}#{label}/#{track}.#{download_extension(type)}" 
+      if type == "mp3"
+        yield "#{AppConfig.media_dir}#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")}/#{track}.#{download_extension(type)}" 
+      else  
+        yield "#{AppConfig.media_dir}#{label}/#{track}.#{download_extension(type)}" 
+      end
     end
   end
 
