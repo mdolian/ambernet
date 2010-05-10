@@ -170,8 +170,7 @@ class Recording < ActiveRecord::Base
   def flac_dir
     "#{AppConfig.media_dir}#{label}"
   end
-    
-
+  
 #  define_index do
 #    indexes :date_played, :sortable => true
 #    indexes venue.venue_name, :sortable => true

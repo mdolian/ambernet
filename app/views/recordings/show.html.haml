@@ -43,7 +43,7 @@
             %td
               %a{:href => "/ambernet/#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
             %td
-              %a{:href => "/ambernet/#{@recording.label}/#{track}.mp3"}mp3
+              %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"}mp3
     %h3
       %a{:href => "#"} Streaming Options
     %div       
