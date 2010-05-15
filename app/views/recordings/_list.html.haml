@@ -1,4 +1,4 @@
-= will_paginate @recordings
+%div{:align => "center"}= will_paginate @recordings
 %table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
@@ -41,4 +41,4 @@
             %td 
               %a{:href => "#", :onclick => "$('#dialog_setlist_#{recording.show.id}').setlist(#{recording.show.id})"} Setlist
               %div{:id => "dialog_setlist_#{recording.show.id}", :title => "Setlist for #{recording.show.date_played}"}       
-= will_paginate @recordings
+%div{:align => "center"}= will_paginate @recordings
