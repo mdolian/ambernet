@@ -48,6 +48,8 @@ Nginx Vhosts
 Amberland Specific Stuff
 
   sudo apt-get install mt-daapd proftpd
+  sudo mount -o bind,uid=ftp,gid=nogroup /media/PG_Archive/ambernet/ /home/ftp/ambernet/
+  for k in $(ls /media/PG_Archive/ambernet/); do cd /media/PG_Archive/ambernet/$k && /data/ambernet/current/bin/audio_conversion/shn2mp3 . ; done;
   
 
   

@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     @shows = @shows.by_source params["source"]                                if params["source"] != ""
     @shows = @shows.by_lineage params["lineage"]                              if params["lineage"] != ""
     @shows = @shows.by_taper params["taper"]                                  if params["taper"] != ""
-    @shows = @shows.by_shnid params["shnid"]                                  if params["shnid"] != ""
+    # @shows = @shows.by_shnid params["shnid"]                                  if params["shnid"] != ""
     @shows = @shows.by_recording_type params["recording_type"]                if params["recording_type"] != "all"
     
 
