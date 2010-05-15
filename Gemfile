@@ -9,7 +9,7 @@ gem "mysql"
 gem "haml"
 gem "will_paginate", "3.0.pre"
 gem "resque"
-gem "redis"
+gem "redis", "1.0.7"
 gem "redis-namespace"
 gem "json"
 
