@@ -102,7 +102,7 @@ class Recording < ActiveRecord::Base
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
     tracks do |track, count|
-      pls << "File#{count}=http://#{AppConfig.host}/ambernet/#{label}/#{track}.mp3\n"
+      pls << "File#{count}=http://#{AppConfig.host}/ambernet/#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
       pls << "Title#{count}=TBD\n"
       pls << "Length#{count}=-1\n\n"
     end
@@ -117,7 +117,7 @@ class Recording < ActiveRecord::Base
     total_count = 0
     tracks do |track, count|
       m3u << "#EXTINF:-1,TBD\n"
-      m3u << "http://#{AppConfig.host}/ambernet/#{label}/#{track}.mp3\n"
+      m3u << "http://#{AppConfig.host}/ambernet/#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
     end
     m3u
   end

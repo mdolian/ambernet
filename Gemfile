@@ -16,4 +16,6 @@ gem "json"
 gem "warden"
 gem "devise", "1.1.rc1"
 
+gem "thinking-sphinx"
+
 gem "rack_hoptoad", :require => "rack/hoptoad"
