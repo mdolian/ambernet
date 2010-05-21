@@ -1,7 +1,6 @@
 class VenuesController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:city_list, :list, :show] 
-  before_filter :sweep, :only => [:create, :update, :destroy]  
   
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -38,7 +37,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(params[:venue])
 
     respond_to do |format|
-      if @venue.save
+      if @venue.save!
         flash[:notice] = "Venue was successfully created."
         format.html { redirect_to :action => "index" }
         format.xml  { render :xml => @venue, :status => :created, :location => @venue }

@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:show, :list]
-  before_filter :sweep, :only => [:create, :update, :destroy]
 
   # GET /songs
   def index

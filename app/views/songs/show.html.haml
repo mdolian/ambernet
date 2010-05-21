@@ -1,27 +1,26 @@
-- cache do
-  %h3 Song Details
-  %table{:width => "65%", :align => "center", :class => "tablesorter"}
-    %tr
-      %td{:width => "20%"} 
-        %b Venue ID
-      %td{:width => "80%"}= @song.id
-    %tr  
-      %td 
-        %b Song Name
-      %td= @song.song_name
-    %tr
-      %td 
-        %b Written By
-      %td= @song.written_by
-    %tr
-      %td 
-        %b Original Performer
-      %td= @song.original_performer
-    %tr
-      %td 
-        %b Instrumental
-      %td= @song.is_instrumental
-    %tr
-      %td 
-        %b Lyrics
-      %td= @song.song_lyrics
+%h3 Song Details
+%table{:width => "65%", :align => "center", :class => "tablesorter"}
+  %tr
+    %td{:width => "20%"} 
+      %b Venue ID
+    %td{:width => "80%"}= @song.id
+  %tr  
+    %td 
+      %b Song Name
+    %td= @song.song_name
+  %tr
+    %td 
+      %b Written By
+    %td= @song.written_by
+  %tr
+    %td 
+      %b Original Performer
+    %td= @song.original_performer
+  %tr
+    %td 
+      %b Instrumental
+    %td= @song.is_instrumental
+  %tr
+    %td 
+      %b Lyrics
+    %td= @song.song_lyrics

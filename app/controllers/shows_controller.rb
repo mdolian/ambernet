@@ -1,7 +1,6 @@
 class ShowsController < ApplicationController
  
   before_filter :authenticate_admin!, :except => [:search, :list, :setlist, :recordings, :show, :browse, :index, :browse_by] 
-  before_filter :sweep, :only => [:create, :update, :destroy]
  
   def index
     @current_page = (params[:page] || 1).to_i 

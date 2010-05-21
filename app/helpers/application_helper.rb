@@ -64,7 +64,7 @@ module ApplicationHelper
   end  
   
   def get_filetypes
-    [["Select a Recording Type", "All"],
+    [["Select a File Type", "All"],
       ["flac16", "flac16"],
       ["shnf", "shnf"],
       ["flac24", "flac24"],

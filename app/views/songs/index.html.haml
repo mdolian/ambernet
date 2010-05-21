@@ -1,7 +1,6 @@
-- cache do
-  - if admin_signed_in?  
-    = javascript_include_tag "admin"
+- if admin_signed_in?  
+  = javascript_include_tag "admin"
 
-  %h2 Browse Songs
+%h2 Browse Songs
 
-  = render 'songs/list'
+= render 'songs/list'
