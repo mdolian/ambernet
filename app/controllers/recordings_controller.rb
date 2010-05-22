@@ -5,7 +5,7 @@ class RecordingsController < ApplicationController
 
   def index
     @current_page = (params[:page] || 1).to_i 
-    @recordings = Recording.joins(:show).paginate(:all, :page => @current_page)
+    @recordings = Recording.joins(:show).order("id DESC").paginate(:all, :page => @current_page)
 
     respond_to do |format|
       format.html
@@ -39,11 +39,12 @@ class RecordingsController < ApplicationController
     @recording = Recording.new(params[:recording])
 
     tracking_info = params["discs"] << "["
-    for i in (1..params["discs"].to_i)
+    for i in (1..params["discs"].to_i) 
       tracking_info << params["tracksDisc" << i.to_s] << ","
     end
     tracking_info.chop! << "]"
-    params["tracking_info"] = tracking_info    
+    @recording.tracking_info = tracking_info
+    @recording.save!    
     
     respond_to do |format|
       if @recording.save
@@ -59,24 +60,26 @@ class RecordingsController < ApplicationController
   
   def update
     @recording = Recording.find(params["id"])
-   
-    tracking_info = params["discs"] << "["
-    for i in (1..params["discs"].to_i) 
-      tracking_info << params["tracksDisc" << i.to_s] << ","
-    end
-    tracking_info.chop! << "]"
-    params["tracking_info"] = tracking_info
      
     respond_to do |format|
       if @recording.update_attributes(params[:recording])
         flash[:notice] = "Recording was successfully updated."
+        
+        tracking_info = params["discs"] << "["
+        for i in (1..params["discs"].to_i) 
+          tracking_info << params["tracksDisc" << i.to_s] << ","
+        end
+        tracking_info.chop! << "]"
+        @recording.tracking_info = tracking_info
+        @recording.save!        
+        
         format.html { redirect_to :action => "index" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @recording.errors, :status => :unprocessable_entity }
       end
-    end    
+    end   
   end
 
   def destroy

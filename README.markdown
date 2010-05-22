@@ -6,17 +6,15 @@
 
   Ruby 1.8.7 (2010-01-10 patchlevel 249)
   
-  Rubygems 1.3.5
+  Rubygems 1.3.6
   
-  Bundler 0.9.6
+  Bundler 0.9.25
   
-  Rails 3.0.0.beta
+  Rails 3.0.0.beta2
   
   Mysql 5.X
   
-  Sphinx 0.9.9-release (r2117)
-  
-  Resque 1.4.0
+  Resque 1.8.5
   
   Redis 1.2.0
 
@@ -37,10 +35,6 @@
   script/rails server
   
   curl http://localhost:3000 
-
-### NOTES
-
-  hpricot seems to break Rails 3
 
 ### Sphinx
 
