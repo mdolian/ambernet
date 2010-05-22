@@ -37,18 +37,19 @@ class RecordingsController < ApplicationController
 
   def create 
     @recording = Recording.new(params[:recording])
-
-    tracking_info = params["discs"] << "["
-    for i in (1..params["discs"].to_i) 
-      tracking_info << params["tracksDisc" << i.to_s] << ","
-    end
-    tracking_info.chop! << "]"
-    @recording.tracking_info = tracking_info
-    @recording.save!    
     
     respond_to do |format|
       if @recording.save
         flash[:notice] = 'Recording was successfully created.'
+        
+        tracking_info = params["discs"] << "["
+        for i in (1..params["discs"].to_i) 
+          tracking_info << params["tracksDisc" << i.to_s] << ","
+        end
+        tracking_info.chop! << "]"
+        @recording.tracking_info = tracking_info
+        @recording.save!      
+        
         format.html { redirect_to :action => "index" }
         format.xml  { render :xml => @recording, :status => :created, :location => @recording }
       else
