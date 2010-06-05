@@ -1,6 +1,9 @@
 = javascript_include_tag 'soundmanager2'
 = javascript_include_tag 'page-player'
+= stylesheet_link_tag 'flashblock'
 = stylesheet_link_tag 'page-player'
+= stylesheet_link_tag 'optional-annotations'
+= stylesheet_link_tag 'optional-themes'
 :javascript
   jQuery(document).ready(function($) {
     $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{
@@ -19,11 +22,10 @@
     });
   })
   soundManager.url = '/soundmanager2/';
-  soundManager.debugMode = false;
+  soundManager.debugMode = true;
   soundManager.useHighPerformance = true; // keep flash on screen, boost performance
   soundManager.wmode = 'transparent'; // transparent SWF, if possible
   soundManager.useFastPolling = true; // increased JS callback frequency
-  soundManager.url = '../../swf/';
 
   var PP_CONFIG = {
     flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
@@ -32,17 +34,6 @@
     useEQData: false,      // [Flash 9 only] show EQ (frequency spectrum) data
     useFavIcon: false,     // try to apply peakData to address bar (Firefox + Opera) - p
     useMovieStar: true     // Flash 9.0r115+ only: Support for a subset of MPEG4 formats.
-  }  
-  
-  threeSixtyPlayer.config = {
-    playNext: true, // stop after one sound, or play through list until end
-    autoPlay: false, // start playing the first sound right away
-    loadRingColor: '#ccc',// amount of sound which has loaded
-    playRingColor: '#000', // amount of sound which has played
-    backgroundRingColor: '#eee', // "default" color shown underneath everything else
-    imageRoot: '/images/',// path to prepend for empty.gif used for play/pause button
-    animDuration: 500,
-    animTransition: Animator.tx.bouncy // http://www.berniecode.com/writing/animator.html
   }  
 
   var is_shiny = false;
@@ -65,7 +56,8 @@
   	}
     }
   }
-
+  
+%div{:id => "sm2-container"} 
 %div{:id => "recording_detail_accordion"}
   %h3
     %a{:href => "#"} Recording Details
@@ -147,8 +139,7 @@
           %b Computer via m3u
         %td
           %a{:href => "/stream/#{@recording.id}.m3u"} Click here to stream via m3u
-
-    %div{:id => "sm2-container"}          
+         
     %div{:id => "control-template"}
       %div{:class => "controls"}
         %div{:class => "statusbar"}
