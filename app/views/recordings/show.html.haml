@@ -22,7 +22,7 @@
     });
   })
   soundManager.url = '/soundmanager2/';
-  soundManager.debugMode = true;
+  soundManager.debugMode = false;
   soundManager.useHighPerformance = true; // keep flash on screen, boost performance
   soundManager.wmode = 'transparent'; // transparent SWF, if possible
   soundManager.useFastPolling = true; // increased JS callback frequency
@@ -94,9 +94,9 @@
       %tr
         %td 
           %b Entire Show
-        %td 
+        %td{:align => "center", :valign => "middle"} 
           %div{:id => "zip_lossless"}
-        %td
+        %td{:align => "center", :valign => "middle"}
           %div{:id => "zip_mp3"} 
       - @recording.tracks do |track, total_count|
         %tr
@@ -104,7 +104,7 @@
             = track
           %td{:align => "center", :valign => "middle"}
             %a{:href => "/ambernet/#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
-          %td
+          %td{:align => "center", :valign => "middle"}
             %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"} mp3
   %h3
     %a{:href => "#"} Streaming Options
@@ -118,21 +118,20 @@
         %div{:class => "statusbar"}
           %div{:class => "loading"}
           %div{:class => "position"}
-
-    %div{:class => "timing"}
-      %div{:id => "sm2_timing", :class => "timing-data"}
-        %span{:class => "sm2_position"} %s1
-        / 
-        %span{:class => "sm2_total"} %s2
-
-    %div{:class => "peak"}
-      %div{:class => "peak-box"}
-        %span{:class => "l"}
-        %span{:class => "r"}
+      %div{:class => "timing"}
+        %div{:id => "sm2_timing", :class => "timing-data"}
+          %span{:class => "sm2_position"} %s1
+          / 
+          %span{:class => "sm2_total"} %s2
+      %div{:class => "peak"}
+        %div{:class => "peak-box"}
+          %span{:class => "l"}
+          %span{:class => "r"}
 
     %div{:id => "spectrum-container", :class => "spectrum-container"}
       %div{:class => "spectrum-box"}
-        %div{:class => "spectrum"}  
+        %div{:class => "spectrum"}
+        
     %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
       %tr
         %th Device
