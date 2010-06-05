@@ -1,4 +1,6 @@
 = javascript_include_tag 'soundmanager2'
+= javascript_include_tag 'inlineplayer'
+= stylesheet_link_tag 'inlineplayer'
 :javascript
   jQuery(document).ready(function($) {
     $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{
