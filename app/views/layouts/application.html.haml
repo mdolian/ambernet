@@ -18,8 +18,11 @@
     %title
       AmberNET Online
     - if admin_signed_in?  
-      %script{:type => "text/javascript"}
-        jQuery(document).ready(function($){$('#lavaLamp').attr("width", 530);});
+      :javascript
+        jQuery(document).ready(
+          function($) {
+            $('#lavaLamp').attr("width", 530);
+          });
   %body
     %div{:id => "sub-link-bar"}
     %div{:id => "wrap"}
