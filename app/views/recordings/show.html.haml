@@ -57,7 +57,12 @@
     }
   }
   
-%div{:id => "sm2-container"} 
+  function setTheme(sTheme) {
+    var o = document.getElementsByTagName('ul')[0];
+    o.className = 'playlist'+(sTheme?' '+sTheme:'');
+    return false;
+  }
+    
 %div{:id => "recording_detail_accordion"}
   %h3
     %a{:href => "#"} Recording Details
@@ -104,6 +109,7 @@
   %h3
     %a{:href => "#"} Streaming Options
   %div
+    %div{:id => "sm2-container"}
     %ul{:class => "playlist"}
       - @recording.tracks do |track, total_count|
         %li
