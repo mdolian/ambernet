@@ -23,7 +23,14 @@
   soundManager.url = '/soundmanager2/';
   soundManager.debugMode = false;
   threeSixtyPlayer.config = {
+    playNext: true, // stop after one sound, or play through list until end
+    autoPlay: false, // start playing the first sound right away
+    loadRingColor: '#ccc',// amount of sound which has loaded
+    playRingColor: '#000', // amount of sound which has played
+    backgroundRingColor: '#eee', // "default" color shown underneath everything else
     imageRoot: '/images/',// path to prepend for empty.gif used for play/pause button
+    animDuration: 500,
+    animTransition: Animator.tx.bouncy // http://www.berniecode.com/writing/animator.html
   }  
 
 %div{:id => "recording_detail_accordion"}
