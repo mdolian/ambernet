@@ -21,7 +21,6 @@
   soundManager.url = '/soundmanager2/';
   soundManager.debugMode = false;
 
-%div{:id => "sm2-container"}
 %div{:id => "recording_detail_accordion"}
   %h3
     %a{:href => "#"} Recording Details
@@ -33,7 +32,7 @@
     = render 'shows/detail'
   %h3
     %a{:href => "#"} Download Options
-  %div
+  %div{:id => "sm2-inline-list"}
     %table{:width => "100%"}
       %tr
         %td{:align => "left"}
@@ -65,7 +64,7 @@
             %a{:href => "/ambernet/#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
           %td
             %div{:class => "ui360"}
-              %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"}
+              %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"} Play
   %h3
     %a{:href => "#"} Streaming Options
   %div       
