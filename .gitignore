@@ -1,3 +1,4 @@
+config/config.yml
 public/downloads/
 config/dna.json
 config/dna.rb

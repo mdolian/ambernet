@@ -1,19 +1,24 @@
 %table{:width => "65%", :align => "center", :class => "tablesorter"}
+  - if admin_signed_in?
+    %tr
+      %td
+        %b Edit:
+      %td= link_to 'Edit Recording', edit_recording_path(@recording)
   %tr
     %td{:width => "20%"} 
-      %b Show ID
+      %b Show ID:
     %td{:width => "80%"}= @recording.show.id
   %tr  
     %td 
-      %b Recording Label
+      %b Recording Label:
     %td= @recording.label
   %tr
     %td 
-      %b Taper
+      %b Taper:
     %td= @recording.taper
   %tr
     %td 
-      %b Transferred By
+      %b Transferred By:
     %td= @recording.transfered_by
   %tr
     %td 
@@ -25,5 +30,5 @@
     %td= @recording.lineage
   %tr
     %td 
-      %b Notes
+      %b Notes:
     %td= @recording.notes

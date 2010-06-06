@@ -62,6 +62,8 @@
     o.className = 'playlist'+(sTheme?' '+sTheme:'');
     return false;
   }
+= AppConfig.flac_enabled
+= AppConfig.zip_enabled
 %div{:id => "sm2-container"}    
 %div{:id => "recording_detail_accordion"}
   %h3
@@ -72,94 +74,100 @@
     %a{:href => "#"} Show Details
   %div          
     = render 'shows/detail'
-  %h3
-    %a{:href => "#"} Download Options
-  %div
-    %table{:width => "100%"}
-      %tr
-        %td{:align => "left"}
-          %a{:href => "#", :onclick => "$('#recording_directory').listing(#{@recording.id})"} Directory Listing
-        %td
-          %div{:id => "recording_directory"}
-        %td{:align => "right"}
-          %a{:href => "/recordings/generate_mp3/#{@recording.id}"} Generate MP3s      
-    %table{:class => "tablesorter"}
-      %tr
-        %td{:colspan => "3"}
-          %b It may take a few minutes to generate the zip file if you are the first to request this recording.  If the download box pops up instantly, someone else graciously donated their time.
-      %tr
-        %th{:width => "80%"} Track
-        %th{:width => "10%"} Lossless
-        %th{:width => "10%"} MP3 (V0)
-      %tr
-        %td 
-          %b Entire Show
-        %td{:align => "center", :valign => "middle"} 
-          %div{:id => "zip_lossless"}
-        %td{:align => "center", :valign => "middle"}
-          %div{:id => "zip_mp3"} 
-      - @recording.tracks do |track, total_count|
+  - if @recording.s3_available == 1
+    %h3
+      %a{:href => "#"} Download Options
+    %div
+      - if admin_signed_in?
+        %table{:width => "100%"}
+          %tr
+            %td{:align => "left"}
+              %a{:href => "#", :onclick => "$('#recording_directory').listing(#{@recording.id})"} Directory Listing
+            %td
+              %div{:id => "recording_directory"}
+            %td{:align => "right"}
+              %a{:href => "/recordings/generate_mp3/#{@recording.id}"} Generate MP3s      
+      %table{:class => "tablesorter"}
+        %tr
+          %th{:width => "80%"} Track
+          - if AppConfig.flac_enabled == true
+            %th{:width => "10%"} Lossless
+          %th{:width => "10%"} MP3 (V0)      
+        - if AppConfig.zip_enabled == true
+          %tr
+            %td{:colspan => "3"}
+              %b It may take a few minutes to generate the zip file if you are the first to request this recording.  If the download box pops up instantly, someone else graciously donated their time.
+          %tr
+            %td 
+              %b Entire Show
+            - if AppConfig.flac_enabled == true
+              %td{:align => "center", :valign => "middle"} 
+                %div{:id => "zip_lossless"}
+            %td{:align => "center", :valign => "middle"}
+              %div{:id => "zip_mp3"} 
+        - @recording.tracks do |track, track_name, total_count|
+          %tr
+            %td 
+              = track_name
+            - if AppConfig.flac_enabled == true
+              %td{:align => "center", :valign => "middle"}
+                %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
+            %td{:align => "center", :valign => "middle"}
+              %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"} mp3
+    %h3
+      %a{:href => "#"} Streaming Options
+    %div
+      %ul{:class => "playlist"}
+        - @recording.tracks do |track, track_name, total_count|
+          %li
+            %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"}= track_name
+      %div{:id => "control-template"}
+        %div{:class => "controls"}
+          %div{:class => "statusbar"}
+            %div{:class => "loading"}
+            %div{:class => "position"}
+        %div{:class => "timing"}
+          %div{:id => "sm2_timing", :class => "timing-data"}
+            %span{:class => "sm2_position"} %s1
+            / 
+            %span{:class => "sm2_total"} %s2
+        %div{:class => "peak"}
+          %div{:class => "peak-box"}
+            %span{:class => "l"}
+            %span{:class => "r"}
+
+      %div{:id => "spectrum-container", :class => "spectrum-container"}
+        %div{:class => "spectrum-box"}
+          %div{:class => "spectrum"}
+        
+      %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
+        %tr
+          %th Device
+          %th Link
         %tr
           %td 
-            = track
-          %td{:align => "center", :valign => "middle"}
-            %a{:href => "/ambernet/#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
-          %td{:align => "center", :valign => "middle"}
-            %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"} mp3
-  %h3
-    %a{:href => "#"} Streaming Options
-  %div
-    %ul{:class => "playlist"}
-      - @recording.tracks do |track, total_count|
-        %li
-          %a{:href => "/ambernet/#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"}= track
-    %div{:id => "control-template"}
-      %div{:class => "controls"}
-        %div{:class => "statusbar"}
-          %div{:class => "loading"}
-          %div{:class => "position"}
-      %div{:class => "timing"}
-        %div{:id => "sm2_timing", :class => "timing-data"}
-          %span{:class => "sm2_position"} %s1
-          / 
-          %span{:class => "sm2_total"} %s2
-      %div{:class => "peak"}
-        %div{:class => "peak-box"}
-          %span{:class => "l"}
-          %span{:class => "r"}
-
-    %div{:id => "spectrum-container", :class => "spectrum-container"}
-      %div{:class => "spectrum-box"}
-        %div{:class => "spectrum"}
-        
-    %table{:width => "40%", :align => "center", :id => "streamingTable", :class => "tablesorter"}
-      %tr
-        %th Device
-        %th Link
-      %tr
-        %td 
-          %b iPhone via pls
-        %td
-          Type the following URL into any iPhone application that supports pls files:
-          %br
-          %br
-          %b="http://#{AppConfig.host}/s/#{@recording.id}.pls"
-      %tr
-        %td 
-          %b iPhone via m3u
-        %td
-          Type the following URL into any iPhone application that supports m3u files:
-          %br
-          %br
-          %b="http://#{AppConfig.host}/s/#{@recording.id}.m3u"
-      %tr
-        %td 
-          %b Computer via pls
-        %td
-          %a{:href => "/stream/#{@recording.id}.pls"} Click here to stream via pls     
-      %tr
-        %td 
-          %b Computer via m3u
-        %td
-          %a{:href => "/stream/#{@recording.id}.m3u"} Click here to stream via m3u
+            %b iPhone via pls
+          %td
+            Type the following URL into any iPhone application that supports pls files:
+            %br
+            %br
+            %b="#{AppConfig.host}/s/#{@recording.id}.pls"
+        %tr
+          %td 
+            %b iPhone via m3u
+          %td
+            Type the following URL into any iPhone application that supports m3u files:
+            %br
+            %br
+            %b="#{AppConfig.host}/s/#{@recording.id}.m3u"
+        %tr
+          %td 
+            %b Computer via pls
+          %td
+            %a{:href => "/stream/#{@recording.id}.pls"} Click here to stream via pls     
+        %tr
+          %td 
+            %b Computer via m3u
+          %td
+            %a{:href => "/stream/#{@recording.id}.m3u"} Click here to stream via m3u
       
