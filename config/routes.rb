@@ -2,6 +2,7 @@ Ambernet::Application.routes.draw do |map|
 
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
+  match 'tracks/import/:id' => 'tracks#import'
   match 'tracks/list/:recording_id/:track' => 'tracks#list'
   match 'tracks/save' => 'tracks#save'   
   

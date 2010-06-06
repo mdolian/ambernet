@@ -127,7 +127,7 @@ class Recording < ActiveRecord::Base
     for disc_count in (1..total_discs.to_i)
       for track_count in "01"..tracks_for_disc(disc_count) do
         total_count = total_count + 1
-        tracks = RecordingTrack.where('recording_id = ? AND track = ?', id, track_count)
+        tracks = RecordingTrack.where('recording_id = ? AND track = ?', id, total_count)
         song_list = ""
         tracks.each do |track|
           song = Song.find track.song_id
