@@ -105,13 +105,13 @@ class RecordingsController < ApplicationController
   end
   
   def generate_mp3
-    GenerateMp3.enqueue("#{AppConfig.media_dir}#{Recording.find(params['id']).label}")
+    GenerateMp3.enqueue("#{AppConfig.offline_media_dir}#{Recording.find(params['id']).label}")
     redirect_to :action => "index"
   end
   
   def generate_all_mp3s
     Recording.order("id ASC").each do |recording|
-      GenerateMp3.enqueue("#{AppConfig.media_dir}#{recording.label}")
+      GenerateMp3.enqueue("#{AppConfig.offline_media_dir}#{recording.label}")
     end
     render
   end

@@ -101,9 +101,9 @@ class Recording < ActiveRecord::Base
   # Returns a string containing a pls file
   def to_pls
     pls = "[playlist]\nNumberOfEntries=" << total_tracks << "\n\n"
-    tracks do |track, count|
-      pls << "File#{count}=http://#{AppConfig.host}/ambernet/#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
-      pls << "Title#{count}=TBD\n"
+    tracks do |track, track_name, count|
+      pls << "File#{count}=http://#{AppConfig.media_link}#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
+      pls << "Title#{count}=#{track_name}\n"
       pls << "Length#{count}=-1\n\n"
     end
     logger.info pls
@@ -115,9 +115,9 @@ class Recording < ActiveRecord::Base
     m3u = "#EXTM3\n"
     disc_count = 0
     total_count = 0
-    tracks do |track, count|
-      m3u << "#EXTINF:-1,TBD\n"
-      m3u << "http://#{AppConfig.host}/ambernet/#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
+    tracks do |track, track_name, count|
+      m3u << "#EXTINF:-1,#{track_name}\n"
+      m3u << "http://#{AppConfig.media_link}#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3\n"
     end
     m3u
   end
@@ -127,17 +127,24 @@ class Recording < ActiveRecord::Base
     for disc_count in (1..total_discs.to_i)
       for track_count in "01"..tracks_for_disc(disc_count) do
         total_count = total_count + 1
-        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", total_count
+        tracks = RecordingTrack.where('recording_id = ? AND track = ?', id, track_count)
+        song_list = ""
+        tracks.each do |track|
+          song = Song.find track.song_id
+          song_list = song_list + song.song_name + ", "
+          puts song_list
+        end
+        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", song_list.chop!.chop!, total_count
       end
     end
   end
    
   def files(type)
-    tracks do |track, total_count|
+    tracks do |track, track_name, total_count|
       if type == "mp3"
-        yield "#{AppConfig.media_dir}#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")}/#{track}.#{download_extension(type)}" 
+        yield "#{AppConfig.media_link}#{label}/#{label.gsub(/flac16|mp3f|flac24|shnf/, "mp3f")}/#{track}.#{download_extension(type)}" 
       else  
-        yield "#{AppConfig.media_dir}#{label}/#{track}.#{download_extension(type)}" 
+        yield "#{AppConfig.media_link}#{label}/#{track}.#{download_extension(type)}" 
       end
     end
   end
@@ -172,7 +179,7 @@ class Recording < ActiveRecord::Base
   end
   
   def flac_dir
-    "#{AppConfig.media_dir}#{label}"
+    "#{AppConfig.offline_media_dir}#{label}"
   end
   
 #  define_index do

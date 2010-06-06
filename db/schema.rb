@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100325184529) do
+ActiveRecord::Schema.define(:version => 20100605233527) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                              :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100325184529) do
     t.string  "shnid",          :limit => 50
     t.string  "filetype",       :limit => 8
     t.integer "show_id"
+    t.integer "s3_available"
   end
 
   create_table "setlists", :force => true do |t|

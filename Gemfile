@@ -12,6 +12,7 @@ gem "resque"
 gem "redis", "1.0.7"
 gem "redis-namespace"
 gem "json"
+gem "aws-s3", :require => "aws/s3"
 
 gem "warden"
 gem "devise", "1.1.rc1"
