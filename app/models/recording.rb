@@ -132,9 +132,9 @@ class Recording < ActiveRecord::Base
         tracks.each do |track|
           song = Song.find track.song_id
           song_list = song_list + song.song_name + ", "
-          puts song_list
+          song_list.chop!.chop!
         end
-        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", song_list.chop!.chop!, total_count
+        yield "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}", song_list == "" ?  "pgroove#{show.date_as_label}d#{disc_count}t#{track_count}" : song_list, total_count
       end
     end
   end
