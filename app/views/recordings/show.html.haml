@@ -1,5 +1,4 @@
 = javascript_include_tag 'soundmanager2'
-= javascript_include_tag 'page-player'
 = stylesheet_link_tag 'flashblock'
 = stylesheet_link_tag 'page-player'
 = stylesheet_link_tag 'optional-annotations'
@@ -26,14 +25,15 @@
   soundManager.useHighPerformance = true; // keep flash on screen, boost performance
   soundManager.wmode = 'transparent'; // transparent SWF, if possible
   soundManager.useFastPolling = true; // increased JS callback frequency
+  //soundManager.flashVersion = 9;  
 
   var PP_CONFIG = {
-    flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
-    usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
-    useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
-    useEQData: false,      // [Flash 9 only] show EQ (frequency spectrum) data
-    useFavIcon: false,     // try to apply peakData to address bar (Firefox + Opera) - p
-    useMovieStar: true     // Flash 9.0r115+ only: Support for a subset of MPEG4 formats.
+    //flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
+    //usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
+    //useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
+    //useEQData: true,      // [Flash 9 only] show EQ (frequency spectrum) data
+    //fillGraph: false,    
+    //useFavIcon: true,     // try to apply peakData to address bar (Firefox + Opera) - p
   }  
 
   var is_shiny = false;
@@ -44,6 +44,7 @@
     }
     return false;
   }
+  
   function setShiny(bShiny) {
     is_shiny = bShiny;
     var o = pagePlayer.getElementsByClassName('playlist','ul');
@@ -62,6 +63,7 @@
     o.className = 'playlist'+(sTheme?' '+sTheme:'');
     return false;
   }
+= javascript_include_tag 'page-player'  
 %div{:id => "sm2-container"}    
 %div{:id => "recording_detail_accordion"}
   %h3
@@ -133,7 +135,6 @@
           %div{:class => "peak-box"}
             %span{:class => "l"}
             %span{:class => "r"}
-
       %div{:id => "spectrum-container", :class => "spectrum-container"}
         %div{:class => "spectrum-box"}
           %div{:class => "spectrum"}
