@@ -5,6 +5,12 @@ class TracksController < ApplicationController
   def edit
     @recording = Recording.find(params["id"])
     @show = Show.find(@recording.show_id)
+    render
+  end
+
+  def import
+    @recording = Recording.find(params["id"])
+    @show = Show.find(@recording.show_id)
     setlists = Setlist.where("show_id = ?", @recording.show_id).order("song_order ASC")
     tracks = RecordingTrack.where("recording_id = ?", @recording.id)
     if setlists.size == @recording.total_tracks.to_i && tracks.empty?

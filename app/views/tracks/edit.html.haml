@@ -11,6 +11,7 @@
   %tr
     %td= render 'shows/setlist'
 %br
+%a{:href = "/tracks/import/#{@recording.id}"} Import from setlist
 %form{:action => '/tracks/save', :method => 'post'}
   %input{:type => "hidden", :name => "recording_id", :value => "#{@recording.id}"}
   %input{:type => "hidden", :name => "total_tracks", :value => "#{@recording.total_tracks}"}  
