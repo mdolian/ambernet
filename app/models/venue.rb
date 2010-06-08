@@ -20,7 +20,7 @@ class Venue < ActiveRecord::Base
   def venue_label
     venue_name + " " + venue_city + ", " + venue_state
   end
- 
+  
 #  define_index do
 #    indexes venue_name, :sortable => true
 #    indexes venue_city, :sortable => true
@@ -30,4 +30,10 @@ class Venue < ActiveRecord::Base
 #    has venue_name, venue_city, venue_state, venue_image, venue_country
 #  end
     
+end
+
+Sunspot.setup(Venue) do
+  text :venue_name
+  text :venue_city
+  text :venue_state
 end
