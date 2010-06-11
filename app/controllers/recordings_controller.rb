@@ -94,6 +94,16 @@ class RecordingsController < ApplicationController
     end
   end
   
+  def featured
+    @current_page = (params[:page] || 1).to_i     
+    @recordings = Recording.featured.order("shows.date_played DESC").paginate(:all, :page => @current_page)
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @recordings }
+    end
+  end
+  
   def zip
     recording = Recording.find(params["id"])
     file_list = []
