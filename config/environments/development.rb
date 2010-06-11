@@ -18,6 +18,6 @@ Ambernet::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
-  Sunspot.config.solr.url = 'http://localhost:8982/solr'
+  #Sunspot.config.solr.url = 'http://localhost:8982/solr'
   
 end

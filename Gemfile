@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 ## Bundle edge rails:
-gem "rails", "3.0.0.beta3"
+gem "rails", :git => "http://github.com/rails/rails.git"
 
 gem "hpricot"    
 gem "rubyzip", :require => "zip/zip"
@@ -12,12 +12,15 @@ gem "resque"
 gem "redis", "1.0.7"
 gem "redis-namespace"
 gem "json"
-gem "aws-s3", :require => "aws/s3"
-gem 'sunspot'
+#gem "aws-s3", :require => "aws/s3"
 
+gem 'typhoeus'
+gem 'oauth2'
+#gem 'warden_oauth2', :git => "http://github.com/smparkes/warden_oauth.git"
 gem "warden"
-gem "devise", "1.1.rc1"
+gem "devise", :git => "http://github.com/plataformatec/devise.git"
 
-gem "thinking-sphinx"
+#gem "thinking-sphinx"
+#gem 'sunspot'
 
 gem "rack_hoptoad", :require => "rack/hoptoad"

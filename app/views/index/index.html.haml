@@ -3,30 +3,14 @@
     %a{:href => "#"} Welcome
   %div   
     %p 
-      Welcome to AmberNET!  Currently the site is in a beta testing period and media is not available.  The site will officially launch at 
-      %a{:href => "http://www.pgroove.com/index.php/amberland/", :target => "_blank"} Amberland 
-      where all of the media will be available for download.
-    %p
-      Once on site connect to a hot spot called AmberNET, then browse to http://www.ambernet.net in your web browser.  There are a number of ways to download recordings as well as 
-      %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 2 ))"} streaming options 
-      for devices like iPhones.  You can visit the sections below for more information on each option.  
+      Welcome to AmberNET!  Currently the site is in a beta testing period.  Feel free to browse around and poke at the site.  There will be a bug reporting form up in the coming weeks.     
     %p 
-      Please note that the AmberNET database contains a list of 
-      %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 2 ))"} shows 
-      and 
-      %a{:href => "#", :onclick=>"jQuery($('#index_tabs').tabs( 'select' , 1 ))"} recordings.  
-      There might be more than one recording available for some shows while other shows may have no recordings.
+      Please note that the AmberNET database contains a list of shows and recordings.  
+      There might be more than one recording for some shows while other shows may have no recordings.  Currently there is only one show available for download and streaming but more will be posted before the launch.  Recordings should be in rotation on a monthly basis based on user interest.  A voting system will be put in place to decide which shows are available.
     %p 
       All setlist data is pulled directly from  
       %a{:href => "http://perpetualarchives.mongoosecommunication.com"} Perpetual Archives. 
-      We would like to thank Rick Hadley and Bridger Deville for tracking and making this data accessible.
-  %h3
-    %a{:href => "#"} Web
-  %div
-    %p 
-      Using a web browser is the easiest way to access AmberNET.  The first step is to search or browse for shows in the database.  The search results will display the number of recordings available for each show.  We have made it possible to search by date range, venue name, city, state, source, taper and more!  
-    %p Once you find a recording that interests you, click on the label to view the recording details, download options and streaming options.  
-    %p In the download section you will have the option to download the entire show or individual tracks.  Most shows are available in shn or flac and mp3 (V0).  
+      We would like to thank Rick Hadley and Bridger Deville for tracking and making this data accessible.    
   %h3
     %a{:href => "#"} Streaming
   %div
@@ -34,30 +18,7 @@
       All recordings on AmberNET can be streamed using pls or m3u playlist files.  If you wish to stream shows using a laptop make sure you have an application associated with whichever file type you choose.  
     %p 
       Streaming on an iPhone or iPod Touch requires that you have an application 
-      do do so.  Before Amberland, you should go ahead check out the 
-      %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section
-      and select an application for streaming.
-  %h3
-    %a{:href => "#"} iTunes
-  %div
-    %p Just like prior years, we will be running an iTunes server.  Load up iTunes and connect to AmberNET to sync up some recordings to your iPod or create a custom playlist!
-    %p 
-      For faster access, grab 
-      %a{:href => "/downloads/OT44.jar"} OurTunes
-      from the 
-      %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} apps section 
-      and queue up a bunch of shows.
-    %p 
-      The name of the server will be 'AmberNET' and appears in the left column of iTunes.  Make sure iTunes is configured to 'Look for shared libraries' in the 
-      %a{:href => "/images/itunes_preferences.jpg", :id => "image_anchor"} preferences.
-  %h3
-    %a{:href => "#"} FTP
-  %div
-    %p 
-      For more advanced users, we set up an FTP server.  Just fire up your favorite
-      %a{:href => "#", :onclick=>"jQuery($('#index_accordion').accordion( 'activate' , 5 ))"} FTP application
-      and queue up as many recordings as you want.
-    %p Login as anonymous with your email address as the password to ambernet.net:21
+      do do so.
   %h3
     %a{:href => "#"} Applications
   %div
@@ -68,43 +29,19 @@
           %th{:width => "25%"} Name
           %th{:width => "10%"} OS
           %th{:width => "55%"} Description
-      %tbody
+      %tbody                    
         %tr
-          %td FTP Client
-          %td
-            %a{:href => "/downloads/SFTPMSI.exe"} SmartFTP
-          %td Windows
-          %td SmartFTP is an FTP (File Transfer Protocol) client which allows you to transfer files between your local computer and a server on the Internet.            
-        %tr
-          %td FTP Client
-          %td 
-            %a{:href => "/downloads/Cyberduck-3.4.2.zip"} Cyberduck
-          %td OSX
-          %td FTP, SFTP, WebDAV, Cloud Files & Amazon S3 Browser for Mac OS X.                      
-        %tr
-          %td Media/Streaming Client
+          %td Media
           %td 
             %a{:href => "/downloads/winamp5572_full_emusic-7plus_en-us.exe"} Winamp
           %td Windows
           %td Winamp is a proprietary media player written by Nullsoft, now a subsidiary of AOL.  Besides MP3, Winamp supports a wide variety of contemporary and specialized music file formats, including MIDI, MOD, MPEG-1 audio layers 1 and 2, AAC, M4A, FLAC, WAV and Windows Media Audio.
         %tr
-          %td Media/Streaming Client
+          %td Media
           %td 
             %a{:href => "/downloads/vlc-1.0.5-intel.dmg"} VLC
           %td OSX
           %td VLC media player is an open source, free software media player written by the VideoLAN project.  VLC is a portable multimedia player, encoder, and streamer supporting many audio and video codecs and file formats as well as DVDs, VCDs, and various streaming protocols.
-        %tr
-          %td iTunes Client
-          %td 
-            %a{:href => "/downloads/OT44.jar"} OurTunes
-          %td N/A            
-          %td ourTunes is the continuation of several open source projects designed to allow you to browse and download from other people's iTunes Music Shares.
-        %tr 
-          %td Other
-          %td
-            %a{:href => "/downloads/jre-6u20-windows-i586-s.exe"} JRE
-          %td Windows              
-          %td Java Runtime Environment, required for OurTunes (JRE is automatically installed on OSX). 
         %tr 
           %td iPhone
           %td
@@ -155,4 +92,12 @@
           %td
             %a{:href => "/downloads/xACT1.71.zip"} xACT
           %td OSX             
-          %td Encode/decode flac and shn files
+          %td Encode/decode flac an
+  %h3 
+    %a{:href => "#"} Contact Us
+  %div
+    %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=r_xzcu3qEY6NnAg0lCYeNqQ&pli=0&ttl=1&bc=F9F9F9", :width => "500", :height => "600", :frameborder => "0", :marginheight => "0", :marginwidth => "0"} Loading...
+  %h3 
+    %a{:href => "#"} Bug Report
+  %div
+    %iframe{:src => "http://spreadsheets.google.com/embeddedform?key=rT7eLSSevVcHOkeVX9-hYFw&pli=0&ttl=1&bc=F9F9F9", :width => "500", :height => "700", :frameborder => "0", :marginheight => "0",  :marginwidth => "0"} Loading...          

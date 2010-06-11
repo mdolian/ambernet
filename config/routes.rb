@@ -1,5 +1,10 @@
 Ambernet::Application.routes.draw do |map|
 
+  # auth_controller
+  match 'login' => 'auth#login'
+  match 'auth/facebook' => 'auth#facebook'
+  match 'auth/facebook/callback' => 'auth#facebook_callback'
+
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/import/:id' => 'tracks#import'
@@ -16,6 +21,7 @@ Ambernet::Application.routes.draw do |map|
   resources :compilations  
   
   # recordings_controller
+  match 'featured' => 'recordings#featured'
   match 'recordings/zip_link/:id/:filetype' => 'recordings#zip_link'
   match 'recordings/zip/:id/:filetype' => 'recordings#zip'  
   match 'recordings/generate_mp3/:id' => 'recordings#generate_mp3'

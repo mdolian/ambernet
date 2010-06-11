@@ -1,0 +1,16 @@
+%p
+  %fb:login-button{:autologoutlink => "true"}
+  %div{:id => "fb-root"}
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({appId: '135376886473191', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }());
