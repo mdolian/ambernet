@@ -133,6 +133,7 @@ DEPENDENCIES
   redis-namespace
   resque
   rubyzip
+  sinatra
   warden
   warden_facebook!
   will_paginate (= 3.0.pre)

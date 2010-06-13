@@ -16,6 +16,7 @@ gem 'json'
 
 gem 'oauth2'
 gem 'warden'
+gem 'sinatra'
 gem 'warden_facebook', :git => 'git@github.com:mdolian/warden_facebook.git'
 gem 'devise', :git => 'http://github.com/plataformatec/devise.git'
 

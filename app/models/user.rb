@@ -15,4 +15,11 @@ class User < ActiveRecord::Base
     where("access_token = ?", access_token)
   }
   
+  def register(code)
+    client = OAuth2::Client.new(AppConfig.fb_api_key, AppConfig.fb_api_secret, :site => 'https://graph.facebook.com')
+    access_token = client.web_server.get_access_token(code, :redirect_uri => "#{AppConfig.host}#{AppConfig.fb_callback_url}")  
+    user = JSON.parse(access_token.get('/me'))
+    self.email, self.access_token = user['email'], access_token.token
+    self
+  end
 end
