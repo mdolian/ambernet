@@ -1,7 +1,7 @@
 class RecordingsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, 
-                :zip_link, :generate_mp3, :directory, :list]
+                :zip_link, :generate_mp3, :directory, :list, :featured]
 
   def index
     @current_page = (params[:page] || 1).to_i 

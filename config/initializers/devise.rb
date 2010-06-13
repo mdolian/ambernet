@@ -4,16 +4,12 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
 
   config.use_default_scope = true
-  config.default_scope = :user
+  config.default_scope = :admin
   
-  #config.warden do |manager|
-  #  manager.failure_app = FailureApp
-  #  manager.oauth2(:facebook) do |facebook|
-  #    facebook.consumer_secret = AppConfig.fb_api_secret
-  #    facebook.consumer_key  = AppConfig.fb_api_key
-  #    facebook.options :site => 'https://graph.facebook.com'
-  #  end
-  #  config.default_strategies(:facebook_oauth2, :password, :other)
-  #end  
-  
+  config.warden do |manager|      
+    manager[:facebook_secret] = AppConfig.fb_api_secret
+    manager[:facebook_client_id] = AppConfig.fb_api_key
+    manager[:facebook_callback_url] = '/auth/facebook/callback'
+    manager.default_strategies(:scope => :user).unshift :facebook 
+  end
 end

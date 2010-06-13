@@ -1,8 +1,6 @@
 Ambernet::Application.routes.draw do |map|
 
   # auth_controller
-  match 'login' => 'auth#login'
-  match 'auth/facebook' => 'auth#facebook'
   match 'auth/facebook/callback' => 'auth#facebook_callback'
 
   # tracks_controller

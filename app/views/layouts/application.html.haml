@@ -72,12 +72,6 @@
                 %ul{:class => "sub-links"}
                   %li
                     %a{:href => "/admins/sign_out"} Sign out of your account
-            - if user_signed_in? 
-              %li
-                %a{:class => "main-link", :href => "/users/sign_out"} Logout
-                %ul{:class => "sub-links"}
-                  %li
-                    %a{:href => "/users/sign_out"} Sign out of your user account
             %li
               %a{:class => "close", :title => "Click to Collapse", :href => "#"} X
         %b{:class => "round"}
