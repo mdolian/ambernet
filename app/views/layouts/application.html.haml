@@ -68,6 +68,7 @@
           %p
           %p
           %p
+          = yield
           %div{:id => "fb-root"}
           %script{:src => "http://connect.facebook.net/en_US/all.js"}
           :javascript
@@ -78,5 +79,4 @@
               } else {
                 window.location = '#{AppConfig.host}/auth/logout'
               }
-            });
-          = yield    
+            });              
