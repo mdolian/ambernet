@@ -1,6 +1,0 @@
-check process nginx
-  with pidfile /opt/nginx/logs//nginx.pid
-  start program = "/etc/init.d/nginx restart"
-  stop program = "/etc/init.d/nginx stop"
-  group nginx
-

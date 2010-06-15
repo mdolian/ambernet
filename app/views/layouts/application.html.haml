@@ -16,88 +16,70 @@
     = stylesheet_link_tag 'jquery.tablesorter'
     = stylesheet_link_tag 'jquery.autoSuggest'
     = stylesheet_link_tag 'jquery.ui.custom'
+    = stylesheet_link_tag 'header'
     = stylesheet_link_tag 'application'
+    %meta{:property => "og:site_name", :content => "AmberNET"}
     %title
       AmberNET Online
-    - if admin_signed_in?  
-      :javascript
-        jQuery(document).ready(
-          function($) {
-            $('#lavaLamp').attr("width", 530);
-          });
-  %body
-    %div{:id => "sub-link-bar"}
-    %div{:id => "wrap"}
-      %div{:id => "main-handle"}
-        %div{:class => "roundfg"}
-          %ul{:id => "main-nav"}      
+  %body 
+    %div{:id => "ambernet-header"}
+      %h5{:id => "ambernet-logo"}
+        %a{:href => "http://ambernetonline.net"} AmberNET
+      %ul{:id => "ambernet-account-nav"}
+        %div{:id => "ambernet-account-nav-logged_in", :style => "display; none;"}
+          - if user_signed_in?
             %li
-              %a{:class => "main-link", :href => "/"} Home
-              %ul{:class => "sub-links"}
-                %li
-                  %a{:href => "main-link", :href => "/"} Home
+              %a{:href => "/profile", :id => "ambernet-header-link-profile"} Profile
+          - if !user_signed_in?
             %li
-              %a{:class => "main-link", :href => "/featured"} Featured
-              %ul{:class => "sub-links"}
-                %li
-                  %a{:href => "/featured"} Featured Recordings Available                  
-            %li
-              %a{:class => "main-link", :href => "/browse"} Browse
-              %ul{:class => "sub-links"}
-                %li
-                  %a{:href => "/browse"} Browse Shows
-                         
-            %li
-              %a{:class => "main-link", :href => "/search"} Search
-              %ul{:class => "sub-links"}
-                %li
-                  %a{:href => "/search"} Search Shows
-            - if admin_signed_in?
-              %li
-                %a{:class => "main-link", :href => "/admin"} Admin
-                %ul{:class => "sub-links"}
-                  %li
-                    %a{:href => "/shows"} Shows
-                  %li
-                    %a{:href => "/recordings"} Recordings
-                  %li
-                    %a{:href => "/venues"} Venues
-                  %li
-                    %a{:href => "/songs"} Songs
-                  %li
-                    %a{:href => "/admin/import"} Import Tracks                                                                                                      
-            - if admin_signed_in? 
-              %li
-                %a{:class => "main-link", :href => "/admins/sign_out"} Logout
-                %ul{:class => "sub-links"}
-                  %li
-                    %a{:href => "/admins/sign_out"} Sign out of your account
-            %li
-              %a{:class => "close", :title => "Click to Collapse", :href => "#"} X
-        %b{:class => "round"}
-          %b{:class => "round5"}
-          %b{:class => "round4"}
-          %b{:class => "round3"}
-          %b{:class => "round2"}
-          %b{:class => "round1"}
-    %div{:style => "position: absolute;top: 81px;width: 1000px;margin-left:-500px;left:50%"}
-      %table{:width => "75%", :align => "center"}
-        %tr
-          %td{:align => "center"}
-            %img{:src => "/images/header.png"}
-        %tr
-          %td{:align => "center"}
-            - if flash[:notice]          
-              %div{:class => "ui-widget"}
-                %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                  %p
-                    %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
-                    = flash[:notice]
-            - if flash[:error]
-              %div{:class => "ui-widget"}
-                %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
-                  %p
-                    %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
-                    = flash[:error]           
-        %tr
-          %td{:colspan => "3"}= yield
+              %a{:href => "/register", :id => "ambernet-header-link-register"} Register
+          %li
+            %fb:login-button{:autologoutlink => "true", :v => "2", :onlogin => "window.location = '#{AppConfig.host}/auth/login'"}
+      %ul{:id => "ambernet-section-nav"}
+        %li
+          %a{:href => "/", :id => "ambernet-header-link-home"} 
+            %strong Home
+        %li
+          %a{:href => "/featured", :id => "ambernet-header-link-featured"} 
+            %strong Featured
+        %li
+          %a{:href => "/browse", :id => "ambernet-header-link-browse"} 
+            %strong Browse
+        %li
+          %a{:href => "/search", :id => "ambernet-header-link-search"} 
+            %strong Search
+    %table{:width => "75%", :align => "center"}
+      %tr
+        %td
+          - if flash[:notice]          
+            %div{:class => "ui-widget"}
+              %div{:class => "ui-state-highlight ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-info", :style => "float: left; margin-right: .3em;"}
+                  = flash[:notice]
+          - if flash[:error]
+            %div{:class => "ui-widget"}
+              %div{:class => "ui-state-error ui-corner-all", :style => "margin-top: 20px; padding: 0 .7em;"}
+                %p
+                  %span{:class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: .3em;"}
+                  = flash[:error]
+      %tr
+        %td
+          %p
+          %p
+          %p
+          %div{:id => "fb-root"}
+          :javascript
+            window.fbAsyncInit = function() {
+              FB.init({appId: '135376886473191', status: true, cookie: true,
+                       xfbml: true});
+            };
+            (function() {
+              var e = document.createElement('script');
+              e.type = 'text/javascript';
+              e.src = document.location.protocol +
+                '//connect.facebook.net/en_US/all.js';
+              e.async = true;
+              document.getElementById('fb-root').appendChild(e);
+            }());          
+          = yield        

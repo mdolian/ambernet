@@ -1,5 +1,0 @@
-check process bind9
-  with pidfile /var/run/named/named.pid
-  start program = "/etc/init.d/bind9 restart"
-  stop program = "/etc/init.d/bind9 stop"
-  group bind9

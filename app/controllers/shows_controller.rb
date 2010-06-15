@@ -1,6 +1,5 @@
 class ShowsController < ApplicationController
 
-  before_filter :authenticate_user! 
   before_filter :authenticate_admin!, :except => [:search, :list, :setlist, :recordings, :show, :browse, :index, :browse_by] 
  
   def index

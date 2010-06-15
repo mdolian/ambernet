@@ -1,6 +1,5 @@
 class VenuesController < ApplicationController
 
-  before_filter :authenticate_user!
   before_filter :authenticate_admin!, :except => [:city_list, :list, :show] 
   
   def index

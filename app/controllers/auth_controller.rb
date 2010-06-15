@@ -4,6 +4,10 @@ class AuthController < ApplicationController
   
   def facebook_callback  
     redirect_to '/index'
-  end  
+  end
+  
+  def login
+    redirect_to '/index'
+  end
 
 end

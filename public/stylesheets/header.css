@@ -1,0 +1,108 @@
+#ambernet-header { 
+	overflow: hidden; 
+	display: inline-block; 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+	font-weight: inherit; 
+	font-style: inherit; 
+	font-size: 100%; 
+	font-family: arial, helvetica, sans-serif; 
+	vertical-align: baseline; 
+	min-width: 1044px; 
+	background-color: #493a16; 
+	border-bottom-style: solid; 
+	border-bottom-width: 3px; 
+	border-bottom-color: #d68748; 
+	height: 87px; 
+}
+#ambernet-header { display: block; }
+#ambernet-header blockquote, #ambernet-header q { 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+	font-weight: inherit; 
+	font-style: inherit; 
+	font-size: 100%; 
+	font-family: arial, helvetica, sans-serif; 
+	vertical-align: baseline; 
+	quotes: "" ""; }
+#ambernet-header blockquote:before, #ambernet-header q:before, #ambernet-header blockquote:after, #ambernet-header q:after { content: ""; }
+#ambernet-header th, #ambernet-header td, #ambernet-header caption { 
+	margin: 0; 
+	padding: 0;
+  border: 0; 
+	font-weight: inherit; 
+	font-style: inherit; 
+	font-size: 100%; 
+	font-family: arial, helvetica, sans-serif; 
+	vertical-align: baseline; 
+	text-align: left; 
+	font-weight: normal; 
+	vertical-align: middle; 
+}
+#ambernet-header table { 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+	font-weight: inherit; 
+	font-style: inherit; 
+	font-size: 100%; 
+	font-family: arial, helvetica, sans-serif; 
+	vertical-align: baseline; 
+	border-collapse: separate; 
+	border-spacing: 0; 
+	vertical-align: middle; 
+}
+#ambernet-header a img { border: none; }
+#ambernet-header li { list-style-type: none; }
+#ambernet-header *:focus { outline: 0; }
+#ambernet-header #ambernet-logo { margin: 0px 0 0px 0px; float: left; }
+#ambernet-header #ambernet-logo a { 
+	display: block; 
+	text-indent: -9999px; 
+	width: 420; 
+	height: 87px; 
+	overflow: hidden;
+	background-image: url(/images/header.png); 
+	background-repeat: no-repeat; 
+}
+#ambernet-header ul#ambernet-account-nav, #ambernet-header ul#ambernet-section-nav { 
+	list-style-type: none; 
+	overflow: hidden; 
+	display: inline-block; 
+	float: right;
+	 margin-top: 30px; 
+	padding: 10px; 
+}
+#ambernet-header ul#ambernet-account-nav, #ambernet-header ul#ambernet-section-nav { display: block; }
+#ambernet-header ul#ambernet-account-nav li, 
+#ambernet-header ul#ambernet-section-nav li { float: left; margin-left: 10px; }
+#ambernet-header ul#ambernet-account-nav li:first-child, 
+#ambernet-header ul#ambernet-section-nav li:first-child { margin-left: 0; }
+#ambernet-header ul#ambernet-account-nav li, 
+#ambernet-header ul#ambernet-section-nav li { 
+	border-left-style: solid;
+	border-left-width: 2px; 
+	border-left-color: #d68748; 
+	padding-left: 10px; 
+	font-size: 16px; 
+}
+#ambernet-header ul#ambernet-account-nav li:first-child, 
+#ambernet-header ul#ambernet-section-nav li:first-child { border-left: none; padding-left: 0; }
+#ambernet-header ul#ambernet-account-nav li a, 
+#ambernet-header ul#ambernet-section-nav li a { color: #c9c3e6; text-decoration: none; font-weight: normal; }
+#ambernet-header ul#ambernet-account-nav li a:hover, 
+#ambernet-header ul#ambernet-section-nav li a:hover { color: #fff; }
+#ambernet-header ul#ambernet-account-nav li a.active, 
+#ambernet-header ul#ambernet-section-nav li a.active { color: #d68748; }
+#ambernet-header ul#ambernet-account-nav li a.active:hover, 
+#ambernet-header ul#ambernet-section-nav li a.active:hover { color: #fff; }
+#ambernet-header ul#ambernet-account-nav { background-color: #d6c167; padding-left: 15px; padding-right: 15px; margin-right: 25px; margin-left: 10px; -moz-border-radius: 7px; -webkit-border-radius: 7px;}
+#ambernet-header ul#ambernet-account-nav li a { color: #000000; }
+#ambernet-header ul#ambernet-account-nav li a:hover { color: #fff; }
+#ambernet-header ul#ambernet-account-nav li a.active { color: #cb5a00; }
+#ambernet-header ul#ambernet-account-nav li a.active:hover { color: #fff; }
+#fb-login {
+	clear:both;
+}

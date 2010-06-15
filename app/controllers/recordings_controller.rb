@@ -1,6 +1,5 @@
 class RecordingsController < ApplicationController
 
-  before_filter :authenticate_user!
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, 
                 :zip_link, :generate_mp3, :directory, :list, :featured]
 

@@ -1,7 +1,5 @@
 class SearchController < ApplicationController
 
-  before_filter :authenticate_user!
-
   def advanced_search_results
     @current_page, error_message = (params[:page] || 1).to_i, ""
     
