@@ -28,12 +28,13 @@
   //soundManager.flashVersion = 9;  
 
   var PP_CONFIG = {
-    //flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
-    //usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
-    //useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
-    //useEQData: true,      // [Flash 9 only] show EQ (frequency spectrum) data
-    //fillGraph: false,    
-    //useFavIcon: true,     // try to apply peakData to address bar (Firefox + Opera) - p
+    flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
+    usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
+    useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
+    useEQData: true,      // [Flash 9 only] show EQ (frequency spectrum) data
+    fillGraph: false,    
+    useFavIcon: true,     // try to apply peakData to address bar (Firefox + Opera) - p
+    allowRightClick: true
   }  
 
   var is_shiny = false;
@@ -89,10 +90,10 @@
               %a{:href => "/recordings/generate_mp3/#{@recording.id}"} Generate MP3s      
       %table{:class => "tablesorter"}
         %tr
-          %th{:width => "80%"} Track
+          %th{:width => "70%"} Track
           - if AppConfig.flac_enabled == true
-            %th{:width => "10%"} Lossless
-          %th{:width => "10%"} MP3 (V0)      
+            %th{:width => "15%"} Lossless
+          %th{:width => "15%", :align => "center"} MP3 (V0)      
         - if AppConfig.zip_enabled == true
           %tr
             %td{:colspan => "3"}
@@ -113,7 +114,7 @@
               %td{:align => "center", :valign => "middle"}
                 %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{track}.#{@recording.extension}"}=@recording.extension
             %td{:align => "center", :valign => "middle"}
-              %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3"} mp3
+              %a{:href => "#{AppConfig.media_link}#{@recording.label}/#{@recording.label.gsub(/flac16|mp3f|flac24|shnf/, 'mp3f')}/#{track}.mp3?download=true"} mp3
     %h3
       %a{:href => "#"} Streaming Options
     %div
