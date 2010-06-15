@@ -7,7 +7,7 @@
       %th{:width => "13%", :align => "left"} Details      
       %th{:width => "61%", :align => "left"} Song Name 
     %tbody
-      - if admin_signed_in?
+      - if false
         %tr
           %td{:colspan => "6"}= link_to 'New Song', new_song_path
       - @songs.each do |song|
