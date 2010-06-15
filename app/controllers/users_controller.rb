@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:logout]
   
   def facebook_callback  
     redirect_to '/index'
@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   
   def login
     redirect_to '/index'
-  end  
+  end
+  
+  def logout
+    sign_out :user
+    redirect_to '/index'
+  end
   
 end
