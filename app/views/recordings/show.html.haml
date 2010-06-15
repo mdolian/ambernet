@@ -1,70 +1,71 @@
-= javascript_include_tag 'soundmanager2'
-= stylesheet_link_tag 'flashblock'
-= stylesheet_link_tag 'page-player'
-= stylesheet_link_tag 'optional-annotations'
-= stylesheet_link_tag 'optional-themes'
-:javascript
-  jQuery(document).ready(function($) {
-    $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{
-      method: 'post',
-      type: 'text',
-      minTimeout: '60000'
-    },function(data){
-        $("#zip_mp3").html(data);
-    });
-    $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/lossless/',{
-      method: 'post',
-      type: 'text',
-      minTimeout: '60000'
-    },function(data) {
-      $("#zip_lossless").html(data);
-    });
-  })
-  soundManager.url = '/soundmanager2/';
-  soundManager.debugMode = false;
-  soundManager.useHighPerformance = true; // keep flash on screen, boost performance
-  soundManager.wmode = 'transparent'; // transparent SWF, if possible
-  soundManager.useFastPolling = true; // increased JS callback frequency
-  //soundManager.flashVersion = 9;  
+- if @recording.s3_available == 1
+  = javascript_include_tag 'soundmanager2'
+  = stylesheet_link_tag 'flashblock'
+  = stylesheet_link_tag 'page-player'
+  = stylesheet_link_tag 'optional-annotations'
+  = stylesheet_link_tag 'optional-themes'
+  :javascript
+    jQuery(document).ready(function($) {
+      $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{
+        method: 'post',
+        type: 'text',
+        minTimeout: '60000'
+      },function(data){
+          $("#zip_mp3").html(data);
+      });
+      $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/lossless/',{
+        method: 'post',
+        type: 'text',
+        minTimeout: '60000'
+      },function(data) {
+        $("#zip_lossless").html(data);
+      });
+    })
+    soundManager.url = '/soundmanager2/';
+    soundManager.debugMode = false;
+    soundManager.useHighPerformance = true; // keep flash on screen, boost performance
+    soundManager.wmode = 'transparent'; // transparent SWF, if possible
+    soundManager.useFastPolling = true; // increased JS callback frequency
+    //soundManager.flashVersion = 9;  
 
-  var PP_CONFIG = {
-    flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
-    usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
-    useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
-    useEQData: true,      // [Flash 9 only] show EQ (frequency spectrum) data
-    fillGraph: false,    
-    useFavIcon: true,     // try to apply peakData to address bar (Firefox + Opera) - p
-    allowRightClick: true
-  }  
+    var PP_CONFIG = {
+      flashVersion: 9,       // vFlash 9 required for peak / spectrum data.
+      usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)
+      useWaveformData: true, // [Flash 9 only] show raw waveform data - WARNING: LIKELY VERY CPU-HEAVY
+      useEQData: true,      // [Flash 9 only] show EQ (frequency spectrum) data
+      fillGraph: false,    
+      useFavIcon: true,     // try to apply peakData to address bar (Firefox + Opera) - p
+      allowRightClick: true
+    }  
 
-  var is_shiny = false;
-  function setTheme(sTheme) {
-    var o = pagePlayer.getElementsByClassName('playlist','ul');
-    for (var i=o.length; i--;) {
-      o[i].className = 'playlist'+(pagePlayer.cssBase?' '+pagePlayer.cssBase:'')+(sTheme?' '+sTheme:'')+(is_shiny?' shiny':'');
+    var is_shiny = false;
+    function setTheme(sTheme) {
+      var o = pagePlayer.getElementsByClassName('playlist','ul');
+      for (var i=o.length; i--;) {
+        o[i].className = 'playlist'+(pagePlayer.cssBase?' '+pagePlayer.cssBase:'')+(sTheme?' '+sTheme:'')+(is_shiny?' shiny':'');
+      }
+      return false;
     }
-    return false;
-  }
   
-  function setShiny(bShiny) {
-    is_shiny = bShiny;
-    var o = pagePlayer.getElementsByClassName('playlist','ul');
-    var sClass = 'shiny';
-    for (var i=o.length; i--;) {
-      if (!bShiny) {
-  	  pagePlayer.removeClass(o[i],sClass);
-  	} else {
-  	  pagePlayer.addClass(o[i],sClass);
-  	}
+    function setShiny(bShiny) {
+      is_shiny = bShiny;
+      var o = pagePlayer.getElementsByClassName('playlist','ul');
+      var sClass = 'shiny';
+      for (var i=o.length; i--;) {
+        if (!bShiny) {
+    	  pagePlayer.removeClass(o[i],sClass);
+    	} else {
+    	  pagePlayer.addClass(o[i],sClass);
+    	}
+      }
     }
-  }
   
-  function setTheme(sTheme) {
-    var o = document.getElementsByTagName('ul')[0];
-    o.className = 'playlist'+(sTheme?' '+sTheme:'');
-    return false;
-  }
-= javascript_include_tag 'page-player'  
+    function setTheme(sTheme) {
+      var o = document.getElementsByTagName('ul')[0];
+      o.className = 'playlist'+(sTheme?' '+sTheme:'');
+      return false;
+    }
+  = javascript_include_tag 'page-player'  
 %div{:id => "sm2-container"}    
 %div{:id => "recording_detail_accordion"}
   %h3

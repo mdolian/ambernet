@@ -1,3 +1,5 @@
-%h2 Featured Recordings
-
-= render 'recordings/list'
+%div{:id => "featured_recordings_accordion"}
+  %h3
+    %a{:href => "#"} Featured Recordings
+  %div
+    = render 'recordings/list'

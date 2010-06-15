@@ -1,8 +1,10 @@
 = javascript_include_tag "admin"
-%h2 Update Venue (admin only)
+%div{:id => "update_venue_accordion"}
+  %h3
+    %a{:href => "#"} Update Venue (admin only)
+  %div
+    = render 'venues/form'
 
-= render 'venues/form'
-
-= link_to 'Show', @venue
-|
-= link_to 'Back', venues_path
+    = link_to 'Show', @venue
+    |
+    = link_to 'Back', venues_path

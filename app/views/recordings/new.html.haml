@@ -1,8 +1,10 @@
 = javascript_include_tag "admin"
-%h2 Add Recording (admin only)
+%div{:id => "add_recording_accordion"}
+  %h3
+    %a{:href => "#"} Add Recording (admin only)
+  %div
+    = render 'recordings/form'
 
-= render 'recordings/form'
+    = link_to 'Back', recordings_path
 
-= link_to 'Back', recordings_path
-
-%div{:id => "dialog"}
+    %div{:id => "dialog"}

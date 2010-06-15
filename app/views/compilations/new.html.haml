@@ -1,6 +1,9 @@
 = javascript_include_tag "admin"
-%h2 Add Compilation (admin only)
+%h2 
+%div{:id => "new_compilation_accordion"}
+  %h3
+    %a{:href => "#"} Add Compilation (admin only)
+  %div
+    = render 'compilations/form'
 
-= render 'compilations/form'
-
-= link_to 'Back', compilations_path
+    = link_to 'Back', compilations_path

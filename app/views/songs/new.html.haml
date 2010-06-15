@@ -1,6 +1,8 @@
 = javascript_include_tag "admin"
-%h2 Add Song (admin only)
+%div{:id => "new_song_accordion"}
+  %h3
+    %a{:href => "#"} Add Song (admin only)
+  %div
+    = render 'songs/form'
 
-= render 'songs/form'
-
-= link_to 'Back', songs_path
+    = link_to 'Back', songs_path

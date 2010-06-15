@@ -1,4 +1,6 @@
-%h2 Browse Venues
-
-= render "venues/list"
+%div{:id => "browse_venues_accordion"}
+  %h3
+    %a{:href => "#"} Browse Venues
+  %div
+    = render "venues/list"
           

@@ -1,10 +1,13 @@
-%h3 Compilation Details
-%table{:width => "65%", :align => "center", :class => "tablesorter"}
-  %tr
-    %td{:width => "20%"} 
-      %b Compilation ID
-    %td{:width => "80%"}= @compilation.id
-  %tr  
-    %td 
-      %b Label
-    %td= @compilation.label
+%div{:id => "compilation_accordion"}
+  %h3
+    %a{:href => "#"} Compilation Details
+  %div
+    %table{:width => "65%", :align => "center", :class => "tablesorter"}
+      %tr
+        %td{:width => "20%"} 
+          %b Compilation ID
+        %td{:width => "80%"}= @compilation.id
+      %tr  
+        %td 
+          %b Label
+        %td= @compilation.label

@@ -1,6 +1,8 @@
 = javascript_include_tag "admin"
-%h2 Add Show (admin only)
+%div{:id => "new_show_accordion"}
+  %h3
+    %a{:href => "#"} Add Show (admin only)
+  %div
+    = render 'shows/form'
 
-= render 'shows/form'
-
-= link_to 'Back', venues_path
+    = link_to 'Back', venues_path

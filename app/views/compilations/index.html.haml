@@ -1,4 +1,6 @@
-%h2 Browse Compilations
-
-= render 'compilations/list'
+%div{:id => "browse_compilations_accordion"}
+  %h3
+    %a{:href => "#"} Browse Compilations
+  %div
+    = render 'compilations/list'
           

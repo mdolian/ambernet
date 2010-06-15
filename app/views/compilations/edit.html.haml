@@ -1,8 +1,10 @@
 = javascript_include_tag "admin"
-%h2 Update Compilation (admin only)
+%div{:id => "update_compilation_accordion"}
+  %h3
+    %a{:href => "#"} Update Compilation (admin only)
+  %div
+    = render 'compilations/form'
 
-= render 'compilations/form'
-
-= link_to 'Show', @compilation
-|
-= link_to 'Back', compilations_path
+    = link_to 'Show', @compilation
+    |
+    = link_to 'Back', compilations_path

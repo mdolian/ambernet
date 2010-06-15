@@ -1,22 +1,6 @@
 %h3 Venue Details
-%table{:width => "65%", :align => "center", :class => "tablesorter"}
-  %tr
-    %td{:width => "20%"} 
-      %b Venue ID
-    %td{:width => "80%"}= @venue.id
-  %tr  
-    %td 
-      %b Venue Name
-    %td= @venue.venue_name
-  %tr
-    %td 
-      %b Venue City
-    %td= @venue.venue_city
-  %tr
-    %td 
-      %b Venue State
-    %td= @venue.venue_state
-  %tr
-    %td 
-      %b Venue Country:
-    %td= @venue.venue_country
+%div{:id => "venue_details_accordion"}
+  %h3
+    %a{:href => "#"} Venue Details
+  %div
+    = render 'venues/detail'

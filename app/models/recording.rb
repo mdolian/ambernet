@@ -58,7 +58,7 @@ class Recording < ActiveRecord::Base
     where("recordings.show_id IN (?)", show_ids)
   }
   
-  scope :featured, joins(:show, :venue).where("s3_available = 1")
+  scope :featured, joins(:show).where("s3_available = 1")
   
   def extension
     case filetype
