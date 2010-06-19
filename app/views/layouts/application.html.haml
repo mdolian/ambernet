@@ -24,10 +24,9 @@
   %body 
     %div{:id => "ambernet-header"}
       %h5{:id => "ambernet-logo"}
-        %a{:href => "http://ambernetonline.net"} AmberNET
+        %a{:href => "#{AppConfig.host}"} AmberNET
       %ul{:id => "ambernet-account-nav"}
         %div{:id => "ambernet-account-nav-logged_in", :style => "display; none;"}
-          = authenticated?
           - if authenticated?
             %li
               %a{:href => "/profile", :id => "ambernet-header-link-profile"} Profile
@@ -35,7 +34,7 @@
             %li
               %a{:href => "/register", :id => "ambernet-header-link-register"} Register
           %li
-            %fb:login-button{:autologoutlink => "true", :v => "2", :onlogin => "window.location = '#{AppConfig.host}/auth/login'"}
+            %fb:login-button{:autologoutlink => "true", :v => "2"}
       %ul{:id => "ambernet-section-nav"}
         %li
           %a{:href => "/", :id => "ambernet-header-link-home"} 
@@ -73,11 +72,8 @@
           %div{:id => "fb-root"}
           %script{:src => "http://connect.facebook.net/en_US/all.js"}
           :javascript
-            FB.init({appId: '135376886473191', status: true, cookie: true, xfbml: true});
-            FB.Event.subscribe('auth.sessionChange', function(response) {
-              if (response.session) {
+            FB.init({appId: '#{AppConfig.facebook_app_id}', status: true, cookie: true, xfbml: true});
+            FB.Event.subscribe('auth.login', function(response) {
                 window.location = '#{AppConfig.host}/auth/login'
-              } else {
-                window.location = '#{AppConfig.host}/auth/logout'
-              }
-            });              
+            });
+             

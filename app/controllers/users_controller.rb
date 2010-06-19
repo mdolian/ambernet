@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   
-  before_filter do
+  before_filter :login_required, :except => [:logout]
+  
+  def login_required
     if !warden.authenticated?
       warden.authenticate! params
-      logger.info "USER: #{warden.user} #{warden.authenticated?}"     
     end
   end
   
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def logout
-    sign_out :user
+    warden.logout
     redirect_to '/index'
   end
   
