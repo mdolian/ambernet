@@ -53,8 +53,8 @@ Ambernet::Application.routes.draw do |map|
   match 'songs/list' => 'songs#list'
   resources :songs
 
-  devise_for :users
-  devise_for :admins
+  #devise_for :users
+  #devise_for :admins
   
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'

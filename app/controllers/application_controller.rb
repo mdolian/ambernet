@@ -1,3 +1,8 @@
 class ApplicationController < ActionController::Base
- # logger.info "URL: #{request.request_uri}"
+
+  before_filter do 
+    logger.info "USER: #{warden.user} #{warden.authenticated?}" 
+    logger.info "#{AppConfig.facebook_app_id}"
+  end
+
 end

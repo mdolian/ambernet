@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100613232636) do
+ActiveRecord::Schema.define(:version => 20100616031404) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                              :null => false
@@ -92,13 +92,10 @@ ActiveRecord::Schema.define(:version => 20100613232636) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",        :null => false
     t.datetime "created_at"
-    t.string   "access_token"
+    t.string   "fb_uid"
     t.string   "name"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
   create_table "venues", :force => true do |t|
     t.string "venue_name",    :limit => 50
