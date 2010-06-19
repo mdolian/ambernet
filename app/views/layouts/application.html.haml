@@ -27,10 +27,11 @@
         %a{:href => "http://ambernetonline.net"} AmberNET
       %ul{:id => "ambernet-account-nav"}
         %div{:id => "ambernet-account-nav-logged_in", :style => "display; none;"}
-          - if true
+          = authenticated?
+          - if authenticated?
             %li
               %a{:href => "/profile", :id => "ambernet-header-link-profile"} Profile
-          - if !true
+          - if !authenticated?
             %li
               %a{:href => "/register", :id => "ambernet-header-link-register"} Register
           %li

@@ -16,10 +16,10 @@ class User < ActiveRecord::Base
   }
   
   def register(code)
-    #client = OAuth2::Client.new(AppConfig.facebook_api_key, AppConfig.facebook_api_secret, :site => 'https://graph.facebook.com')
-    #access_token = client.web_server.get_access_token(code, :redirect_uri => "#{AppConfig.host}#{AppConfig.facebook_callback_url}")  
-    #user = JSON.parse(access_token.get('/me'))
-    #self.email, self.access_token = user['email'], access_token.token
+    client = OAuth2::Client.new(AppConfig.facebook_api_key, AppConfig.facebook_api_secret, :site => 'https://graph.facebook.com')
+    access_token = client.web_server.get_access_token(code, :redirect_uri => "#{AppConfig.host}#{AppConfig.facebook_callback_url}")  
+    user = JSON.parse(access_token.get('/me'))
+    self.id, self.access_token, self.email = user['id'], access_token.token, "not@entered.yet"
     self
   end
 end
