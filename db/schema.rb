@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100616031404) do
+ActiveRecord::Schema.define(:version => 20100628224925) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                              :null => false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20100616031404) do
   create_table "compilations", :force => true do |t|
     t.string "label"
     t.string "comments"
+  end
+
+  create_table "have_lists", :force => true do |t|
+    t.integer "recording_id", :null => false
+    t.integer "user_id",      :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer "entity_id",   :null => false
+    t.string  "rating_type", :null => false
+    t.integer "user_id",     :null => false
+    t.integer "rating",      :null => false
   end
 
   create_table "recording_tracks", :force => true do |t|
@@ -92,10 +104,16 @@ ActiveRecord::Schema.define(:version => 20100616031404) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                     :default => "", :null => false
+    t.integer  "oauth2_uid",         :limit => 8
+    t.string   "oauth2_token",       :limit => 149
     t.datetime "created_at"
-    t.string   "fb_uid"
-    t.string   "name"
+    t.datetime "updated_at"
   end
+
+  add_index "users", ["oauth2_uid"], :name => "index_users_on_oauth2_uid", :unique => true
 
   create_table "venues", :force => true do |t|
     t.string "venue_name",    :limit => 50
@@ -103,6 +121,11 @@ ActiveRecord::Schema.define(:version => 20100616031404) do
     t.string "venue_city",    :limit => 50
     t.string "venue_state",   :limit => 50
     t.string "venue_country", :limit => 50
+  end
+
+  create_table "wish_lists", :force => true do |t|
+    t.integer "recording_id", :null => false
+    t.integer "user_id",      :null => false
   end
 
 end

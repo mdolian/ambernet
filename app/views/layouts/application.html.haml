@@ -10,7 +10,7 @@
     = javascript_include_tag 'jquery.selectboxes'
     = javascript_include_tag 'jquery.periodicalupdater.js'
     = javascript_include_tag 'application'
-    - if false  
+    - if admin_signed_in?  
       = javascript_include_tag "admin"    
     = javascript_include_tag 'rails'
     = stylesheet_link_tag 'jquery.tablesorter'
@@ -27,10 +27,10 @@
         %a{:href => "#{AppConfig.host}"} AmberNET
       %ul{:id => "ambernet-account-nav"}
         %div{:id => "ambernet-account-nav-logged_in", :style => "display; none;"}
-          - if authenticated?
+          - if user_signed_in?
             %li
               %a{:href => "/profile", :id => "ambernet-header-link-profile"} Profile
-          - if !authenticated?
+          - if !user_signed_in?
             %li
               %a{:href => "/register", :id => "ambernet-header-link-register"} Register
           %li
@@ -48,6 +48,7 @@
         %li
           %a{:href => "/search", :id => "ambernet-header-link-search"} 
             %strong Search
+      %br
     %table{:width => "75%", :align => "center"}
       %tr
         %td
@@ -73,7 +74,10 @@
           %script{:src => "http://connect.facebook.net/en_US/all.js"}
           :javascript
             FB.init({appId: '#{AppConfig.facebook_app_id}', status: true, cookie: true, xfbml: true});
-            FB.Event.subscribe('auth.login', function(response) {
-                window.location = '#{AppConfig.host}/auth/login'
-            });
-             
+            FB.Event.subscribe('auth.sessionChange', function(response) {
+              if (response.session) {
+                window.location = 'https://graph.facebook.com/oauth/authorize?scope=email%2Coffline_access%2Cpublish_stream&client_id=#{AppConfig.facebook_app_id}&type=web_server&redirect_uri=#{AppConfig.host}/users/oauth2'
+              } else {
+                window.location = '#{AppConfig.host}/users/sign_out'
+              }
+            });  

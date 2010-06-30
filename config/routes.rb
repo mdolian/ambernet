@@ -1,12 +1,5 @@
 Ambernet::Application.routes.draw do |map|
 
-  # users_controller
-  match 'auth/facebook/callback' => 'users#facebook_callback'
-  match 'auth/login' => 'users#login'
-  match 'auth/logout' => 'users#logout'  
-  match 'profile' => 'users#profile'
-  match 'register' => 'users#login'
-
   # tracks_controller
   match 'tracks/edit/:id' => 'tracks#edit'
   match 'tracks/import/:id' => 'tracks#import'
@@ -53,8 +46,8 @@ Ambernet::Application.routes.draw do |map|
   match 'songs/list' => 'songs#list'
   resources :songs
 
-  #devise_for :users
-  #devise_for :admins
+  devise_for :admins
+  devise_for :users
   
   # venues_controller
   match 'venues/city_list' => 'venues#city_list'

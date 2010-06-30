@@ -1,6 +1,13 @@
 %form{:method => "get", :action => "/search/advanced_search_results", :autocomplete => "off"}
   %div{:id => "search_accordion"}
     %h3
+      %a{:href => "#"} Quick Search
+    %div  
+      %table
+        %tr
+          %td
+            %input{:type => "text", :name => "search", :size => "25", :id => "search"}    
+    %h3
       %a{:href => "#"} Show Details
     %div
       %table

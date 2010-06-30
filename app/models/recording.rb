@@ -4,7 +4,8 @@ class Recording < ActiveRecord::Base
   
   attr_accessible :id, :label, :source, :lineage, :taper, :transfered_by, :notes, 
                  :recording_type, :tracking_indo, :shnid, :filetype, :show_id
-    
+
+  has_many :have_lists    
   has_many :recording_tracks
   belongs_to :show
   has_one :venue, :through => :show  
@@ -184,20 +185,18 @@ class Recording < ActiveRecord::Base
     "#{AppConfig.offline_media_dir}#{label}"
   end
   
-#  define_index do
-#    indexes :date_played, :sortable => true
-#    indexes venue.venue_name, :sortable => true
-#    indexes venue.venue_city, :sortable => true
-#    indexes venue.venue_state, :sortable => true
-#    indexes :label, :sortable => true
-#    indexes :source, :sortable => true
-#    indexes :lineage, :sortable => true
-#    indexes :taper, :sortable => true
-#    indexes :type, :sortable => true
-#    indexes :shnid, :sortable => true       
-#    indexes setlist.song.song_name
-
-#    has date_played, type, label, venue.venue_name, venue.venue_city, venue.venue_state
-#  end  
+  define_index do
+    indexes show.date_played, :sortable => true
+    indexes venue.venue_name, :sortable => true
+    indexes venue.venue_city, :sortable => true
+    indexes venue.venue_state, :sortable => true
+    indexes :label, :sortable => true
+    indexes :source, :sortable => true
+    indexes :lineage, :sortable => true
+    indexes :taper, :sortable => true
+    indexes :recording_type, :sortable => true
+    indexes :shnid, :sortable => true       
+    #indexes setlist.song.song_name
+  end  
 
 end

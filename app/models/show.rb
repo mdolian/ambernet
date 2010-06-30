@@ -126,14 +126,12 @@ class Show < ActiveRecord::Base
     setlist_text
   end
   
-#  define_index do
-#    indexes recording.date_played, :sortable => true
-#    indexes venue.venue_name, :sortable => true
-#    indexes venue.venue_city, :sortable => true
-#    indexes venue.venue_state, :sortable => true        
-#    indexes setlist.song.song_name
-
-#    has recording.date_played, venue.venue_name, venue.venue_city, venue.venue_state
-#  end  
+  define_index do
+    indexes recording.date_played, :sortable => true
+    indexes venue.venue_name, :sortable => true
+    indexes venue.venue_city, :sortable => true
+    indexes venue.venue_state, :sortable => true        
+    #indexes setlists.song.song_name
+  end  
   
 end

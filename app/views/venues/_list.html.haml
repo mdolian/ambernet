@@ -2,7 +2,7 @@
 %table{:align => "center", :class => "tablesorter"}
   %thead
     %tr
-      - if false
+      - if admin_signed_in?
         %th{:width => "8%", :align => "left"} Delete 
         %th{:width => "8%", :align => "left"} Edit
       %th{:width => "8%", :align => "left"} Details      
@@ -11,12 +11,12 @@
       %th{:width => "10%", :align => "left"} State
       %th{:width => "10%", :align => "left"} Country      
     %tbody  
-      - if false
+      - if admin_signed_in?
         %tr
           %td{:colspan => "7"}= link_to 'New Venue', new_venue_path
       - @venues.each do |venue|
         %tr
-          - if false      
+          - if admin_signed_in?      
             %td= link_to 'Delete', venue_path(venue), :id => "delete", :method => :delete
             %td= link_to 'Edit', edit_venue_path(venue)
           %td= link_to 'Show', venue_path(venue)          
