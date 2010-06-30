@@ -32,3 +32,8 @@
     %td 
       %b Notes:
     %td= @recording.notes
+  %tr
+    %td
+      %b Like:
+    %td
+      %fb:like{:href => "#{AppConfig.host}/recordings/#{@recording.id}"}

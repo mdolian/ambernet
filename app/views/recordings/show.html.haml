@@ -1,9 +1,5 @@
-- if @recording.s3_available == 1
-  = javascript_include_tag 'soundmanager2'
-  = stylesheet_link_tag 'flashblock'
-  = stylesheet_link_tag 'page-player'
-  = stylesheet_link_tag 'optional-annotations'
-  = stylesheet_link_tag 'optional-themes'
+%meta{:property => "og:title", :content => "#{@recording.label}"}
+- if AppConfig.zip_enabled == 'yes' 
   :javascript
     jQuery(document).ready(function($) {
       $.PeriodicalUpdater('/recordings/zip_link/#{@recording.id}/mp3/',{
@@ -21,6 +17,13 @@
         $("#zip_lossless").html(data);
       });
     })
+- if @recording.s3_available == 1
+  = javascript_include_tag 'soundmanager2'
+  = stylesheet_link_tag 'flashblock'
+  = stylesheet_link_tag 'page-player'
+  = stylesheet_link_tag 'optional-annotations'
+  = stylesheet_link_tag 'optional-themes'
+  :javascript
     soundManager.url = '/soundmanager2/';
     soundManager.debugMode = false;
     soundManager.useHighPerformance = true; // keep flash on screen, boost performance
