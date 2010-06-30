@@ -18,6 +18,8 @@
     = stylesheet_link_tag 'jquery.ui.custom'
     = stylesheet_link_tag 'header'
     = stylesheet_link_tag 'application'
+    - if !@recording.nil? 
+      %meta{:property => "og:title", :content => "#{@recording.label}"}
     %meta{:property => "og:site_name", :content => "AmberNET"}
     %title
       AmberNET Online
