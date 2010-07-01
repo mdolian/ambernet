@@ -21,6 +21,7 @@
     - if !@recording.nil? 
       %meta{:property => "og:title", :content => "#{@recording.label}"}
     %meta{:property => "og:site_name", :content => "AmberNET"}
+    %meta{:property => "og:image", :content => "#{AppConfig.host}/images/ambernet_fb.png"}
     %title
       AmberNET Online
   %body 
