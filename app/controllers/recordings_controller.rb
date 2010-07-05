@@ -1,7 +1,7 @@
 class RecordingsController < ApplicationController
 
   before_filter :authenticate_admin!, :except => [:search, :stream, :zip, :show, :index, 
-                :zip_link, :generate_mp3, :directory, :list, :featured]
+                :zip_link, :generate_mp3, :directory, :list, :featured, :like]
 
   def index
     @current_page = (params[:page] || 1).to_i 
@@ -151,6 +151,11 @@ class RecordingsController < ApplicationController
     recording.mp3_list.each { |entry| listing << entry << "<br>"}
     listing << "</td></tr></table>"
     render :text => listing
+  end
+  
+  def like
+    likes = RecordingLike.new(:user_id => current_user, :recording_id => params["id"])
+    likes.save!
   end
   
 private

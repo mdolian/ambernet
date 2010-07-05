@@ -5,7 +5,8 @@ class Recording < ActiveRecord::Base
   attr_accessible :id, :label, :source, :lineage, :taper, :transfered_by, :notes, 
                  :recording_type, :tracking_indo, :shnid, :filetype, :show_id
 
-  has_many :have_lists    
+  has_many :have_lists
+  has_many :recording_likes
   has_many :recording_tracks
   belongs_to :show
   has_one :venue, :through => :show  

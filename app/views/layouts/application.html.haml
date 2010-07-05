@@ -83,4 +83,11 @@
               } else {
                 window.location = '#{AppConfig.host}/users/sign_out'
               }
-            });  
+            });
+            FB.Event.subscribe('edge.create', function(href, widget) {
+              jQuery(function ($) {
+                $.ajax({  
+                  type: "POST",  
+                  url: href + "/like"  
+                });
+            });          

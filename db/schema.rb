@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100630224823) do
+ActiveRecord::Schema.define(:version => 20100705012902) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                              :null => false
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20100630224823) do
     t.string  "rating_type", :null => false
     t.integer "user_id",     :null => false
     t.integer "rating",      :null => false
+  end
+
+  create_table "recording_likes", :force => true do |t|
+    t.integer "recording_id", :null => false
+    t.integer "user_id",      :null => false
   end
 
   create_table "recording_tracks", :force => true do |t|
@@ -121,11 +126,6 @@ ActiveRecord::Schema.define(:version => 20100630224823) do
     t.string "venue_city",    :limit => 50
     t.string "venue_state",   :limit => 50
     t.string "venue_country", :limit => 50
-  end
-
-  create_table "wish_lists", :force => true do |t|
-    t.integer "recording_id", :null => false
-    t.integer "user_id",      :null => false
   end
 
 end

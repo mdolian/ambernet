@@ -27,6 +27,7 @@ Ambernet::Application.routes.draw do |map|
   match 'recordings/index' => 'recordings#index'
   match 'recordings/directory/:id' => 'recordings#directory'
   match 'recordings/generate_all_mp3s' => 'recordings#generate_all_mp3s'
+  match 'recordings/:id/like' => 'recordings#like'
   resources :recordings
   
   # scrape_controller

@@ -5,6 +5,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
 
   has_many :have_lists
-  has_many :wish_lists
 
 end
