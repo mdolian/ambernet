@@ -156,6 +156,7 @@ class RecordingsController < ApplicationController
   def like
     likes = RecordingLike.new(:user_id => User.find(current_user).oauth2_uid, :recording_id => params["id"])
     likes.save!
+    render :nothing => true
   end
   
 private

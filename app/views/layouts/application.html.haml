@@ -85,9 +85,8 @@
               }
             });
             FB.Event.subscribe('edge.create', function(href, widget) {
-              jQuery(function ($) {
-                $.ajax({  
-                  type: "POST",  
-                  url: href + "/like"  
-                });
+              $.ajax({  
+                type: "POST",  
+                url: href + "/like"  
+              });
             });          
