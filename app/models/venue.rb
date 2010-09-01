@@ -29,9 +29,3 @@ class Venue < ActiveRecord::Base
   end
     
 end
-
-#Sunspot.setup(Venue) do
-#  text :venue_name
-#  text :venue_city
-#  text :venue_state
-#end
