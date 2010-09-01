@@ -79,7 +79,7 @@
             FB.init({appId: '#{AppConfig.facebook_app_id}', status: true, cookie: true, xfbml: true});
             FB.Event.subscribe('auth.sessionChange', function(response) {
               if (response.session) {
-                window.location = 'https://graph.facebook.com/oauth/authorize?scope=email%2Coffline_access%2Cpublish_stream&client_id=#{AppConfig.facebook_app_id}&type=web_server&redirect_uri=#{AppConfig.host}/users/oauth2'
+                window.location = 'https://graph.facebook.com/oauth/authorize?scope=email%2Coffline_access%2Cpublish_stream&client_id=#{AppConfig.facebook_app_id}&type=web_server&redirect_uri=#{AppConfig.host}/users/sign_in'
               } else {
                 window.location = '#{AppConfig.host}/users/sign_out'
               }

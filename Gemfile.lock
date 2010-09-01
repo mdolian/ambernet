@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/freelancing-god/thinking-sphinx.git
-  revision: 38362ac0fd81d4ac8c7e596f6c950fcac4a259f8
+  revision: 38362ac
   branch: rails3
   specs:
     thinking-sphinx (2.0.0.rc2)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: http://github.com/mdolian/devise_oauth2_authenticatable.git
-  revision: b83d7bb1f1b5935b85133332fde1d0661343a81b
+  revision: b83d7bb
   specs:
     devise_oauth2_authenticatable (0.1.0)
       devise (>= 1.0.0)
