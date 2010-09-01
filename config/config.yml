@@ -1,0 +1,24 @@
+common:
+  offline_media_dir: '/media/PG_Archive/ambernet/'
+  s3_access_key_id: 1DSVT78592RP56228SG2
+  s3_secret_access_key: igYHAgme1NVmgTYmp6Ql8bA8G095pMyDhoYV79FY
+
+ambernet:
+  host: 'http://ambernet.net'
+  media_link: '/ambernet/'
+  flac_enabled: yes
+  zip_enabled: yes
+
+production:
+  host: 'http://ambernetonline.net'
+  media_link: 'http://pgroove.s3.amazonaws.com/featured/'
+  flac_enabled: no
+  zip_enabled: no
+  facebook_app_id: 135376886473191  
+    
+development:
+  host: 'http://localhost:3000'
+  media_link: 'http://pgroove.s3.amazonaws.com/featured/'
+  flac_enabled: no
+  zip_enabled: no
+  facebook_app_id: 111935685519255  
