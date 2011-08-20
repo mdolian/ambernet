@@ -12,14 +12,13 @@ gem 'resque'
 gem 'redis'
 gem 'redis-namespace'
 gem 'json'
-#gem 'aws-s3', :require => 'aws/s3'
 
 gem 'oauth2'
 gem 'warden'
 gem 'sinatra'
-gem 'devise_oauth2_authenticatable', :git => 'http://github.com/mdolian/devise_oauth2_authenticatable.git'
-gem 'devise'
+gem "devise", :git => "git://github.com/plataformatec/devise.git"
+gem "devise_oauth2_authenticatable", :git => "git://github.com/jerryluk/devise_oauth2_authenticatable.git"
 
-gem 'thinking-sphinx', :git => 'http://github.com/freelancing-god/thinking-sphinx.git', :branch => 'rails3', :require => 'thinking_sphinx'
+gem 'thinking-sphinx', :require => 'thinking_sphinx'
 
 gem 'rack_hoptoad', :require => 'rack/hoptoad'
