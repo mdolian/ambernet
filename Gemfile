@@ -5,7 +5,7 @@ gem 'rails'
 
 gem 'hpricot'    
 gem 'rubyzip', :require => 'zip/zip'
-gem 'mysql'
+gem 'mysql2', '~> 0.2.13'
 gem 'haml'
 gem 'will_paginate', '3.0.pre2'
 gem 'resque'

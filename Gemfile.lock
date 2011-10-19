@@ -68,7 +68,7 @@ GEM
     mime-types (1.16)
     multi_json (0.0.5)
     multipart-post (1.1.0)
-    mysql (2.8.1)
+    mysql2 (0.2.13)
     oauth2 (0.1.1)
       faraday (~> 0.5.0)
       multi_json (~> 0.0.4)
@@ -133,7 +133,7 @@ DEPENDENCIES
   haml
   hpricot
   json
-  mysql
+  mysql2 (~> 0.2.13)
   oauth2
   rack_hoptoad
   rails
