@@ -10,4 +10,8 @@ class AdminController < ApplicationController
     render
   end
   
+  def blitz
+    render '42'
+  end
+  
 end

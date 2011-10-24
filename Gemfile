@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-## Bundle edge rails:
 gem 'rails'
 
 gem 'hpricot'    

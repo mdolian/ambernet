@@ -69,5 +69,7 @@ Ambernet::Application.routes.draw do |map|
   # root
   match 'index' => 'index#index'
   root :to => 'index#index'
+ 
+  match 'mu-203fdc34-7843a3cb-87e37547-c6b84dbd' => 'admin#blitz'
   
 end
