@@ -16,7 +16,7 @@
   
   Resque 1.8.5
   
-  Redis 1.2.0
+  Redis 1.2.01
 
 ### Quick Start
 
