@@ -117,7 +117,7 @@ GEM
     toadhopper (1.0.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.24)
+    tzinfo (0.3.61)
     vegas (0.1.8)
       rack (>= 1.0.0)
     warden (1.0.3)
